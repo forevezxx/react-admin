@@ -16,11 +16,11 @@ class UserManagements extends Component {
     render() {
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom first="表单" second="基础表单" />
+                <BreadcrumbCustom first="账户管理" second="用户管理" />
                 <Row gutter={16}>
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
-                            <Card title="固定列" bordered={false}>
+                            <Card bordered={false}>
                                 <EditableTable />
                             </Card>
                         </div>

@@ -11,7 +11,7 @@ class BreadcrumbCustom extends React.Component {
         const second = <Breadcrumb.Item>{this.props.second}</Breadcrumb.Item> || '';
         return (
             <span>
-                <Breadcrumb style={{ margin: '12px 0' }}>
+                <Breadcrumb style={{ margin: '12px 0' }} separator=">">
                     <Breadcrumb.Item><Link to={'/app/dashboard/index'}>当前位置：</Link></Breadcrumb.Item>
                         {first}
                         {second}
