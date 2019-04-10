@@ -2,9 +2,8 @@
  * Created by hao.cheng on 2017/4/13.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button } from 'antd';
+import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import EditableTable from '../tables/EditableTable';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -18,6 +17,84 @@ class UserManagements extends Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
+        const dataSource = [{
+            key: '1',
+            userId: 'id123456',
+            createPerson: 'admin',
+            userType: '管理用户',
+            stuffName: '唐先生',
+            position: '销售',
+            telNum: '15099999999',
+            jobNum: '22',
+            accountName: '23456',
+            accountPassword: '23456',
+            entryTime: '2019.01.02',
+        }, {
+            key: '2',
+            userId: 'id123456',
+            createPerson: 'admin',
+            userType: '管理用户',
+            stuffName: '唐先生',
+            position: '销售',
+            telNum: '15099999999',
+            jobNum: '22',
+            accountName: '23456',
+            accountPassword: '23456',
+            entryTime: '2019.01.02',
+        }];
+
+        const columns = [{
+            title: '用户ID',
+            dataIndex: 'userId',
+            key: 'userId',
+        }, {
+            title: '创建人',
+            dataIndex: 'createPerson',
+            key: 'createPerson',
+        }, {
+            title: '用户类别',
+            dataIndex: 'userType',
+            key: 'userType',
+        }, {
+            title: '员工姓名',
+            dataIndex: 'stuffName',
+            key: 'stuffName',
+        }, {
+            title: '职位',
+            dataIndex: 'position',
+            key: 'position',
+        }, {
+            title: '手机号码',
+            dataIndex: 'telNum',
+            key: 'telNum',
+        }, {
+            title: '工号',
+            dataIndex: 'jobNum',
+            key: 'jobNum',
+        }, {
+            title: '账号名称',
+            dataIndex: 'accountName',
+            key: 'accountName',
+        }, {
+            title: '账号密码',
+            dataIndex: 'accountPassword',
+            key: 'accountPassword',
+        }, {
+            title: '入职时间',
+            dataIndex: 'entryTime',
+            key: 'entryTime',
+        }, {
+            title: '操作',
+            // dataIndex: 'operating',
+            key: 'operating',
+            render: (text,record)=>(
+                <span>
+                    <a href="javascript:;">查看</a>
+                    <a href="javascript:;">编辑</a>
+                    <a href="javascript:;">停用</a>
+                </span>
+            )
+        }];
         return (
             <div className="gutter-example">
                 <BreadcrumbCustom first="账户管理" second="用户管理" />
@@ -75,7 +152,7 @@ class UserManagements extends Component {
                     <Col className="gutter-row" md={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <EditableTable />
+                                <Table columns={columns} dataSource={dataSource}/>
                             </Card>
                         </div>
                     </Col>
