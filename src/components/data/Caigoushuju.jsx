@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 
-class UserManagements extends Component {
+class Caigoushujus extends Component {
     state = {
         confirmDirty: false,
     };
@@ -87,7 +87,7 @@ class UserManagements extends Component {
             title: '操作',
             // dataIndex: 'operating',
             key: 'operating',
-            render: (text,record)=>(
+            render: (text, record) => (
                 <span>
                     <a href="javascript:;">查看</a>
                     <a href="javascript:;">编辑</a>
@@ -97,7 +97,7 @@ class UserManagements extends Component {
         }];
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom first="账户管理" second="用户管理" />
+                <BreadcrumbCustom first="数据管理" second="采购数据" />
 
                 <Row gutter={0}>
                     <Col className="gutter-row" md={24}>
@@ -152,7 +152,7 @@ class UserManagements extends Component {
                     <Col className="gutter-row" md={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <Table columns={columns} dataSource={dataSource}/>
+                                <Table columns={columns} dataSource={dataSource} />
                             </Card>
                         </div>
                     </Col>
@@ -162,6 +162,6 @@ class UserManagements extends Component {
     }
 }
 
-const UserManagement = Form.create()(UserManagements);
+const Caigoushuju = Form.create()(Caigoushujus);
 
-export default UserManagement;
+export default Caigoushuju;

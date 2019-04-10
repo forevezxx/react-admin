@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 
-class UserManagements extends Component {
+class Documents extends Component {
     state = {
         confirmDirty: false,
     };
@@ -19,85 +19,90 @@ class UserManagements extends Component {
         };
         const dataSource = [{
             key: '1',
-            userId: 'id123456',
-            createPerson: 'admin',
-            userType: '管理用户',
-            stuffName: '唐先生',
-            position: '销售',
-            telNum: '15099999999',
-            jobNum: '22',
-            accountName: '23456',
-            accountPassword: '23456',
-            entryTime: '2019.01.02',
+            seNum: '1',
+            companyType: '运营商',
+            companyName: '广州福意婚纱服饰有限公司',
+            mainPerson: '唐先生',
+            telNum: '18816872210',
+            industry: '金融业',
+            address: '浙江省杭州市富阳区宁线路11号',
+            from: '广告杂志',
+            hetongNum: 'NO.123214536',
+            createPerson: 'Wendy',
+            finalTime: '2019.02.28 09:30:56'
         }, {
             key: '2',
-            userId: 'id123456',
-            createPerson: 'admin',
-            userType: '管理用户',
-            stuffName: '唐先生',
-            position: '销售',
-            telNum: '15099999999',
-            jobNum: '22',
-            accountName: '23456',
-            accountPassword: '23456',
-            entryTime: '2019.01.02',
+            seNum: 'id123456',
+            companyType: 'admin',
+            companyName: '管理用户',
+            mainPerson: '唐先生',
+            telNum: '销售',
+            industry: '15099999999',
+            address: '22',
+            from: '23456',
+            hetongNum: '23456',
+            createPerson: '2019.01.02',
+            finalTime: '2019.02.28 09:30:56'
         }];
 
         const columns = [{
-            title: '用户ID',
-            dataIndex: 'userId',
-            key: 'userId',
+            title: '编号',
+            dataIndex: 'seNum',
+            key: 'seNum',
         }, {
-            title: '创建人',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            title: '公司类型',
+            dataIndex: 'companyType',
+            key: 'companyType',
         }, {
-            title: '用户类别',
-            dataIndex: 'userType',
-            key: 'userType',
+            title: '公司名称',
+            dataIndex: 'companyName',
+            key: 'companyName',
         }, {
-            title: '员工姓名',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+                title: '负责人',
+            dataIndex: 'mainPerson',
+            key: 'mainPerson',
         }, {
-            title: '职位',
-            dataIndex: 'position',
-            key: 'position',
-        }, {
-            title: '手机号码',
+                title: '手机号码',
             dataIndex: 'telNum',
             key: 'telNum',
         }, {
-            title: '工号',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+                title: '所属行业',
+            dataIndex: 'industry',
+            key: 'industry',
         }, {
-            title: '账号名称',
-            dataIndex: 'accountName',
-            key: 'accountName',
+                title: '地址',
+            dataIndex: 'address',
+            key: 'address',
         }, {
-            title: '账号密码',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+                title: '来源',
+            dataIndex: 'from',
+            key: 'from',
         }, {
-            title: '入职时间',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
+                title: '合同编号',
+            dataIndex: 'hetongNum',
+            key: 'hetongNum',
+        }, {
+                title: '建档人',
+            dataIndex: 'createPerson',
+            key: 'createPerson',
+        }, {
+                title: '最后跟进时间',
+                dataIndex: 'finalTime',
+                key: 'finalTime',
         }, {
             title: '操作',
             // dataIndex: 'operating',
             key: 'operating',
-            render: (text,record)=>(
+            render: (text, record) => (
                 <span>
                     <a href="javascript:;">查看</a>
                     <a href="javascript:;">编辑</a>
-                    <a href="javascript:;">停用</a>
                 </span>
             )
         }];
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom first="账户管理" second="用户管理" />
+                <BreadcrumbCustom first="应付管理" second="档案管理" />
 
                 <Row gutter={0}>
                     <Col className="gutter-row" md={24}>
@@ -106,31 +111,30 @@ class UserManagements extends Component {
                                 <Form {...formItemLayout}>
                                     <Row>
                                         <Col md={8}>
-                                            <FormItem label="员工姓名" colon={false}>
-                                                <input placeholder="请输入员工姓名" />
+                                            <FormItem label="负责人" colon={false}>
+                                                <input placeholder="请输入负责人姓名" />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
-                                            <FormItem label="用户类别" colon={false}>
-                                                <Select
-                                                    placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
-                                                >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
-                                                </Select>
+                                            <FormItem label="公司名称" colon={false}>
+                                                <input placeholder="请输入公司名称" />
+                                            </FormItem>
+                                        </Col>
+                                        <Col md={8}>
+                                            <FormItem label="合同编号" colon={false}>
+                                                <input placeholder="请输入合同编号" />
                                             </FormItem>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col md={8}>
-                                            <FormItem label="手机号码" colon={false}>
-                                                <input placeholder="请输入手机号码" />
+                                            <FormItem label="电话号码" colon={false}>
+                                                <input placeholder="请输入电话号码" />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
-                                            <FormItem label="工号" colon={false}>
-                                                <input placeholder="请输入工号" />
+                                            <FormItem label="建档人" colon={false}>
+                                                <input placeholder="请输入建档人" />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
@@ -152,7 +156,7 @@ class UserManagements extends Component {
                     <Col className="gutter-row" md={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <Table columns={columns} dataSource={dataSource}/>
+                                <Table columns={columns} dataSource={dataSource} />
                             </Card>
                         </div>
                     </Col>
@@ -162,6 +166,6 @@ class UserManagements extends Component {
     }
 }
 
-const UserManagement = Form.create()(UserManagements);
+const Document = Form.create()(Documents);
 
-export default UserManagement;
+export default Document;

@@ -28,7 +28,18 @@ import Cssmodule from './cssmodule';
 import MapUi from './ui/map';
 import QueryParams from './extension/QueryParams';
 
-
+import Document from './shouldPay/Document';
+import Pay from './shouldPay/Pay';
+import UserFiles from './shouldCollect/UserFiles';
+import In from './shouldCollect/In';
+import Baoxiao from './pay/Baoxiao';
+import Beiyongjin from './pay/Beiyongjin';
+import Gongfei from './pay/Gongfei';
+import Caigoushuju from './data/Caigoushuju';
+import Kehushuju from './data/Kehushuju';
+import Xiaoshoushuju from './data/Xiaoshoushuju';
+import Banchiguanli from './checkIn/Banchiguanli';
+import Kaoqingjilu from './checkIn/Kaoqingjilu';
 import UserManagement from './account/UserManagement';
 
 const WysiwygBundle = Loadable({ // 按需加载富文本配置
@@ -43,5 +54,8 @@ export default {
     ExampleAnimations, AuthBasic, RouterEnter, WysiwygBundle,
     Cssmodule, MapUi, QueryParams,
     
-    UserManagement
+    Document, Pay, UserFiles, In, 
+    Baoxiao, Beiyongjin, Gongfei, Caigoushuju,
+    Kehushuju, Xiaoshoushuju, Banchiguanli,
+    Kaoqingjilu, UserManagement
 }
