@@ -57,13 +57,13 @@ class UserManagements extends Component {
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit">查询</Button>
+                                            <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit">新建</Button>
+                                            <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit">导出</Button>
+                                            <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
                                 </Form>
