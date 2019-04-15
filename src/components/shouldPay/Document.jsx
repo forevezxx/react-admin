@@ -12,6 +12,9 @@ class Documents extends Component {
     state = {
         confirmDirty: false,
     };
+    NewShouldPay() {
+        //location.href = '/app/shouldPay/newshouldpay';
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -138,7 +141,7 @@ class Documents extends Component {
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
+                                            <Button type="primary" htmlType="submit" onClick={()=>this.NewShouldPay()}><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>

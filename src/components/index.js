@@ -29,7 +29,12 @@ import MapUi from './ui/map';
 import QueryParams from './extension/QueryParams';
 
 import Document from './shouldPay/Document';
+import NewShouldPay from './shouldPay/NewShouldPay';
+import WatchDocument from './shouldPay/WatchDocument';
+import EditDocument from './shouldPay/EditDocument';
 import Pay from './shouldPay/Pay';
+import NewPay from './shouldPay/NewPay';
+
 import UserFiles from './shouldCollect/UserFiles';
 import In from './shouldCollect/In';
 import Baoxiao from './pay/Baoxiao';
@@ -41,6 +46,7 @@ import Xiaoshoushuju from './data/Xiaoshoushuju';
 import Banchiguanli from './checkIn/Banchiguanli';
 import Kaoqingjilu from './checkIn/Kaoqingjilu';
 import UserManagement from './account/UserManagement';
+
 
 const WysiwygBundle = Loadable({ // 按需加载富文本配置
     loader: () => import('./ui/Wysiwyg'),
@@ -57,5 +63,6 @@ export default {
     Document, Pay, UserFiles, In, 
     Baoxiao, Beiyongjin, Gongfei, Caigoushuju,
     Kehushuju, Xiaoshoushuju, Banchiguanli,
-    Kaoqingjilu, UserManagement
+    Kaoqingjilu, UserManagement, NewShouldPay, WatchDocument, EditDocument,
+    NewPay
 }
