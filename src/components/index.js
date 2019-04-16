@@ -37,9 +37,21 @@ import NewPay from './shouldPay/NewPay';
 
 import UserFiles from './shouldCollect/UserFiles';
 import In from './shouldCollect/In';
+import NewUserFiles from './shouldCollect/NewUserFiles';
+import EditUserFiles from './shouldCollect/EditUserFiles';
+import NewIn from './shouldCollect/NewIn';
+
+
 import Baoxiao from './pay/Baoxiao';
 import Beiyongjin from './pay/Beiyongjin';
 import Gongfei from './pay/Gongfei';
+import NewInPay from './pay/NewInPay';
+import NewOutPay from './pay/NewOutPay';
+import NewBaoxiao from './pay/NewBaoxiao';
+import NewGongfei from './pay/NewGongfei';
+
+
+
 import Caigoushuju from './data/Caigoushuju';
 import Kehushuju from './data/Kehushuju';
 import Xiaoshoushuju from './data/Xiaoshoushuju';
@@ -64,5 +76,6 @@ export default {
     Baoxiao, Beiyongjin, Gongfei, Caigoushuju,
     Kehushuju, Xiaoshoushuju, Banchiguanli,
     Kaoqingjilu, UserManagement, NewShouldPay, WatchDocument, EditDocument,
-    NewPay
+    NewPay, NewUserFiles, EditUserFiles, NewIn, NewInPay, NewOutPay,
+    NewBaoxiao, NewGongfei
 }

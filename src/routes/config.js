@@ -17,6 +17,9 @@ export default {
             subs: [
                 { key: '/app/shouldCollect/userFiles', title: '客户档案', component: 'UserFiles' },
                 { key: '/app/shouldCollect/in', title: '应收录入', component: 'In' },
+                { key: '/app/shouldCollect/newUserFiles', title: '新增客户档案', component: 'NewUserFiles' },
+                { key: '/app/shouldCollect/editUserFiles', title: '编辑客户档案', component: 'EditUserFiles' },
+                { key: '/app/shouldCollect/newin', title: '新增应收录入', component: 'NewIn' },
             ]
         },
         {
@@ -25,6 +28,10 @@ export default {
                 { key: '/app/pay/beiyongjin', title: '备用金管理', component: 'Beiyongjin' },
                 { key: '/app/pay/baoxiao', title: '报销管理', component: 'Baoxiao' },
                 { key: '/app/pay/gongfei', title: '公费管理', component: 'Gongfei' },
+                { key: '/app/pay/newinpay', title: '新增备用金入账记录', component: 'NewInPay' },
+                { key: '/app/pay/newoutpay', title: '新增备用金出账记录', component: 'NewOutPay' },
+                { key: '/app/pay/newbaoxiao', title: '新增报销记录', component: 'NewBaoxiao' },
+                { key: '/app/pay/newgongfei', title: '新增公费记录', component: 'NewGongfei' },
             ]
         },
         {

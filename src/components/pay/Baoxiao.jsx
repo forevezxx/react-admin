@@ -105,32 +105,14 @@ class Baoxiaos extends Component {
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={8}>
-                                            <FormItem label="员工姓名" colon={false}>
-                                                <input placeholder="请输入员工姓名" />
+                                        <Col md={6}>
+                                            <FormItem label="出账时间" colon={false}>
+                                                <input placeholder="请选择" />
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
-                                            <FormItem label="用户类别" colon={false}>
-                                                <Select
-                                                    placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
-                                                >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
-                                                </Select>
-                                            </FormItem>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={8}>
-                                            <FormItem label="手机号码" colon={false}>
-                                                <input placeholder="请输入手机号码" />
-                                            </FormItem>
-                                        </Col>
-                                        <Col md={8}>
-                                            <FormItem label="工号" colon={false}>
-                                                <input placeholder="请输入工号" />
+                                        <Col md={6}>
+                                            <FormItem label="出账人" colon={false}>
+                                                <input placeholder="请输入出账人" />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
