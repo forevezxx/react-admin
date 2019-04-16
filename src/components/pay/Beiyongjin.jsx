@@ -190,7 +190,6 @@ class Beiyongjins extends Component {
                             </Row>
                     </TabPane>
                 </Tabs>
-                
             </div>
         )
     }

@@ -2,11 +2,13 @@
  * Created by zhengxinxing on 2019/04/11.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
+import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Tabs, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 const FormItem = Form.Item;
 const Option = Select.Option;
-
+const TabPane = Tabs.TabPane;
+const { TextArea } = Input;
+const CheckboxGroup = Checkbox.Group;
 
 class Banchiguanlis extends Component {
     state = {
@@ -17,146 +19,113 @@ class Banchiguanlis extends Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        const dataSource = [{
-            key: '1',
-            userId: 'id123456',
-            createPerson: 'admin',
-            userType: '管理用户',
-            stuffName: '唐先生',
-            position: '销售',
-            telNum: '15099999999',
-            jobNum: '22',
-            accountName: '23456',
-            accountPassword: '23456',
-            entryTime: '2019.01.02',
-        }, {
-            key: '2',
-            userId: 'id123456',
-            createPerson: 'admin',
-            userType: '管理用户',
-            stuffName: '唐先生',
-            position: '销售',
-            telNum: '15099999999',
-            jobNum: '22',
-            accountName: '23456',
-            accountPassword: '23456',
-            entryTime: '2019.01.02',
-        }];
 
-        const columns = [{
-            title: '用户ID',
-            dataIndex: 'userId',
-            key: 'userId',
-        }, {
-            title: '创建人',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
-        }, {
-            title: '用户类别',
-            dataIndex: 'userType',
-            key: 'userType',
-        }, {
-            title: '员工姓名',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
-        }, {
-            title: '职位',
-            dataIndex: 'position',
-            key: 'position',
-        }, {
-            title: '手机号码',
-            dataIndex: 'telNum',
-            key: 'telNum',
-        }, {
-            title: '工号',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
-        }, {
-            title: '账号名称',
-            dataIndex: 'accountName',
-            key: 'accountName',
-        }, {
-            title: '账号密码',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
-        }, {
-            title: '入职时间',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
-        }, {
-            title: '操作',
-            // dataIndex: 'operating',
-            key: 'operating',
-            render: (text, record) => (
-                <span>
-                    <a href="javascript:;">查看</a>
-                    <a href="javascript:;">编辑</a>
-                    <a href="javascript:;">停用</a>
-                </span>
-            )
-        }];
+        function onChanges(checkedValues) {
+            console.log('checked = ', checkedValues);
+        }
+        const options = [
+            { label: '员工1', value: '员工1' },
+            { label: '员工2', value: '员工2' },
+            { label: '员工3', value: '员工3' },
+        ];
         return (
             <div className="gutter-example">
                 <BreadcrumbCustom first="考勤管理" second="班次管理" />
 
-                <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
-                        <div className="gutter-box">
-                            <Card bordered={false}>
-                                <Form {...formItemLayout}>
-                                    <Row>
-                                        <Col md={8}>
-                                            <FormItem label="员工姓名" colon={false}>
-                                                <input placeholder="请输入员工姓名" />
-                                            </FormItem>
-                                        </Col>
-                                        <Col md={8}>
-                                            <FormItem label="用户类别" colon={false}>
-                                                <Select
-                                                    placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
-                                                >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
-                                                </Select>
-                                            </FormItem>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={8}>
-                                            <FormItem label="手机号码" colon={false}>
-                                                <input placeholder="请输入手机号码" />
-                                            </FormItem>
-                                        </Col>
-                                        <Col md={8}>
-                                            <FormItem label="工号" colon={false}>
-                                                <input placeholder="请输入工号" />
-                                            </FormItem>
-                                        </Col>
-                                        <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
-                                        </Col>
-                                        <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>
-                                        </Col>
-                                        <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
-                                        </Col>
-                                    </Row>
-                                </Form>
-                            </Card>
-                        </div>
-                    </Col>
-                </Row>
-                <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
-                        <div className="gutter-box">
-                            <Card bordered={false}>
-                                <Table columns={columns} dataSource={dataSource} />
-                            </Card>
-                        </div>
-                    </Col>
-                </Row>
+                <Tabs defaultActiveKey="1">
+                    <TabPane tab="班次管理" key="1">
+                        <Row gutter={0}>
+                            <Col className="gutter-row" md={24}>
+                                <div className="gutter-box">
+                                    <Card bordered={false}>
+                                        <Form {...formItemLayout}>
+                                            <Row>
+                                                <Col md={24}>
+                                                    <FormItem label="班次" colon={false}>
+                                                        <Select
+                                                            placeholder="早班"
+                                                            onChange={this.handleSelectChange}
+                                                        >
+                                                            <Option value="male">早班</Option>
+                                                            <Option value="female">晚班</Option>
+                                                        </Select>
+                                                    </FormItem>
+                                                    <FormItem label="时间" colon={false}>
+                                                        <input placeholder="请输入班次名称" disabled value="07：00-15：00" />
+                                                    </FormItem>
+                                                </Col>
+                                                <Col md={24}>
+                                                    <FormItem label="班次" colon={false}>
+                                                        <Select
+                                                            placeholder="早班"
+                                                            onChange={this.handleSelectChange}
+                                                        >
+                                                            <Option value="male">早班</Option>
+                                                            <Option value="female">晚班</Option>
+                                                        </Select>
+                                                    </FormItem>
+                                                    <FormItem label="时间" colon={false}>
+                                                        <input placeholder="请输入班次名称" disabled value="07：00-15：00" />
+                                                    </FormItem>
+                                                </Col>
+                                                <Col md={24}>
+                                                    <Button type="dashed" htmlType="submit"><Icon type="plus-square" />增加班次</Button>
+                                                </Col>
+                                                <Col md={8}>
+                                                    <Button type="primary" htmlType="submit">返回</Button></Col>
+                                                <Col md={8}>
+                                                    <Button type="primary" htmlType="submit">保存</Button></Col>
+                                            </Row>
+                                        </Form>
+                                    </Card>
+                                </div>
+                            </Col>
+                        </Row>
+                    </TabPane>
+                    <TabPane tab="排班表" key="2">
+                        <Row gutter={0}>
+                            <Col className="gutter-row" md={24}>
+                                <div className="gutter-box">
+                                    <Card bordered={false}>
+                                        <Form {...formItemLayout}>
+                                            <Row>
+                                                <Col md={24}>
+                                                    <FormItem label="班次" colon={false}>
+                                                        <input placeholder="请输入班次名称" />
+                                                    </FormItem>
+                                                    <FormItem label="时间" colon={false}>
+                                                        <DatePicker onChange={() => this.onChange} />
+                                                    </FormItem>
+                                                    <FormItem label="人员" colon={false}>
+                                                        <CheckboxGroup options={options} defaultValue={['员工3']} onChange={onChanges} />
+                                                    </FormItem>
+                                                </Col>
+                                                <Col md={24}>
+                                                    <FormItem label="班次" colon={false}>
+                                                        <input placeholder="请输入班次名称" />
+                                                    </FormItem>
+                                                    <FormItem label="时间" colon={false}>
+                                                        <DatePicker onChange={() => this.onChange} />
+                                                    </FormItem>
+                                                    <FormItem label="人员" colon={false}>
+                                                        <CheckboxGroup options={options} defaultValue={['员工3']} onChange={onChanges} />
+                                                    </FormItem>
+                                                </Col>
+                                                <Col md={24}>
+                                                    <Button type="dashed" htmlType="submit"><Icon type="plus-square" />添加排班</Button>
+                                                </Col>
+                                                <Col md={8}>
+                                                    <Button type="primary" htmlType="submit">返回</Button></Col>
+                                                <Col md={8}>
+                                                    <Button type="primary" htmlType="submit">保存</Button></Col>
+                                            </Row>
+                                        </Form>
+                                    </Card>
+                                </div>
+                            </Col>
+                        </Row>
+                    </TabPane>
+                </Tabs>
             </div>
         )
     }
