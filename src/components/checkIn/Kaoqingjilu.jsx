@@ -2,7 +2,7 @@
  * Created by zhengxinxing on 2019/04/11.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
+import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -111,26 +111,20 @@ class Kaoqingjilus extends Component {
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
-                                            <FormItem label="用户类别" colon={false}>
-                                                <Select
-                                                    placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
-                                                >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
-                                                </Select>
+                                            <FormItem label="岗位" colon={false}>
+                                                <input placeholder="请输入员工所在岗位" />
                                             </FormItem>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col md={8}>
-                                            <FormItem label="手机号码" colon={false}>
-                                                <input placeholder="请输入手机号码" />
+                                            <FormItem label="部门" colon={false}>
+                                                <input placeholder="请输入员工所在部门" />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
-                                            <FormItem label="工号" colon={false}>
-                                                <input placeholder="请输入工号" />
+                                            <FormItem label="考勤日期" colon={false}>
+                                                <DatePicker onChange={()=>this.onChange} />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>

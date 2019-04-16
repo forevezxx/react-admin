@@ -55,8 +55,11 @@ import NewGongfei from './pay/NewGongfei';
 import Caigoushuju from './data/Caigoushuju';
 import Kehushuju from './data/Kehushuju';
 import Xiaoshoushuju from './data/Xiaoshoushuju';
+
 import Banchiguanli from './checkIn/Banchiguanli';
 import Kaoqingjilu from './checkIn/Kaoqingjilu';
+import NewKaoqingjilu from './checkIn/NewKaoqingjilu';
+
 import UserManagement from './account/UserManagement';
 
 
@@ -77,5 +80,5 @@ export default {
     Kehushuju, Xiaoshoushuju, Banchiguanli,
     Kaoqingjilu, UserManagement, NewShouldPay, WatchDocument, EditDocument,
     NewPay, NewUserFiles, EditUserFiles, NewIn, NewInPay, NewOutPay,
-    NewBaoxiao, NewGongfei
+    NewBaoxiao, NewGongfei, NewKaoqingjilu
 }

@@ -47,6 +47,7 @@ export default {
             subs: [
                 { key: '/app/checkIn/kaoqingjilu', title: '考勤记录', component: 'Kaoqingjilu' },
                 { key: '/app/checkIn/banchiguanli', title: '班次管理', component: 'Banchiguanli' },
+                { key: '/app/checkIn/newkaoqingjilu', title: '新增考勤记录', component: 'NewKaoqingjilu' },
             ]
         },
         {
