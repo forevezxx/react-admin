@@ -30,3 +30,34 @@ export const gitOauthInfo = access_token => get({ url: `${config.GIT_USER}access
 export const admin = () => get({ url: config.MOCK_AUTH_ADMIN });
 // 访问权限获取
 export const guest = () => get({ url: config.MOCK_AUTH_VISITOR });
+
+
+
+// 用户登录
+// export const login = (username, password) => post({ 
+//     url: config.LOGIN,
+//     data: {
+//         username,
+//         password
+//     }
+// })
+
+export const login = (username, password) => get({
+    url: `${config.LOGIN}?username=${username}&password=${password}`,
+})
+
+
+export const userAdd = (id, type, username, position, phone, user_ext, account_name, password, user_auth, function_auth) => get({
+    url: `${config.USER_ADD}?
+    id=${id}&
+    type=${type}&
+    username=${username}&
+    position=${position}&
+    phone=${phone}&
+    user_ext=${user_ext}&
+    account_name=${account_name}&
+    password=${password}&
+    user_auth=${user_auth}&
+    function_auth=${function_auth}`,
+})
+

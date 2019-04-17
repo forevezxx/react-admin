@@ -5,6 +5,7 @@ import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { PwaInstaller } from '../widget';
 import { connectAlita } from 'redux-alita';
+import { login, userAdd } from '../../axios';
 
 const FormItem = Form.Item;
 
@@ -27,8 +28,15 @@ class Login extends React.Component {
             if (!err) {
                 console.log('Received values of form: ', values);
                 const { setAlitaState } = this.props;
-                if (values.userName === 'admin' && values.password === 'admin') setAlitaState({ funcName: 'admin', stateName: 'auth' });
-                if (values.userName === 'guest' && values.password === 'guest') setAlitaState({ funcName: 'guest', stateName: 'auth' });
+                // if (values.userName === 'admin' && values.password === 'admin') setAlitaState({ funcName: 'admin', stateName: 'auth' });
+                // if (values.userName === 'guest' && values.password === 'guest') setAlitaState({ funcName: 'guest', stateName: 'auth' });
+                login(values.userName, values.password).then(res=>{
+                    console.log(res);
+                })
+                userAdd('111111','1','用户a','经理','15088888888','A1001','zxx','123456','2019-09-09','查看权限').then(res=>{
+                    console.log(res);
+                })
+                
             }
         });
     };
@@ -70,10 +78,10 @@ class Login extends React.Component {
                             <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>
                                 登录
                             </Button>
-                            <p style={{display: 'flex', justifyContent: 'space-between'}}>
+                            {/* <p style={{display: 'flex', justifyContent: 'space-between'}}>
                                 <span >或 现在就去注册!</span>
                                 <span onClick={this.gitHub} ><Icon type="github" />(第三方登录)</span>
-                            </p>
+                            </p> */}
                         </FormItem>
                     </Form>
                 </div>

@@ -19,4 +19,12 @@ export const NEWS_BBC = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&a
 
 
 
+// 接口请求地址
+const SERVER_URL = 'http://backend.delcache.com';
+
+export const LOGIN = SERVER_URL + '/user/login'; //用户登录接口
+export const USER_ADD = SERVER_URL + '/user/add'; //新增用户接口
+
+
+
 
