@@ -6,10 +6,6 @@ export default {
             subs: [
                 { key: '/app/shouldPay/document', title: '供应商档案', component: 'Document' },
                 { key: '/app/shouldPay/pay', title: '应付录入', component: 'Pay' },
-                { key: '/app/shouldPay/newshouldpay', title: '新增供应商档案', component: 'NewShouldPay' },
-                { key: '/app/shouldPay/watchDocument', title: '查看供应商档案', component: 'WatchDocument' },
-                { key: '/app/shouldPay/editDocument', title: '编辑供应商档案', component: 'EditDocument' },
-                { key: '/app/shouldPay/newPay', title: '新增应付录入', component: 'NewPay' },
             ]
         },
         {
@@ -58,6 +54,9 @@ export default {
         },
     ],
     others: [
-        { key: '/app/shouldPay/newshouldpay', title: '新增供应商档案', component: 'Document' },
+        { key: '/app/shouldPay/newshouldpay', title: '新增供应商档案', component: 'NewShouldPay' },
+        { key: '/app/shouldPay/watchDocument', title: '查看供应商档案', component: 'WatchDocument' },
+        { key: '/app/shouldPay/editDocument', title: '编辑供应商档案', component: 'EditDocument' },
+        { key: '/app/shouldPay/newPay', title: '新增应付录入', component: 'NewPay' },
     ] // 非菜单相关路由
 }

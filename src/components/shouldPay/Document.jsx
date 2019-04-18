@@ -12,8 +12,14 @@ class Documents extends Component {
     state = {
         confirmDirty: false,
     };
-    NewShouldPay() {
-        //location.href = '/app/shouldPay/newshouldpay';
+    NewShouldPay() {//新建
+        this.props.history.push('/app/shouldPay/newshouldpay');
+    }
+    WatchDocument() {//查看
+        this.props.history.push('/app/shouldPay/watchDocument');
+    }
+    EditDocument() {//编辑
+        this.props.history.push('/app/shouldPay/editDocument');
     }
     render() {
         const formItemLayout = {
@@ -98,8 +104,8 @@ class Documents extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;">查看</a>
-                    <a href="javascript:;">编辑</a>
+                    <a href="javascript:;" onClick={()=>this.WatchDocument()}>查看</a>
+                    <a href="javascript:;" onClick={()=>this.EditDocument()}>编辑</a>
                 </span>
             )
         }];
@@ -141,10 +147,10 @@ class Documents extends Component {
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit" onClick={()=>this.NewShouldPay()}><Icon type="search" />查询</Button>
+                                            <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>
+                                            <Button type="primary" htmlType="submit" onClick={()=>this.NewShouldPay()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
