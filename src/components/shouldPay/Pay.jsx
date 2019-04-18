@@ -12,6 +12,9 @@ class Pays extends Component {
     state = {
         confirmDirty: false,
     };
+    NewPay() {//新建
+        this.props.history.push('/app/shouldPay/newPay');
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -137,7 +140,7 @@ class Pays extends Component {
                                             <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>
+                                            <Button type="primary" htmlType="submit" onClick={()=>this.NewPay()} ><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>

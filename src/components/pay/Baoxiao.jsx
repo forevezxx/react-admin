@@ -12,6 +12,9 @@ class Baoxiaos extends Component {
     state = {
         confirmDirty: false,
     };
+    newbaoxiao() {//新建
+        this.props.history.push('/app/pay/newbaoxiao');
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -119,7 +122,7 @@ class Baoxiaos extends Component {
                                             <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>
+                                            <Button type="primary" htmlType="submit" onClick={()=>this.newbaoxiao()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>

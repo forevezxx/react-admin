@@ -12,6 +12,12 @@ class UserFiless extends Component {
     state = {
         confirmDirty: false,
     };
+    newUserFiles() {//新建
+        this.props.history.push('/app/shouldCollect/newUserFiles');
+    }
+    editUserFiles() {//编辑
+        this.props.history.push('/app/shouldCollect/editUserFiles');
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -90,7 +96,7 @@ class UserFiless extends Component {
             render: (text, record) => (
                 <span>
                     <a href="javascript:;">查看</a>
-                    <a href="javascript:;">编辑</a>
+                    <a href="javascript:;" onClick={()=>this.editUserFiles()} >编辑</a>
                     <a href="javascript:;">停用</a>
                 </span>
             )
@@ -137,7 +143,7 @@ class UserFiless extends Component {
                                             <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>
+                                            <Button type="primary" htmlType="submit" onClick={()=>this.newUserFiles()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>

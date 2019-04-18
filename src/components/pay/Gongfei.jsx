@@ -12,6 +12,9 @@ class Gongfeis extends Component {
     state = {
         confirmDirty: false,
     };
+    newgongfei() {//新建
+        this.props.history.push('/app/pay/newgongfei');
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -130,7 +133,7 @@ class Gongfeis extends Component {
                                             <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>
+                                            <Button type="primary" htmlType="submit" onClick={()=>this.newgongfei()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
