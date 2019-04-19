@@ -31,11 +31,14 @@ class Login extends React.Component {
                 // if (values.userName === 'admin' && values.password === 'admin') setAlitaState({ funcName: 'admin', stateName: 'auth' });
                 // if (values.userName === 'guest' && values.password === 'guest') setAlitaState({ funcName: 'guest', stateName: 'auth' });
                 login(values.userName, values.password).then(res=>{
-                    console.log(res);
+                    if(res.msg === "success"){
+                        localStorage.setItem('user_token',res.data.token);
+                        this.props.history.push('/');
+                    }
                 })
-                userAdd('111111','1','用户a','经理','15088888888','A1001','zxx','123456','2019-09-09','查看权限').then(res=>{
-                    console.log(res);
-                })
+                // userAdd('111111','1','用户a','经理','15088888888','A1001','zxx','123456','2019-09-09','查看权限').then(res=>{
+                //     console.log(res);
+                // })
                 
             }
         });
