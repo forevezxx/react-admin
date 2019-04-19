@@ -49,22 +49,22 @@ class Login extends React.Component {
             <div className="login">
                 <div className="login-form" >
                     <div className="login-logo">
-                        <span>React Admin</span>
+                        <span>可遇_后台管理系统</span>
                         <PwaInstaller />
                     </div>
-                    <Form onSubmit={this.handleSubmit} style={{maxWidth: '300px'}}>
+                    <Form onSubmit={this.handleSubmit} >
                         <FormItem>
                             {getFieldDecorator('userName', {
                                 rules: [{ required: true, message: '请输入用户名!' }],
                             })(
-                                <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="管理员输入admin, 游客输入guest" />
+                                <Input prefix={<Icon type="user" style={{ fontSize: 13, color: '#70AEA2' }} />} placeholder="管理员输入admin, 游客输入guest" />
                             )}
                         </FormItem>
                         <FormItem>
                             {getFieldDecorator('password', {
                                 rules: [{ required: true, message: '请输入密码!' }],
                             })(
-                                <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="管理员输入admin, 游客输入guest" />
+                                <Input prefix={<Icon type="lock" style={{ fontSize: 13, color: '#70AEA2' }} />} type="password" placeholder="管理员输入admin, 游客输入guest" />
                             )}
                         </FormItem>
                         <FormItem>
