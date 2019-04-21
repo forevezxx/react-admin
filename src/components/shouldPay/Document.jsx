@@ -2,7 +2,7 @@
  * Created by zhengxinxing on 2019/04/11.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
+import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Pagination } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -104,13 +104,24 @@ class Documents extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;" onClick={()=>this.WatchDocument()}>查看</a>
-                    <a href="javascript:;" onClick={()=>this.EditDocument()}>编辑</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.WatchDocument()}>查看</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.EditDocument()}>编辑</a>
                 </span>
             )
         }];
+        const paginationProps = {
+            showSizeChanger: true,
+            showQuickJumper: true,
+            //showTotal: () => `共${totals}条`,
+            //pageSize: this.state.pageSize,
+            //current: page.pageNum,
+            total: 50,
+            //onShowSizeChange: (current, pageSize) => this.changePageSize(pageSize, current),
+            //onChange: (current) => this.changePage(current),
+            size: "small",
+        };
         return (
-            <div className="gutter-example">
+            <div className="gutter-example document">
                 <BreadcrumbCustom first="应付管理" second="档案管理" />
 
                 <Row gutter={0}>
@@ -162,10 +173,10 @@ class Documents extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="gutter-row document_list" md={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <Table columns={columns} dataSource={dataSource} />
+                                <Table columns={columns} dataSource={dataSource} pagination={paginationProps} />
                             </Card>
                         </div>
                     </Col>

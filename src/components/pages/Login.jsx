@@ -19,7 +19,7 @@ class Login extends React.Component {
         // const { history } = this.props;
         if (nextAuth.data && nextAuth.data.uid) { // 判断是否登陆
             localStorage.setItem('user', JSON.stringify(nextAuth.data));
-            history.push('/');
+            history.push('/app/shouldPay/document');
         }
     }
     handleSubmit = (e) => {
@@ -33,7 +33,7 @@ class Login extends React.Component {
                 login(values.userName, values.password).then(res=>{
                     if(res.msg === "success"){
                         localStorage.setItem('user_token',res.data.token);
-                        this.props.history.push('/');
+                        this.props.history.push('/app/shouldPay/document');
                     }
                 })
                 // userAdd('111111','1','用户a','经理','15088888888','A1001','zxx','123456','2019-09-09','查看权限').then(res=>{
