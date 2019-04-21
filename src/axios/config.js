@@ -25,6 +25,8 @@ const SERVER_URL = 'http://backend.delcache.com';
 export const LOGIN = SERVER_URL + '/user/login'; //用户登录接口
 export const USER_ADD = SERVER_URL + '/user/add'; //新增用户接口
 
+export const USER_UPDATE = SERVER_URL + '/user/update';//更新用户信息
+
 
 
 

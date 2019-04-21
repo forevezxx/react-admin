@@ -47,17 +47,13 @@ export const login = (username, password) => post({
 // })
 
 
-export const userAdd = (id, type, username, position, phone, user_ext, account_name, password, user_auth, function_auth) => get({
-    url: `${config.USER_ADD}?
-    id=${id}&
-    type=${type}&
-    username=${username}&
-    position=${position}&
-    phone=${phone}&
-    user_ext=${user_ext}&
-    account_name=${account_name}&
-    password=${password}&
-    user_auth=${user_auth}&
-    function_auth=${function_auth}`,
+export const userAdd = (data) => post({
+    url: config.USER_ADD,
+    data
+})
+
+export const userUpdate = (data) => post({
+    url: config.USER_UPDATE,
+    data
 })
 

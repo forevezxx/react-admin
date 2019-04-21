@@ -61,5 +61,7 @@ export default {
         { key: '/app/pay/newgongfei', title: '新增公费记录', component: 'NewGongfei' },
 
         { key: '/app/checkIn/newkaoqingjilu', title: '新增考勤记录', component: 'NewKaoqingjilu' },
+
+        { key: '/app/account/newUserManagement', title: '新增用户', component: 'NewUserManagement' },
     ]
 }

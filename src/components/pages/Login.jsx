@@ -35,11 +35,7 @@ class Login extends React.Component {
                         localStorage.setItem('user_token',res.data.token);
                         this.props.history.push('/app/shouldPay/document');
                     }
-                })
-                // userAdd('111111','1','用户a','经理','15088888888','A1001','zxx','123456','2019-09-09','查看权限').then(res=>{
-                //     console.log(res);
-                // })
-                
+                })                
             }
         });
     };

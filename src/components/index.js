@@ -61,6 +61,7 @@ import Kaoqingjilu from './checkIn/Kaoqingjilu';
 import NewKaoqingjilu from './checkIn/NewKaoqingjilu';
 
 import UserManagement from './account/UserManagement';
+import NewUserManagement from './account/NewUserManagement';
 
 
 const WysiwygBundle = Loadable({ // 按需加载富文本配置
@@ -80,5 +81,6 @@ export default {
     Kehushuju, Xiaoshoushuju, Banchiguanli,
     Kaoqingjilu, UserManagement, NewShouldPay, WatchDocument, EditDocument,
     NewPay, NewUserFiles, EditUserFiles, NewIn, NewInPay, NewOutPay,
-    NewBaoxiao, NewGongfei, NewKaoqingjilu
+    NewBaoxiao, NewGongfei, NewKaoqingjilu,
+    NewUserManagement
 }
