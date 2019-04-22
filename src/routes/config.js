@@ -64,5 +64,6 @@ export default {
 
         { key: '/app/account/newUserManagement', title: '新增用户', component: 'NewUserManagement' },
         { key: '/app/account/watchUserManagement/:id', title: '查看用户信息', component: 'WatchUserManagement' },
+        { key: '/app/account/editUserManagement/:id', title: '编辑用户信息', component: 'EditUserManagement' },
     ]
 }

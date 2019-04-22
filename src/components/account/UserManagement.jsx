@@ -56,6 +56,9 @@ class UserManagements extends Component {
     WatchUserManagement(id) {
         this.props.history.push(`/app/account/watchUserManagement/${id}`);
     }
+    EditUserManagement(id) {
+        this.props.history.push(`/app/account/editUserManagement/${id}`);
+    }
 
 
     componentDidMount() {
@@ -143,7 +146,7 @@ class UserManagements extends Component {
             render: (text,record)=>(
                 <span>
                     <a href="javascript:;" className="userManagement_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
-                    <a href="javascript:;" className="userManagement_a">编辑</a>
+                    <a href="javascript:;" className="userManagement_a" onClick={()=>this.EditUserManagement(record.id)}>编辑</a>
                     <a href="javascript:;" className="userManagement_a stop">停用</a>
                     {/* 停用--员工离职 账号不能登录 */}
                 </span>

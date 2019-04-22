@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAdd, userUpdate } from '../../axios';
+import { userAdd } from '../../axios';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -53,28 +53,6 @@ class UserManagements extends Component {
             function_auth: '1',
         }
         userAdd(data).then(res=>{
-            console.log(res);
-        })
-    }
-    userUpdates() {
-        let data = {
-            id: '8',
-            update_json: JSON.stringify({
-                type: '1',
-                username: '测试账户1',
-                position: '开发',
-                phone: '15068747888',
-                user_ext: '1',
-                account_name: 'zxx',
-                password: '1',
-                employment_date: '20190421',
-                user_auth: '1',
-                function_auth: '1',
-                enabled: '1',
-            }),
-            token: localStorage.getItem('user_token'),
-        };
-        userUpdate(data).then(res =>{
             console.log(res);
         })
     }
