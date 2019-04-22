@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAll, userSearch } from '../../axios';
+import { userAll, userSearch, userOne } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -53,6 +53,11 @@ class UserManagements extends Component {
             })
         })
     }
+    WatchUserManagement(id) {
+        this.props.history.push(`/app/account/watchUserManagement/${id}`);
+    }
+
+
     componentDidMount() {
         this.getUserAll();
     }
@@ -137,7 +142,7 @@ class UserManagements extends Component {
             key: 'operating',
             render: (text,record)=>(
                 <span>
-                    <a href="javascript:;" className="userManagement_a">查看</a>
+                    <a href="javascript:;" className="userManagement_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
                     <a href="javascript:;" className="userManagement_a">编辑</a>
                     <a href="javascript:;" className="userManagement_a stop">停用</a>
                 </span>

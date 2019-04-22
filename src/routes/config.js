@@ -63,5 +63,6 @@ export default {
         { key: '/app/checkIn/newkaoqingjilu', title: '新增考勤记录', component: 'NewKaoqingjilu' },
 
         { key: '/app/account/newUserManagement', title: '新增用户', component: 'NewUserManagement' },
+        { key: '/app/account/watchUserManagement/:id', title: '查看用户信息', component: 'WatchUserManagement' },
     ]
 }

@@ -65,3 +65,8 @@ export const userSearch = (data) => post({
     data
 })
 
+export const userOne = (data) => post({
+    url: config.USER_ONE,
+    data
+})
+
