@@ -145,6 +145,7 @@ class UserManagements extends Component {
                     <a href="javascript:;" className="userManagement_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
                     <a href="javascript:;" className="userManagement_a">编辑</a>
                     <a href="javascript:;" className="userManagement_a stop">停用</a>
+                    {/* 停用--员工离职 账号不能登录 */}
                 </span>
             )
         }];
