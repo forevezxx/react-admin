@@ -70,3 +70,8 @@ export const userOne = (data) => post({
     data
 })
 
+export const userDisable = (data) => post({
+    url: config.USER_DISABLE,
+    data
+})
+

@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAll, userSearch, userOne } from '../../axios';
+import { userAll, userSearch, userDisable } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -87,6 +87,12 @@ class UserManagements extends Component {
             searchUserType: value
         });
     }
+    disableUser(id){
+        let data = {id};
+        userDisable(data).then(res=>{
+            alert('停用成功');
+        })
+    }
     render() {
 
         const { dataSource, count } = this.state;
@@ -147,8 +153,8 @@ class UserManagements extends Component {
                 <span>
                     <a href="javascript:;" className="userManagement_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
                     <a href="javascript:;" className="userManagement_a" onClick={()=>this.EditUserManagement(record.id)}>编辑</a>
-                    <a href="javascript:;" className="userManagement_a stop">停用</a>
-                    {/* 停用--员工离职 账号不能登录 */}
+                    <a href="javascript:;" className="userManagement_a stop" onClick={()=>this.disableUser(record.id)}>停用</a>
+                    {/* 停用--员工离职 账号不能登录 不在用户列表里了 */}
                 </span>
             )
         }];

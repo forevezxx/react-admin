@@ -29,6 +29,8 @@ export const USER_UPDATE = SERVER_URL + '/user/update';//更新用户信息
 export const USER_ALL = SERVER_URL + '/user/all';//查询全部用户信息
 export const USER_SEARCH = SERVER_URL + '/user/search';//查询数据
 export const USER_ONE = SERVER_URL + '/user/one';//查看用户信息
+export const USER_DISABLE = SERVER_URL + '/user/disable';//停用用户账号
+
 
 
 
