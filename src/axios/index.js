@@ -60,4 +60,8 @@ export const userAll = (data) => post({
     url: config.USER_ALL,
     data
 })
+export const userSearch = (data) => post({
+    url: config.USER_SEARCH,
+    data
+})
 

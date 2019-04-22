@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAll } from '../../axios';
+import { userAll, userSearch } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -17,6 +17,11 @@ class UserManagements extends Component {
         count: '',//表格数据源总条数
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
+
+        searchName: '',
+        searchTel: '',
+        searchUserType: '',
+        searchNumber: '',
     };
     newUserManagement() {//新建
         this.props.history.push('/app/account/newUserManagement');
@@ -30,6 +35,20 @@ class UserManagements extends Component {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
+                count: res.data.count,
+            })
+        })
+    }
+    getUserSearch() {
+        let data = {
+            username: this.state.searchName,
+            type: this.state.searchUserType,
+            phone: this.state.searchTel,
+            user_ext: this.state.searchNumber,
+        }
+        userSearch(data).then(res=>{
+            this.setState({
+                dataSource: res.data.users,
                 count: res.data.count,
             })
         })
@@ -53,6 +72,12 @@ class UserManagements extends Component {
         },()=>{
             that.getUserAll();
         })
+    }
+    handleSelectChange(value) {
+        console.log(value)
+        this.setState({
+            searchUserType: value
+        });
     }
     render() {
 
@@ -114,7 +139,7 @@ class UserManagements extends Component {
                 <span>
                     <a href="javascript:;" className="userManagement_a">查看</a>
                     <a href="javascript:;" className="userManagement_a">编辑</a>
-                    <a href="javascript:;" className="userManagement_a">停用</a>
+                    <a href="javascript:;" className="userManagement_a stop">停用</a>
                 </span>
             )
         }];
@@ -140,17 +165,21 @@ class UserManagements extends Component {
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="员工姓名" colon={false}>
-                                                <input placeholder="请输入员工姓名" />
+                                                <input placeholder="请输入员工姓名" onChange={event=>{
+                                                    this.setState({
+                                                        searchName: event.target.value
+                                                      });
+                                                }} />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="用户类别" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
+                                                    onChange={this.handleSelectChange.bind(this)}
                                                 >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
+                                                    <Option value="1">male</Option>
+                                                    <Option value="2">female</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>
@@ -158,16 +187,24 @@ class UserManagements extends Component {
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="手机号码" colon={false}>
-                                                <input placeholder="请输入手机号码" />
+                                                <input placeholder="请输入手机号码" maxLength="11" onChange={event=>{
+                                                    this.setState({
+                                                        searchTel: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="工号" colon={false}>
-                                                <input placeholder="请输入工号" />
+                                                <input placeholder="请输入工号" onChange={event=>{
+                                                    this.setState({
+                                                        searchNumber: event.target.value
+                                                      });
+                                                }} />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
+                                            <Button type="primary" htmlType="submit" onClick={()=> this.getUserSearch()}><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.newUserManagement()}><Icon type="plus" />新建</Button>
