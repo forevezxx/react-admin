@@ -56,4 +56,8 @@ export const userUpdate = (data) => post({
     url: config.USER_UPDATE,
     data
 })
+export const userAll = (data) => post({
+    url: config.USER_ALL,
+    data
+})
 

@@ -4,6 +4,8 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import { userAll } from '../../axios';
+import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -11,97 +13,125 @@ const Option = Select.Option;
 class UserManagements extends Component {
     state = {
         confirmDirty: false,
+        dataSource: [],//表格数据源
+        count: '',//表格数据源总条数
+        pageSize: 5,//每页显示条数
+        current: 1,//当前所在页数
     };
     newUserManagement() {//新建
         this.props.history.push('/app/account/newUserManagement');
     }
+    getUserAll() {//获取用户信息
+        let data = {
+            pageNum: this.state.current-1,
+            pageSize: this.state.pageSize,
+        }
+        userAll(data).then(res=>{
+            console.log(res);
+            this.setState({
+                dataSource: res.data.data,
+                count: res.data.count,
+            })
+        })
+    }
+    componentDidMount() {
+        this.getUserAll();
+    }
+    changePageSize(pageSize, current) {
+        let that = this;
+        this.setState({
+            pageSize,
+            current,
+        },()=>{
+            that.getUserAll();
+        })
+    }
+    changePage(current) {
+        let that = this;
+        that.setState({
+            current
+        },()=>{
+            that.getUserAll();
+        })
+    }
     render() {
+
+        const { dataSource, count } = this.state;
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        const dataSource = [{
-            key: '1',
-            userId: 'id123456',
-            createPerson: 'admin',
-            userType: '管理用户',
-            stuffName: '唐先生',
-            position: '销售',
-            telNum: '15099999999',
-            jobNum: '22',
-            accountName: '23456',
-            accountPassword: '23456',
-            entryTime: '2019.01.02',
-        }, {
-            key: '2',
-            userId: 'id123456',
-            createPerson: 'admin',
-            userType: '管理用户',
-            stuffName: '唐先生',
-            position: '销售',
-            telNum: '15099999999',
-            jobNum: '22',
-            accountName: '23456',
-            accountPassword: '23456',
-            entryTime: '2019.01.02',
-        }];
-
+        const formatterTime = (val) => {
+            return val ? moment(Number(val)*1000).format('YYYY-MM-DD') : ''
+        }
         const columns = [{
             title: '用户ID',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '创建人',
             dataIndex: 'createPerson',
             key: 'createPerson',
         }, {
             title: '用户类别',
-            dataIndex: 'userType',
-            key: 'userType',
+            dataIndex: 'type',
+            key: 'type',
+            render: (val) => {return val === "1" ? '普通员工' : '管理员'}
         }, {
             title: '员工姓名',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'username',
+            key: 'username',
         }, {
             title: '职位',
             dataIndex: 'position',
             key: 'position',
         }, {
             title: '手机号码',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            dataIndex: 'phone',
+            key: 'phone',
         }, {
             title: '工号',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+            dataIndex: 'user_ext',
+            key: 'user_ext',
         }, {
             title: '账号名称',
-            dataIndex: 'accountName',
-            key: 'accountName',
+            dataIndex: 'account_name',
+            key: 'account_name',
         }, {
             title: '账号密码',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'password',
+            key: 'password',
         }, {
             title: '入职时间',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
+            dataIndex: 'employment_date',
+            key: 'employment_date',
+            render: formatterTime,
         }, {
             title: '操作',
             // dataIndex: 'operating',
             key: 'operating',
             render: (text,record)=>(
                 <span>
-                    <a href="javascript:;">查看</a>
-                    <a href="javascript:;">编辑</a>
-                    <a href="javascript:;">停用</a>
+                    <a href="javascript:;" className="userManagement_a">查看</a>
+                    <a href="javascript:;" className="userManagement_a">编辑</a>
+                    <a href="javascript:;" className="userManagement_a">停用</a>
                 </span>
             )
         }];
+        const paginationProps = {
+            showSizeChanger: true,
+            showQuickJumper: true,
+            showTotal: () => `共${count}条`,
+            pageSize: this.state.pageSize,
+            current: this.state.current,
+            total: Number(count),
+            onShowSizeChange: (current, pageSize) => this.changePageSize(pageSize, current),
+            onChange: (current) => this.changePage(current),
+            size: "small",
+        };
         return (
-            <div className="gutter-example">
+            <div className="gutter-example userManagement">
                 <BreadcrumbCustom first="账户管理" second="用户管理" />
-
                 <Row gutter={0}>
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
@@ -152,10 +182,10 @@ class UserManagements extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="gutter-row userManagement_list" md={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <Table columns={columns} dataSource={dataSource}/>
+                                <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps}/>
                             </Card>
                         </div>
                     </Col>
