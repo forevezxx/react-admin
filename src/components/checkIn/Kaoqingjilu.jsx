@@ -47,56 +47,57 @@ class Kaoqingjilus extends Component {
         }];
 
         const columns = [{
-            title: '用户ID',
+            title: '编号',
             dataIndex: 'userId',
             key: 'userId',
         }, {
-            title: '创建人',
+            title: '员工姓名',
             dataIndex: 'createPerson',
             key: 'createPerson',
         }, {
-            title: '用户类别',
+            title: '岗位',
             dataIndex: 'userType',
             key: 'userType',
         }, {
-            title: '员工姓名',
+            title: '部门',
             dataIndex: 'stuffName',
             key: 'stuffName',
         }, {
-            title: '职位',
+            title: '入职时间',
             dataIndex: 'position',
             key: 'position',
         }, {
-            title: '手机号码',
+            title: '考勤日期',
             dataIndex: 'telNum',
             key: 'telNum',
         }, {
-            title: '工号',
+            title: '出勤天数',
             dataIndex: 'jobNum',
             key: 'jobNum',
         }, {
-            title: '账号名称',
+            title: '旷工天数',
             dataIndex: 'accountName',
             key: 'accountName',
         }, {
-            title: '账号密码',
+            title: '迟到天数',
             dataIndex: 'accountPassword',
             key: 'accountPassword',
         }, {
-            title: '入职时间',
+            title: '早退天数',
             dataIndex: 'entryTime',
             key: 'entryTime',
         }, {
-            title: '操作',
-            // dataIndex: 'operating',
-            key: 'operating',
-            render: (text, record) => (
-                <span>
-                    <a href="javascript:;">查看</a>
-                    <a href="javascript:;">编辑</a>
-                    <a href="javascript:;">停用</a>
-                </span>
-            )
+            title: '事假天数',
+            dataIndex: 'accountPassword',
+            key: 'accountPassword',
+        }, {
+            title: '病假天数',
+            dataIndex: 'accountPassword',
+            key: 'accountPassword',
+        }, {
+            title: '缺勤天数',
+            dataIndex: 'accountPassword',
+            key: 'accountPassword',
         }];
         return (
             <div className="gutter-example">

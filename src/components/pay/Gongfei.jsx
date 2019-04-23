@@ -47,45 +47,41 @@ class Gongfeis extends Component {
         }];
 
         const columns = [{
-            title: '用户ID',
+            title: '编号',
             dataIndex: 'userId',
             key: 'userId',
         }, {
-            title: '创建人',
+            title: '请款人',
             dataIndex: 'createPerson',
             key: 'createPerson',
         }, {
-            title: '用户类别',
+            title: '对象类别',
             dataIndex: 'userType',
             key: 'userType',
         }, {
-            title: '员工姓名',
+            title: '申请日期',
             dataIndex: 'stuffName',
             key: 'stuffName',
         }, {
-            title: '职位',
+            title: '费用类型',
             dataIndex: 'position',
             key: 'position',
         }, {
-            title: '手机号码',
+            title: '请款用途',
             dataIndex: 'telNum',
             key: 'telNum',
         }, {
-            title: '工号',
+            title: '申请金额(元)',
             dataIndex: 'jobNum',
             key: 'jobNum',
         }, {
-            title: '账号名称',
+            title: '审核人',
             dataIndex: 'accountName',
             key: 'accountName',
         }, {
-            title: '账号密码',
+            title: '复核人',
             dataIndex: 'accountPassword',
             key: 'accountPassword',
-        }, {
-            title: '入职时间',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
         }, {
             title: '操作',
             // dataIndex: 'operating',
@@ -94,7 +90,6 @@ class Gongfeis extends Component {
                 <span>
                     <a href="javascript:;">查看</a>
                     <a href="javascript:;">编辑</a>
-                    <a href="javascript:;">停用</a>
                 </span>
             )
         }];
@@ -125,7 +120,7 @@ class Gongfeis extends Component {
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
-                                            <FormItem label="报销时间" colon={false}>
+                                            <FormItem label="申请日期" colon={false}>
                                                 <DatePicker onChange={()=>this.onChange} />
                                             </FormItem>
                                         </Col>

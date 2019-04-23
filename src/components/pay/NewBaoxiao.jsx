@@ -65,7 +65,7 @@ class NewBaoxiaos extends Component {
                                                     <FormItem label="报销金额" colon={false}>
                                                         <input placeholder="请输入报销金额" />
                                                     </FormItem>
-                                                    <FormItem label="复核人" colon={false}>
+                                                    <FormItem label="报销方式" colon={false}>
                                                         <input placeholder="请输入报销方式" />
                                                     </FormItem>
                                                     <FormItem label="报销项目" colon={false}>

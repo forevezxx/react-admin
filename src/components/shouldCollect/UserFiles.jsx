@@ -50,43 +50,47 @@ class UserFiless extends Component {
         }];
 
         const columns = [{
-            title: '用户ID',
+            title: '客户编号',
             dataIndex: 'userId',
             key: 'userId',
         }, {
-            title: '创建人',
+            title: '客户名称',
             dataIndex: 'createPerson',
             key: 'createPerson',
         }, {
-            title: '用户类别',
+            title: '订单编号',
             dataIndex: 'userType',
             key: 'userType',
         }, {
-            title: '员工姓名',
+            title: '资源属性',
             dataIndex: 'stuffName',
             key: 'stuffName',
         }, {
-            title: '职位',
+            title: '负责人',
             dataIndex: 'position',
             key: 'position',
         }, {
-            title: '手机号码',
+            title: '联系电话',
             dataIndex: 'telNum',
             key: 'telNum',
         }, {
-            title: '工号',
+            title: '所在地址',
             dataIndex: 'jobNum',
             key: 'jobNum',
         }, {
-            title: '账号名称',
+            title: '客户来源',
             dataIndex: 'accountName',
             key: 'accountName',
         }, {
-            title: '账号密码',
+            title: '跟进人员',
             dataIndex: 'accountPassword',
             key: 'accountPassword',
         }, {
-            title: '入职时间',
+            title: '跟进时间',
+            dataIndex: 'entryTime',
+            key: 'entryTime',
+        }, {
+            title: '平帐状态',
             dataIndex: 'entryTime',
             key: 'entryTime',
         }, {
@@ -97,7 +101,6 @@ class UserFiless extends Component {
                 <span>
                     <a href="javascript:;">查看</a>
                     <a href="javascript:;" onClick={()=>this.editUserFiles()} >编辑</a>
-                    <a href="javascript:;">停用</a>
                 </span>
             )
         }];
@@ -112,31 +115,30 @@ class UserFiless extends Component {
                                 <Form {...formItemLayout}>
                                     <Row>
                                         <Col md={8}>
-                                            <FormItem label="员工姓名" colon={false}>
-                                                <input placeholder="请输入员工姓名" />
+                                            <FormItem label="客户编号" colon={false}>
+                                                <input placeholder="请输入客户编号" />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
-                                            <FormItem label="用户类别" colon={false}>
-                                                <Select
-                                                    placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
-                                                >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
-                                                </Select>
+                                            <FormItem label="客户名称" colon={false}>
+                                                <input placeholder="请输入客户名称" />
+                                            </FormItem>
+                                        </Col>
+                                        <Col md={8}>
+                                            <FormItem label="订单编号" colon={false}>
+                                                <input placeholder="请输入订单编号" />
                                             </FormItem>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col md={8}>
-                                            <FormItem label="手机号码" colon={false}>
-                                                <input placeholder="请输入手机号码" />
+                                            <FormItem label="负责人" colon={false}>
+                                                <input placeholder="请输入负责人姓名" />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
-                                            <FormItem label="工号" colon={false}>
-                                                <input placeholder="请输入工号" />
+                                            <FormItem label="联系电话" colon={false}>
+                                                <input placeholder="请输入联系电话" />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>

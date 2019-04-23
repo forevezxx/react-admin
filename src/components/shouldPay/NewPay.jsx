@@ -99,12 +99,6 @@ class NewPays extends Component {
                                                         <input placeholder="请输入组织机构代码" />
                                                     </FormItem>
                                                     <FormItem label="开票内容" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入开票内容"/>
-                                                    </FormItem>
-                                                    <FormItem label="公司照片" colon={false}>
-                                                        <input placeholder="请输入联系人手机号码" />
-                                                    </FormItem>
-                                                    <FormItem label="开票内容" colon={false}>
                                                         <TextArea rows={4} defaultValue="请输入开票内容" />
                                                     </FormItem>
                                                     <FormItem label="开户银行" colon={false}>

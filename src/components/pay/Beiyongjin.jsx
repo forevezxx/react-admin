@@ -45,56 +45,54 @@ class Beiyongjins extends Component {
         }];
 
         const columns = [{
-            title: '用户ID',
+            title: '编号',
             dataIndex: 'userId',
             key: 'userId',
         }, {
-            title: '创建人',
+            title: '备用金总额(元)',
             dataIndex: 'createPerson',
             key: 'createPerson',
         }, {
-            title: '用户类别',
+            title: '入账人',
             dataIndex: 'userType',
             key: 'userType',
         }, {
-            title: '员工姓名',
+            title: '入账时间',
             dataIndex: 'stuffName',
             key: 'stuffName',
         }, {
-            title: '职位',
+            title: '入账方式',
+            dataIndex: 'position',
+            key: 'position',
+        }];
+        const columns2 = [{
+            title: '编号',
+            dataIndex: 'userId',
+            key: 'userId',
+        }, {
+            title: '备用金总额(元)',
+            dataIndex: 'createPerson',
+            key: 'createPerson',
+        }, {
+            title: '出账人',
+            dataIndex: 'userType',
+            key: 'userType',
+        }, {
+            title: '出账金额(元)',
+            dataIndex: 'stuffName',
+            key: 'stuffName',
+        }, {
+            title: '出账用途',
             dataIndex: 'position',
             key: 'position',
         }, {
-            title: '手机号码',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            title: '出账时间',
+            dataIndex: 'position',
+            key: 'position',
         }, {
-            title: '工号',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
-        }, {
-            title: '账号名称',
-            dataIndex: 'accountName',
-            key: 'accountName',
-        }, {
-            title: '账号密码',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
-        }, {
-            title: '入职时间',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
-        }, {
-            title: '操作',
-            // dataIndex: 'operating',
-            key: 'operating',
-            render: (text, record) => (
-                <span>
-                    <a href="javascript:;">查看</a>
-                    <a href="javascript:;">编辑</a>
-                    <a href="javascript:;">停用</a>
-                </span>
-            )
+            title: '当前结余',
+            dataIndex: 'position',
+            key: 'position',
         }];
         return (
             <div className="gutter-example">
@@ -183,7 +181,7 @@ class Beiyongjins extends Component {
                                 <Col className="gutter-row" md={24} >
                                     <div className="gutter-box">
                                         <Card bordered={false}>
-                                            <Table columns={columns} dataSource={dataSource} />
+                                            <Table columns={columns2} dataSource={dataSource} />
                                         </Card>
                                     </div>
                                 </Col>

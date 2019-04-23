@@ -47,43 +47,43 @@ class Pays extends Component {
         }];
 
         const columns = [{
-            title: '用户ID',
+            title: '编号',
             dataIndex: 'userId',
             key: 'userId',
         }, {
-            title: '创建人',
+            title: '订单合同编号',
             dataIndex: 'createPerson',
             key: 'createPerson',
         }, {
-            title: '用户类别',
+            title: '合计金额(元)',
             dataIndex: 'userType',
             key: 'userType',
         }, {
-            title: '员工姓名',
+            title: '付款主体',
             dataIndex: 'stuffName',
             key: 'stuffName',
         }, {
-            title: '职位',
+            title: '付款方式',
             dataIndex: 'position',
             key: 'position',
         }, {
-            title: '手机号码',
+            title: '付款账号',
             dataIndex: 'telNum',
             key: 'telNum',
         }, {
-            title: '工号',
+            title: '付款日期',
             dataIndex: 'jobNum',
             key: 'jobNum',
         }, {
-            title: '账号名称',
+            title: '付款状态',
             dataIndex: 'accountName',
             key: 'accountName',
         }, {
-            title: '账号密码',
+            title: '开票状态',
             dataIndex: 'accountPassword',
             key: 'accountPassword',
         }, {
-            title: '入职时间',
+            title: '平帐状态',
             dataIndex: 'entryTime',
             key: 'entryTime',
         }, {
@@ -94,7 +94,6 @@ class Pays extends Component {
                 <span>
                     <a href="javascript:;">查看</a>
                     <a href="javascript:;">编辑</a>
-                    <a href="javascript:;">停用</a>
                 </span>
             )
         }];
@@ -109,12 +108,19 @@ class Pays extends Component {
                                 <Form {...formItemLayout}>
                                     <Row>
                                         <Col md={8}>
-                                            <FormItem label="员工姓名" colon={false}>
-                                                <input placeholder="请输入员工姓名" />
+                                            <FormItem label="合同编号" colon={false}>
+                                                <input placeholder="请输入订单合同编号" />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
-                                            <FormItem label="用户类别" colon={false}>
+                                            <FormItem label="付款主体" colon={false}>
+                                                <input placeholder="请输入付款主体" />
+                                            </FormItem>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={8}>
+                                            <FormItem label="付款状态" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
                                                     onChange={this.handleSelectChange}
@@ -124,16 +130,15 @@ class Pays extends Component {
                                                 </Select>
                                             </FormItem>
                                         </Col>
-                                    </Row>
-                                    <Row>
                                         <Col md={8}>
-                                            <FormItem label="手机号码" colon={false}>
-                                                <input placeholder="请输入手机号码" />
-                                            </FormItem>
-                                        </Col>
-                                        <Col md={8}>
-                                            <FormItem label="工号" colon={false}>
-                                                <input placeholder="请输入工号" />
+                                            <FormItem label="开票状态" colon={false}>
+                                                <Select
+                                                    placeholder="请选择"
+                                                    onChange={this.handleSelectChange}
+                                                >
+                                                    <Option value="male">male</Option>
+                                                    <Option value="female">female</Option>
+                                                </Select>
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>

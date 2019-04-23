@@ -44,41 +44,37 @@ class Xiaoshoushujus extends Component {
         }];
 
         const columns = [{
-            title: '用户ID',
+            title: '编号',
             dataIndex: 'userId',
             key: 'userId',
         }, {
-            title: '创建人',
+            title: '销售员',
             dataIndex: 'createPerson',
             key: 'createPerson',
         }, {
-            title: '用户类别',
+            title: '当前排名',
             dataIndex: 'userType',
             key: 'userType',
         }, {
-            title: '员工姓名',
+            title: '考核月份',
             dataIndex: 'stuffName',
             key: 'stuffName',
         }, {
-            title: '职位',
+            title: '月度指标',
             dataIndex: 'position',
             key: 'position',
         }, {
-            title: '手机号码',
+            title: '月度回款金额(元)',
             dataIndex: 'telNum',
             key: 'telNum',
         }, {
-            title: '工号',
+            title: '提成金额(元)',
             dataIndex: 'jobNum',
             key: 'jobNum',
         }, {
-            title: '账号名称',
+            title: '所属部门',
             dataIndex: 'accountName',
             key: 'accountName',
-        }, {
-            title: '账号密码',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
         }, {
             title: '入职时间',
             dataIndex: 'entryTime',
@@ -91,7 +87,6 @@ class Xiaoshoushujus extends Component {
                 <span>
                     <a href="javascript:;">查看</a>
                     <a href="javascript:;">编辑</a>
-                    <a href="javascript:;">停用</a>
                 </span>
             )
         }];

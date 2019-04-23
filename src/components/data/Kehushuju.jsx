@@ -2,7 +2,7 @@
  * Created by zhengxinxing on 2019/04/11.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
+import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -44,45 +44,41 @@ class Kehushujus extends Component {
         }];
 
         const columns = [{
-            title: '用户ID',
+            title: '编号',
             dataIndex: 'userId',
             key: 'userId',
         }, {
-            title: '创建人',
+            title: '客户姓名',
             dataIndex: 'createPerson',
             key: 'createPerson',
         }, {
-            title: '用户类别',
+            title: '客户公司名称',
             dataIndex: 'userType',
             key: 'userType',
         }, {
-            title: '员工姓名',
+            title: '回款产品',
             dataIndex: 'stuffName',
             key: 'stuffName',
         }, {
-            title: '职位',
+            title: '产品数量',
             dataIndex: 'position',
             key: 'position',
         }, {
-            title: '手机号码',
+            title: '产品单价(元)',
             dataIndex: 'telNum',
             key: 'telNum',
         }, {
-            title: '工号',
+            title: '产品总价(元)',
             dataIndex: 'jobNum',
             key: 'jobNum',
         }, {
-            title: '账号名称',
+            title: '回款(元)',
             dataIndex: 'accountName',
             key: 'accountName',
         }, {
-            title: '账号密码',
+            title: '回款日期',
             dataIndex: 'accountPassword',
             key: 'accountPassword',
-        }, {
-            title: '入职时间',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
         }, {
             title: '操作',
             // dataIndex: 'operating',
@@ -91,7 +87,6 @@ class Kehushujus extends Component {
                 <span>
                     <a href="javascript:;">查看</a>
                     <a href="javascript:;">编辑</a>
-                    <a href="javascript:;">停用</a>
                 </span>
             )
         }];
@@ -106,33 +101,21 @@ class Kehushujus extends Component {
                                 <Form {...formItemLayout}>
                                     <Row>
                                         <Col md={8}>
-                                            <FormItem label="员工姓名" colon={false}>
-                                                <input placeholder="请输入员工姓名" />
+                                            <FormItem label="客户姓名" colon={false}>
+                                                <input placeholder="请输入客户姓名" />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
-                                            <FormItem label="用户类别" colon={false}>
-                                                <Select
-                                                    placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
-                                                >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
-                                                </Select>
-                                            </FormItem>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={8}>
-                                            <FormItem label="手机号码" colon={false}>
-                                                <input placeholder="请输入手机号码" />
+                                            <FormItem label="公司名称" colon={false}>
+                                                <input placeholder="请输入公司名称" />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
-                                            <FormItem label="工号" colon={false}>
-                                                <input placeholder="请输入工号" />
+                                            <FormItem label="回款日期" colon={false}>
+                                                <DatePicker onChange={()=>this.onChange} />
                                             </FormItem>
                                         </Col>
+                                        
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
                                         </Col>
