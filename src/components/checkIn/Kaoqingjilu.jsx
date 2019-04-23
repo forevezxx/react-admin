@@ -80,24 +80,24 @@ class Kaoqingjilus extends Component {
             key: 'accountName',
         }, {
             title: '迟到天数',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'chidaotianshu',
+            key: 'chidaotianshu',
         }, {
             title: '早退天数',
             dataIndex: 'entryTime',
             key: 'entryTime',
         }, {
             title: '事假天数',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'shijiatianshu',
+            key: 'shijiatianshu',
         }, {
             title: '病假天数',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'binjiatianshu',
+            key: 'binjiatianshu',
         }, {
             title: '缺勤天数',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'queqintianshu',
+            key: 'queqintianshu',
         }];
         return (
             <div className="gutter-example">

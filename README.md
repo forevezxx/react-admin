@@ -21,6 +21,9 @@ scp -r build/* zxx@121.40.224.59:/var/www/html/zxx/meet
 
 访问地址：
 http://www.delcache.com/zxx/meet/index.html
+
+http://www.delcache.com/zxx/meet/index.html#/app/shouldPay/document
+
 zxx123456
 ```
 
