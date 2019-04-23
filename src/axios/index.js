@@ -75,3 +75,24 @@ export const userDisable = (data) => post({
     data
 })
 
+export const attendanceAdd = (data) => post({
+    url: config.ATTENDANCE_ADD,
+    data
+})
+export const attendanceAll = (data) => post({
+    url: config.ATTENDANCE_ALL,
+    data
+})
+export const attendanceSearch = (data) => post({
+    url: config.ATTENDANCE_SEARCH,
+    data
+})
+export const attendanceOne = (data) => post({
+    url: config.ATTENDANCE_ONE,
+    data
+})
+export const attendanceUpdate = (data) => post({
+    url: config.ATTENDANCE_UPDATE,
+    data
+})
+

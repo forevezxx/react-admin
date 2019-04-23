@@ -25,13 +25,19 @@ const SERVER_URL = 'http://backend.delcache.com';
 export const LOGIN = SERVER_URL + '/user/login'; //用户登录接口
 export const USER_ADD = SERVER_URL + '/user/add'; //新增用户接口
 
+//用户管理
 export const USER_UPDATE = SERVER_URL + '/user/update';//更新用户信息
 export const USER_ALL = SERVER_URL + '/user/all';//查询全部用户信息
 export const USER_SEARCH = SERVER_URL + '/user/search';//查询数据
 export const USER_ONE = SERVER_URL + '/user/one';//查看用户信息
 export const USER_DISABLE = SERVER_URL + '/user/disable';//停用用户账号
 
-
+//考勤管理
+export const ATTENDANCE_ADD = SERVER_URL + '/attendance/add';//添加考勤信息
+export const ATTENDANCE_ALL = SERVER_URL + '/attendance/all';//查询全部
+export const ATTENDANCE_SEARCH = SERVER_URL + '/attendance/search';//搜索
+export const ATTENDANCE_ONE = SERVER_URL + '/attendance/one';//查询单个考勤信息
+export const ATTENDANCE_UPDATE = SERVER_URL + '/attendance/update';//更新考勤信息
 
 
 
