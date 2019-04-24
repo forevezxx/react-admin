@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Tabs } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import { imprestAll, imprestSearch, userAll } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const TabPane = Tabs.TabPane;
@@ -12,43 +13,57 @@ const TabPane = Tabs.TabPane;
 class Beiyongjins extends Component {
     state = {
         confirmDirty: false,
+        dataSource: [],//表格数据源
+        count: '',//表格数据源总条数
+        pageSize: 5,//每页显示条数
+        current: 1,//当前所在页数
     };
-    NewInPay() {//新建入账
-        this.props.history.push('/app/pay/newinpay');
+    
+    componentDidMount(){
+        this.getImprestAll()
+    }
+    getImprestAll() {//获取用户信息
+        let data = {
+            pageNum: this.state.current - 1,
+            pageSize: this.state.pageSize,
+        }
+        userAll(data).then(res => {
+            console.log(res);
+            this.setState({
+                dataSource: res.data.data,
+                count: res.data.count,
+            })
+        })
     }
     NewOutPay() {//新建出账
         this.props.history.push('/app/pay/newoutpay');
     }
+    NewInPay() {//新建入账
+        this.props.history.push('/app/pay/newinpay');
+    }
+    changePageSize(pageSize, current) {
+        let that = this;
+        this.setState({
+            pageSize,
+            current,
+        }, () => {
+            that.getImprestAll();
+        })
+    }
+    changePage(current) {
+        let that = this;
+        that.setState({
+            current
+        }, () => {
+            that.getImprestAll();
+        })
+    }
     render() {
+        const { dataSource, count } = this.state;
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        const dataSource = [{
-            key: '1',
-            userId: 'id123456',
-            createPerson: 'admin',
-            userType: '管理用户',
-            stuffName: '唐先生',
-            position: '销售',
-            telNum: '15099999999',
-            jobNum: '22',
-            accountName: '23456',
-            accountPassword: '23456',
-            entryTime: '2019.01.02',
-        }, {
-            key: '2',
-            userId: 'id123456',
-            createPerson: 'admin',
-            userType: '管理用户',
-            stuffName: '唐先生',
-            position: '销售',
-            telNum: '15099999999',
-            jobNum: '22',
-            accountName: '23456',
-            accountPassword: '23456',
-            entryTime: '2019.01.02',
-        }];
 
         const columns = [{
             title: '编号',
@@ -100,6 +115,17 @@ class Beiyongjins extends Component {
             dataIndex: 'position',
             key: 'position',
         }];
+        const paginationProps = {
+            showSizeChanger: true,
+            showQuickJumper: true,
+            showTotal: () => `共${count}条`,
+            pageSize: this.state.pageSize,
+            current: this.state.current,
+            total: Number(count),
+            onShowSizeChange: (current, pageSize) => this.changePageSize(pageSize, current),
+            onChange: (current) => this.changePage(current),
+            size: "small",
+        };
         return (
             <div className="gutter-example">
                 <BreadcrumbCustom first="出纳管理" second="备用金管理" />
@@ -145,7 +171,7 @@ class Beiyongjins extends Component {
                             <Col className="gutter-row" md={24} >
                                 <div className="gutter-box">
                                     <Card bordered={false}>
-                                        <Table columns={columns} dataSource={dataSource} />
+                                        <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps}/>
                                     </Card>
                                 </div>
                             </Col>
@@ -187,7 +213,7 @@ class Beiyongjins extends Component {
                                 <Col className="gutter-row" md={24} >
                                     <div className="gutter-box">
                                         <Card bordered={false}>
-                                            <Table columns={columns2} dataSource={dataSource} />
+                                        <Table columns={columns2} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps} />
                                         </Card>
                                     </div>
                                 </Col>

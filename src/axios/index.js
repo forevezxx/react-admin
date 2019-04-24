@@ -96,3 +96,24 @@ export const attendanceUpdate = (data) => post({
     data
 })
 
+export const imprestAdd = (data) => post({
+    url: config.IMPREST_ADD,
+    data
+})
+export const imprestAll = (data) => post({
+    url: config.IMPREST_ALL,
+    data
+})
+export const imprestSearch = (data) => post({
+    url: config.IMPREST_SEARCH,
+    data
+})
+export const imprestOne = (data) => post({
+    url: config.IMPREST_ONE,
+    data
+})
+export const imprestUpdate = (data) => post({
+    url: config.IMPREST_UPDATE,
+    data
+})
+
