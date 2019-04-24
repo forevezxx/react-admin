@@ -37,6 +37,9 @@ class UserManagements extends Component {
             values: e.target.value,
         });
     }
+    goBack() {
+        this.props.history.push(`/app/account/userManagement`);
+    }
 
     newUser() {
         let data = {
@@ -112,7 +115,7 @@ class UserManagements extends Component {
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit" onClick={() => this.userUpdates()}>返回</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                                 <Col md={8}>
                                                     <Button type="primary" htmlType="submit" onClick={()=>this.newUser()}>保存</Button></Col>
                                             </Row>

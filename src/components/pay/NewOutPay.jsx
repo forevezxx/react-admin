@@ -36,6 +36,9 @@ class NewOutPays extends Component {
             values: e.target.value,
         });
     }
+    goBack() {
+        this.props.history.push(`/app/pay/beiyongjin`);
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -75,7 +78,7 @@ class NewOutPays extends Component {
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit">返回</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                                 <Col md={8}>
                                                     <Button type="primary" htmlType="submit">保存</Button></Col>
                                             </Row>
