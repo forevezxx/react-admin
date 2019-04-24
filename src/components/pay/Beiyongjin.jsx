@@ -13,6 +13,12 @@ class Beiyongjins extends Component {
     state = {
         confirmDirty: false,
     };
+    NewInPay() {//新建入账
+        this.props.history.push('/app/pay/newinpay');
+    }
+    NewOutPay() {//新建出账
+        this.props.history.push('/app/pay/newoutpay');
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -124,7 +130,7 @@ class Beiyongjins extends Component {
                                                     <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
                                                 </Col>
                                                 <Col md={2}>
-                                                    <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>
+                                                    <Button type="primary" htmlType="submit" onClick={() => this.NewInPay()} ><Icon type="plus" />新建</Button>
                                                 </Col>
                                                 <Col md={2}>
                                                     <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
@@ -166,7 +172,7 @@ class Beiyongjins extends Component {
                                                     <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
                                                 </Col>
                                                 <Col md={2}>
-                                                    <Button type="primary" htmlType="submit"><Icon type="plus" />新建</Button>
+                                                    <Button type="primary" htmlType="submit" onClick={() => this.NewOutPay()}><Icon type="plus" />新建</Button>
                                                 </Col>
                                                 <Col md={2}>
                                                     <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
