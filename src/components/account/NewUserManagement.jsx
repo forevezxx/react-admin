@@ -108,7 +108,7 @@ class UserManagements extends Component {
                                                         <input placeholder="请输入账号密码" />
                                                     </FormItem>
                                                     <FormItem label="入职时间" colon={false}>
-                                                        <DatePicker onChange={() => this.onChange} />
+                                                        <DatePicker onChange={this.onChange} />
                                                     </FormItem>
                                                     <FormItem label="权限模块" colon={false}>
                                                         <input placeholder="请输入入账方式" />

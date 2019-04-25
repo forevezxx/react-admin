@@ -2,9 +2,10 @@
  * Created by zhengxinxing on 2019/04/11.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Tabs } from 'antd';
+import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Tabs, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { imprestAll, imprestSearch, userAll } from '../../axios';
+import { imprestAll, imprestSearch, userAll, userSearch } from '../../axios';
+import { tuple } from 'antd/lib/_util/type';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const TabPane = Tabs.TabPane;
@@ -17,7 +18,15 @@ class Beiyongjins extends Component {
         count: '',//表格数据源总条数
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
+
+        inWay: '',
+        user: '',
+        checkedTime: '',
     };
+    // constructor(props){
+    //     super(props);
+    //     this.onChange = this.onChange.bind(this);
+    // }
     
     componentDidMount(){
         this.getImprestAll()
@@ -31,6 +40,20 @@ class Beiyongjins extends Component {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
+                count: res.data.count,
+            })
+        })
+    }
+    getImprestSearch(type) {//0 入账 1出账
+        let data = {
+            inWay: this.state.inWay,
+            user: this.state.user,
+            checkedTime: this.state.checkedTime,
+            type,
+        }
+        userSearch(data).then(res=>{
+            this.setState({
+                dataSource: res.data.users,
                 count: res.data.count,
             })
         })
@@ -58,6 +81,20 @@ class Beiyongjins extends Component {
             that.getImprestAll();
         })
     }
+    onChange(date, dateString) {
+        let that = this;
+        console.log(date, dateString);
+        console.log(dateString);
+        that.setState({
+            checkedTime: dateString
+        })
+    }
+    handleSelectChange(value) {
+        console.log(value)
+        this.setState({
+            inWay: value
+        });
+    }
     render() {
         const { dataSource, count } = this.state;
         const formItemLayout = {
@@ -71,20 +108,20 @@ class Beiyongjins extends Component {
             key: 'userId',
         }, {
             title: '备用金总额(元)',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'imprestPrice',
+            key: 'imprestPrice',
         }, {
             title: '入账人',
-            dataIndex: 'userType',
-            key: 'userType',
+            dataIndex: 'in_name',
+            key: 'in_name',
         }, {
             title: '入账时间',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'in_time',
+            key: 'in_time',
         }, {
             title: '入账方式',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'in_way',
+            key: 'in_way',
         }];
         const columns2 = [{
             title: '编号',
@@ -92,28 +129,28 @@ class Beiyongjins extends Component {
             key: 'userId',
         }, {
             title: '备用金总额(元)',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'imprestPrice',
+            key: 'imprestPrice',
         }, {
             title: '出账人',
-            dataIndex: 'userType',
-            key: 'userType',
+            dataIndex: 'out_name',
+            key: 'out_name',
         }, {
             title: '出账金额(元)',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'out_price',
+            key: 'out_price',
         }, {
             title: '出账用途',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'out_for',
+            key: 'out_for',
         }, {
             title: '出账时间',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'out_time',
+            key: 'out_time',
         }, {
             title: '当前结余',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'now_left',
+            key: 'now_left',
         }];
         const paginationProps = {
             showSizeChanger: true,
@@ -139,21 +176,31 @@ class Beiyongjins extends Component {
                                             <Row>
                                                 <Col md={6}>
                                                     <FormItem label="入账时间" colon={false}>
-                                                        <input placeholder="请选择" />
+                                                        <DatePicker onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={6}>
                                                     <FormItem label="入账方式" colon={false}>
-                                                        <input placeholder="请选择" />
+                                                    <Select
+                                                        placeholder="请选择"
+                                                        onChange={this.handleSelectChange.bind(this)}
+                                                    >
+                                                        <Option value="1">male</Option>
+                                                        <Option value="2">female</Option>
+                                                    </Select>
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={6}>
                                                     <FormItem label="入账人" colon={false}>
-                                                        <input placeholder="请输入入账人" />
+                                                        <input placeholder="请输入入账人" onChange={event=>{
+                                                    this.setState({
+                                                        user: event.target.value
+                                                      });
+                                                }}/>
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={2}>
-                                                    <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
+                                                    <Button type="primary" htmlType="submit"  onClick={()=> this.getImprestSearch(0)}><Icon type="search" />查询</Button>
                                                 </Col>
                                                 <Col md={2}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.NewInPay()} ><Icon type="plus" />新建</Button>
@@ -186,16 +233,20 @@ class Beiyongjins extends Component {
                                             <Row>
                                                 <Col md={6}>
                                                     <FormItem label="出账时间" colon={false}>
-                                                        <input placeholder="请选择" />
+                                                        <DatePicker onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={6}>
                                                     <FormItem label="出账人" colon={false}>
-                                                        <input placeholder="请输入出账人" />
+                                                        <input placeholder="请输入出账人" onChange={event=>{
+                                                    this.setState({
+                                                        user: event.target.value
+                                                      });
+                                                }}/>
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={2}>
-                                                    <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
+                                                    <Button type="primary" htmlType="submit" onClick={()=> this.getImprestSearch(1)}><Icon type="search" />查询</Button>
                                                 </Col>
                                                 <Col md={2}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.NewOutPay()}><Icon type="plus" />新建</Button>
