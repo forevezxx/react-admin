@@ -33,6 +33,28 @@ export const guest = () => get({ url: config.MOCK_AUTH_VISITOR });
 
 
 
+
+export const supplierAdd = (data) => post({
+    url: config.SUPPLIER_ADD,
+    data
+})
+export const supplierAll = (data) => post({
+    url: config.SUPPLIER_ALL,
+    data
+})
+export const supplierSearch = (data) => post({
+    url: config.SUPPLIER_SEARCH,
+    data
+})
+export const supplierOne = (data) => post({
+    url: config.SUPPLIER_ONE,
+    data
+})
+export const supplierUpdate = (data) => post({
+    url: config.SUPPLIER_UPDATE,
+    data
+})
+
 // 用户登录
 export const login = (username, password) => post({ 
     url: config.LOGIN,
@@ -45,6 +67,7 @@ export const login = (username, password) => post({
 // export const login = (username, password) => get({
 //     url: `${config.LOGIN}?username=${username}&password=${password}`,
 // })
+
 
 
 export const userAdd = (data) => post({

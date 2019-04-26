@@ -23,15 +23,18 @@ class UserManagements extends Component {
         searchUserType: '',
         searchNumber: '',
     };
+    componentDidMount() {
+        this.getUserAll();
+    }
     newUserManagement() {//新建
         this.props.history.push('/app/account/newUserManagement');
     }
     getUserAll() {//获取用户信息
         let data = {
-            pageNum: this.state.current-1,
+            pageNum: this.state.current - 1,
             pageSize: this.state.pageSize,
         }
-        userAll(data).then(res=>{
+        userAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
@@ -46,7 +49,7 @@ class UserManagements extends Component {
             phone: this.state.searchTel,
             user_ext: this.state.searchNumber,
         }
-        userSearch(data).then(res=>{
+        userSearch(data).then(res => {
             this.setState({
                 dataSource: res.data.users,
                 count: res.data.count,
@@ -58,11 +61,6 @@ class UserManagements extends Component {
     }
     EditUserManagement(id) {
         this.props.history.push(`/app/account/editUserManagement/${id}`);
-    }
-
-
-    componentDidMount() {
-        this.getUserAll();
     }
     changePageSize(pageSize, current) {
         let that = this;

@@ -22,6 +22,17 @@ export const NEWS_BBC = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&a
 // 接口请求地址
 const SERVER_URL = 'http://backend.delcache.com';
 
+
+//应付管理
+//应付管理-供应商档案
+export const SUPPLIER_ADD = SERVER_URL + '/supplier/add';
+export const SUPPLIER_ALL = SERVER_URL + '/supplier/all';
+export const SUPPLIER_SEARCH = SERVER_URL + '/supplier/search';
+export const SUPPLIER_ONE = SERVER_URL + '/supplier/one';
+export const SUPPLIER_UPDATE = SERVER_URL + '/supplier/update';
+
+//应付管理-应付录入
+
 export const LOGIN = SERVER_URL + '/user/login'; //用户登录接口
 export const USER_ADD = SERVER_URL + '/user/add'; //新增用户接口
 

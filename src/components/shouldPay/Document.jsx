@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Pagination } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAll, userSearch } from '../../axios';
+import { supplierAll, supplierSearch } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -32,7 +32,7 @@ class Documents extends Component {
             pageNum: this.state.current - 1,
             pageSize: this.state.pageSize,
         }
-        userAll(data).then(res => {
+        supplierAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
@@ -48,7 +48,7 @@ class Documents extends Component {
             telNum: this.state.telNum,
             archiver: this.state.archiver,
         }
-        userSearch(data).then(res=>{
+        supplierSearch(data).then(res=>{
             this.setState({
                 dataSource: res.data.users,
                 count: res.data.count,
