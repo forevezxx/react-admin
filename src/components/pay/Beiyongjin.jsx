@@ -23,10 +23,6 @@ class Beiyongjins extends Component {
         user: '',
         checkedTime: '',
     };
-    // constructor(props){
-    //     super(props);
-    //     this.onChange = this.onChange.bind(this);
-    // }
     
     componentDidMount(){
         this.getImprestAll()
@@ -36,7 +32,7 @@ class Beiyongjins extends Component {
             pageNum: this.state.current - 1,
             pageSize: this.state.pageSize,
         }
-        userAll(data).then(res => {
+        imprestAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,

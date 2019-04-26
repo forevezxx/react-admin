@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Pagination } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import { userAll, userSearch } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -11,7 +12,80 @@ const Option = Select.Option;
 class Documents extends Component {
     state = {
         confirmDirty: false,
+        dataSource: [],//表格数据源
+        count: '',//表格数据源总条数
+        pageSize: 5,//每页显示条数
+        current: 1,//当前所在页数
+
+        principalName: '',
+        companyName: '',
+        contractNum: '',
+        telNum: '',
+        archiver: '',
     };
+    
+    componentDidMount(){
+        this.getDocumentAll()
+    }
+    getDocumentAll() {//获取用户信息
+        let data = {
+            pageNum: this.state.current - 1,
+            pageSize: this.state.pageSize,
+        }
+        userAll(data).then(res => {
+            console.log(res);
+            this.setState({
+                dataSource: res.data.data,
+                count: res.data.count,
+            })
+        })
+    }
+    getDocumentSearch() {
+        let data = {
+            principalName: this.state.principalName,
+            companyName: this.state.companyName,
+            contractNum: this.state.contractNum,
+            telNum: this.state.telNum,
+            archiver: this.state.archiver,
+        }
+        userSearch(data).then(res=>{
+            this.setState({
+                dataSource: res.data.users,
+                count: res.data.count,
+            })
+        })
+    }
+    changePageSize(pageSize, current) {
+        let that = this;
+        this.setState({
+            pageSize,
+            current,
+        }, () => {
+            that.getDocumentAll();
+        })
+    }
+    changePage(current) {
+        let that = this;
+        that.setState({
+            current
+        }, () => {
+            that.getDocumentAll();
+        })
+    }
+    onChange(date, dateString) {
+        let that = this;
+        console.log(date, dateString);
+        console.log(dateString);
+        that.setState({
+            checkedTime: dateString
+        })
+    }
+    handleSelectChange(value) {
+        console.log(value)
+        this.setState({
+            principalName: value
+        });
+    }
     NewShouldPay() {//新建
         this.props.history.push('/app/shouldPay/newshouldpay');
     }
@@ -22,37 +96,11 @@ class Documents extends Component {
         this.props.history.push('/app/shouldPay/editDocument');
     }
     render() {
+        const { dataSource, count } = this.state;
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        const dataSource = [{
-            key: '1',
-            seNum: '1',
-            companyType: '运营商',
-            companyName: '广州福意婚纱服饰有限公司',
-            mainPerson: '唐先生',
-            telNum: '18816872210',
-            industry: '金融业',
-            address: '浙江省杭州市富阳区宁线路11号',
-            from: '广告杂志',
-            hetongNum: 'NO.123214536',
-            createPerson: 'Wendy',
-            finalTime: '2019.02.28 09:30:56'
-        }, {
-            key: '2',
-            seNum: 'id123456',
-            companyType: 'admin',
-            companyName: '管理用户',
-            mainPerson: '唐先生',
-            telNum: '销售',
-            industry: '15099999999',
-            address: '22',
-            from: '23456',
-            hetongNum: '23456',
-            createPerson: '2019.01.02',
-            finalTime: '2019.02.28 09:30:56'
-        }];
 
         const columns = [{
             title: '编号',
@@ -112,12 +160,12 @@ class Documents extends Component {
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: true,
-            //showTotal: () => `共${totals}条`,
-            //pageSize: this.state.pageSize,
-            //current: page.pageNum,
-            total: 50,
-            //onShowSizeChange: (current, pageSize) => this.changePageSize(pageSize, current),
-            //onChange: (current) => this.changePage(current),
+            showTotal: () => `共${count}条`,
+            pageSize: this.state.pageSize,
+            current: this.state.current,
+            total: Number(count),
+            onShowSizeChange: (current, pageSize) => this.changePageSize(pageSize, current),
+            onChange: (current) => this.changePage(current),
             size: "small",
         };
         return (
@@ -132,33 +180,53 @@ class Documents extends Component {
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="负责人" colon={false}>
-                                                <input placeholder="请输入负责人姓名" />
+                                                <input placeholder="请输入负责人姓名" onChange={event=>{
+                                                    this.setState({
+                                                        principalName: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="公司名称" colon={false}>
-                                                <input placeholder="请输入公司名称" />
+                                                <input placeholder="请输入公司名称" onChange={event=>{
+                                                    this.setState({
+                                                        companyName: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="合同编号" colon={false}>
-                                                <input placeholder="请输入合同编号" />
+                                                <input placeholder="请输入合同编号" onChange={event=>{
+                                                    this.setState({
+                                                        contractNum: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="电话号码" colon={false}>
-                                                <input placeholder="请输入电话号码" />
+                                                <input placeholder="请输入电话号码" onChange={event=>{
+                                                    this.setState({
+                                                        telNum: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="建档人" colon={false}>
-                                                <input placeholder="请输入建档人" />
+                                                <input placeholder="请输入建档人" onChange={event=>{
+                                                    this.setState({
+                                                        archiver: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
+                                            <Button type="primary" htmlType="submit"onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.NewShouldPay()}><Icon type="plus" />新建</Button>

@@ -24,6 +24,9 @@ http://www.delcache.com/zxx/meet/index.html
 
 http://www.delcache.com/zxx/meet/index.html#/app/shouldPay/document
 
+
+http://www.delcache.com/zxx/meet/index.html#/app/pay/beiyongjin
+
 zxx123456
 ```
 
