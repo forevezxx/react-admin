@@ -31,6 +31,7 @@ class Documents extends Component {
         let data = {
             pageNum: this.state.current - 1,
             pageSize: this.state.pageSize,
+            token: localStorage.getItem('user_token'),
         }
         supplierAll(data).then(res => {
             console.log(res);

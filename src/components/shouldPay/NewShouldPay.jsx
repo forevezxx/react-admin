@@ -67,6 +67,7 @@ class NewShouldPays extends Component {
             contract_num,
             source
         } = this.state;
+        const token = localStorage.getItem('user_token');
         let data = {
             company_type,
             company_name,
@@ -79,7 +80,8 @@ class NewShouldPays extends Component {
             phone,
             company_pic,
             contract_num,
-            source
+            source,
+            token
         }
         supplierAdd(data).then(res => {
             console.log(res);
