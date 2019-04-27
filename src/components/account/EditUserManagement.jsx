@@ -18,7 +18,6 @@ const TabPane = Tabs.TabPane;
 
 class EditUserManagements extends Component {
     state = {
-        userData: '',
         id: '',
         type: '',
         username: '',
@@ -39,7 +38,6 @@ class EditUserManagements extends Component {
         userOne(data).then(res=>{
             this.setState({
                 id: res.data.user.id,
-                userData: res.data.user,
                 type: res.data.user.type,
                 username: res.data.user.username,
                 position: res.data.user.position,
@@ -81,7 +79,6 @@ class EditUserManagements extends Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        const {userData} = this.state;
         const { id, type, username, position, phone, user_ext, account_name, password, employment_date } = this.state;
         return (
             <div className="gutter-example">
