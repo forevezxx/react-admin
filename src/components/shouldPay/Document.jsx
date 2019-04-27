@@ -104,26 +104,26 @@ class Documents extends Component {
 
         const columns = [{
             title: '编号',
-            dataIndex: 'seNum',
-            key: 'seNum',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '公司类型',
-            dataIndex: 'companyType',
-            key: 'companyType',
+            dataIndex: 'company_type',
+            key: 'company_type',
         }, {
             title: '公司名称',
-            dataIndex: 'companyName',
-            key: 'companyName',
+            dataIndex: 'company_name',
+            key: 'company_name',
         }, {
-                title: '负责人',
-            dataIndex: 'mainPerson',
-            key: 'mainPerson',
+            title: '负责人',
+            dataIndex: 'company_owner',
+            key: 'company_owner',
         }, {
-                title: '手机号码',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            title: '手机号码',
+            dataIndex: 'phone',
+            key: 'phone',
         }, {
-                title: '所属行业',
+            title: '所属行业',
             dataIndex: 'industry',
             key: 'industry',
         }, {
@@ -132,20 +132,20 @@ class Documents extends Component {
             key: 'address',
         }, {
                 title: '来源',
-            dataIndex: 'from',
-            key: 'from',
+            dataIndex: 'source',
+            key: 'source',
         }, {
                 title: '合同编号',
-            dataIndex: 'hetongNum',
-            key: 'hetongNum',
+            dataIndex: 'contract_num',
+            key: 'contract_num',
         }, {
                 title: '建档人',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'maker',
+            key: 'maker',
         }, {
                 title: '最后跟进时间',
-                dataIndex: 'finalTime',
-                key: 'finalTime',
+                dataIndex: 'last_follow',
+                key: 'last_follow',
         }, {
             title: '操作',
             // dataIndex: 'operating',
