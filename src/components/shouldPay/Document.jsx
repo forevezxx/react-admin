@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Pagination } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAll, supplierSearch } from '../../axios';
+import { supplierAll, supplierSearch, supplierExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -56,6 +56,22 @@ class Documents extends Component {
             })
         })
     }
+    supplierExport() {
+        let data = {
+            principalName: this.state.principalName,
+            companyName: this.state.companyName,
+            contractNum: this.state.contractNum,
+            telNum: this.state.telNum,
+            archiver: this.state.archiver,
+        }
+        supplierExport(data).then(res => {
+            console.log(res);
+            // this.setState({
+            //     dataSource: res.data.users,
+            //     count: res.data.count,
+            // })
+        })
+    }
     changePageSize(pageSize, current) {
         let that = this;
         this.setState({
@@ -90,11 +106,11 @@ class Documents extends Component {
     NewShouldPay() {//新建
         this.props.history.push('/app/shouldPay/newshouldpay');
     }
-    WatchDocument() {//查看
-        this.props.history.push('/app/shouldPay/watchDocument');
+    WatchDocument(id) {//查看
+        this.props.history.push(`/app/shouldPay/watchDocument/${id}`);
     }
-    EditDocument() {//编辑
-        this.props.history.push('/app/shouldPay/editDocument');
+    EditDocument(id) {//编辑
+        this.props.history.push(`/app/shouldPay/editDocument/${id}`);
     }
     render() {
         const { dataSource, count } = this.state;
@@ -153,8 +169,8 @@ class Documents extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;" className="document_a" onClick={()=>this.WatchDocument()}>查看</a>
-                    <a href="javascript:;" className="document_a" onClick={()=>this.EditDocument()}>编辑</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.WatchDocument(record.id)}>查看</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.EditDocument(record.id)}>编辑</a>
                 </span>
             )
         }];
@@ -233,7 +249,7 @@ class Documents extends Component {
                                             <Button type="primary" htmlType="submit" onClick={()=>this.NewShouldPay()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
+                                            <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
                                 </Form>
@@ -245,7 +261,7 @@ class Documents extends Component {
                     <Col className="gutter-row document_list" md={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <Table columns={columns} dataSource={dataSource} pagination={paginationProps} />
+                                <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps} />
                             </Card>
                         </div>
                     </Col>

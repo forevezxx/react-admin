@@ -47,8 +47,8 @@ export default {
     ],
     others: [ // 非菜单相关路由
         { key: '/app/shouldPay/newshouldpay', title: '新增供应商档案', component: 'NewShouldPay' },
-        { key: '/app/shouldPay/watchDocument', title: '查看供应商档案', component: 'WatchDocument' },
-        { key: '/app/shouldPay/editDocument', title: '编辑供应商档案', component: 'EditDocument' },
+        { key: '/app/shouldPay/watchDocument/:id', title: '查看供应商档案', component: 'WatchDocument' },
+        { key: '/app/shouldPay/editDocument/:id', title: '编辑供应商档案', component: 'EditDocument' },
         { key: '/app/shouldPay/newPay', title: '新增应付录入', component: 'NewPay' },
 
         { key: '/app/shouldCollect/newUserFiles', title: '新增客户档案', component: 'NewUserFiles' },

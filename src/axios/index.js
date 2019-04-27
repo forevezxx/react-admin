@@ -54,6 +54,10 @@ export const supplierUpdate = (data) => post({
     url: config.SUPPLIER_UPDATE,
     data
 })
+export const supplierExport = (data) => post({
+    url: config.SUPPLIER_EXPORT,
+    data
+})
 
 // 用户登录
 export const login = (username, password) => post({ 
@@ -64,9 +68,6 @@ export const login = (username, password) => post({
     }
 })
 
-// export const login = (username, password) => get({
-//     url: `${config.LOGIN}?username=${username}&password=${password}`,
-// })
 
 
 

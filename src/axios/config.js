@@ -30,6 +30,7 @@ export const SUPPLIER_ALL = SERVER_URL + '/supplier/all';
 export const SUPPLIER_SEARCH = SERVER_URL + '/supplier/search';
 export const SUPPLIER_ONE = SERVER_URL + '/supplier/one';
 export const SUPPLIER_UPDATE = SERVER_URL + '/supplier/update';
+export const SUPPLIER_EXPORT = SERVER_URL + '/supplier/export';
 
 //应付管理-应付录入
 
