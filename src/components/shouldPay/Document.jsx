@@ -51,7 +51,7 @@ class Documents extends Component {
         }
         supplierSearch(data).then(res=>{
             this.setState({
-                dataSource: res.data.users,
+                dataSource: res.data.supplier,
                 count: res.data.count,
             })
         })
@@ -66,10 +66,9 @@ class Documents extends Component {
         }
         supplierExport(data).then(res => {
             console.log(res);
-            // this.setState({
-            //     dataSource: res.data.users,
-            //     count: res.data.count,
-            // })
+            if(res.msg === "success"){
+                window.location.href = res.data;
+            }
         })
     }
     changePageSize(pageSize, current) {
@@ -243,7 +242,7 @@ class Documents extends Component {
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
+                                            <Button type="primary" htmlType="submit" onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.NewShouldPay()}><Icon type="plus" />新建</Button>
