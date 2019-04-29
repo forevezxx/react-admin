@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, 
     Select, Row, Col, Checkbox, Button, 
-    Table, Menu, Tabs, Upload
+    Table, Menu, Tabs, Upload, message
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { supplierAdd } from '../../axios';
@@ -29,6 +29,8 @@ class NewShouldPays extends Component {
         company_pic: '',
         contract_num: '',
         source: '',
+
+        loading: false,
     };
     handleSelectChangeCompanyType(value){
         console.log(value)
@@ -90,7 +92,46 @@ class NewShouldPays extends Component {
             }
         })
     }
+    getBase64(img, callback) {
+        debugger
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
+    }
+    beforeUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+        if (!isJPG) {
+            message.error('You can only upload JPG file!');
+        }
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');
+        }
+        return isJPG && isLt2M;
+    }
+    handleChange = (info) => {
+        debugger
+        if (info.file.status === 'uploading') {
+            this.setState({ loading: true });
+            return;
+        }
+        if (info.file.status === 'done') {
+            // Get this url from response in real world.
+            this.getBase64(info.file.originFileObj, imageUrl => this.setState({
+            imageUrl,
+            loading: false,
+            }));
+        }
+    }
     render() {
+        const uploadButton = (
+            <div>
+                <Icon type={this.state.loading ? 'loading' : 'plus'} />
+                {/* <div className="ant-upload-text">Upload</div> */}
+            </div>
+        );
+        const imageUrl = this.state.imageUrl;
+
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
@@ -177,18 +218,19 @@ class NewShouldPays extends Component {
                                                     </FormItem>
                                                     <Form.Item
                                                         label="公司照片"
-                                                        extra="longgggggggggggggggggggggggggggggggggg"
+                                                        // extra="33333"
                                                     >
-                                                        {getFieldDecorator('upload', {
-                                                            valuePropName: 'fileList',
-                                                            getValueFromEvent: this.normFile,
-                                                        })(
-                                                            <Upload name="logo" action="/upload.do" listType="picture">
-                                                                <Button>
-                                                                    <Icon type="upload" /> Click to upload
-              </Button>
-                                                            </Upload>
-                                                        )}
+                                                        <Upload
+                                                            name="avatar"
+                                                            listType="picture-card"
+                                                            className="avatar-uploader"
+                                                            showUploadList={false}
+                                                            action="//jsonplaceholder.typicode.com/posts/"
+                                                            // beforeUpload={this.beforeUpload.bind(this)}
+                                                            onChange={this.handleChange.bind(this)}
+                                                        >
+                                                            {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
+                                                        </Upload>
                                                     </Form.Item>
                                                     <FormItem label="合同编号" colon={false}>
                                                         <input placeholder="请输入合同编号" onChange={event => {

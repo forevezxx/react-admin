@@ -86,13 +86,20 @@ class Pays extends Component {
             checkedTime: dateString
         })
     }
-    handleSelectChange(value) {
+    handleSelectChangeTicketStatus(value) {
         console.log(value)
         this.setState({
             principalName: value
         });
     }
-
+    handleSelectChangePayStatus(value) {
+        console.log(value)
+        this.setState({
+            principalName: value
+        });
+    }
+    
+    
     NewPay() {//新建
         this.props.history.push('/app/shouldPay/newPay');
     }
@@ -115,8 +122,8 @@ class Pays extends Component {
             key: 'userId',
         }, {
             title: '订单合同编号',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'contract_num',
+            key: 'contract_num',
         }, {
             title: '合计金额(元)',
             dataIndex: 'userType',
@@ -183,12 +190,20 @@ class Pays extends Component {
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="合同编号" colon={false}>
-                                                <input placeholder="请输入订单合同编号" />
+                                                <input placeholder="请输入订单合同编号" onChange={event=>{
+                                                    this.setState({
+                                                        contract_num: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="付款主体" colon={false}>
-                                                <input placeholder="请输入付款主体" />
+                                                <input placeholder="请输入付款主体" onChange={event=>{
+                                                    this.setState({
+                                                        principalName: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                     </Row>
@@ -197,10 +212,10 @@ class Pays extends Component {
                                             <FormItem label="付款状态" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
+                                                    onChange={this.handleSelectChangePayStatus.bind(this)}
                                                 >
-                                                    <Option value="1">male</Option>
-                                                    <Option value="2">female</Option>
+                                                    <Option value="1">已付款</Option>
+                                                    <Option value="2">未付款</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>
@@ -208,10 +223,10 @@ class Pays extends Component {
                                             <FormItem label="开票状态" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
+                                                    onChange={this.handleSelectChangeTicketStatus.bind(this)}
                                                 >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
+                                                    <Option value="1">已开票</Option>
+                                                    <Option value="2">未开票</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>
@@ -222,7 +237,7 @@ class Pays extends Component {
                                             <Button type="primary" htmlType="submit" onClick={()=>this.NewPay()} ><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
+                                            <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
                                 </Form>

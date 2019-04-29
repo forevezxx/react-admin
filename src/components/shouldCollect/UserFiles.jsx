@@ -160,8 +160,8 @@ class UserFiless extends Component {
             key: 'entryTime',
         }, {
             title: '平帐状态',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
+            dataIndex: 'pingzhangzhuangtai',
+            key: 'pingzhangzhuangtai',
         }, {
             title: '操作',
             // dataIndex: 'operating',
@@ -169,7 +169,7 @@ class UserFiless extends Component {
             render: (text, record) => (
                 <span>
                     <a href="javascript:;" onClick={()=>this.WatchUserFiles(record.id)}>查看</a>
-                    <a href="javascript:;" onClick={()=>this.editUserFiles(record.id)} >编辑</a>
+                    <a href="javascript:;" onClick={()=>this.EditUserFiles(record.id)} >编辑</a>
                 </span>
             )
         }];
