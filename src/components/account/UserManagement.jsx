@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAll, userSearch, userDisable } from '../../axios';
+import { userAll, userSearch, userDisable, supplierExport } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -89,6 +89,21 @@ class UserManagements extends Component {
         let data = {id};
         userDisable(data).then(res=>{
             alert('停用成功');
+        })
+    }
+    supplierExport() {
+        let data = {
+            principalName: this.state.principalName,
+            companyName: this.state.companyName,
+            contractNum: this.state.contractNum,
+            telNum: this.state.telNum,
+            archiver: this.state.archiver,
+        }
+        supplierExport(data).then(res => {
+            console.log(res);
+            if(res.msg === "success"){
+                window.location.href = res.data;
+            }
         })
     }
     render() {
@@ -223,7 +238,7 @@ class UserManagements extends Component {
                                             <Button type="primary" htmlType="submit" onClick={() => this.newUserManagement()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
+                                            <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
                                 </Form>

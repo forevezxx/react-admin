@@ -65,6 +65,16 @@ export default {
         { key: '/app/pay/newbaoxiao', title: '新增报销记录', component: 'NewBaoxiao' },
         { key: '/app/pay/newgongfei', title: '新增公费记录', component: 'NewGongfei' },
 
+        { key: '/app/data/newXiaoshoushuju', title: '新增销售数据', component: 'NewXiaoshoushuju' },
+        { key: '/app/data/watchXiaoshoushuju/:id', title: '查看销售数据', component: 'WatchXiaoshoushuju' },
+        { key: '/app/data/editXiaoshoushuju/:id', title: '编辑销售数据', component: 'EditXiaoshoushuju' },
+        { key: '/app/data/newKehushuju', title: '新增客户数据', component: 'NewKehushuju' },
+        { key: '/app/data/watchKehushuju/:id', title: '查看客户数据', component: 'WatchKehushuju' },
+        { key: '/app/data/editKehushuju/:id', title: '编辑客户数据', component: 'EditKehushuju' },
+        { key: '/app/data/newCaigoushuju', title: '新增采购数据', component: 'NewCaigoushuju' },
+        { key: '/app/data/watchCaigoushuju/:id', title: '查看采购数据', component: 'WatchCaigoushuju' },
+        { key: '/app/data/editCaigoushuju/:id', title: '编辑采购数据', component: 'EditCaigoushuju' },
+
         { key: '/app/checkIn/newkaoqingjilu', title: '新增考勤记录', component: 'NewKaoqingjilu' },
 
         { key: '/app/account/newUserManagement', title: '新增用户', component: 'NewUserManagement' },

@@ -8,6 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import { imprestAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -16,12 +17,16 @@ const { TextArea } = Input;
 
 class NewOutPays extends Component {
     state = {
-        confirmDirty: false,
-        value: 1,
-        values: 1,
+        name: '',
+        method: '',
+        money: '',
+        employment_date: '',
     };
     onChange(date, dateString) {
         console.log(date, dateString);
+        this.setState({
+            employment_date: dateString,
+        })
     }
 
     onChange2 = (e) => {
@@ -30,11 +35,24 @@ class NewOutPays extends Component {
             value: e.target.value,
         });
     }
-    onChange3 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            values: e.target.value,
-        });
+    imprestAdd() {
+        const {
+            name,
+            method,
+            money,
+            employment_date, 
+        } = this.state;
+        let data = {
+            name,
+            method,
+            money,
+            employment_date,
+        }
+        imprestAdd(data).then(res=>{
+            if (res.msg === "success") {
+                this.props.history.push(`/app/pay/beiyongjin`);
+            }
+        })
     }
     goBack() {
         this.props.history.push(`/app/pay/beiyongjin`);
@@ -80,7 +98,7 @@ class NewOutPays extends Component {
                                                 <Col md={8}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit">保存</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={() => this.imprestAdd()}>保存</Button></Col>
                                             </Row>
                                         </Form>
                                     </Card>
