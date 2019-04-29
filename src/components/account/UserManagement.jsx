@@ -191,8 +191,8 @@ class UserManagements extends Component {
                                                     placeholder="请选择"
                                                     onChange={this.handleSelectChange.bind(this)}
                                                 >
-                                                    <Option value="1">male</Option>
-                                                    <Option value="2">female</Option>
+                                                    <Option value="1">普通用户</Option>
+                                                    <Option value="2">管理员</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>

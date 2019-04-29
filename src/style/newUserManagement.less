@@ -1,4 +1,9 @@
 .newUserManagement {
+    .ant-form input[type='radio'], .ant-form input[type='checkbox'] {
+        width: 16px;
+        height: 16px;
+        opacity: 0;
+    }
     .ant-form-item-children {
         width:410px;
         input {
@@ -9,11 +14,21 @@
             opacity:1;
             border-radius:4px;
         }
+        
         input:disabled{
             background:rgba(242,245,244,1);
         }
     }
-    
+    .user_auth {
+        color: #247162;
+        font-size:14px;
+        font-weight: bold;
+    }
+    .function_auth {
+        color: #247162;
+        font-size:14px;
+        font-weight: bold;
+    }    
 }
 
 
