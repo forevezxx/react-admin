@@ -50,6 +50,8 @@ export default {
         { key: '/app/shouldPay/watchDocument/:id', title: '查看供应商档案', component: 'WatchDocument' },
         { key: '/app/shouldPay/editDocument/:id', title: '编辑供应商档案', component: 'EditDocument' },
         { key: '/app/shouldPay/newPay', title: '新增应付录入', component: 'NewPay' },
+        { key: '/app/shouldPay/watchPay/:id', title: '查看应付录入', component: 'WatchPay' },
+        { key: '/app/shouldPay/editPay/:id', title: '编辑应付录入', component: 'EditPay' },
 
         { key: '/app/shouldCollect/newUserFiles', title: '新增客户档案', component: 'NewUserFiles' },
         { key: '/app/shouldCollect/editUserFiles', title: '编辑客户档案', component: 'EditUserFiles' },

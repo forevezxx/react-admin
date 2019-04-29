@@ -155,8 +155,8 @@ class Pays extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;" onClick={() => this.WatchPay()}>查看</a>
-                    <a href="javascript:;" onClick={() => this.EditPay()}>编辑</a>
+                    <a href="javascript:;" onClick={() => this.WatchPay(record.id)}>查看</a>
+                    <a href="javascript:;" onClick={() => this.EditPay(record.id)}>编辑</a>
                 </span>
             )
         }];

@@ -34,6 +34,8 @@ import WatchDocument from './shouldPay/WatchDocument';
 import EditDocument from './shouldPay/EditDocument';
 import Pay from './shouldPay/Pay';
 import NewPay from './shouldPay/NewPay';
+import WatchPay from './shouldPay/WatchPay';
+import EditPay from './shouldPay/EditPay';
 
 import UserFiles from './shouldCollect/UserFiles';
 import In from './shouldCollect/In';
@@ -78,11 +80,13 @@ export default {
     ExampleAnimations, AuthBasic, RouterEnter, WysiwygBundle,
     Cssmodule, MapUi, QueryParams,
     
-    Document, Pay, UserFiles, In, 
+    Document, NewShouldPay, WatchDocument, EditDocument, 
+    Pay, WatchPay, EditPay, NewPay,
+    UserFiles, In, 
     Baoxiao, Beiyongjin, Gongfei, Caigoushuju,
     Kehushuju, Xiaoshoushuju, Banchiguanli,
-    Kaoqingjilu, UserManagement, NewShouldPay, WatchDocument, EditDocument,
-    NewPay, NewUserFiles, EditUserFiles, NewIn, NewInPay, NewOutPay,
+    Kaoqingjilu, UserManagement, 
+    NewUserFiles, EditUserFiles, NewIn, NewInPay, NewOutPay,
     NewBaoxiao, NewGongfei, NewKaoqingjilu,
     NewUserManagement, WatchUserManagement, EditUserManagement
 }
