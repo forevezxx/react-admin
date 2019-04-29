@@ -8,6 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import { imprestAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -16,12 +17,16 @@ const { TextArea } = Input;
 
 class NewInPays extends Component {
     state = {
-        confirmDirty: false,
-        value: 1,
-        values: 1,
+        name: '',
+        method: '',
+        money: '',
+        employment_date: '',
     };
     onChange(date, dateString) {
         console.log(date, dateString);
+        this.setState({
+            employment_date: dateString,
+        })
     }
 
     onChange2 = (e) => {
@@ -30,11 +35,24 @@ class NewInPays extends Component {
             value: e.target.value,
         });
     }
-    onChange3 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            values: e.target.value,
-        });
+    imprestAdd() {
+        const {
+            name,
+            method,
+            money,
+            employment_date, 
+        } = this.state;
+        let data = {
+            name,
+            method,
+            money,
+            employment_date,
+        }
+        imprestAdd(data).then(res=>{
+            if (res.msg === "success") {
+                this.props.history.push(`/app/pay/beiyongjin`);
+            }
+        })
     }
     goBack() {
         this.props.history.push(`/app/pay/beiyongjin`);
@@ -62,16 +80,28 @@ class NewInPays extends Component {
                                                         <input placeholder="请输入公司名称" disabled value="11,000,000" />
                                                     </FormItem>
                                                     <FormItem label="入账人" colon={false}>
-                                                        <input placeholder="请输入入账人姓名" />
+                                                        <input placeholder="请输入入账人姓名" onChange={event => {
+                                                            this.setState({
+                                                                name: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="入账时间" colon={false}>
-                                                        <DatePicker onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                     <FormItem label="入账方式" colon={false}>
-                                                        <input placeholder="请输入入账方式" />
+                                                        <input placeholder="请输入入账方式" onChange={event => {
+                                                            this.setState({
+                                                                method: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="入账金额" colon={false}>
-                                                        <input placeholder="请输入入账金额" />
+                                                        <input placeholder="请输入入账金额" onChange={event => {
+                                                            this.setState({
+                                                                money: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="当前结余" colon={false}>
                                                         <input placeholder="请输入公司名称" disabled value="11,000,000" />
@@ -80,7 +110,7 @@ class NewInPays extends Component {
                                                 <Col md={8}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit">保存</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={()=>this.imprestAdd()}>保存</Button></Col>
                                             </Row>
                                         </Form>
                                     </Card>

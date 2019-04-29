@@ -172,7 +172,7 @@ class Beiyongjins extends Component {
                                             <Row>
                                                 <Col md={6}>
                                                     <FormItem label="入账时间" colon={false}>
-                                                        <DatePicker onChange={this.onChange.bind(this)} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={6}>
