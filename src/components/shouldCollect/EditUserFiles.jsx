@@ -7,6 +7,7 @@ import { Card, Form, Input, Tooltip, Icon, Cascader,
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import { supplierOne, supplierUpdate } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -15,13 +16,105 @@ const TabPane = Tabs.TabPane;
 
 class EditUserFiless extends Component {
     state = {
-        confirmDirty: false,
+        id: '',
+        company_type: '',
+        company_name: '',
+        company_owner: '',
+        position: '',
+        industry: '',
+        email: '',
+        address: '',
+        tel: '',
+        phone: '',
+        company_pic: '',
+        contract_num: '',
+        source: '',
+        maker: '',
+        make_time: '',
+        last_follow: '',
     };
+    componentDidMount() {
+        this.getSupplierOne(this.props.match.params.id);
+    }
+    getSupplierOne(id) {
+        let data = {
+            id
+        }
+        supplierOne(data).then(res => {
+            this.setState({
+                id: res.data.supplier.id,
+                company_type: res.data.supplier.company_type,
+                company_name: res.data.supplier.company_name,
+                company_owner: res.data.supplier.company_owner,
+                position: res.data.supplier.position,
+                industry: res.data.supplier.industry,
+                email: res.data.supplier.email,
+                address: res.data.supplier.address,
+                tel: res.data.supplier.tel,
+                phone: res.data.supplier.phone,
+                company_pic: res.data.supplier.company_pic,
+                contract_num: res.data.supplier.contract_num,
+                source: res.data.supplier.source,
+                maker: res.data.supplier.maker,
+                make_time: res.data.supplier.make_time,
+                last_follow: res.data.supplier.last_follow,
+            })
+        })
+    }
     onChange3 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
             values: e.target.value,
         });
+    }
+    goBack() {
+        this.props.history.push(`/app/shouldCollect/userFiles`);
+    }
+    supplierUpdate() {
+        const {
+            id,
+            company_type,
+            company_name,
+            company_owner,
+            position,
+            industry,
+            email,
+            address,
+            tel,
+            phone,
+            company_pic,
+            contract_num,
+            source,
+            maker,
+            make_time,
+            last_follow,
+        } = this.state;
+        let data = {
+            id: this.props.match.params.id,
+            update_json: JSON.stringify({
+                company_type,
+                company_name,
+                company_owner,
+                position,
+                industry,
+                email,
+                address,
+                tel,
+                phone,
+                company_pic,
+                contract_num,
+                source,
+                maker,
+                make_time,
+                last_follow,
+            }),
+            token: localStorage.getItem('user_token'),
+        };
+        supplierUpdate(data).then(res => {
+            if (res.msg === "success") {
+                this.props.history.push(`/app/shouldCollect/userFiles`);
+            }
+        })
     }
     render() {
         const formItemLayout = {
@@ -95,9 +188,9 @@ class EditUserFiless extends Component {
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit">返回</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit">保存</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={()=>this.supplierUpdate()}>保存</Button></Col>
                                             </Row>
                                         </Form>
                                     </Card>

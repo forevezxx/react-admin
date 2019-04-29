@@ -41,8 +41,10 @@ import UserFiles from './shouldCollect/UserFiles';
 import In from './shouldCollect/In';
 import NewUserFiles from './shouldCollect/NewUserFiles';
 import EditUserFiles from './shouldCollect/EditUserFiles';
+import WatchUserFiles from './shouldCollect/WatchUserFiles';
 import NewIn from './shouldCollect/NewIn';
-
+import EditIn from './shouldCollect/EditIn';
+import WatchIn from './shouldCollect/WatchIn';
 
 import Baoxiao from './pay/Baoxiao';
 import Beiyongjin from './pay/Beiyongjin';
@@ -82,11 +84,12 @@ export default {
     
     Document, NewShouldPay, WatchDocument, EditDocument, 
     Pay, WatchPay, EditPay, NewPay,
-    UserFiles, In, 
+    UserFiles, NewUserFiles, EditUserFiles, WatchUserFiles, 
+    In, NewIn, EditIn, WatchIn,
     Baoxiao, Beiyongjin, Gongfei, Caigoushuju,
     Kehushuju, Xiaoshoushuju, Banchiguanli,
     Kaoqingjilu, UserManagement, 
-    NewUserFiles, EditUserFiles, NewIn, NewInPay, NewOutPay,
+    NewInPay, NewOutPay,
     NewBaoxiao, NewGongfei, NewKaoqingjilu,
     NewUserManagement, WatchUserManagement, EditUserManagement
 }

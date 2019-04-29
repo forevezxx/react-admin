@@ -54,8 +54,11 @@ export default {
         { key: '/app/shouldPay/editPay/:id', title: '编辑应付录入', component: 'EditPay' },
 
         { key: '/app/shouldCollect/newUserFiles', title: '新增客户档案', component: 'NewUserFiles' },
-        { key: '/app/shouldCollect/editUserFiles', title: '编辑客户档案', component: 'EditUserFiles' },
-        { key: '/app/shouldCollect/newin', title: '新增应收录入', component: 'NewIn' },
+        { key: '/app/shouldCollect/editUserFiles/:id', title: '编辑客户档案', component: 'EditUserFiles' },
+        { key: '/app/shouldCollect/watchUserFiles/:id', title: '查看客户档案', component: 'WatchUserFiles' },
+        { key: '/app/shouldCollect/newIn', title: '新增应收录入', component: 'NewIn' },
+        { key: '/app/shouldCollect/editIn/:id', title: '编辑应收录入', component: 'EditIn' },
+        { key: '/app/shouldCollect/watchIn/:id', title: '查看应收录入', component: 'WatchIn' },
 
         { key: '/app/pay/newinpay', title: '新增备用金入账记录', component: 'NewInPay' },
         { key: '/app/pay/newoutpay', title: '新增备用金出账记录', component: 'NewOutPay' },
