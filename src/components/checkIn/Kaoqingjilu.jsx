@@ -151,7 +151,7 @@ class Kaoqingjilus extends Component {
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="考勤日期" colon={false}>
-                                                <DatePicker onChange={()=>this.onChange} />
+                                                <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>

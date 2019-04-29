@@ -8,6 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import { userAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -16,12 +17,24 @@ const { TextArea } = Input;
 
 class NewKaoqingjilus extends Component {
     state = {
-        confirmDirty: false,
         value: 1,
         values: 1,
+        type: '',
+        username: '',
+        position: '',
+        phone: '',
+        user_ext: '',
+        account_name: '',
+        password: '',
+        employment_date: '',
+        user_auth: '',
+        function_auth: '', 
     };
     onChange(date, dateString) {
         console.log(date, dateString);
+        this.setState({
+            employment_date: dateString,
+        })
     }
 
     onChange2 = (e) => {
@@ -30,10 +43,44 @@ class NewKaoqingjilus extends Component {
             value: e.target.value,
         });
     }
-    onChange3 = (e) => {
-        console.log('radio checked', e.target.value);
+    goBack() {
+        this.props.history.push(`/app/checkIn/kaoqingjilu`);
+    }
+
+    newUser() {
+        const {
+            type,
+            username,
+            position,
+            phone,
+            user_ext,
+            account_name,
+            password,
+            employment_date,
+            user_auth,
+            function_auth, 
+        } = this.state;
+        let data = {
+            type,
+            username,
+            position,
+            phone,
+            user_ext,
+            account_name,
+            password,
+            employment_date,
+            user_auth,
+            function_auth,
+        }
+        userAdd(data).then(res=>{
+            if (res.msg === "success") {
+                this.props.history.push(`/app/checkIn/kaoqingjilu`);
+            }
+        })
+    }
+    handleSelectChangeUserType(value) {
         this.setState({
-            values: e.target.value,
+            type: value
         });
     }
     render() {
@@ -73,14 +120,46 @@ class NewKaoqingjilus extends Component {
                                                         <input placeholder="部门" disabled />
                                                     </FormItem>
                                                     <FormItem label="考勤日期" colon={false}>
-                                                        <DatePicker onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
                                                     </FormItem>
-                                                    {/** 考勤状态*/}
+                                                    <FormItem label="考勤状态" colon={false}>
+                                                        <RadioGroup name="radiogroup" defaultValue={1}>
+                                                            <Row>
+                                                                <Col><Radio value={1}>正常</Radio></Col>
+                                                                <Col><Radio value={2}>迟到</Radio></Col>
+                                                                <Col><Radio value={3}>早退</Radio></Col>
+                                                                <Col>
+                                                                    <div className="miss-day">
+                                                                        <Radio value={4}>事假</Radio>                                                                    
+                                                                        <input /><span className="miss-day-span">天</span>
+                                                                    </div>                                                                    
+                                                                </Col>
+                                                                <Col>
+                                                                    <div className="miss-day">
+                                                                        <Radio value={5}>病假</Radio>                                                                    
+                                                                        <input /><span className="miss-day-span">天</span>
+                                                                    </div>                                                                    
+                                                                </Col>
+                                                                <Col>
+                                                                    <div className="miss-day">
+                                                                        <Radio value={6}>丧假</Radio>                                                                    
+                                                                        <input /><span className="miss-day-span">天</span>
+                                                                    </div>                                                                    
+                                                                </Col>
+                                                                <Col>
+                                                                    <div className="miss-day">
+                                                                        <Radio value={7}>旷工</Radio>                                                                    
+                                                                        <input /><span className="miss-day-span">天</span>
+                                                                    </div>                                                                    
+                                                                </Col>
+                                                            </Row>
+                                                        </RadioGroup>
+                                                    </FormItem>
                                                 </Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit">返回</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit">保存</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={() => this.newUser()}>保存</Button></Col>
                                             </Row>
                                         </Form>
                                     </Card>
