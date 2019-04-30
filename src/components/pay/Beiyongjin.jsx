@@ -177,22 +177,20 @@ class Beiyongjins extends Component {
                                                 </Col>
                                                 <Col md={6}>
                                                     <FormItem label="入账方式" colon={false}>
-                                                    <Select
-                                                        placeholder="请选择"
-                                                        onChange={this.handleSelectChange.bind(this)}
-                                                    >
-                                                        <Option value="1">male</Option>
-                                                        <Option value="2">female</Option>
-                                                    </Select>
+                                                    <input placeholder="请输入入账方式" onChange={event=>{
+                                                        this.setState({
+                                                            inWay: event.target.value
+                                                        });
+                                                    }}/>
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={6}>
                                                     <FormItem label="入账人" colon={false}>
                                                         <input placeholder="请输入入账人" onChange={event=>{
-                                                    this.setState({
-                                                        user: event.target.value
-                                                      });
-                                                }}/>
+                                                            this.setState({
+                                                                user: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={2}>

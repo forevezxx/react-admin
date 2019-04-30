@@ -29,6 +29,7 @@ class NewUserFiless extends Component {
         company_pic: '',
         contract_num: '',
         source: '',
+        values: 1,
     };
     onChange3 = (e) => {
         console.log('radio checked', e.target.value);
@@ -125,8 +126,10 @@ class NewUserFiless extends Component {
                                                             placeholder="请选择"
                                                             onChange={this.handleSelectChange}
                                                         >
-                                                            <Option value="male">male</Option>
-                                                            <Option value="female">female</Option>
+                                                            <Option value="1">展会</Option>
+                                                            <Option value="2">广告杂志</Option>
+                                                            <Option value="3">客户转介绍</Option>
+                                                            
                                                         </Select>
                                                     </FormItem>
                                                     <FormItem label="跟进人员" colon={false}>

@@ -204,8 +204,8 @@ class Ins extends Component {
                                                     placeholder="请选择"
                                                     onChange={this.handleSelectChange}
                                                 >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
+                                                    <Option value="1">已收款</Option>
+                                                    <Option value="2">待收款</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>
@@ -215,8 +215,8 @@ class Ins extends Component {
                                                     placeholder="请选择"
                                                     onChange={this.handleSelectChange}
                                                 >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
+                                                    <Option value="1">已开票</Option>
+                                                    <Option value="2">未开票</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>

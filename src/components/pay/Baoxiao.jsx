@@ -100,13 +100,13 @@ class Baoxiaos extends Component {
                                 <Form {...formItemLayout}>
                                     <Row>
                                         <Col md={6}>
-                                            <FormItem label="出账时间" colon={false}>
+                                            <FormItem label="报销时间" colon={false}>
                                                 <input placeholder="请选择" />
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
-                                            <FormItem label="出账人" colon={false}>
-                                                <input placeholder="请输入出账人" />
+                                            <FormItem label="报销人" colon={false}>
+                                                <input placeholder="请输入报销人" />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>

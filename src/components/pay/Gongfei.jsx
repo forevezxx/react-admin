@@ -105,13 +105,7 @@ class Gongfeis extends Component {
                                     <Row>
                                         <Col md={6}>
                                             <FormItem label="费用类型" colon={false}>
-                                                <Select
-                                                    placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
-                                                >
-                                                    <Option value="male">male</Option>
-                                                    <Option value="female">female</Option>
-                                                </Select>
+                                                <input placeholder="请输入费用类型" />
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
