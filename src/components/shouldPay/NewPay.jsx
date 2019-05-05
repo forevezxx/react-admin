@@ -381,7 +381,7 @@ class NewPays extends Component {
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="付款日期" colon={false}>
-                                                        <DatePicker onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
                                                     </FormItem>
                                                     <FormItem label="付款主体" colon={false}>
                                                         <input placeholder="请输入付款主体" />
@@ -414,7 +414,7 @@ class NewPays extends Component {
                                                         <input placeholder="请输入邮寄地址" />
                                                     </FormItem>
                                                     <FormItem label="开票日期" colon={false}>
-                                                        <DatePicker onChange={() => this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
                                                     </FormItem>
                                                     <FormItem label="平账状态" colon={false}>
                                                         <RadioGroup onChange={this.onChange3} value={this.state.values}>

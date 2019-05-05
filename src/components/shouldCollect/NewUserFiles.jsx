@@ -136,7 +136,7 @@ class NewUserFiless extends Component {
                                                         <input placeholder="请输入跟进人员" />
                                                     </FormItem>
                                                     <FormItem label="跟进时间" colon={false}>
-                                                        <DatePicker onChange={() => this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
                                                     </FormItem>
                                                     <FormItem label="平账状态" colon={false}>
                                                         <RadioGroup onChange={this.onChange3} value={this.state.values}>

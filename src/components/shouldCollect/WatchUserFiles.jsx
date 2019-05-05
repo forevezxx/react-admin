@@ -5,14 +5,14 @@ import React, { Component } from 'react';
 import {
     Card, Form, Input, Tooltip, Icon, Cascader,
     Select, Row, Col, Checkbox, Button,
-    Table, Menu, Tabs, Upload
+    Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { supplierOne } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
-
+const RadioGroup = Radio.Group;
 const TabPane = Tabs.TabPane;
 
 
@@ -55,50 +55,58 @@ class WatchUserFiless extends Component {
                                         <Form {...formItemLayout}>
                                             <Row>
                                                 <Col md={24}>
-                                                    <FormItem label="公司类型" colon={false}>
-                                                        <input disabled value={documentData.company_type} />
+                                                    <FormItem label="客户编号" colon={false}>
+                                                        <input placeholder="请输入客户编号" value="CF20031255" />
                                                     </FormItem>
-                                                    <FormItem label="公司名称" colon={false}>
-                                                        <input disabled value={documentData.company_name} />
+                                                    <FormItem label="客户名称" colon={false}>
+                                                        <input placeholder="请输入客户名称" value="福意婚纱" />
+                                                    </FormItem>
+                                                    <FormItem label="订单编号" colon={false}>
+                                                        <input placeholder="请输入订单编号" value="NO.123644" />
+                                                    </FormItem>
+                                                    <FormItem label="资源属性" colon={false}>
+                                                        <input placeholder="请输入资源属性" value="电信行业" />
                                                     </FormItem>
                                                     <FormItem label="负责人" colon={false}>
-                                                        <input disabled value={documentData.company_owner} />
+                                                        <input placeholder="请输入负责人姓名" value="黄总" />
                                                     </FormItem>
-                                                    <FormItem label="职位" colon={false}>
-                                                        <input disabled value={documentData.position} />
+                                                    <FormItem label="联系电话" colon={false}>
+                                                        <input placeholder="请输入联系电话" value="15965865648" />
                                                     </FormItem>
-                                                    <FormItem label="所属行业" colon={false}>
-                                                        <input disabled value={documentData.industry} />
+                                                    <FormItem label="所在地址" colon={false}>
+                                                        <input placeholder="请输入省、市、区、详细地址" value="浙江省杭州市富阳区宁线路11号" />
                                                     </FormItem>
-                                                    <FormItem label="邮箱" colon={false}>
-                                                        <input disabled value={documentData.email} />
+                                                    <FormItem label="客户邮箱" colon={false}>
+                                                        <input placeholder="请输入客户邮箱" value="18659633586@163.com" />
                                                     </FormItem>
-                                                    <FormItem label="地址" colon={false}>
-                                                        <input disabled value={documentData.address} />
+
+                                                    <FormItem label="客户来源" colon={false}>
+                                                        <Select
+                                                            placeholder="请选择"
+                                                            onChange={this.handleSelectChange} value={this.state.values2}
+                                                        >
+                                                            <Option value="1">展会</Option>
+                                                            <Option value="2">广告杂志</Option>
+                                                            <Option value="3">客户转介绍</Option>
+                                                        </Select>
                                                     </FormItem>
-                                                    <FormItem label="座机" colon={false}>
-                                                        <input disabled value={documentData.tel} />
+                                                    <FormItem label="跟进人员" colon={false}>
+                                                        <input placeholder="请输入跟进人员" value="wendy" />
                                                     </FormItem>
-                                                    <FormItem label="手机号码" colon={false}>
-                                                        <input disabled value={documentData.phone} />
+                                                    <FormItem label="跟进时间" colon={false}>
+                                                        <DatePicker onChange={() => this.onChange} />
                                                     </FormItem>
-                                                    <FormItem label="公司照片" colon={false}>
-                                                        <input disabled value={documentData.company_pic} />
+                                                    <FormItem label="平账状态" colon={false}>
+                                                        <RadioGroup onChange={this.onChange3} value={this.state.values}>
+                                                            <Radio value={1}>已平账</Radio>
+                                                            <Radio value={2}>未平账</Radio>
+                                                        </RadioGroup>
                                                     </FormItem>
-                                                    <FormItem label="合同编号" colon={false}>
-                                                        <input disabled value={documentData.contract_num} />
+                                                    <FormItem label="创建人" colon={false}>
+                                                        <input disabled value="wendy" />
                                                     </FormItem>
-                                                    <FormItem label="来源" colon={false}>
-                                                        <input disabled value={documentData.source} />
-                                                    </FormItem>
-                                                    <FormItem label="建档人" colon={false}>
-                                                        <input disabled value={documentData.maker} />
-                                                    </FormItem>
-                                                    <FormItem label="建档时间" colon={false}>
-                                                        <input disabled value={moment(Number(documentData.make_time) * 1000).format('YYYY-MM-DD')} />
-                                                    </FormItem>
-                                                    <FormItem label="最后一次跟进" colon={false}>
-                                                        <input disabled value={moment(Number(documentData.last_follow) * 1000).format('YYYY-MM-DD')} />
+                                                    <FormItem label="创建时间" colon={false}>
+                                                        <input disabled value="2019.02.28 09:30:56" />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>

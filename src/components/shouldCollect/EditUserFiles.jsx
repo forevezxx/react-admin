@@ -32,6 +32,8 @@ class EditUserFiless extends Component {
         maker: '',
         make_time: '',
         last_follow: '',
+        values: 1,
+        values2: 1,
     };
     componentDidMount() {
         this.getSupplierOne(this.props.match.params.id);
@@ -162,10 +164,11 @@ class EditUserFiless extends Component {
                                                     <FormItem label="客户来源" colon={false}>
                                                         <Select
                                                             placeholder="请选择"
-                                                            onChange={this.handleSelectChange}
+                                                            onChange={this.handleSelectChange} value={this.state.values2}
                                                         >
-                                                            <Option value="male">客户转介绍</Option>
-                                                            <Option value="female">female</Option>
+                                                            <Option value="1">展会</Option>
+                                                            <Option value="2">广告杂志</Option>
+                                                            <Option value="3">客户转介绍</Option>
                                                         </Select>
                                                     </FormItem>
                                                     <FormItem label="跟进人员" colon={false}>
