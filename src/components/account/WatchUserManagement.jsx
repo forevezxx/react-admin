@@ -33,6 +33,12 @@ class WatchUserManagements extends Component {
             })
         })
     }
+    onChange2 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            value: e.target.value,
+        });
+    }
     goBack() {
         this.props.history.push(`/app/account/userManagement`);
     }

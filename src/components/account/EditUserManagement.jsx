@@ -74,6 +74,12 @@ class EditUserManagements extends Component {
             }
         })
     }
+    onChange2 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            value: e.target.value,
+        });
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
