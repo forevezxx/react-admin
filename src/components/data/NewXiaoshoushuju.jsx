@@ -27,6 +27,7 @@ class NewXiaoshoushujus extends Component {
         employment_date: '',
         user_auth: '',
         function_auth: '', 
+        value1: 1,
     };
     onChange(date, dateString) {
         console.log(date, dateString);
@@ -35,10 +36,10 @@ class NewXiaoshoushujus extends Component {
         })
     }
 
-    onChange2 = (e) => {
+    onChange1 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value: e.target.value,
+            value1: e.target.value,
         });
     }
     goBack() {
@@ -81,6 +82,12 @@ class NewXiaoshoushujus extends Component {
             type: value
         });
     }
+    onChange1 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            value1: e.target.value,
+        });
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -89,9 +96,9 @@ class NewXiaoshoushujus extends Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <div className="gutter-example newUserManagement">
-                <BreadcrumbCustom first="用户管理" second="新增用户" />
+                <BreadcrumbCustom first="数据管理" second="新增销售数据" />
                 <Tabs defaultActiveKey="1">
-                    <TabPane tab="新增用户" key="1">
+                    <TabPane tab="新增销售数据" key="1">
                         <Row>
                             <Col className="gutter-row" md={24}>
                                 <div className="gutter-box">
@@ -99,77 +106,65 @@ class NewXiaoshoushujus extends Component {
                                         <Form {...formItemLayout}>
                                             <Row>
                                                 <Col md={24}>
-                                                    {/* <FormItem label="用户ID" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="11,000,000" />
-                                                    </FormItem> */}
-                                                    <FormItem label="用户类别" colon={false}>
+                                                    <FormItem label="销售员" colon={false}>
+                                                        <input placeholder="请输入销售员姓名" onChange={event => {
+                                                            this.setState({
+                                                                sales_name: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="当前排名" colon={false}>
+                                                        <input placeholder="请输入当前排名" onChange={event => {
+                                                            this.setState({
+                                                                rank: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="考核月份" colon={false}>
                                                         <Select
                                                             placeholder="请选择"
                                                             onChange={this.handleSelectChangeUserType.bind(this)}
                                                         >
-                                                            <Option value="1">普通用户</Option>
-                                                            <Option value="2">管理员</Option>
+                                                            <Option value="1">1月</Option>
+                                                            <Option value="2">2月</Option>
+                                                            <Option value="3">3月</Option>
+                                                            <Option value="4">4月</Option>
+                                                            <Option value="5">5月</Option>
+                                                            <Option value="6">6月</Option>
+                                                            <Option value="7">7月</Option>
+                                                            <Option value="8">8月</Option>
+                                                            <Option value="9">9月</Option>
+                                                            <Option value="10">10月</Option>
+                                                            <Option value="11">11月</Option>
+                                                            <Option value="12">12月</Option>
                                                         </Select>
                                                     </FormItem>
-                                                    <FormItem label="员工姓名" colon={false}>
-                                                        <input placeholder="请输入员工姓名" onChange={event => {
+                                                    <FormItem label="月度回款金额" colon={false}>
+                                                        <input placeholder="请输入月度回款金额" onChange={event => {
                                                             this.setState({
-                                                                username: event.target.value
+                                                                back_money: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
-                                                    <FormItem label="职位" colon={false}>
-                                                        <input placeholder="请输入职位" onChange={event => {
+                                                    <FormItem label="提成金额" colon={false}>
+                                                        <input placeholder="请输入提成金额" onChange={event => {
                                                             this.setState({
-                                                                position: event.target.value
+                                                                back_money: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
-                                                    <FormItem label="手机号码" colon={false}>
-                                                        <input placeholder="请输入手机号码" onChange={event => {
-                                                            this.setState({
-                                                                phone: event.target.value
-                                                            });
-                                                        }}/>
+                                                    
+                                                    <FormItem label="开票状态" colon={false}>
+                                                        <RadioGroup onChange={this.onChange1} value={this.state.value1}>
+                                                            <Radio value={1}>已达成</Radio>
+                                                            <Radio value={2}>未达成</Radio>
+                                                        </RadioGroup>
                                                     </FormItem>
-                                                    <FormItem label="工号" colon={false}>
-                                                        <input placeholder="请输入工号" onChange={event => {
-                                                            this.setState({
-                                                                user_ext: event.target.value
-                                                            });
-                                                        }}/>
-                                                    </FormItem>
-                                                    <FormItem label="账号名称" colon={false}>
-                                                        <input placeholder="请输入账号名称" onChange={event => {
-                                                            this.setState({
-                                                                account_name: event.target.value
-                                                            });
-                                                        }}/>
-                                                    </FormItem>
-                                                    <FormItem label="账号密码" colon={false}>
-                                                        <input placeholder="请输入账号密码" onChange={event => {
-                                                            this.setState({
-                                                                password: event.target.value
-                                                            });
-                                                        }}/>
+                                                    <FormItem label="所属部门" colon={false}>
+                                                        <input placeholder="请输入提成金额" disabled value="销售部"/>
                                                     </FormItem>
                                                     <FormItem label="入职时间" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
-                                                    </FormItem>
-                                                    <FormItem label="权限模块" colon={false}>
-                                                        <Row>
-                                                            <Col span={24}><div className="user_auth">用户权限</div></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="1">档案管理</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="2">用户管理</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="3">数据管理</Checkbox></Col>
-                                                            <Col span={24}><div className="function_auth">功能权限</div></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="1">查看权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="2">编辑权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="3">保存权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="4">新增权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="5">查询权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="6">停用权限</Checkbox></Col>
-                                                        </Row>
+                                                        <input placeholder="请输入提成金额" disabled value="2019.02.28"/>
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>

@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import {
     Card, Form, Input, Tooltip, Icon, Cascader,
-    Select, Row, Col, Checkbox, Button,
+    Select, Row, Col, Checkbox, Button, DatePicker,
     Table, Menu, Tabs, Upload
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
@@ -34,7 +34,10 @@ class WatchXiaoshoushujus extends Component {
         })
     }
     goBack() {
-        this.props.history.push(`/app/data/xiaoshoushuju`);
+        this.props.history.push(`/app/data/caigoushuju`);
+    }
+    onChange(date, dateString) {
+        console.log(date, dateString);
     }
     render() {
         const formItemLayout = {
@@ -45,9 +48,9 @@ class WatchXiaoshoushujus extends Component {
         if(userData!=""){
             return (
                 <div className="gutter-example">
-                    <BreadcrumbCustom first="用户管理" second="查看用户信息"/>
+                    <BreadcrumbCustom first="数据管理" second="查看采购数据"/>
                     <Tabs defaultActiveKey="1">
-                        <TabPane tab="查看用户信息" key="1">
+                        <TabPane tab="查看采购数据" key="1">
                             <Row>
                                 <Col className="gutter-row" md={24}>
                                     <div className="gutter-box">
@@ -55,32 +58,26 @@ class WatchXiaoshoushujus extends Component {
                                             <Form {...formItemLayout}>
                                                 <Row>
                                                     <Col md={24}>
-                                                        <FormItem label="用户id" colon={false}>
-                                                            <input disabled value={userData.id} />
+                                                        <FormItem label="公司名称" colon={false}>
+                                                            <input placeholder="请输入公司名称"  />
                                                         </FormItem>
-                                                        <FormItem label="用户类别" colon={false}>
-                                                            <input disabled value={userData.type} />
+                                                        <FormItem label="通道" colon={false}>
+                                                            <input placeholder="请输入通道"  />
                                                         </FormItem>
-                                                        <FormItem label="员工姓名" colon={false}>
-                                                            <input disabled value={userData.username} />
+                                                        <FormItem label="属性" colon={false}>
+                                                            <input placeholder="请输入属性"  />
                                                         </FormItem>
-                                                        <FormItem label="职位" colon={false}>
-                                                            <input disabled value={userData.position} />
+                                                        <FormItem label="采购价" colon={false}>
+                                                            <input placeholder="请输入采购价"  />
                                                         </FormItem>
-                                                        <FormItem label="手机号码" colon={false}>
-                                                            <input disabled value={userData.phone} />
+                                                        <FormItem label="数量" colon={false}>
+                                                            <input placeholder="请输入数量"  />
                                                         </FormItem>
-                                                        <FormItem label="工号" colon={false}>
-                                                            <input disabled value={userData.user_ext} />
+                                                        <FormItem label="总金额" colon={false}>
+                                                            <input placeholder="请输入总金额"  />
                                                         </FormItem>
-                                                        <FormItem label="账号名称" colon={false}>
-                                                            <input disabled value={userData.account_name} />
-                                                        </FormItem>
-                                                        <FormItem label="账号密码" colon={false}>
-                                                            <input disabled value={userData.password} />
-                                                        </FormItem>
-                                                        <FormItem label="入职时间" colon={false}>
-                                                            <input disabled value={moment(Number(userData.employment_date)*1000).format('YYYY-MM-DD')} />
+                                                        <FormItem label="采购日期" colon={false}>
+                                                            <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                         </FormItem>
                                                     </Col>
                                                     <Col md={8}>

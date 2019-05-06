@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import {
     Card, Form, Input, Tooltip, Icon, Cascader,
     Select, Row, Col, Checkbox, Button,
-    Table, Menu, Tabs, Upload
+    Table, Menu, Tabs, Upload, DatePicker,
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { userOne } from '../../axios';
@@ -34,7 +34,7 @@ class WatchXiaoshoushujus extends Component {
         })
     }
     goBack() {
-        this.props.history.push(`/app/data/xiaoshoushuju`);
+        this.props.history.push(`/app/data/kehushuju`);
     }
     render() {
         const formItemLayout = {
@@ -45,9 +45,9 @@ class WatchXiaoshoushujus extends Component {
         if(userData!=""){
             return (
                 <div className="gutter-example">
-                    <BreadcrumbCustom first="用户管理" second="查看用户信息"/>
+                    <BreadcrumbCustom first="数据管理" second="查看客户数据"/>
                     <Tabs defaultActiveKey="1">
-                        <TabPane tab="查看用户信息" key="1">
+                        <TabPane tab="查看客户数据" key="1">
                             <Row>
                                 <Col className="gutter-row" md={24}>
                                     <div className="gutter-box">
@@ -55,33 +55,58 @@ class WatchXiaoshoushujus extends Component {
                                             <Form {...formItemLayout}>
                                                 <Row>
                                                     <Col md={24}>
-                                                        <FormItem label="用户id" colon={false}>
-                                                            <input disabled value={userData.id} />
-                                                        </FormItem>
-                                                        <FormItem label="用户类别" colon={false}>
-                                                            <input disabled value={userData.type} />
-                                                        </FormItem>
-                                                        <FormItem label="员工姓名" colon={false}>
-                                                            <input disabled value={userData.username} />
-                                                        </FormItem>
-                                                        <FormItem label="职位" colon={false}>
-                                                            <input disabled value={userData.position} />
-                                                        </FormItem>
-                                                        <FormItem label="手机号码" colon={false}>
-                                                            <input disabled value={userData.phone} />
-                                                        </FormItem>
-                                                        <FormItem label="工号" colon={false}>
-                                                            <input disabled value={userData.user_ext} />
-                                                        </FormItem>
-                                                        <FormItem label="账号名称" colon={false}>
-                                                            <input disabled value={userData.account_name} />
-                                                        </FormItem>
-                                                        <FormItem label="账号密码" colon={false}>
-                                                            <input disabled value={userData.password} />
-                                                        </FormItem>
-                                                        <FormItem label="入职时间" colon={false}>
-                                                            <input disabled value={moment(Number(userData.employment_date)*1000).format('YYYY-MM-DD')} />
-                                                        </FormItem>
+                                                    <FormItem label="客户姓名" colon={false}>
+                                                        <input placeholder="请输入客户姓名" onChange={event => {
+                                                            this.setState({
+                                                                sales_name: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="客户公司名称" colon={false}>
+                                                        <input placeholder="请输入客户公司名称" onChange={event => {
+                                                            this.setState({
+                                                                rank: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="回款产品" colon={false}>
+                                                        <input placeholder="请输入回款产品" onChange={event => {
+                                                            this.setState({
+                                                                rank: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="产品数量" colon={false}>
+                                                        <input placeholder="请输入产品数量" onChange={event => {
+                                                            this.setState({
+                                                                rank: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="产品单价" colon={false}>
+                                                        <input placeholder="请输入产品单价" onChange={event => {
+                                                            this.setState({
+                                                                rank: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="产品总价" colon={false}>
+                                                        <input placeholder="请输入产品总价" onChange={event => {
+                                                            this.setState({
+                                                                rank: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="回款金额" colon={false}>
+                                                        <input placeholder="请输入回款金额" onChange={event => {
+                                                            this.setState({
+                                                                rank: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="回款日期" colon={false}>
+                                                        <DatePicker placeholder="请选择" onChange={this.onChange} />
+                                                    </FormItem>
                                                     </Col>
                                                     <Col md={8}>
                                                         <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>

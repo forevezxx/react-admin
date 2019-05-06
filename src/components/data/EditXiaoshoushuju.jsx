@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import {
     Card, Form, Input, Tooltip, Icon, Cascader,
-    Select, Row, Col, Checkbox, Button,
+    Select, Row, Col, Checkbox, Button, Radio,
     Table, Menu, Tabs, Upload
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
@@ -12,7 +12,7 @@ import { userOne, userUpdate } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
-
+const RadioGroup = Radio.Group;
 const TabPane = Tabs.TabPane;
 
 
@@ -27,6 +27,7 @@ class EditXiaoshoushujus extends Component {
         account_name: '',
         password: '',
         employment_date: '',
+        value1: 1,
     };
     componentDidMount() {
         this.getUserOne(this.props.match.params.id);
@@ -74,6 +75,12 @@ class EditXiaoshoushujus extends Component {
             }
         })
     }
+    onChange1 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            value1: e.target.value,
+        });
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -82,9 +89,9 @@ class EditXiaoshoushujus extends Component {
         const { id, type, username, position, phone, user_ext, account_name, password, employment_date } = this.state;
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom first="用户管理" second="编辑用户信息"/>
+                <BreadcrumbCustom first="数据管理" second="编辑销售数据"/>
                 <Tabs defaultActiveKey="1">
-                    <TabPane tab="编辑用户信息" key="1">
+                    <TabPane tab="编辑销售数据" key="1">
                         <Row>
                             <Col className="gutter-row" md={24}>
                                 <div className="gutter-box">
@@ -92,33 +99,66 @@ class EditXiaoshoushujus extends Component {
                                         <Form {...formItemLayout}>
                                             <Row>
                                                 <Col md={24}>
-                                                <FormItem label="用户id" colon={false}>
-                                                            <input value={id} onChange={event=>{this.setState({id: event.target.value});}}/>
-                                                        </FormItem>
-                                                        <FormItem label="用户类别" colon={false}>
-                                                            <input value={type} onChange={event=>{this.setState({type: event.target.value});}} />
-                                                        </FormItem>
-                                                        <FormItem label="员工姓名" colon={false}>
-                                                            <input value={username} onChange={event=>{this.setState({username: event.target.value});}}/>
-                                                        </FormItem>
-                                                        <FormItem label="职位" colon={false}>
-                                                            <input value={position} onChange={event=>{this.setState({position: event.target.value});}}/>
-                                                        </FormItem>
-                                                        <FormItem label="手机号码" colon={false}>
-                                                            <input value={phone} onChange={event=>{this.setState({phone: event.target.value});}}/>
-                                                        </FormItem>
-                                                        <FormItem label="工号" colon={false}>
-                                                            <input value={user_ext} onChange={event=>{this.setState({user_ext: event.target.value});}}/>
-                                                        </FormItem>
-                                                        <FormItem label="账号名称" colon={false}>
-                                                            <input value={account_name} onChange={event=>{this.setState({account_name: event.target.value});}}/>
-                                                        </FormItem>
-                                                        <FormItem label="账号密码" colon={false}>
-                                                            <input value={password} onChange={event=>{this.setState({password: event.target.value});}}/>
-                                                        </FormItem>
-                                                        <FormItem label="入职时间" colon={false}>
-                                                            <input value={moment(Number(employment_date)*1000).format('YYYY-MM-DD')}  onChange={event=>{this.setState({employment_date: event.target.value});}} />
-                                                        </FormItem>
+                                                    <FormItem label="销售员" colon={false}>
+                                                        <input placeholder="请输入销售员姓名" onChange={event => {
+                                                            this.setState({
+                                                                sales_name: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="当前排名" colon={false}>
+                                                        <input placeholder="请输入当前排名" onChange={event => {
+                                                            this.setState({
+                                                                rank: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="考核月份" colon={false}>
+                                                        <Select
+                                                            placeholder="请选择"
+                                                            onChange={this.handleSelectChangeUserType}
+                                                        >
+                                                            <Option value="1">1月</Option>
+                                                            <Option value="2">2月</Option>
+                                                            <Option value="3">3月</Option>
+                                                            <Option value="4">4月</Option>
+                                                            <Option value="5">5月</Option>
+                                                            <Option value="6">6月</Option>
+                                                            <Option value="7">7月</Option>
+                                                            <Option value="8">8月</Option>
+                                                            <Option value="9">9月</Option>
+                                                            <Option value="10">10月</Option>
+                                                            <Option value="11">11月</Option>
+                                                            <Option value="12">12月</Option>
+                                                        </Select>
+                                                    </FormItem>
+                                                    <FormItem label="月度回款金额" colon={false}>
+                                                        <input placeholder="请输入月度回款金额" onChange={event => {
+                                                            this.setState({
+                                                                back_money: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    <FormItem label="提成金额" colon={false}>
+                                                        <input placeholder="请输入提成金额" onChange={event => {
+                                                            this.setState({
+                                                                back_money: event.target.value
+                                                            });
+                                                        }}/>
+                                                    </FormItem>
+                                                    
+                                                    <FormItem label="开票状态" colon={false}>
+                                                        <RadioGroup onChange={this.onChange1} value={this.state.value1}>
+                                                            <Radio value={1}>已达成</Radio>
+                                                            <Radio value={2}>未达成</Radio>
+                                                        </RadioGroup>
+                                                    </FormItem>
+                                                    <FormItem label="所属部门" colon={false}>
+                                                        <input placeholder="请输入提成金额" disabled value="销售部"/>
+                                                    </FormItem>
+                                                    <FormItem label="入职时间" colon={false}>
+                                                        <input placeholder="请输入提成金额" disabled value="2019.02.28"/>
+                                                    </FormItem>
                                                 </Col>
                                                 <Col md={8}><Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
                                                 <Col md={8}><Button type="primary" htmlType="submit" onClick={()=>this.userUpdates()}>保存</Button></Col>

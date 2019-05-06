@@ -102,7 +102,7 @@ class NewBaoxiaos extends Component {
                                                         <input placeholder="请输入报销人姓名"/>
                                                     </FormItem>
                                                     <FormItem label="报销时间" colon={false}>
-                                                        <DatePicker onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
                                                     </FormItem>
                                                     
                                                     <FormItem label="报销金额" colon={false}>
