@@ -63,6 +63,8 @@ export default {
         { key: '/app/pay/newinpay', title: '新增备用金入账记录', component: 'NewInPay' },
         { key: '/app/pay/newoutpay', title: '新增备用金出账记录', component: 'NewOutPay' },
         { key: '/app/pay/newbaoxiao', title: '新增报销记录', component: 'NewBaoxiao' },
+        { key: '/app/pay/editBaoxiao/:id', title: '编辑报销记录', component: 'EditBaoxiao' },
+        { key: '/app/pay/watchBaoxiao/:id', title: '查看报销记录', component: 'WatchBaoxiao' },
         { key: '/app/pay/newgongfei', title: '新增公费记录', component: 'NewGongfei' },
 
         { key: '/app/data/newXiaoshoushuju', title: '新增销售数据', component: 'NewXiaoshoushuju' },

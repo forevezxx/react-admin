@@ -15,6 +15,12 @@ class Baoxiaos extends Component {
     newbaoxiao() {//新建
         this.props.history.push('/app/pay/newbaoxiao');
     }
+    WatchBaoxiao(id) {//查看
+        this.props.history.push(`/app/pay/watchBaoxiao/${id}`);
+    }
+    EditBaoxiao(id) {//编辑
+        this.props.history.push(`/app/pay/editBaoxiao/${id}`);
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -84,8 +90,8 @@ class Baoxiaos extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;">查看</a>
-                    <a href="javascript:;">编辑</a>
+                    <a href="javascript:;" onClick={()=>this.WatchBaoxiao(record.id)}>查看</a>
+                    <a href="javascript:;" onClick={()=>this.EditBaoxiao(record.id)}>编辑</a>
                 </span>
             )
         }];

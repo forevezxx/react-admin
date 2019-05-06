@@ -52,6 +52,8 @@ import Gongfei from './pay/Gongfei';
 import NewInPay from './pay/NewInPay';
 import NewOutPay from './pay/NewOutPay';
 import NewBaoxiao from './pay/NewBaoxiao';
+import EditBaoxiao from './pay/EditBaoxiao';
+import WatchBaoxiao from './pay/WatchBaoxiao';
 import NewGongfei from './pay/NewGongfei';
 
 
@@ -97,13 +99,15 @@ export default {
     Pay, WatchPay, EditPay, NewPay,
     UserFiles, NewUserFiles, EditUserFiles, WatchUserFiles, 
     In, NewIn, EditIn, WatchIn,
-    Baoxiao, Beiyongjin, Gongfei, 
+    Baoxiao, NewBaoxiao, WatchBaoxiao, EditBaoxiao,
+    NewGongfei, NewKaoqingjilu,
+    Beiyongjin, Gongfei, 
     Caigoushuju, WatchCaigoushuju, EditCaigoushuju, NewCaigoushuju,
     Kehushuju, WatchKehushuju, EditKehushuju, NewKehushuju,
     Xiaoshoushuju, WatchXiaoshoushuju, EditXiaoshoushuju, NewXiaoshoushuju,
     Banchiguanli,
     Kaoqingjilu, UserManagement, 
     NewInPay, NewOutPay,
-    NewBaoxiao, NewGongfei, NewKaoqingjilu,
+     
     NewUserManagement, WatchUserManagement, EditUserManagement
 }
