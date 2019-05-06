@@ -110,6 +110,10 @@ class Beiyongjins extends Component {
             title: '入账人',
             dataIndex: 'in_name',
             key: 'in_name',
+        },{
+            title: '入账金额',
+            dataIndex: 'in_price',
+            key: 'in_price',
         }, {
             title: '入账时间',
             dataIndex: 'in_time',
