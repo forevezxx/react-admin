@@ -166,16 +166,16 @@ class EditUserFiless extends Component {
                                                             placeholder="请选择"
                                                             onChange={this.handleSelectChange} value={this.state.values2}
                                                         >
-                                                            <Option value="1">展会</Option>
-                                                            <Option value="2">广告杂志</Option>
-                                                            <Option value="3">客户转介绍</Option>
+                                                            <Option value={1}>展会</Option>
+                                                            <Option value={2}>广告杂志</Option>
+                                                            <Option value={3}>客户转介绍</Option>
                                                         </Select>
                                                     </FormItem>
                                                     <FormItem label="跟进人员" colon={false}>
                                                         <input placeholder="请输入跟进人员" value="wendy"/>
                                                     </FormItem>
                                                     <FormItem label="跟进时间" colon={false}>
-                                                        <DatePicker onChange={() => this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
                                                     </FormItem>
                                                     <FormItem label="平账状态" colon={false}>
                                                         <RadioGroup onChange={this.onChange3} value={this.state.values}>

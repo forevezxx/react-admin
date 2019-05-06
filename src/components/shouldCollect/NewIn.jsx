@@ -90,6 +90,61 @@ class NewIns extends Component {
             }
         })
     }
+    showModal = () => {
+        this.setState({
+            visible: true,
+            resource_pro: '',
+            pay_method: '',
+            yidong: '',
+            liantong1: '',
+            liantong2: '',
+            dianxing: '',
+            yidong_price: '',
+            liantong1_price: '',
+            liantong2_price: '',
+            dianxing_price: '',
+            yidong_cost: '',
+            liantong_cost: '',
+            dianxing_cost: '',
+            total: '',
+        });
+    }
+
+    handleOk = (e) => {//新增资源属性
+        console.log(e);
+        let that = this;
+        let dataSource = {
+            id: that.state.dataSource[that.state.dataSource.length - 1].id + 1,
+            resource_pro: that.state.resource_pro,
+            pay_method: that.state.pay_method,
+            yidong: that.state.yidong,
+            liantong1: that.state.liantong1,
+            liantong2: that.state.liantong2,
+            dianxing: that.state.dianxing,
+            yidong_price: that.state.yidong_price,
+            liantong1_price: that.state.liantong1_price,
+            liantong2_price: that.state.liantong2_price,
+            dianxing_price: that.state.dianxing_price,
+            yidong_cost: that.state.yidong_cost,
+            liantong_cost: that.state.liantong_cost,
+            dianxing_cost: that.state.dianxing_cost,
+            total: that.state.total,
+        }
+        let x = that.state.dataSource;
+        x.push(dataSource);
+        console.log(x);
+        this.setState({
+            visible: false,
+            dataSource: x,
+        });
+    }
+
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
