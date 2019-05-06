@@ -19,6 +19,7 @@ const TabPane = Tabs.TabPane;
 class WatchXiaoshoushujus extends Component {
     state = {
         userData: '',
+        value1: 1,
     };
     componentDidMount() {
         this.getUserOne(this.props.match.params.id);
@@ -35,6 +36,13 @@ class WatchXiaoshoushujus extends Component {
     }
     goBack() {
         this.props.history.push(`/app/data/xiaoshoushuju`);
+    }
+
+    onChange1 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            value1: e.target.value,
+        });
     }
     render() {
         const formItemLayout = {

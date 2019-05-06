@@ -119,6 +119,21 @@ class EditUserManagements extends Component {
                                                         <FormItem label="入职时间" colon={false}>
                                                             <input value={moment(Number(employment_date)*1000).format('YYYY-MM-DD')}  onChange={event=>{this.setState({employment_date: event.target.value});}} />
                                                         </FormItem>
+                                                        <FormItem label="权限模块" colon={false}>
+                                                            <Row>
+                                                                <Col span={24}><div className="user_auth">用户权限</div></Col>
+                                                                <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="1">档案管理</Checkbox></Col>
+                                                                <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="2">用户管理</Checkbox></Col>
+                                                                <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="3">数据管理</Checkbox></Col>
+                                                                <Col span={24}><div className="function_auth">功能权限</div></Col>
+                                                                <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="1">查看权限</Checkbox></Col>
+                                                                <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="2">编辑权限</Checkbox></Col>
+                                                                <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="3">保存权限</Checkbox></Col>
+                                                                <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="4">新增权限</Checkbox></Col>
+                                                                <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="5">查询权限</Checkbox></Col>
+                                                                <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="6">停用权限</Checkbox></Col>
+                                                            </Row>
+                                                        </FormItem>
                                                 </Col>
                                                 <Col md={8}><Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
                                                 <Col md={8}><Button type="primary" htmlType="submit" onClick={()=>this.userUpdates()}>保存</Button></Col>

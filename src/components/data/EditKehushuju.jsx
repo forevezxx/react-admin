@@ -74,6 +74,12 @@ class EditXiaoshoushujus extends Component {
             }
         })
     }
+    onChange(date, dateString) {
+        console.log(date, dateString);
+        this.setState({
+            employment_date: dateString,
+        })
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },

@@ -82,12 +82,6 @@ class NewXiaoshoushujus extends Component {
             type: value
         });
     }
-    onChange1 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            value1: e.target.value,
-        });
-    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },

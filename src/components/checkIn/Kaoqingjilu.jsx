@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { attendanceAll, attendanceSearch, userAll} from '../../axios';
+import { supplierAll, supplierSearch, supplierExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -17,23 +18,24 @@ class Kaoqingjilus extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
     };
+    
+    componentDidMount() {
+        this.attendanceAll();
+    }
     newkaoqingjilu() {//新建
         this.props.history.push('/app/checkIn/newkaoqingjilu');
     }
     attendanceAll() {//获取全部考勤数据
         let data = {
-            pageNum: this.state.current-1,
+            pageNum: this.state.current - 1,
             pageSize: this.state.pageSize,
         }
-        userAll(data).then(res=>{
+        userAll(data).then(res => {
             this.setState({
                 dataSource: res.data.data,
                 count: res.data.count,
             })
         })
-    }
-    componentDidMount() {
-        this.attendanceAll();
     }
     changePageSize(pageSize, current) {
         let that = this;
@@ -50,6 +52,36 @@ class Kaoqingjilus extends Component {
             current
         },()=>{
             that.attendanceAll();
+        })
+    }
+    getDocumentSearch() {
+        let data = {
+            principalName: this.state.principalName,
+            companyName: this.state.companyName,
+            contractNum: this.state.contractNum,
+            telNum: this.state.telNum,
+            archiver: this.state.archiver,
+        }
+        supplierSearch(data).then(res => {
+            this.setState({
+                dataSource: res.data.supplier,
+                count: res.data.count,
+            })
+        })
+    }
+    supplierExport() {
+        let data = {
+            principalName: this.state.principalName,
+            companyName: this.state.companyName,
+            contractNum: this.state.contractNum,
+            telNum: this.state.telNum,
+            archiver: this.state.archiver,
+        }
+        supplierExport(data).then(res => {
+            console.log(res);
+            if (res.msg === "success") {
+                window.location.href = res.data;
+            }
         })
     }
     render() {
@@ -155,13 +187,13 @@ class Kaoqingjilus extends Component {
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="search" />查询</Button>
+                                            <Button type="primary" htmlType="submit" onClick={() => this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
                                         <Col md={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.newkaoqingjilu()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col md={2}>
-                                            <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
+                                            <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
                                 </Form>

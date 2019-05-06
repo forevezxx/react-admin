@@ -179,19 +179,19 @@ class Kehushujus extends Component {
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col md={6}>
                                             <FormItem label="客户姓名" colon={false}>
                                                 <input placeholder="请输入客户姓名" />
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col md={6}>
                                             <FormItem label="公司名称" colon={false}>
                                                 <input placeholder="请输入公司名称" />
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col md={6}>
                                             <FormItem label="回款日期" colon={false}>
-                                                <DatePicker onChange={()=>this.onChange} />
+                                                <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
                                             </FormItem>
                                         </Col>
                                         
