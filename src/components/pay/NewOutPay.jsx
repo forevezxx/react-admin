@@ -85,8 +85,8 @@ class NewOutPays extends Component {
                                                     <FormItem label="出账时间" colon={false}>
                                                         <DatePicker onChange={()=>this.onChange} />
                                                     </FormItem>
-                                                    <FormItem label="出账方式" colon={false}>
-                                                        <input placeholder="请输入出账方式" />
+                                                    <FormItem label="出账用途" colon={false}>
+                                                        <input placeholder="请输入出账用途" />
                                                     </FormItem>
                                                     <FormItem label="出账金额" colon={false}>
                                                         <input placeholder="请输入出账金额" />
