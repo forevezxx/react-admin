@@ -8,6 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import { supplierAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -35,6 +36,47 @@ class NewGongfeis extends Component {
         this.setState({
             values: e.target.value,
         });
+    }
+    goBack() {
+        this.props.history.push(`/app/pay/gongfei`);
+    }
+    newSupplier() {
+        const { 
+            company_type,
+            company_name,
+            company_owner,
+            position,
+            industry,
+            email,
+            address,
+            tel,
+            phone,
+            company_pic,
+            contract_num,
+            source
+        } = this.state;
+        const token = localStorage.getItem('user_token');
+        let data = {
+            company_type,
+            company_name,
+            company_owner,
+            position,
+            industry,
+            email,
+            address,
+            tel,
+            phone,
+            company_pic,
+            contract_num,
+            source,
+            token
+        }
+        supplierAdd(data).then(res => {
+            console.log(res);
+            if (res.msg === "success") {
+                this.props.history.push(`/app/pay/gongfei`);
+            }
+        })
     }
     render() {
         const formItemLayout = {
@@ -82,9 +124,9 @@ class NewGongfeis extends Component {
                                                     
                                                 </Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit">返回</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
                                                 <Col md={8}>
-                                                    <Button type="primary" htmlType="submit">保存</Button></Col>
+                                                    <Button type="primary" htmlType="submit" onClick={()=>this.newSupplier()}>保存</Button></Col>
                                             </Row>
                                         </Form>
                                     </Card>

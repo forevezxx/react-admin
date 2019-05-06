@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Tabs, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { imprestAll, imprestSearch, userAll, userSearch } from '../../axios';
+import { imprestAll, imprestSearch, userAll, userSearch, supplierExport } from '../../axios';
 import { tuple } from 'antd/lib/_util/type';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -90,6 +90,21 @@ class Beiyongjins extends Component {
         this.setState({
             inWay: value
         });
+    }
+    supplierExport() {
+        let data = {
+            principalName: this.state.principalName,
+            companyName: this.state.companyName,
+            contractNum: this.state.contractNum,
+            telNum: this.state.telNum,
+            archiver: this.state.archiver,
+        }
+        supplierExport(data).then(res => {
+            console.log(res);
+            if(res.msg === "success"){
+                window.location.href = res.data;
+            }
+        })
     }
     render() {
         const { dataSource, count } = this.state;
@@ -204,7 +219,7 @@ class Beiyongjins extends Component {
                                                     <Button type="primary" htmlType="submit" onClick={() => this.NewInPay()} ><Icon type="plus" />新建</Button>
                                                 </Col>
                                                 <Col md={2}>
-                                                    <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
+                                                    <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                                 </Col>
                                             </Row>
                                         </Form>
@@ -250,7 +265,7 @@ class Beiyongjins extends Component {
                                                     <Button type="primary" htmlType="submit" onClick={() => this.NewOutPay()}><Icon type="plus" />新建</Button>
                                                 </Col>
                                                 <Col md={2}>
-                                                    <Button type="primary" htmlType="submit"><Icon type="upload" />导出</Button>
+                                                    <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                                 </Col>
                                             </Row>
                                             </Form>

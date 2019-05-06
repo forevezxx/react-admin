@@ -66,6 +66,8 @@ export default {
         { key: '/app/pay/editBaoxiao/:id', title: '编辑报销记录', component: 'EditBaoxiao' },
         { key: '/app/pay/watchBaoxiao/:id', title: '查看报销记录', component: 'WatchBaoxiao' },
         { key: '/app/pay/newgongfei', title: '新增公费记录', component: 'NewGongfei' },
+        { key: '/app/pay/editGongfei/:id', title: '编辑公费记录', component: 'EditGongfei' },
+        { key: '/app/pay/watchGongfei/:id', title: '查看公费记录', component: 'WatchGongfei' },
 
         { key: '/app/data/newXiaoshoushuju', title: '新增销售数据', component: 'NewXiaoshoushuju' },
         { key: '/app/data/watchXiaoshoushuju/:id', title: '查看销售数据', component: 'WatchXiaoshoushuju' },
