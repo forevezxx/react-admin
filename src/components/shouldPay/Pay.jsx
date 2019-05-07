@@ -59,10 +59,12 @@ class Pays extends Component {
     }
     supplierExport() {
         let data = {
-            order_num: this.state.order_num,
-            pay_entity: this.state.pay_entity,
-            status: this.state.status,
-            receipt_status: this.state.receipt_status,
+            search_json: JSON.stringify({
+                order_num: this.state.order_num,
+                pay_entity: this.state.pay_entity,
+                status: this.state.status,
+                receipt_status: this.state.receipt_status,
+            })
         }
         supplierPayRecordExport(data).then(res => {
             console.log(res);
