@@ -9,7 +9,7 @@ import {
     Modal,
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAdd } from '../../axios';
+import { supplierPayRecordAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -19,20 +19,25 @@ const { TextArea } = Input;
 class NewPays extends Component {
     state = {
         confirmDirty: false,
-        value: 1,
-        values: 1,
-        company_type: '',
-        company_name: '',
-        company_owner: '',
-        position: '',
-        industry: '',
-        email: '',
+        supplier_id: '',
+        supplier_name: '',
+        order_num: '',
+        total_price: '',
+        pay_type: 1,
+        status: 1,
+        pay_time: '',
+        pay_entity: '',
+        pay_account: '',
+        receipt_status: 1,
+        receipt_head: '',
+        org_code: '',
+        receipt_content: '',
+        deposit_bank: '',
+        receipt_type: 1,
         address: '',
-        tel: '',
-        phone: '',
-        company_pic: '',
-        contract_num: '',
-        source: '',
+        flat_account_type: 1,
+        backup: '',
+        
         dataSource: [{
             id: '1',
             resource_pro: '电信营销',
@@ -54,18 +59,34 @@ class NewPays extends Component {
     };
     onChange(date, dateString) {
         console.log(date, dateString);
+        this.setState({
+            pay_time: dateString,
+        })
+    }
+
+    onChangeDate(date, dateString) {
+        console.log(date, dateString);
+        this.setState({
+            receipt_date: dateString,
+        })
     }
 
     onChange2 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value: e.target.value,
+            status: e.target.value,
         });
     }
     onChange3 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            values: e.target.value,
+            receipt_status: e.target.value,
+        });
+    }
+    onChange4 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            flat_account_type: e.target.value,
         });
     }
     goBack() {
@@ -73,36 +94,46 @@ class NewPays extends Component {
     }
     newSupplier() {
         const { 
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
-            address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source
+            supplier_name,
+        order_num,
+        total_price,
+        pay_type,
+        status,
+        pay_time,
+        pay_entity,
+        pay_account,
+        receipt_status,
+        receipt_head,
+        org_code,
+        receipt_content,
+        deposit_bank,
+        receipt_type,
+        address,
+        flat_account_type,
+        backup,
         } = this.state;
         const token = localStorage.getItem('user_token');
         let data = {
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
-            address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source,
+            supplier_name,
+        order_num,
+        total_price,
+        pay_type,
+        status,
+        pay_time,
+        pay_entity,
+        pay_account,
+        receipt_status,
+        receipt_head,
+        org_code,
+        receipt_content,
+        deposit_bank,
+        receipt_type,
+        address,
+        flat_account_type,
+        backup,
             token
         }
-        supplierAdd(data).then(res => {
+        supplierPayRecordAdd(data).then(res => {
             console.log(res);
             if (res.msg === "success") {
                 this.props.history.push(`/app/shouldPay/pay`);
@@ -243,10 +274,18 @@ class NewPays extends Component {
                                             <Row>
                                                 <Col md={24}>
                                                     <FormItem label="供应商名称" colon={false}>
-                                                         <input placeholder="请输入供应商名称"/>
+                                                        <input placeholder="请输入供应商名称" onChange={event => {
+                                                            this.setState({
+                                                                supplier_name: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="订单合同编号" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="NO.123654"/>
+                                                        <input placeholder="请输入订单合同编号" onChange={event => {
+                                                            this.setState({
+                                                                order_num: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <Row gutter={16}>
                                                         <Col className="gutter-row" md={24} >
@@ -372,58 +411,98 @@ class NewPays extends Component {
                                                         </Col>
                                                     </Row>
                                                     <FormItem label="合计金额" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="11,000,000" />
+                                                        <input placeholder="请输入合计金额" onChange={event => {
+                                                            this.setState({
+                                                                total_price: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="付款状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange2} value={this.state.value}>
-                                                            <Radio value={1}>已付款</Radio>
-                                                            <Radio value={2}>未付款</Radio>
+                                                        <RadioGroup onChange={this.onChange2.bind(this)} value={this.state.status}>
+                                                            <Radio value={0}>已付款</Radio>
+                                                            <Radio value={1}>未付款</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="付款日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                     <FormItem label="付款主体" colon={false}>
-                                                        <input placeholder="请输入付款主体" />
+                                                        <input placeholder="请输入付款主体" onChange={event => {
+                                                            this.setState({
+                                                                pay_entity: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="付款账号" colon={false}>
-                                                        <input placeholder="请输入付款账号" />
+                                                        <input placeholder="请输入付款账号" onChange={event => {
+                                                            this.setState({
+                                                                pay_account: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="开票状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange3} value={this.state.values}>
+                                                        <RadioGroup onChange={this.onChange3} value={this.state.receipt_status}>
                                                             <Radio value={1}>已开票</Radio>
-                                                            <Radio value={2}>未开票</Radio>
+                                                            <Radio value={0}>未开票</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="开票抬头" colon={false}>
-                                                        <input placeholder="请输入开票抬头" />
+                                                        <input placeholder="请输入开票抬头" onChange={event => {
+                                                            this.setState({
+                                                                receipt_head: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="组织机构代码" colon={false}>
-                                                        <input placeholder="请输入组织机构代码" />
+                                                        <input placeholder="请输入组织机构代码" onChange={event => {
+                                                            this.setState({
+                                                                org_code: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="开票内容" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入开票内容" />
+                                                        <TextArea rows={4} defaultValue="请输入开票内容" onChange={event => {
+                                                            this.setState({
+                                                                receipt_content: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="开户银行" colon={false}>
-                                                        <input placeholder="请输入开户银行" />
+                                                        <input placeholder="请输入开户银行" onChange={event => {
+                                                            this.setState({
+                                                                deposit_bank: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="开票种类" colon={false}>
-                                                        <input placeholder="请输入开票种类" />
+                                                        <input placeholder="请输入开票种类" onChange={event => {
+                                                            this.setState({
+                                                                receipt_type: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="邮寄地址" colon={false}>
-                                                        <input placeholder="请输入邮寄地址" />
+                                                        <input placeholder="请输入邮寄地址" onChange={event => {
+                                                            this.setState({
+                                                                address: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="开票日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChangeDate.bind(this)} />
                                                     </FormItem>
                                                     <FormItem label="平账状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange3} value={this.state.values}>
+                                                        <RadioGroup onChange={this.onChange4} value={this.state.flat_account_type}>
                                                             <Radio value={1}>已平账</Radio>
-                                                            <Radio value={2}>未平账</Radio>
+                                                            <Radio value={0}>未平账</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="备注信息" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入备注信息" />
+                                                        <TextArea rows={4} defaultValue="请输入备注信息" onChange={event => {
+                                                            this.setState({
+                                                                backup: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>

@@ -33,9 +33,16 @@ export const SUPPLIER_UPDATE = SERVER_URL + '/supplier/update';
 export const SUPPLIER_EXPORT = SERVER_URL + '/supplier/export';
 
 //应付管理-应付录入
+export const SUPPLIER_PAY_RECORD_ADD = SERVER_URL + '/supplier-pay-record/add';
+export const SUPPLIER_PAY_RECORD_ALL = SERVER_URL + '/supplier-pay-record/all';
+export const SUPPLIER_PAY_RECORD_SEARCH = SERVER_URL + '/supplier-pay-record/search';
+export const SUPPLIER_PAY_RECORD_ONE = SERVER_URL + '/supplier-pay-record/one';
+export const SUPPLIER_PAY_RECORD_UPDATE = SERVER_URL + '/supplier-pay-record/update';
+export const SUPPLIER_PAY_RECORD_EXPORT = SERVER_URL + '/supplier-pay-record/export';
 
+//用户登录
 export const LOGIN = SERVER_URL + '/user/login'; //用户登录接口
-export const USER_ADD = SERVER_URL + '/user/add'; //新增用户接口
+
 
 //用户管理
 export const USER_UPDATE = SERVER_URL + '/user/update';//更新用户信息
@@ -43,6 +50,7 @@ export const USER_ALL = SERVER_URL + '/user/all';//查询全部用户信息
 export const USER_SEARCH = SERVER_URL + '/user/search';//查询数据
 export const USER_ONE = SERVER_URL + '/user/one';//查看用户信息
 export const USER_DISABLE = SERVER_URL + '/user/disable';//停用用户账号
+export const USER_ADD = SERVER_URL + '/user/add'; //新增用户接口
 
 //考勤管理
 //考勤管理-考勤记录
@@ -114,8 +122,8 @@ export const RESOURCE_UPDATE = SERVER_URL + '/resource/update';//更新资源信
 
 
 //供应商应收记录
-export const SUPPLIER_PAY_RECORD_ADD = SERVER_URL + '/supplier-pay-record/add';//新增供应商应收数据
-export const SUPPLIER_PAY_RECORD_ALL = SERVER_URL + '/supplier-pay-record/all';//查询全部数据
-export const SUPPLIER_PAY_RECORD_SEARCH = SERVER_URL + '/supplier-pay-record/search';//查询条件数据
-export const SUPPLIER_PAY_RECORD_ONE = SERVER_URL + '/supplier-pay-record/one';//查看单条供应商应收信息
-export const SUPPLIER_PAY_RECORD_UPDATE = SERVER_URL + '/supplier-pay-record/update';//更新供应商应收信息
+// export const SUPPLIER_PAY_RECORD_ADD = SERVER_URL + '/supplier-pay-record/add';//新增供应商应收数据
+// export const SUPPLIER_PAY_RECORD_ALL = SERVER_URL + '/supplier-pay-record/all';//查询全部数据
+// export const SUPPLIER_PAY_RECORD_SEARCH = SERVER_URL + '/supplier-pay-record/search';//查询条件数据
+// export const SUPPLIER_PAY_RECORD_ONE = SERVER_URL + '/supplier-pay-record/one';//查看单条供应商应收信息
+// export const SUPPLIER_PAY_RECORD_UPDATE = SERVER_URL + '/supplier-pay-record/update';//更新供应商应收信息

@@ -59,6 +59,32 @@ export const supplierExport = (data) => post({
     data
 })
 
+
+export const supplierPayRecordAdd = (data) => post({
+    url: config.SUPPLIER_PAY_RECORD_ADD,
+    data
+})
+export const supplierPayRecordAll = (data) => post({
+    url: config.SUPPLIER_PAY_RECORD_ALL,
+    data
+})
+export const supplierPayRecordSearch = (data) => post({
+    url: config.SUPPLIER_PAY_RECORD_SEARCH,
+    data
+})
+export const supplierPayRecordOne = (data) => post({
+    url: config.SUPPLIER_PAY_RECORD_ONE,
+    data
+})
+export const supplierPayRecordUpdate = (data) => post({
+    url: config.SUPPLIER_PAY_RECORD_UPDATE,
+    data
+})
+export const supplierPayRecordExport = (data) => post({
+    url: config.SUPPLIER_PAY_RECORD_EXPORT,
+    data
+})
+
 // 用户登录
 export const login = (username, password) => post({ 
     url: config.LOGIN,

@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAll, supplierSearch, supplierExport } from '../../axios';
+import { supplierPayRecordAll, supplierPayRecordSearch, supplierPayRecordExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -12,6 +12,15 @@ const Option = Select.Option;
 class Pays extends Component {
     state = {
         confirmDirty: false,
+        dataSource: [],//表格数据源
+        count: '',//表格数据源总条数
+        pageSize: 5,//每页显示条数
+        current: 1,//当前所在页数
+
+        order_num: '',
+        pay_entity: '',
+        status: '',
+        receipt_status: '',
     };
 
     componentDidMount() {
@@ -23,7 +32,7 @@ class Pays extends Component {
             pageSize: this.state.pageSize,
             token: localStorage.getItem('user_token'),
         }
-        supplierAll(data).then(res => {
+        supplierPayRecordAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
@@ -33,13 +42,12 @@ class Pays extends Component {
     }
     getDocumentSearch() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            order_num: this.state.order_num,
+            pay_entity: this.state.pay_entity,
+            status: this.state.status,
+            receipt_status: this.state.receipt_status,
         }
-        supplierSearch(data).then(res => {
+        supplierPayRecordSearch(data).then(res => {
             this.setState({
                 dataSource: res.data.supplier,
                 count: res.data.count,
@@ -48,13 +56,12 @@ class Pays extends Component {
     }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            order_num: this.state.order_num,
+            pay_entity: this.state.pay_entity,
+            status: this.state.status,
+            receipt_status: this.state.receipt_status,
         }
-        supplierExport(data).then(res => {
+        supplierPayRecordExport(data).then(res => {
             console.log(res);
             if (res.msg === "success") {
                 window.location.href = res.data;
@@ -89,13 +96,13 @@ class Pays extends Component {
     handleSelectChangeTicketStatus(value) {
         console.log(value)
         this.setState({
-            principalName: value
+            receipt_status: value
         });
     }
     handleSelectChangePayStatus(value) {
         console.log(value)
         this.setState({
-            principalName: value
+            status: value
         });
     }
     
@@ -118,44 +125,44 @@ class Pays extends Component {
 
         const columns = [{
             title: '编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '订单合同编号',
-            dataIndex: 'contract_num',
-            key: 'contract_num',
+            dataIndex: 'order_num',
+            key: 'order_num',
         }, {
             title: '合计金额(元)',
-            dataIndex: 'userType',
-            key: 'userType',
+            dataIndex: 'total_price',
+            key: 'total_price',
         }, {
             title: '付款主体',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'pay_entity',
+            key: 'pay_entity',
         }, {
             title: '付款方式',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'pay_type',
+            key: 'pay_type',
         }, {
             title: '付款账号',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            dataIndex: 'pay_account',
+            key: 'pay_account',
         }, {
             title: '付款日期',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+            dataIndex: 'pay_time',
+            key: 'pay_time',
         }, {
             title: '付款状态',
-            dataIndex: 'accountName',
-            key: 'accountName',
+            dataIndex: 'status',
+            key: 'status',
         }, {
             title: '开票状态',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'receipt_status',
+            key: 'receipt_status',
         }, {
             title: '平帐状态',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
+            dataIndex: 'flat_account_type',
+            key: 'flat_account_type',
         }, {
             title: '操作',
             // dataIndex: 'operating',
@@ -192,7 +199,7 @@ class Pays extends Component {
                                             <FormItem label="合同编号" colon={false}>
                                                 <input placeholder="请输入订单合同编号" onChange={event=>{
                                                     this.setState({
-                                                        contract_num: event.target.value
+                                                        order_num: event.target.value
                                                       });
                                                 }}/>
                                             </FormItem>
@@ -201,7 +208,7 @@ class Pays extends Component {
                                             <FormItem label="付款主体" colon={false}>
                                                 <input placeholder="请输入付款主体" onChange={event=>{
                                                     this.setState({
-                                                        principalName: event.target.value
+                                                        pay_entity: event.target.value
                                                       });
                                                 }}/>
                                             </FormItem>
@@ -215,7 +222,7 @@ class Pays extends Component {
                                                     onChange={this.handleSelectChangePayStatus.bind(this)}
                                                 >
                                                     <Option value="1">已付款</Option>
-                                                    <Option value="2">未付款</Option>
+                                                    <Option value="0">未付款</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>
@@ -226,7 +233,7 @@ class Pays extends Component {
                                                     onChange={this.handleSelectChangeTicketStatus.bind(this)}
                                                 >
                                                     <Option value="1">已开票</Option>
-                                                    <Option value="2">未开票</Option>
+                                                    <Option value="0">未开票</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>
