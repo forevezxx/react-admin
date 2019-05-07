@@ -32,6 +32,10 @@ class EditUserFiless extends Component {
         maker: '',
         make_time: '',
         last_follow: '',
+        value1: 1,
+        value2: 1,
+        value3: 1,
+        value4: 1,
     };
     componentDidMount() {
         this.getSupplierOne(this.props.match.params.id);
@@ -61,10 +65,28 @@ class EditUserFiless extends Component {
             })
         })
     }
+    onChange1 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            value1: e.target.value,
+        });
+    }
+    onChange2 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            value2: e.target.value,
+        });
+    }
     onChange3 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            values: e.target.value,
+            value3: e.target.value,
+        });
+    }
+    onChange4 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            value4: e.target.value,
         });
     }
     goBack() {
@@ -115,6 +137,60 @@ class EditUserFiless extends Component {
                 this.props.history.push(`/app/shouldCollect/in`);
             }
         })
+    }
+    showModal = () => {
+        this.setState({
+            visible: true,
+            resource_pro: '',
+            pay_method: '',
+            yidong: '',
+            liantong1: '',
+            liantong2: '',
+            dianxing: '',
+            yidong_price: '',
+            liantong1_price: '',
+            liantong2_price: '',
+            dianxing_price: '',
+            yidong_cost: '',
+            liantong_cost: '',
+            dianxing_cost: '',
+            total: '',
+        });
+    }
+
+    handleOk = (e) => {//新增资源属性
+        console.log(e);
+        let that = this;
+        let dataSource = {
+            id: that.state.dataSource[that.state.dataSource.length-1].id + 1,
+            resource_pro: that.state.resource_pro,
+            pay_method: that.state.pay_method,
+            yidong: that.state.yidong,
+            liantong1: that.state.liantong1,
+            liantong2: that.state.liantong2,
+            dianxing: that.state.dianxing,
+            yidong_price: that.state.yidong_price,
+            liantong1_price: that.state.liantong1_price,
+            liantong2_price: that.state.liantong2_price,
+            dianxing_price: that.state.dianxing_price,
+            yidong_cost: that.state.yidong_cost,
+            liantong_cost: that.state.liantong_cost,
+            dianxing_cost: that.state.dianxing_cost,
+            total: that.state.total,
+        }
+        let x = that.state.dataSource;
+        x.push(dataSource);
+        console.log(x);
+        this.setState({
+            visible: false,
+            dataSource: x,
+        });
+    }
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
     }
     render() {
         const formItemLayout = {
@@ -182,9 +258,10 @@ class EditUserFiless extends Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom first="应收管理" second="客户档案" third="编辑"/>
+                <BreadcrumbCustom first="应收管理" second="应收录入" third="编辑"/>
                 <Tabs defaultActiveKey="1">
-                    <TabPane tab="编辑客户档案" key="1">
+
+                    <TabPane tab="编辑应收录入" key="1">
                         <Row>
                             <Col className="gutter-row" md={24}>
                                 <div className="gutter-box">
@@ -339,28 +416,28 @@ class EditUserFiless extends Component {
                                                         <input placeholder="请输入收款账户" />
                                                     </FormItem>
                                                     <FormItem label="结算方式" colon={false}>
-                                                        <RadioGroup onChange={this.onChange2} value={this.state.value}>
+                                                        <RadioGroup onChange={this.onChange1} value={this.state.value1}>
                                                             <Radio value={1}>月结</Radio>
                                                             <Radio value={2}>预付</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="收款状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange2} value={this.state.value}>
+                                                        <RadioGroup onChange={this.onChange2} value={this.state.value2}>
                                                             <Radio value={1}>已收款</Radio>
                                                             <Radio value={2}>未收款</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="收款日期" colon={false}>
-                                                        <DatePicker onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
                                                     </FormItem>
                                                     <FormItem label="收款方式" colon={false}>
-                                                        <RadioGroup onChange={this.onChange2} value={this.state.value}>
+                                                        <RadioGroup onChange={this.onChange3} value={this.state.value3}>
                                                             <Radio value={1}>已收款</Radio>
                                                             <Radio value={2}>未收款</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="开票状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange3} value={this.state.values}>
+                                                        <RadioGroup onChange={this.onChange4} value={this.state.value4}>
                                                             <Radio value={1}>已开票</Radio>
                                                             <Radio value={2}>未开票</Radio>
                                                         </RadioGroup>
@@ -384,7 +461,7 @@ class EditUserFiless extends Component {
                                                         <input placeholder="请输入邮寄地址" />
                                                     </FormItem>
                                                     <FormItem label="开票日期" colon={false}>
-                                                        <DatePicker onChange={() => this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>
