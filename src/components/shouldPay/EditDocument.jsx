@@ -8,6 +8,7 @@ import {
     Table, Menu, Tabs, Upload
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import moment from 'moment';
 import { supplierOne, supplierUpdate } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -187,10 +188,10 @@ class EditDocuments extends Component {
                                                         <input value={maker} onChange={event => { this.setState({ maker: event.target.value }) }} />
                                                     </FormItem>
                                                     <FormItem label="建档时间" colon={false}>
-                                                        <input value={make_time} onChange={event => { this.setState({ make_time: event.target.value }) }}  />
+                                                        <input value={moment(Number(make_time) * 1000).format('YYYY-MM-DD')} onChange={event => { this.setState({ make_time: event.target.value }) }}  />
                                                     </FormItem>
                                                     <FormItem label="最后一次跟进" colon={false}>
-                                                        <input value={last_follow} onChange={event => { this.setState({ last_follow: event.target.value }) }} />
+                                                        <input value={moment(Number(last_follow) * 1000).format('YYYY-MM-DD')} onChange={event => { this.setState({ last_follow: event.target.value }) }} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}><Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>

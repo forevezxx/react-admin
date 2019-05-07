@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Pagination } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { supplierAll, supplierSearch, supplierExport } from '../../axios';
+import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -162,6 +163,10 @@ class Documents extends Component {
                 title: '最后跟进时间',
                 dataIndex: 'last_follow',
                 key: 'last_follow',
+                render: (text, record) =>
+                record.last_follow === 0
+                    ? null
+                    : moment(Number(record.last_follow)*1000).format('YYYY-MM-DD')
         }, {
             title: '操作',
             // dataIndex: 'operating',
