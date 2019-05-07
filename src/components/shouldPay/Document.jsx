@@ -18,11 +18,11 @@ class Documents extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
 
-        principalName: '',
-        companyName: '',
-        contractNum: '',
-        telNum: '',
-        archiver: '',
+        company_owner: '',
+        company_name: '',
+        contract_num: '',
+        tel: '',
+        maker: '',
     };
     
     componentDidMount(){
@@ -44,11 +44,11 @@ class Documents extends Component {
     }
     getDocumentSearch() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            company_owner: this.state.company_owner,
+            company_name: this.state.company_name,
+            contract_num: this.state.contract_num,
+            tel: this.state.tel,
+            maker: this.state.maker,
         }
         supplierSearch(data).then(res=>{
             this.setState({
@@ -59,11 +59,11 @@ class Documents extends Component {
     }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            company_owner: this.state.company_owner,
+            company_name: this.state.company_name,
+            contract_num: this.state.contract_num,
+            tel: this.state.tel,
+            maker: this.state.maker,
         }
         supplierExport(data).then(res => {
             console.log(res);
@@ -100,7 +100,7 @@ class Documents extends Component {
     handleSelectChange(value) {
         console.log(value)
         this.setState({
-            principalName: value
+            company_owner: value
         });
     }
     NewShouldPay() {//新建
@@ -203,7 +203,7 @@ class Documents extends Component {
                                             <FormItem label="负责人" colon={false}>
                                                 <input placeholder="请输入负责人姓名" onChange={event=>{
                                                     this.setState({
-                                                        principalName: event.target.value
+                                                        company_owner: event.target.value
                                                       });
                                                 }}/>
                                             </FormItem>
@@ -212,7 +212,7 @@ class Documents extends Component {
                                             <FormItem label="公司名称" colon={false}>
                                                 <input placeholder="请输入公司名称" onChange={event=>{
                                                     this.setState({
-                                                        companyName: event.target.value
+                                                        company_name: event.target.value
                                                       });
                                                 }}/>
                                             </FormItem>
@@ -221,7 +221,7 @@ class Documents extends Component {
                                             <FormItem label="合同编号" colon={false}>
                                                 <input placeholder="请输入合同编号" onChange={event=>{
                                                     this.setState({
-                                                        contractNum: event.target.value
+                                                        contract_num: event.target.value
                                                       });
                                                 }}/>
                                             </FormItem>
@@ -232,7 +232,7 @@ class Documents extends Component {
                                             <FormItem label="电话号码" colon={false}>
                                                 <input placeholder="请输入电话号码" onChange={event=>{
                                                     this.setState({
-                                                        telNum: event.target.value
+                                                        tel: event.target.value
                                                       });
                                                 }}/>
                                             </FormItem>
@@ -241,7 +241,7 @@ class Documents extends Component {
                                             <FormItem label="建档人" colon={false}>
                                                 <input placeholder="请输入建档人" onChange={event=>{
                                                     this.setState({
-                                                        archiver: event.target.value
+                                                        maker: event.target.value
                                                       });
                                                 }}/>
                                             </FormItem>
