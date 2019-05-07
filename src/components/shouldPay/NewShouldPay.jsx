@@ -93,7 +93,6 @@ class NewShouldPays extends Component {
         })
     }
     getBase64(img, callback) {
-        debugger
         const reader = new FileReader();
         reader.addEventListener('load', () => callback(reader.result));
         reader.readAsDataURL(img);
@@ -225,7 +224,7 @@ class NewShouldPays extends Component {
                                                             listType="picture-card"
                                                             className="avatar-uploader"
                                                             showUploadList={false}
-                                                            action="//jsonplaceholder.typicode.com/posts/"
+                                                            action="http://backend.delcache.com/file/upload"
                                                             // beforeUpload={this.beforeUpload.bind(this)}
                                                             onChange={this.handleChange.bind(this)}
                                                         >
