@@ -41,15 +41,18 @@ class Pays extends Component {
         })
     }
     getDocumentSearch() {
+        
         let data = {
-            order_num: this.state.order_num,
-            pay_entity: this.state.pay_entity,
-            status: this.state.status,
-            receipt_status: this.state.receipt_status,
+            search_json: JSON.stringify({
+                order_num: this.state.order_num,
+                pay_entity: this.state.pay_entity,
+                status: this.state.status,
+                receipt_status: this.state.receipt_status,
+            }) 
         }
         supplierPayRecordSearch(data).then(res => {
             this.setState({
-                dataSource: res.data.supplier,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })

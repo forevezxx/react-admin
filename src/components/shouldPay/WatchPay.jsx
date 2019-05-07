@@ -9,7 +9,7 @@ import {
     Modal,
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierOne } from '../../axios';
+import { supplierPayRecordOne } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -63,7 +63,7 @@ class WatchPays extends Component {
         let data = {
             id
         }
-        supplierOne(data).then(res => {
+        supplierPayRecordOne(data).then(res => {
             this.setState({
                 documentData: res.data.supplier
             })
@@ -151,10 +151,10 @@ class WatchPays extends Component {
                                             <Row>
                                                 <Col md={24}>
                                                     <FormItem label="供应商名称" colon={false}>
-                                                        <input placeholder="请输入供应商名称" />
+                                                        <input placeholder="请输入供应商名称" disabled value={documentData.supplier_name} />
                                                     </FormItem>
                                                     <FormItem label="订单合同编号" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="NO.123654" />
+                                                        <input placeholder="请输入订单合同编号" disabled value={documentData.order_num} />
                                                     </FormItem>
                                                     <Row gutter={16}>
                                                         <Col className="gutter-row" md={24} >
@@ -280,58 +280,65 @@ class WatchPays extends Component {
                                                         </Col>
                                                     </Row>
                                                     <FormItem label="合计金额" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="11,000,000" />
+                                                        <input placeholder="请输入合计金额" disabled value={documentData.total_price} />
                                                     </FormItem>
                                                     <FormItem label="付款状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange2} value={this.state.value}>
+                                                        {/* <RadioGroup onChange={this.onChange2} value={this.state.value}>
                                                             <Radio value={1}>已付款</Radio>
                                                             <Radio value={2}>未付款</Radio>
-                                                        </RadioGroup>
+                                                        </RadioGroup> */}
+                                                        <input placeholder="请输入付款状态" disabled value={documentData.status} />
                                                     </FormItem>
                                                     <FormItem label="付款日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
+                                                        {/* <DatePicker placeholder="请选择" onChange={() => this.onChange} /> */}
+                                                        <input placeholder="请输入付款日期" disabled value={documentData.pay_time} />
                                                     </FormItem>
                                                     <FormItem label="付款主体" colon={false}>
-                                                        <input placeholder="请输入付款主体" />
+                                                        <input placeholder="请输入付款主体" disabled value={documentData.pay_entity} />
                                                     </FormItem>
                                                     <FormItem label="付款账号" colon={false}>
-                                                        <input placeholder="请输入付款账号" />
+                                                        <input placeholder="请输入付款账号" disabled value={documentData.pay_account} />
                                                     </FormItem>
                                                     <FormItem label="开票状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange3} value={this.state.values}>
+                                                        {/* <RadioGroup onChange={this.onChange3} value={this.state.values}>
                                                             <Radio value={1}>已开票</Radio>
                                                             <Radio value={2}>未开票</Radio>
-                                                        </RadioGroup>
+                                                        </RadioGroup> */}
+                                                        <input placeholder="请输入开票状态" disabled value={documentData.receipt_status} />
                                                     </FormItem>
                                                     <FormItem label="开票抬头" colon={false}>
-                                                        <input placeholder="请输入开票抬头" />
+                                                        <input placeholder="请输入开票抬头" disabled value={documentData.receipt_head} />
                                                     </FormItem>
                                                     <FormItem label="组织机构代码" colon={false}>
-                                                        <input placeholder="请输入组织机构代码" />
+                                                        <input placeholder="请输入组织机构代码" disabled value={documentData.org_code} />
                                                     </FormItem>
                                                     <FormItem label="开票内容" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入开票内容" />
+                                                        {/* <TextArea rows={4} defaultValue="请输入开票内容" /> */}
+                                                        <input placeholder="请输入开票内容" disabled value={documentData.receipt_content} />
                                                     </FormItem>
                                                     <FormItem label="开户银行" colon={false}>
-                                                        <input placeholder="请输入开户银行" />
+                                                        <input placeholder="请输入开户银行" disabled value={documentData.deposit_bank} />
                                                     </FormItem>
                                                     <FormItem label="开票种类" colon={false}>
-                                                        <input placeholder="请输入开票种类" />
+                                                        <input placeholder="请输入开票种类" disabled value={documentData.receipt_type} />
                                                     </FormItem>
                                                     <FormItem label="邮寄地址" colon={false}>
-                                                        <input placeholder="请输入邮寄地址" />
+                                                        <input placeholder="请输入邮寄地址" disabled value={documentData.address} />
                                                     </FormItem>
                                                     <FormItem label="开票日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
+                                                        {/* <DatePicker placeholder="请选择" onChange={() => this.onChange} /> */}
+                                                        <input placeholder="请输入开票日期" disabled value={documentData.receipt_date} />
                                                     </FormItem>
                                                     <FormItem label="平账状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange3} value={this.state.values}>
+                                                        {/* <RadioGroup onChange={this.onChange3} value={this.state.values}>
                                                             <Radio value={1}>已平账</Radio>
                                                             <Radio value={2}>未平账</Radio>
-                                                        </RadioGroup>
+                                                        </RadioGroup> */}
+                                                        <input placeholder="请输入平账状态" disabled value={documentData.flat_account_type} />
                                                     </FormItem>
                                                     <FormItem label="备注信息" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入备注信息" />
+                                                        {/* <TextArea rows={4} defaultValue="请输入备注信息" /> */}
+                                                        <input placeholder="请输入备注信息" disabled value={documentData.backup} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>
