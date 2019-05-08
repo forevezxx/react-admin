@@ -2,7 +2,7 @@
  * Created by zhengxinxing on 2019/04/11.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
+import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { baoxiaoAll, baoxiaoSearch, baoxiaoExport } from '../../axios';
 const FormItem = Form.Item;
@@ -17,8 +17,8 @@ class Baoxiaos extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
 
-        principalName: '',
-        companyName: '',
+        time: '',
+        people: '',
         contractNum: '',
         telNum: '',
         archiver: '',
@@ -44,16 +44,13 @@ class Baoxiaos extends Component {
     getDocumentSearch() {
         let data = {
             search_json: JSON.stringify({
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            time: this.state.time,
+            people: this.state.people,
             })
         }
         baoxiaoSearch(data).then(res=>{
             this.setState({
-                dataSource: res.data.supplier,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })
@@ -61,11 +58,8 @@ class Baoxiaos extends Component {
     supplierExport() {
         let data = {
             search_json: JSON.stringify({
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            time: this.state.time,
+            people: this.state.people,
             })
         }
         baoxiaoExport(data).then(res => {
@@ -97,13 +91,13 @@ class Baoxiaos extends Component {
         console.log(date, dateString);
         console.log(dateString);
         that.setState({
-            checkedTime: dateString
+            time: dateString
         })
     }
     handleSelectChange(value) {
         console.log(value)
         this.setState({
-            principalName: value
+            time: value
         });
     }
     newbaoxiao() {//新建
@@ -124,36 +118,36 @@ class Baoxiaos extends Component {
 
         const columns = [{
             title: '编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '报销人',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'people',
+            key: 'people',
         }, {
             title: '报销时间',
-            dataIndex: 'userType',
-            key: 'userType',
+            dataIndex: 'time',
+            key: 'time',
         }, {
             title: '报销金额(元)',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'account',
+            key: 'account',
         }, {
             title: '报销项目',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'project',
+            key: 'project',
         }, {
             title: '报销方式',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            dataIndex: 'method',
+            key: 'method',
         }, {
             title: '审核人',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+            dataIndex: 'check_people',
+            key: 'check_people',
         }, {
             title: '复核人',
-            dataIndex: 'accountName',
-            key: 'accountName',
+            dataIndex: 'recheck_people',
+            key: 'recheck_people',
         }, {
             title: '操作',
             // dataIndex: 'operating',
@@ -188,12 +182,16 @@ class Baoxiaos extends Component {
                                     <Row>
                                         <Col md={6}>
                                             <FormItem label="报销时间" colon={false}>
-                                                <input placeholder="请选择" />
+                                                <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
                                             <FormItem label="报销人" colon={false}>
-                                                <input placeholder="请输入报销人" />
+                                                <input placeholder="请输入报销人" onChange={event => {
+                                                    this.setState({
+                                                        people: event.target.value
+                                                    });
+                                                }} />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>

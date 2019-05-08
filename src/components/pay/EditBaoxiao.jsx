@@ -34,15 +34,15 @@ class EditBaoxiaos extends Component {
         }
         baoxiaoOne(data).then(res => {
             this.setState({
-                id: res.data.supplier.id,
-                people: res.data.supplier.people,
-                time: res.data.supplier.time,
-                account: res.data.supplier.account,
-                method: res.data.supplier.method,
-                project: res.data.supplier.project,
-                check_people: res.data.supplier.check_people,
-                recheck_people: res.data.supplier.recheck_people,
-                make_people: res.data.supplier.make_people,
+                id: res.data.id,
+                people: res.data.people,
+                time: res.data.time,
+                account: res.data.account,
+                method: res.data.method,
+                project: res.data.project,
+                check_people: res.data.check_people,
+                recheck_people: res.data.recheck_people,
+                make_people: res.data.make_people,
             })
         })
     }
