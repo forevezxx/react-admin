@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, Modal, Radio, DatePicker
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierOne } from '../../axios';
+import { clientPayRecordOne } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -28,7 +28,7 @@ class WatchUserFiless extends Component {
         let data = {
             id
         }
-        supplierOne(data).then(res => {
+        clientPayRecordOne(data).then(res => {
             this.setState({
                 documentData: res.data.supplier
             })

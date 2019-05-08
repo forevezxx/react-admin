@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio, Modal
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAdd } from '../../axios';
+import { clientPayRecordAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -114,7 +114,7 @@ class NewIns extends Component {
             source,
             token
         }
-        supplierAdd(data).then(res => {
+        clientPayRecordAdd(data).then(res => {
             console.log(res);
             if (res.msg === "success") {
                 this.props.history.push(`/app/shouldCollect/in`);

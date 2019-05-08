@@ -198,29 +198,49 @@ class UserFiless extends Component {
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="客户编号" colon={false}>
-                                                <input placeholder="请输入客户编号" />
+                                                <input placeholder="请输入客户编号"  onChange={event=>{
+                                                    this.setState({
+                                                        client_number: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="客户名称" colon={false}>
-                                                <input placeholder="请输入客户名称" />
+                                                <input placeholder="请输入客户名称"  onChange={event=>{
+                                                    this.setState({
+                                                        name: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="订单编号" colon={false}>
-                                                <input placeholder="请输入订单编号" />
+                                                <input placeholder="请输入订单编号"  onChange={event=>{
+                                                    this.setState({
+                                                        order_id: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="负责人" colon={false}>
-                                                <input placeholder="请输入负责人姓名" />
+                                                <input placeholder="请输入负责人姓名"  onChange={event=>{
+                                                    this.setState({
+                                                        principal_name: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="联系电话" colon={false}>
-                                                <input placeholder="请输入联系电话" />
+                                                <input placeholder="请输入联系电话"  onChange={event=>{
+                                                    this.setState({
+                                                        mobile: event.target.value
+                                                      });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>

@@ -7,7 +7,7 @@ import { Card, Form, Input, Tooltip, Icon, Cascader,
     Table, Menu, Tabs, Upload, DatePicker, Radio, Modal
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierOne, supplierUpdate } from '../../axios';
+import { clientPayRecordOne, clientPayRecordUpdate } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -44,7 +44,7 @@ class EditUserFiless extends Component {
         let data = {
             id
         }
-        supplierOne(data).then(res => {
+        clientPayRecordOne(data).then(res => {
             this.setState({
                 id: res.data.supplier.id,
                 company_type: res.data.supplier.company_type,
@@ -132,7 +132,7 @@ class EditUserFiless extends Component {
             }),
             token: localStorage.getItem('user_token'),
         };
-        supplierUpdate(data).then(res => {
+        clientPayRecordUpdate(data).then(res => {
             if (res.msg === "success") {
                 this.props.history.push(`/app/shouldCollect/in`);
             }

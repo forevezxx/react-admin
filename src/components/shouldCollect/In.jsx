@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAll, supplierSearch, supplierExport } from '../../axios';
+import { clientPayRecordAll, clientPayRecordSearch, clientPayRecordExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -33,7 +33,7 @@ class Ins extends Component {
             pageSize: this.state.pageSize,
             token: localStorage.getItem('user_token'),
         }
-        supplierAll(data).then(res => {
+        clientPayRecordAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
@@ -58,7 +58,7 @@ class Ins extends Component {
             telNum: this.state.telNum,
             archiver: this.state.archiver,
         }
-        supplierSearch(data).then(res=>{
+        clientPayRecordSearch(data).then(res=>{
             this.setState({
                 dataSource: res.data.supplier,
                 count: res.data.count,
@@ -73,7 +73,7 @@ class Ins extends Component {
             telNum: this.state.telNum,
             archiver: this.state.archiver,
         }
-        supplierExport(data).then(res => {
+        clientPayRecordExport(data).then(res => {
             console.log(res);
             if(res.msg === "success"){
                 window.location.href = res.data;
