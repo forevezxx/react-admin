@@ -52,31 +52,35 @@ class UserFiless extends Component {
     }
     getDocumentSearch() {
         let data = {
-            client_number: this.state.client_number,
-            name: this.state.name,
-            order_id: this.state.order_id,
-            principal_name: this.state.principal_name,
-            mobile: this.state.mobile,
+            search_json: JSON.stringify({
+                client_number: this.state.client_number,
+                name: this.state.name,
+                order_id: this.state.order_id,
+                principal_name: this.state.principal_name,
+                mobile: this.state.mobile,
+            })
         }
         clientSearch(data).then(res=>{
             this.setState({
-                dataSource: res.data.supplier,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })
     }
     supplierExport() {
         let data = {
+            search_json: JSON.stringify({
             client_number: this.state.client_number,
             name: this.state.name,
             order_id: this.state.order_id,
             principal_name: this.state.principal_name,
             mobile: this.state.mobile,
+            })
         }
         clientExport(data).then(res => {
             console.log(res);
-            if(res.msg === "success"){
-                window.location.href = res.data;
+            if(res.status === 0){
+                window.location.href = res.url;
             }
         })
     }
