@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAll, supplierSearch, supplierExport } from '../../axios';
+import { clientAll, clientSearch, clientExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -17,11 +17,11 @@ class UserFiless extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
 
-        principalName: '',
-        companyName: '',
-        contractNum: '',
-        telNum: '',
-        archiver: '',
+        client_number: '',
+        name: '',
+        order_id: '',
+        principal_name: '',
+        mobile: '',
     };
     
     componentDidMount(){
@@ -33,7 +33,7 @@ class UserFiless extends Component {
             pageSize: this.state.pageSize,
             token: localStorage.getItem('user_token'),
         }
-        supplierAll(data).then(res => {
+        clientAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
@@ -52,13 +52,13 @@ class UserFiless extends Component {
     }
     getDocumentSearch() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            client_number: this.state.client_number,
+            name: this.state.name,
+            order_id: this.state.order_id,
+            principal_name: this.state.principal_name,
+            mobile: this.state.mobile,
         }
-        supplierSearch(data).then(res=>{
+        clientSearch(data).then(res=>{
             this.setState({
                 dataSource: res.data.supplier,
                 count: res.data.count,
@@ -67,13 +67,13 @@ class UserFiless extends Component {
     }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            client_number: this.state.client_number,
+            name: this.state.name,
+            order_id: this.state.order_id,
+            principal_name: this.state.principal_name,
+            mobile: this.state.mobile,
         }
-        supplierExport(data).then(res => {
+        clientExport(data).then(res => {
             console.log(res);
             if(res.msg === "success"){
                 window.location.href = res.data;
@@ -108,7 +108,7 @@ class UserFiless extends Component {
     handleSelectChange(value) {
         console.log(value)
         this.setState({
-            principalName: value
+            client_number: value
         });
     }
     render() {
@@ -120,48 +120,50 @@ class UserFiless extends Component {
 
         const columns = [{
             title: '客户编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'client_number',
+            key: 'client_number',
         }, {
             title: '客户名称',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'name',
+            key: 'name',
         }, {
             title: '订单编号',
-            dataIndex: 'userType',
-            key: 'userType',
+            dataIndex: 'order_id',
+            key: 'order_id',
         }, {
             title: '资源属性',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'resource_type',
+            key: 'resource_type',
         }, {
             title: '负责人',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'principal_name',
+            key: 'principal_name',
         }, {
             title: '联系电话',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            dataIndex: 'mobile',
+            key: 'mobile',
         }, {
             title: '所在地址',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+            dataIndex: 'address',
+            key: 'address',
         }, {
             title: '客户来源',
-            dataIndex: 'accountName',
-            key: 'accountName',
+            dataIndex: 'client_from',
+            key: 'client_from',
+            render: (text, record) => record.client_from == 0 ? '展会' : record.client_from == 1 ? "广告杂志": "客户转介绍"
         }, {
             title: '跟进人员',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'follower',
+            key: 'follower',
         }, {
             title: '跟进时间',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
+            dataIndex: 'follow_date',
+            key: 'follow_date',
         }, {
             title: '平帐状态',
-            dataIndex: 'pingzhangzhuangtai',
-            key: 'pingzhangzhuangtai',
+            dataIndex: 'flat_account_type',
+            key: 'flat_account_type',
+            render: (text, record) => record.flat_account_type == 0 ? '未平帐' : '已平帐'
         }, {
             title: '操作',
             // dataIndex: 'operating',

@@ -7,7 +7,7 @@ import { Card, Form, Input, Tooltip, Icon, Cascader,
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAdd } from '../../axios';
+import { clientAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -17,24 +17,35 @@ const TabPane = Tabs.TabPane;
 class NewUserFiless extends Component {
     state = {
         confirmDirty: false,
-        company_type: '',
-        company_name: '',
-        company_owner: '',
-        position: '',
-        industry: '',
-        email: '',
+        client_number: '',
+        name: '',
+        order_id: '',
+        resource_type: '1',
+        principal_name: '',
+        mobile: '',
         address: '',
-        tel: '',
-        phone: '',
-        company_pic: '',
-        contract_num: '',
-        source: '',
-        values: 1,
+        email: '',
+        client_from: '0',
+        follower: '',
+        follow_date: '',
+        flat_account_type: '1',
     };
+    onChangeDate(date, dateString) {
+        console.log(date, dateString);
+        this.setState({
+            follow_date: dateString,
+        })
+    }
+    onChange1(value) {
+        console.log(value)
+        this.setState({
+            client_from: value,
+        });
+    }
     onChange3 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            values: e.target.value,
+            flat_account_type: e.target.value,
         });
     }
     goBack() {
@@ -42,36 +53,36 @@ class NewUserFiless extends Component {
     }
     newSupplier() {
         const { 
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
+            client_number,
+            name,
+            order_id,
+            resource_type,
+            principal_name,
+            mobile,
             address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source
+            email,
+            client_from,
+            follower,
+            follow_date,
+            flat_account_type
         } = this.state;
         const token = localStorage.getItem('user_token');
         let data = {
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
+            client_number,
+            name,
+            order_id,
+            resource_type,
+            principal_name,
+            mobile,
             address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source,
+            email,
+            client_from,
+            follower,
+            follow_date,
+            flat_account_type,
             token
         }
-        supplierAdd(data).then(res => {
+        clientAdd(data).then(res => {
             console.log(res);
             if (res.msg === "success") {
                 this.props.history.push(`/app/shouldCollect/userFiles`);
@@ -97,51 +108,87 @@ class NewUserFiless extends Component {
                                             <Row>
                                                 <Col md={24}>
                                                     <FormItem label="客户编号" colon={false}>
-                                                        <input placeholder="请输入客户编号" />
+                                                        <input placeholder="请输入客户编号" onChange={event => {
+                                                            this.setState({
+                                                                client_number: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="客户名称" colon={false}>
-                                                        <input placeholder="请输入客户名称" />
+                                                        <input placeholder="请输入客户名称" onChange={event => {
+                                                            this.setState({
+                                                                name: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="订单编号" colon={false}>
-                                                        <input placeholder="请输入订单编号" />
+                                                        <input placeholder="请输入订单编号" onChange={event => {
+                                                            this.setState({
+                                                                order_id: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="资源属性" colon={false}>
-                                                        <input placeholder="请输入资源属性" />
+                                                        <input placeholder="请输入资源属性" onChange={event => {
+                                                            this.setState({
+                                                                resource_type: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="负责人" colon={false}>
-                                                        <input placeholder="请输入负责人姓名" />
+                                                        <input placeholder="请输入负责人姓名" onChange={event => {
+                                                            this.setState({
+                                                                principal_name: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="联系电话" colon={false}>
-                                                        <input placeholder="请输入联系电话" />
+                                                        <input placeholder="请输入联系电话" onChange={event => {
+                                                            this.setState({
+                                                                mobile: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="所在地址" colon={false}>
-                                                        <input placeholder="请输入省、市、区、详细地址" />
+                                                        <input placeholder="请输入省、市、区、详细地址" onChange={event => {
+                                                            this.setState({
+                                                                address: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="客户邮箱" colon={false}>
-                                                        <input placeholder="请输入客户邮箱" />
+                                                        <input placeholder="请输入客户邮箱" onChange={event => {
+                                                            this.setState({
+                                                                email: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
 
                                                     <FormItem label="客户来源" colon={false}>
                                                         <Select
                                                             placeholder="请选择"
-                                                            onChange={this.handleSelectChange}
+                                                            onChange={this.onChange1.bind(this)}
                                                         >
-                                                            <Option value="1">展会</Option>
-                                                            <Option value="2">广告杂志</Option>
-                                                            <Option value="3">客户转介绍</Option>
+                                                            <Option value="0">展会</Option>
+                                                            <Option value="1">广告杂志</Option>
+                                                            <Option value="2">客户转介绍</Option>
                                                             
                                                         </Select>
                                                     </FormItem>
                                                     <FormItem label="跟进人员" colon={false}>
-                                                        <input placeholder="请输入跟进人员" />
+                                                        <input placeholder="请输入跟进人员"  onChange={event => {
+                                                            this.setState({
+                                                                follower: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="跟进时间" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChangeDate.bind(this)} />
                                                     </FormItem>
                                                     <FormItem label="平账状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange3} value={this.state.values}>
-                                                            <Radio value={1}>已平账</Radio>
-                                                            <Radio value={2}>未平账</Radio>
+                                                        <RadioGroup onChange={this.onChange3} value={this.state.flat_account_type}>
+                                                            <Radio value="1">已平账</Radio>
+                                                            <Radio value="0">未平账</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                 </Col>
