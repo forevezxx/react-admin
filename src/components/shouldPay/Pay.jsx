@@ -230,8 +230,8 @@ class Pays extends Component {
                                                     placeholder="请选择"
                                                     onChange={this.handleSelectChangePayStatus.bind(this)}
                                                 >
-                                                    <Option value="1">已付款</Option>
-                                                    <Option value="0">未付款</Option>
+                                                    <Option value="0">已付款</Option>
+                                                    <Option value="1">未付款</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>
