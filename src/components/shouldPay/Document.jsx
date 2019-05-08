@@ -67,8 +67,8 @@ class Documents extends Component {
         }
         supplierExport(data).then(res => {
             console.log(res);
-            if(res.msg === "success"){
-                window.location.href = res.data;
+            if(res.status === 0){
+                window.location.href = res.url;
             }
         })
     }
@@ -127,6 +127,7 @@ class Documents extends Component {
             title: '公司类型',
             dataIndex: 'company_type',
             key: 'company_type',
+            render: (text, record) => record.company_type == 1 ? '运营商' : '同行公司'
         }, {
             title: '公司名称',
             dataIndex: 'company_name',
@@ -143,6 +144,7 @@ class Documents extends Component {
             title: '所属行业',
             dataIndex: 'industry',
             key: 'industry',
+            render: (text, record) => record.industry == 1 ? '金融业' : '游戏业'
         }, {
                 title: '地址',
             dataIndex: 'address',
@@ -151,6 +153,7 @@ class Documents extends Component {
                 title: '来源',
             dataIndex: 'source',
             key: 'source',
+            render: (text, record) => record.source == 1 ? '展会' : record.source == 2 ? "广告杂志": "客户转介绍"
         }, {
                 title: '合同编号',
             dataIndex: 'contract_num',

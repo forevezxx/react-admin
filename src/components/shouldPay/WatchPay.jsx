@@ -282,12 +282,15 @@ class WatchPays extends Component {
                                                     <FormItem label="合计金额" colon={false}>
                                                         <input placeholder="请输入合计金额" disabled value={documentData.total_price} />
                                                     </FormItem>
+                                                    <FormItem label="付款方式" colon={false}>
+                                                        <input placeholder="请输入付款方式" disabled value={documentData.pay_type == 0 ? '对公' : '对私'} />
+                                                    </FormItem>
                                                     <FormItem label="付款状态" colon={false}>
                                                         {/* <RadioGroup onChange={this.onChange2} value={this.state.value}>
                                                             <Radio value={1}>已付款</Radio>
                                                             <Radio value={2}>未付款</Radio>
                                                         </RadioGroup> */}
-                                                        <input placeholder="请输入付款状态" disabled value={documentData.status} />
+                                                        <input placeholder="请输入付款状态" disabled value={documentData.status == 0 ? '已付款' : '未付款'} />
                                                     </FormItem>
                                                     <FormItem label="付款日期" colon={false}>
                                                         {/* <DatePicker placeholder="请选择" onChange={() => this.onChange} /> */}
@@ -304,7 +307,7 @@ class WatchPays extends Component {
                                                             <Radio value={1}>已开票</Radio>
                                                             <Radio value={2}>未开票</Radio>
                                                         </RadioGroup> */}
-                                                        <input placeholder="请输入开票状态" disabled value={documentData.receipt_status} />
+                                                        <input placeholder="请输入开票状态" disabled value={documentData.receipt_status == 0 ? '未开票' : '已开票'} />
                                                     </FormItem>
                                                     <FormItem label="开票抬头" colon={false}>
                                                         <input placeholder="请输入开票抬头" disabled value={documentData.receipt_head} />
@@ -334,7 +337,7 @@ class WatchPays extends Component {
                                                             <Radio value={1}>已平账</Radio>
                                                             <Radio value={2}>未平账</Radio>
                                                         </RadioGroup> */}
-                                                        <input placeholder="请输入平账状态" disabled value={documentData.flat_account_type} />
+                                                        <input placeholder="请输入平账状态" disabled value={documentData.flat_account_type == 0 ? '未平帐' : '已平帐'} />
                                                     </FormItem>
                                                     <FormItem label="备注信息" colon={false}>
                                                         {/* <TextArea rows={4} defaultValue="请输入备注信息" /> */}

@@ -89,6 +89,12 @@ class NewPays extends Component {
             flat_account_type: e.target.value,
         });
     }
+    onChange5 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            pay_type: e.target.value,
+        });
+    }
     goBack() {
         this.props.history.push(`/app/shouldPay/pay`);
     }
@@ -416,6 +422,12 @@ class NewPays extends Component {
                                                                 total_price: event.target.value
                                                             });
                                                         }} />
+                                                    </FormItem>
+                                                    <FormItem label="付款方式" colon={false}>
+                                                        <RadioGroup onChange={this.onChange5.bind(this)} value={this.state.pay_type}>
+                                                            <Radio value={0}>对公</Radio>
+                                                            <Radio value={1}>对私</Radio>
+                                                        </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="付款状态" colon={false}>
                                                         <RadioGroup onChange={this.onChange2.bind(this)} value={this.state.status}>

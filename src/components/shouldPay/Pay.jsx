@@ -68,8 +68,8 @@ class Pays extends Component {
         }
         supplierPayRecordExport(data).then(res => {
             console.log(res);
-            if (res.msg === "success") {
-                window.location.href = res.data;
+            if(res.status === 0){
+                window.location.href = res.url;
             }
         })
     }
@@ -148,6 +148,7 @@ class Pays extends Component {
             title: '付款方式',
             dataIndex: 'pay_type',
             key: 'pay_type',
+            render: (text, record) => record.pay_type == 0 ? '对公' : '对私'
         }, {
             title: '付款账号',
             dataIndex: 'pay_account',
@@ -160,14 +161,17 @@ class Pays extends Component {
             title: '付款状态',
             dataIndex: 'status',
             key: 'status',
+            render: (text, record) => record.status == 0 ? '已付款' : '未付款'
         }, {
             title: '开票状态',
             dataIndex: 'receipt_status',
             key: 'receipt_status',
+            render: (text, record) => record.receipt_status == 0 ? '未开票' : '已开票'
         }, {
             title: '平帐状态',
             dataIndex: 'flat_account_type',
             key: 'flat_account_type',
+            render: (text, record) => record.flat_account_type == 0 ? '未平帐' : '已平帐'
         }, {
             title: '操作',
             // dataIndex: 'operating',

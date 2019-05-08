@@ -56,7 +56,7 @@ class WatchDocuments extends Component {
                                             <Row>
                                                 <Col md={24}>
                                                     <FormItem label="公司类型" colon={false}>
-                                                        <input disabled value={documentData.company_type} />
+                                                        <input disabled value={documentData.company_type == 1 ? '运营商' : '同行公司' } />
                                                     </FormItem>
                                                     <FormItem label="公司名称" colon={false}>
                                                         <input disabled value={documentData.company_name} />
@@ -68,7 +68,7 @@ class WatchDocuments extends Component {
                                                         <input disabled value={documentData.position} />
                                                     </FormItem>
                                                     <FormItem label="所属行业" colon={false}>
-                                                        <input disabled value={documentData.industry} />
+                                                        <input disabled value={documentData.industry == 1 ? '金融业' : '游戏业'} />
                                                     </FormItem>
                                                     <FormItem label="邮箱" colon={false}>
                                                         <input disabled value={documentData.email} />
@@ -89,7 +89,7 @@ class WatchDocuments extends Component {
                                                         <input disabled value={documentData.contract_num} />
                                                     </FormItem>
                                                     <FormItem label="来源" colon={false}>
-                                                        <input disabled value={documentData.source} />
+                                                        <input disabled value={documentData.source == 1 ? '展会' : documentData.source == 2 ? "广告杂志": "客户转介绍"} />
                                                     </FormItem>
                                                     <FormItem label="建档人" colon={false}>
                                                         <input disabled value={documentData.maker} />

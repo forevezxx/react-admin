@@ -68,6 +68,7 @@ class EditPays extends Component {
             this.setState({
                 id: res.data.supplier.id,
                 supplier_id: res.data.supplier.supplier_id,
+                supplier_name: res.data.supplier.supplier_name,
                 order_num: res.data.supplier.order_num,
                 total_price: res.data.supplier.total_price,
                 pay_type: res.data.supplier.pay_type,
@@ -232,6 +233,12 @@ class EditPays extends Component {
             flat_account_type: e.target.value,
         });
     }
+    onChange5 = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            pay_type: e.target.value,
+        });
+    }
     render() {
         const { dataSource, count, documentData } = this.state;
         const {
@@ -321,9 +328,9 @@ class EditPays extends Component {
         }];
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom first="应付管理" second="档案管理" third="编辑供应商档案" />
+                <BreadcrumbCustom first="应付管理" second="应付录入" third="编辑应付录入" />
                 <Tabs defaultActiveKey="1">
-                    <TabPane tab="编辑供应商档案" key="1">
+                    <TabPane tab="编辑应付录入" key="1">
                         <Row>
                             <Col className="gutter-row" md={24}>
                                 <div className="gutter-box">
@@ -475,10 +482,16 @@ class EditPays extends Component {
                                                             });
                                                         }} />
                                                     </FormItem>
+                                                    <FormItem label="付款方式" colon={false}>
+                                                        <RadioGroup onChange={this.onChange5.bind(this)} value={pay_type}>
+                                                            <Radio value="0">对公</Radio>
+                                                            <Radio value="1">对私</Radio>
+                                                        </RadioGroup>
+                                                    </FormItem>
                                                     <FormItem label="付款状态" colon={false}>
                                                         <RadioGroup onChange={this.onChange2.bind(this)} value={status}>
-                                                            <Radio value={1}>已付款</Radio>
-                                                            <Radio value={0}>未付款</Radio>
+                                                            <Radio value="0">已付款</Radio>
+                                                            <Radio value="1">未付款</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="付款日期" colon={false}>
@@ -500,8 +513,8 @@ class EditPays extends Component {
                                                     </FormItem>
                                                     <FormItem label="开票状态" colon={false}>
                                                         <RadioGroup onChange={this.onChange3} value={receipt_status}>
-                                                            <Radio value={1}>已开票</Radio>
-                                                            <Radio value={2}>未开票</Radio>
+                                                            <Radio value="1">已开票</Radio>
+                                                            <Radio value="0">未开票</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="开票抬头" colon={false}>
@@ -519,7 +532,7 @@ class EditPays extends Component {
                                                         }} />
                                                     </FormItem>
                                                     <FormItem label="开票内容" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入开票内容" value={receipt_content} onChange={event => {
+                                                        <TextArea rows={4} defaultValue="请输入开票内容"  onChange={event => {
                                                             this.setState({
                                                                 receipt_content: event.target.value
                                                             });
@@ -551,16 +564,18 @@ class EditPays extends Component {
                                                     </FormItem>
                                                     <FormItem label="平账状态" colon={false}>
                                                         <RadioGroup onChange={this.onChange4} value={flat_account_type}>
-                                                            <Radio value={1}>已平账</Radio>
-                                                            <Radio value={2}>未平账</Radio>
+                                                            <Radio value="1">已平账</Radio>
+                                                            <Radio value="0">未平账</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="备注信息" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入备注信息" onChange={event => {
-                                                            this.setState({
-                                                                backup: event.target.value
-                                                            });
-                                                        }}/>
+                                                        <TextArea rows={4} defaultValue="请输入备注信息" 
+                                                        // onChange={event => {
+                                                        //     this.setState({
+                                                        //         backup: event.target.value
+                                                        //     });
+                                                        // }}
+                                                        />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}><Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>

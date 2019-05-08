@@ -149,7 +149,7 @@ class EditDocuments extends Component {
                                             <Row>
                                                 <Col md={24}>
                                                     <FormItem label="公司类型" colon={false}>
-                                                        <input value={company_type} onChange={event => { this.setState({ company_type: event.target.value })}} />
+                                                        <input value={company_type == 1 ? '运营商' : '同行公司'} onChange={event => { this.setState({ company_type: event.target.value })}} />
                                                     </FormItem>
                                                     <FormItem label="公司名称" colon={false}>
                                                         <input value={company_name} onChange={event => { this.setState({ company_name: event.target.value }) }}  />
@@ -161,7 +161,7 @@ class EditDocuments extends Component {
                                                         <input value={position} onChange={event => { this.setState({ position: event.target.value }) }}  />
                                                     </FormItem>
                                                     <FormItem label="所属行业" colon={false}>
-                                                        <input value={industry} onChange={event => { this.setState({ industry: event.target.value }) }}  />
+                                                        <input value={industry == 1 ? '金融业' : '游戏业'} onChange={event => { this.setState({ industry: event.target.value }) }}  />
                                                     </FormItem>
                                                     <FormItem label="邮箱" colon={false}>
                                                         <input value={email} onChange={event => { this.setState({ email: event.target.value }) }}  />
@@ -182,7 +182,7 @@ class EditDocuments extends Component {
                                                         <input value={contract_num} onChange={event => { this.setState({ contract_num: event.target.value }) }}  />
                                                     </FormItem>
                                                     <FormItem label="来源" colon={false}>
-                                                        <input value={source} onChange={event => { this.setState({ source: event.target.value }) }}  />
+                                                        <input value={source == 1 ? '展会' : source == 2 ? "广告杂志": "客户转介绍"} onChange={event => { this.setState({ source: event.target.value }) }}  />
                                                     </FormItem>
                                                     <FormItem label="建档人" colon={false}>
                                                         <input value={maker} onChange={event => { this.setState({ maker: event.target.value }) }} />
