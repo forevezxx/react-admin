@@ -17,23 +17,23 @@ const { TextArea } = Input;
 
 class NewIns extends Component {    
     state = {
-        value1: 1,
-        value2: 1,
-        value3: 1,
-        value4: 1,
-        confirmDirty: false,
-        company_type: '',
-        company_name: '',
-        company_owner: '',
-        position: '',
-        industry: '',
-        email: '',
-        address: '',
-        tel: '',
-        phone: '',
-        company_pic: '',
-        contract_num: '',
-        source: '',
+        client_id: '',
+        client_name: '',
+        total_count: '',
+        receivables_entity: '',
+        receivables_account: '',
+        pay_method: 1,
+        receivables_status: '',
+        receivables_date: '',
+        receivables_type: '',
+        invoice_status: '',
+        invoice_head: '',
+        org_code: '',
+        invoice_content: '',
+        open_bank: '',
+        invoice_type: '',
+        mail_addr: '',
+        invoice_date: '',
         dataSource: [{
             id: '1',
             resource_pro: '电信营销',
@@ -53,13 +53,14 @@ class NewIns extends Component {
         }],
         visible: false,
     };
+
     onChange(date, dateString) {
         console.log(date, dateString);
     }
     onChange1 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value1: e.target.value,
+            pay_method: e.target.value,
         });
     }
     onChange2 = (e) => {
@@ -87,42 +88,42 @@ class NewIns extends Component {
     newSupplier() {
         const { 
             client_id,
-        client_name,
-        total_count,
-        receivables_entity,
-        receivables_account,
-        pay_method,
-        receivables_status,
-        receivables_date,
-        receivables_type,
-        invoice_status,
-        invoice_head,
-        org_code,
-        invoice_content,
-        open_bank,
-        invoice_type,
-        mail_addr,
-        invoice_date,
+            client_name,
+            total_count,
+            receivables_entity,
+            receivables_account,
+            pay_method,
+            receivables_status,
+            receivables_date,
+            receivables_type,
+            invoice_status,
+            invoice_head,
+            org_code,
+            invoice_content,
+            open_bank,
+            invoice_type,
+            mail_addr,
+            invoice_date,
         } = this.state;
         const token = localStorage.getItem('user_token');
         let data = {
             client_id,
-        client_name,
-        total_count,
-        receivables_entity,
-        receivables_account,
-        pay_method,
-        receivables_status,
-        receivables_date,
-        receivables_type,
-        invoice_status,
-        invoice_head,
-        org_code,
-        invoice_content,
-        open_bank,
-        invoice_type,
-        mail_addr,
-        invoice_date,
+            client_name,
+            total_count,
+            receivables_entity,
+            receivables_account,
+            pay_method,
+            receivables_status,
+            receivables_date,
+            receivables_type,
+            invoice_status,
+            invoice_head,
+            org_code,
+            invoice_content,
+            open_bank,
+            invoice_type,
+            mail_addr,
+            invoice_date,
             token
         }
         clientPayRecordAdd(data).then(res => {
@@ -411,13 +412,13 @@ class NewIns extends Component {
                                                         <input placeholder="请输入收款账户" />
                                                     </FormItem>
                                                     <FormItem label="结算方式" colon={false}>
-                                                        <RadioGroup onChange={this.onChange1} value={this.state.value1}>
+                                                        <RadioGroup onChange={this.onChange1} value={this.state.pay_method}>
                                                             <Radio value={1}>月结</Radio>
                                                             <Radio value={2}>预付</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="收款状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange2} value={this.state.value2}>
+                                                        <RadioGroup onChange={this.onChange2} value={this.state.receivables_status}>
                                                             <Radio value={1}>已收款</Radio>
                                                             <Radio value={2}>未收款</Radio>
                                                         </RadioGroup>
@@ -426,7 +427,7 @@ class NewIns extends Component {
                                                         <DatePicker onChange={()=>this.onChange} />
                                                     </FormItem>
                                                     <FormItem label="收款方式" colon={false}>
-                                                        <RadioGroup onChange={this.onChange3} value={this.state.value3}>
+                                                        <RadioGroup onChange={this.onChange3} value={this.state.receivables_type}>
                                                             <Radio value={1}>已收款</Radio>
                                                             <Radio value={2}>未收款</Radio>
                                                         </RadioGroup>

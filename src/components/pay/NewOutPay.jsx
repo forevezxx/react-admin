@@ -47,6 +47,7 @@ class NewOutPays extends Component {
             method,
             money,
             employment_date,
+            type: 2,
         }
         imprestAdd(data).then(res=>{
             if (res.msg === "success") {

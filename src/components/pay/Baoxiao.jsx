@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAll, supplierSearch, supplierExport } from '../../axios';
+import { baoxiaoAll, baoxiaoSearch, baoxiaoExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -33,7 +33,7 @@ class Baoxiaos extends Component {
             pageSize: this.state.pageSize,
             token: localStorage.getItem('user_token'),
         }
-        supplierAll(data).then(res => {
+        baoxiaoAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
@@ -43,13 +43,15 @@ class Baoxiaos extends Component {
     }
     getDocumentSearch() {
         let data = {
+            search_json: JSON.stringify({
             principalName: this.state.principalName,
             companyName: this.state.companyName,
             contractNum: this.state.contractNum,
             telNum: this.state.telNum,
             archiver: this.state.archiver,
+            })
         }
-        supplierSearch(data).then(res=>{
+        baoxiaoSearch(data).then(res=>{
             this.setState({
                 dataSource: res.data.supplier,
                 count: res.data.count,
@@ -58,16 +60,18 @@ class Baoxiaos extends Component {
     }
     supplierExport() {
         let data = {
+            search_json: JSON.stringify({
             principalName: this.state.principalName,
             companyName: this.state.companyName,
             contractNum: this.state.contractNum,
             telNum: this.state.telNum,
             archiver: this.state.archiver,
+            })
         }
-        supplierExport(data).then(res => {
+        baoxiaoExport(data).then(res => {
             console.log(res);
-            if(res.msg === "success"){
-                window.location.href = res.data;
+            if (res.status === 0) {
+                window.location.href = res.url;
             }
         })
     }

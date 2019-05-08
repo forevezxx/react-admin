@@ -40,13 +40,14 @@ class NewInPays extends Component {
             name,
             method,
             money,
-            employment_date, 
+            employment_date,
         } = this.state;
         let data = {
             name,
             method,
             money,
             employment_date,
+            type: 1,
         }
         imprestAdd(data).then(res=>{
             if (res.msg === "success") {

@@ -7,7 +7,7 @@ import { Card, Form, Input, Tooltip, Icon, Cascader,
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierOne, supplierUpdate } from '../../axios';
+import { publicMoneyOne, publicMoneyUpdate } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -42,7 +42,7 @@ class EditBaoxiaos extends Component {
         let data = {
             id
         }
-        supplierOne(data).then(res => {
+        publicMoneyOne(data).then(res => {
             this.setState({
                 id: res.data.supplier.id,
                 company_type: res.data.supplier.company_type,
@@ -112,7 +112,7 @@ class EditBaoxiaos extends Component {
             }),
             token: localStorage.getItem('user_token'),
         };
-        supplierUpdate(data).then(res => {
+        publicMoneyUpdate(data).then(res => {
             if (res.msg === "success") {
                 this.props.history.push(`/app/pay/gongfei`);
             }

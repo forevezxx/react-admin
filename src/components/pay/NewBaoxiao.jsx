@@ -9,7 +9,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAdd } from '../../axios';
+import { baoxiaoAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -18,61 +18,48 @@ const { TextArea } = Input;
 
 class NewBaoxiaos extends Component {
     state = {
-        confirmDirty: false,
-        value: 1,
-        values: 1,
+        people: '',
+        time: '',
+        account: '',
+        method: '',
+        project: '',
+        check_people: '',
+        recheck_people: '',
+        make_people: '',
     };
     onChange(date, dateString) {
+        this.setState({
+            time: dateString,
+        })
         console.log(date, dateString);
-    }
-
-    onChange2 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            value: e.target.value,
-        });
-    }
-    onChange3 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            values: e.target.value,
-        });
     }
     goBack() {
         this.props.history.push(`/app/pay/baoxiao`);
     }
     newSupplier() {
         const { 
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
-            address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source
+            people,
+            time,
+            account,
+            method,
+            project,
+            check_people,
+            recheck_people,
+            make_people,
         } = this.state;
         const token = localStorage.getItem('user_token');
         let data = {
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
-            address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source,
+            people,
+            time,
+            account,
+            method,
+            project,
+            check_people,
+            recheck_people,
+            make_people,
             token
         }
-        supplierAdd(data).then(res => {
+        baoxiaoAdd(data).then(res => {
             console.log(res);
             if (res.msg === "success") {
                 this.props.history.push(`/app/pay/baoxiao`);
@@ -99,26 +86,50 @@ class NewBaoxiaos extends Component {
                                                 <Col md={24}>
 
                                                     <FormItem label="报销人" colon={false}>
-                                                        <input placeholder="请输入报销人姓名"/>
+                                                        <input placeholder="请输入报销人姓名" onChange={event => {
+                                                            this.setState({
+                                                                people: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="报销时间" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                     
                                                     <FormItem label="报销金额" colon={false}>
-                                                        <input placeholder="请输入报销金额" />
+                                                        <input placeholder="请输入报销金额" onChange={event => {
+                                                            this.setState({
+                                                                account: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="报销方式" colon={false}>
-                                                        <input placeholder="请输入报销方式" />
+                                                        <input placeholder="请输入报销方式" onChange={event => {
+                                                            this.setState({
+                                                                method: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="报销项目" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入报销项目"/>
+                                                        <TextArea rows={4} placeholder="请输入报销项目" onChange={event => {
+                                                            this.setState({
+                                                                project: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="审核人" colon={false}>
-                                                        <input placeholder="请输入审核人姓名" />
+                                                        <input placeholder="请输入审核人姓名" onChange={event => {
+                                                            this.setState({
+                                                                check_people: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="复核人" colon={false}>
-                                                        <input placeholder="请输入复核人姓名" />
+                                                        <input placeholder="请输入复核人姓名" onChange={event => {
+                                                            this.setState({
+                                                                recheck_people: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     
                                                 </Col>

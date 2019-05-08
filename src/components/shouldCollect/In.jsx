@@ -124,40 +124,43 @@ class Ins extends Component {
 
         const columns = [{
             title: '客户订单编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'client_id',
+            key: 'client_id',
         }, {
             title: '客户合同编号',
             dataIndex: 'createPerson',
             key: 'createPerson',
         }, {
             title: '合计金额(元)',
-            dataIndex: 'userType',
-            key: 'userType',
+            dataIndex: 'total_count',
+            key: 'total_count',
         }, {
             title: '结算方式',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'pay_method',
+            key: 'pay_method',
+                render: (text, record) => record.pay_method == 1 ? '月结' : '预付'
         }, {
             title: '收款状态',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'receivables_status',
+            key: 'receivables_status',
         }, {
             title: '收款方式',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            dataIndex: 'receivables_type',
+            key: 'receivables_type',
+                render: (text, record) => record.receivables_type == 1 ? '已收款' : '未收款'
         }, {
             title: '收款日期',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+            dataIndex: 'receivables_date',
+            key: 'receivables_date',
         }, {
             title: '开票状态',
-            dataIndex: 'accountName',
-            key: 'accountName',
+            dataIndex: 'invoice_status',
+            key: 'invoice_status',
+                render: (text, record) => record.invoice_status == 1 ? '已开票' : '未开票'
         }, {
             title: '开票日期',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'invoice_date',
+            key: 'invoice_date',
         }, {
             title: '操作',
             // dataIndex: 'operating',

@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAdd } from '../../axios';
+import { publicMoneyAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -71,7 +71,7 @@ class NewGongfeis extends Component {
             source,
             token
         }
-        supplierAdd(data).then(res => {
+        publicMoneyAdd(data).then(res => {
             console.log(res);
             if (res.msg === "success") {
                 this.props.history.push(`/app/pay/gongfei`);
