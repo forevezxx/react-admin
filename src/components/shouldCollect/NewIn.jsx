@@ -83,35 +83,46 @@ class NewIns extends Component {
     goBack() {
         this.props.history.push(`/app/shouldCollect/in`);
     }
+    
     newSupplier() {
         const { 
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
-            address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source
+            client_id,
+        client_name,
+        total_count,
+        receivables_entity,
+        receivables_account,
+        pay_method,
+        receivables_status,
+        receivables_date,
+        receivables_type,
+        invoice_status,
+        invoice_head,
+        org_code,
+        invoice_content,
+        open_bank,
+        invoice_type,
+        mail_addr,
+        invoice_date,
         } = this.state;
         const token = localStorage.getItem('user_token');
         let data = {
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
-            address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source,
+            client_id,
+        client_name,
+        total_count,
+        receivables_entity,
+        receivables_account,
+        pay_method,
+        receivables_status,
+        receivables_date,
+        receivables_type,
+        invoice_status,
+        invoice_head,
+        org_code,
+        invoice_content,
+        open_bank,
+        invoice_type,
+        mail_addr,
+        invoice_date,
             token
         }
         clientPayRecordAdd(data).then(res => {

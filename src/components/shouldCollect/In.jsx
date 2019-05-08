@@ -52,11 +52,13 @@ class Ins extends Component {
     }
     getDocumentSearch() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+                principalName: this.state.principalName,
+                companyName: this.state.companyName,
+                contractNum: this.state.contractNum,
+                telNum: this.state.telNum,
+                archiver: this.state.archiver,
+            })
         }
         clientPayRecordSearch(data).then(res=>{
             this.setState({
@@ -67,11 +69,13 @@ class Ins extends Component {
     }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+                principalName: this.state.principalName,
+                companyName: this.state.companyName,
+                contractNum: this.state.contractNum,
+                telNum: this.state.telNum,
+                archiver: this.state.archiver,
+            })
         }
         clientPayRecordExport(data).then(res => {
             console.log(res);
