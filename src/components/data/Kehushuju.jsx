@@ -16,13 +16,18 @@ class Kehushujus extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
 
-        searchName: '',
-        searchTel: '',
-        searchUserType: '',
-        searchNumber: '',
+        customer_name: '',
+        customer_company: '',
+        repay_date: '',
     };
     componentDidMount() {
         this.getUserAll();
+    }
+    onChange(date, dateString) {
+        console.log(date, dateString);
+        this.setState({
+            repay_date: dateString,
+        })
     }
     getUserAll() {//获取用户信息
         let data = {
@@ -39,10 +44,11 @@ class Kehushujus extends Component {
     }
     getUserSearch() {
         let data = {
-            username: this.state.searchName,
-            type: this.state.searchUserType,
-            phone: this.state.searchTel,
-            user_ext: this.state.searchNumber,
+            search_json: JSON.stringify({
+            customer_name: this.state.customer_name,
+            customer_company: this.state.customer_company,
+            repay_date: this.state.repay_date,
+            })
         }
         customDataSearch(data).then(res => {
             this.setState({
@@ -77,25 +83,13 @@ class Kehushujus extends Component {
             that.getUserAll();
         })
     }
-    handleSelectChange(value) {
-        console.log(value)
-        this.setState({
-            searchUserType: value
-        });
-    }
-    handleSelectChangeMonth(value) {
-        console.log(value)
-        this.setState({
-            monthIndex: value
-        });
-    }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+            customer_name: this.state.customer_name,
+            customer_company: this.state.customer_company,
+            repay_date: this.state.repay_date,
+            })
         }
         customDataExport(data).then(res => {
             console.log(res);
@@ -113,40 +107,40 @@ class Kehushujus extends Component {
 
         const columns = [{
             title: '编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '客户姓名',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'customer_name',
+            key: 'customer_name',
         }, {
             title: '客户公司名称',
-            dataIndex: 'userType',
-            key: 'userType',
+            dataIndex: 'customer_company',
+            key: 'customer_company',
         }, {
             title: '回款产品',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'repay_product_name',
+            key: 'repay_product_name',
         }, {
             title: '产品数量',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'num',
+            key: 'num',
         }, {
             title: '产品单价(元)',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            dataIndex: 'price',
+            key: 'price',
         }, {
             title: '产品总价(元)',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+            dataIndex: 'total',
+            key: 'total',
         }, {
             title: '回款(元)',
-            dataIndex: 'accountName',
-            key: 'accountName',
+            dataIndex: 'repay_money',
+            key: 'repay_money',
         }, {
             title: '回款日期',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'repay_date',
+            key: 'repay_date',
         }, {
             title: '操作',
             // dataIndex: 'operating',
@@ -181,17 +175,25 @@ class Kehushujus extends Component {
                                     <Row>
                                         <Col md={6}>
                                             <FormItem label="客户姓名" colon={false}>
-                                                <input placeholder="请输入客户姓名" />
+                                                <input placeholder="请输入客户姓名" onChange={event => {
+                                                    this.setState({
+                                                        sales_name: event.target.value
+                                                    });
+                                                }} />
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
                                             <FormItem label="公司名称" colon={false}>
-                                                <input placeholder="请输入公司名称" />
+                                                <input placeholder="请输入公司名称" onChange={event => {
+                                                    this.setState({
+                                                        sales_name: event.target.value
+                                                    });
+                                                }} />
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
                                             <FormItem label="回款日期" colon={false}>
-                                                <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
+                                                <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
                                         

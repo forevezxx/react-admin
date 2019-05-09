@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAdd } from '../../axios';
+import { customDataAdd } from '../../axios';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -17,60 +17,48 @@ const TabPane = Tabs.TabPane;
 const { TextArea } = Input;
 class NewKehushujus extends Component {
     state = {
-        type: '',
-        username: '',
-        position: '',
-        phone: '',
-        user_ext: '',
-        account_name: '',
-        password: '',
-        employment_date: '',
-        user_auth: '',
-        function_auth: '', 
+        customer_name: '',
+        customer_company: '',
+        repay_product_name: '',
+        num: '',
+        price: '',
+        total: '',
+        repay_money: '',
+        repay_date: '', 
     };
     onChange(date, dateString) {
         console.log(date, dateString);
         this.setState({
-            employment_date: dateString,
+            repay_date: dateString,
         })
-    }
-
-    onChange2 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            value: e.target.value,
-        });
     }
     goBack() {
         this.props.history.push(`/app/data/kehushuju`);
     }
 
     newUser() {
+        
         const {
-            type,
-            username,
-            position,
-            phone,
-            user_ext,
-            account_name,
-            password,
-            employment_date,
-            user_auth,
-            function_auth, 
+            customer_name,
+            customer_company,
+            repay_product_name,
+            num,
+            price,
+            total,
+            repay_money,
+            repay_date,
         } = this.state;
         let data = {
-            type,
-            username,
-            position,
-            phone,
-            user_ext,
-            account_name,
-            password,
-            employment_date,
-            user_auth,
-            function_auth,
+            customer_name,
+            customer_company,
+            repay_product_name,
+            num,
+            price,
+            total,
+            repay_money,
+            repay_date,
         }
-        userAdd(data).then(res=>{
+        customDataAdd(data).then(res=>{
             if (res.msg === "success") {
                 this.props.history.push(`/app/data/kehushuju`);
             }
@@ -102,49 +90,49 @@ class NewKehushujus extends Component {
                                                 <FormItem label="客户姓名" colon={false}>
                                                         <input placeholder="请输入客户姓名" onChange={event => {
                                                             this.setState({
-                                                                sales_name: event.target.value
+                                                                customer_name: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="客户公司名称" colon={false}>
                                                         <input placeholder="请输入客户公司名称" onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                customer_company : event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="回款产品" colon={false}>
                                                         <input placeholder="请输入回款产品" onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                repay_product_name: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="产品数量" colon={false}>
                                                         <input placeholder="请输入产品数量" onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                num: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="产品单价" colon={false}>
                                                         <input placeholder="请输入产品单价" onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                price: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="产品总价" colon={false}>
                                                         <input placeholder="请输入产品总价" onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                total: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="回款金额" colon={false}>
                                                         <input placeholder="请输入回款金额" onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                repay_money: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
