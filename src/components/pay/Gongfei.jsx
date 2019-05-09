@@ -49,7 +49,7 @@ class Gongfeis extends Component {
         }
         publicMoneySearch(data).then(res=>{
             this.setState({
-                dataSource: res.data.supplier,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })
