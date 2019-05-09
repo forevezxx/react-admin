@@ -17,11 +17,9 @@ class Gongfeis extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
 
-        principalName: '',
-        companyName: '',
-        contractNum: '',
-        telNum: '',
-        archiver: '',
+        type: '',
+        count: '',
+        date: '',
     };
     
     componentDidMount(){
@@ -43,11 +41,11 @@ class Gongfeis extends Component {
     }
     getDocumentSearch() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+            type: this.state.type,
+            count: this.state.count,
+            date: this.state.date,
+            })
         }
         publicMoneySearch(data).then(res=>{
             this.setState({
@@ -58,11 +56,11 @@ class Gongfeis extends Component {
     }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+            type: this.state.type,
+            count: this.state.count,
+            date: this.state.date,
+            }),
         }
         publicMoneyExport(data).then(res => {
             console.log(res);
@@ -99,7 +97,7 @@ class Gongfeis extends Component {
     handleSelectChange(value) {
         console.log(value)
         this.setState({
-            principalName: value
+            type: value
         });
     }
     
@@ -121,40 +119,40 @@ class Gongfeis extends Component {
 
         const columns = [{
             title: '编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '请款人',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'ask_name',
+            key: 'ask_name',
         }, {
             title: '对象类别',
             dataIndex: 'userType',
             key: 'userType',
         }, {
             title: '申请日期',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'date',
+            key: 'date',
         }, {
             title: '费用类型',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'type',
+            key: 'type',
         }, {
             title: '请款用途',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            dataIndex: 'reason',
+            key: 'reason',
         }, {
             title: '申请金额(元)',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+            dataIndex: 'count',
+            key: 'count',
         }, {
             title: '审核人',
-            dataIndex: 'accountName',
-            key: 'accountName',
+            dataIndex: 'check_people',
+            key: 'check_people',
         }, {
             title: '复核人',
-            dataIndex: 'accountPassword',
-            key: 'accountPassword',
+            dataIndex: 'recheck_people',
+            key: 'recheck_people',
         }, {
             title: '操作',
             // dataIndex: 'operating',

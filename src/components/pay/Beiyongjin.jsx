@@ -22,15 +22,19 @@ class Beiyongjins extends Component {
         inWay: '',
         user: '',
         checkedTime: '',
+        type: 1,
+        // type: localStorage.getItem('money_type') || 1,
     };
     
     componentDidMount(){
-        this.getImprestAll()
+        this.callback(this.state.type);
+        // this.getImprestAll()
     }
     getImprestAll() {//获取用户信息
         let data = {
             pageNum: this.state.current - 1,
             pageSize: this.state.pageSize,
+            type: this.state.type,
         }
         imprestAll(data).then(res => {
             console.log(res);
@@ -40,12 +44,12 @@ class Beiyongjins extends Component {
             })
         })
     }
-    getImprestSearch(type) {//0 入账 1出账
+    getImprestSearch() {//0 入账 1出账
         let data = {
             inWay: this.state.inWay,
             user: this.state.user,
             checkedTime: this.state.checkedTime,
-            type,
+            type: this.state.type,
         }
         userSearch(data).then(res=>{
             this.setState({
@@ -98,12 +102,22 @@ class Beiyongjins extends Component {
             contractNum: this.state.contractNum,
             telNum: this.state.telNum,
             archiver: this.state.archiver,
+            type: this.state.type,
         }
         supplierExport(data).then(res => {
             console.log(res);
             if(res.msg === "success"){
                 window.location.href = res.data;
             }
+        })
+    }
+    callback(type) {
+        let that = this;
+        this.setState({
+            type,
+        },()=>{
+            localStorage.setItem('money_type',type);
+            that.getImprestAll();
         })
     }
     render() {
@@ -115,53 +129,53 @@ class Beiyongjins extends Component {
 
         const columns = [{
             title: '编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '备用金总额(元)',
-            dataIndex: 'imprestPrice',
-            key: 'imprestPrice',
+            dataIndex: 'now_total',
+            key: 'now_total',
         }, {
             title: '入账人',
-            dataIndex: 'in_name',
-            key: 'in_name',
+            dataIndex: 'name',
+            key: 'name',
         },{
             title: '入账金额',
-            dataIndex: 'in_price',
-            key: 'in_price',
+            dataIndex: 'money',
+            key: 'money',
         }, {
             title: '入账时间',
-            dataIndex: 'in_time',
-            key: 'in_time',
+            dataIndex: 'time',
+            key: 'time',
         }, {
             title: '入账方式',
-            dataIndex: 'in_way',
-            key: 'in_way',
+            dataIndex: 'method',
+            key: 'method',
         }];
         const columns2 = [{
             title: '编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '备用金总额(元)',
-            dataIndex: 'imprestPrice',
-            key: 'imprestPrice',
+            dataIndex: 'now_total',
+            key: 'now_total',
         }, {
             title: '出账人',
-            dataIndex: 'out_name',
-            key: 'out_name',
+            dataIndex: 'name',
+            key: 'name',
         }, {
             title: '出账金额(元)',
-            dataIndex: 'out_price',
-            key: 'out_price',
+            dataIndex: 'money',
+            key: 'money',
         }, {
             title: '出账用途',
             dataIndex: 'out_for',
             key: 'out_for',
         }, {
             title: '出账时间',
-            dataIndex: 'out_time',
-            key: 'out_time',
+            dataIndex: 'time',
+            key: 'time',
         }, {
             title: '当前结余',
             dataIndex: 'now_left',
@@ -181,7 +195,7 @@ class Beiyongjins extends Component {
         return (
             <div className="gutter-example">
                 <BreadcrumbCustom first="出纳管理" second="备用金管理" />
-                <Tabs defaultActiveKey="1">
+                <Tabs defaultActiveKey="1" onChange={this.callback.bind(this)}>
                     <TabPane tab="入账管理" key="1">
                         <Row gutter={0}>
                             <Col className="gutter-row" md={24}>

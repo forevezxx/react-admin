@@ -22,53 +22,37 @@ class NewGongfeis extends Component {
         values: 1,
     };
     onChange(date, dateString) {
+        this.setState({
+            date: dateString,
+        })
         console.log(date, dateString);
     }
 
-    onChange2 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            value: e.target.value,
-        });
-    }
-    onChange3 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            values: e.target.value,
-        });
-    }
     goBack() {
         this.props.history.push(`/app/pay/gongfei`);
     }
+        
     newSupplier() {
         const { 
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
-            address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source
+            ask_name,
+            department,
+            date,
+            count,
+            type,
+            reason,
+            check_people,
+            recheck_people,
         } = this.state;
         const token = localStorage.getItem('user_token');
         let data = {
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
-            address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source,
+            ask_name,
+            department,
+            date,
+            count,
+            type,
+            reason,
+            check_people,
+            recheck_people,
             token
         }
         publicMoneyAdd(data).then(res => {
@@ -98,28 +82,56 @@ class NewGongfeis extends Component {
                                                 <Col md={24}>
 
                                                     <FormItem label="请款人" colon={false}>
-                                                        <input placeholder="请输入请款人姓名"/>
+                                                        <input placeholder="请输入请款人姓名" onChange={event => {
+                                                            this.setState({
+                                                                ask_name: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="部门" colon={false}>
-                                                        <input placeholder="请输入对象类别"/>
+                                                        <input placeholder="请输入对象类别" onChange={event => {
+                                                            this.setState({
+                                                                department: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="申请日期" colon={false}>
-                                                        <DatePicker onChange={()=>this.onChange} />
+                                                        <DatePicker onChange={this.onChange.bind(this)} />
                                                     </FormItem>
-                                                    <FormItem label="申请金额" colon={false}>
-                                                        <input placeholder="请输入申请金额" />
+                                                    <FormItem label="申请金额" colon={false} >
+                                                        <input placeholder="请输入申请金额" onChange={event => {
+                                                            this.setState({
+                                                                count: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="费用类型" colon={false}>
-                                                        <input placeholder="请输入费用类型" />
+                                                        <input placeholder="请输入费用类型" onChange={event => {
+                                                            this.setState({
+                                                                type: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="请款用途" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入请款用途"/>
+                                                        <TextArea rows={4} placeholder="请输入请款用途" onChange={event => {
+                                                            this.setState({
+                                                                reason: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="审核人" colon={false}>
-                                                        <input placeholder="请输入审核人姓名" />
+                                                        <input placeholder="请输入审核人姓名" onChange={event => {
+                                                            this.setState({
+                                                                check_people: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="复核人" colon={false}>
-                                                        <input placeholder="请输入复核人姓名" />
+                                                        <input placeholder="请输入复核人姓名" onChange={event => {
+                                                            this.setState({
+                                                                recheck_people: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     
                                                 </Col>
