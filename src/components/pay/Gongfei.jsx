@@ -18,7 +18,7 @@ class Gongfeis extends Component {
         current: 1,//当前所在页数
 
         type: '',
-        count: '',
+        counts: '',
         date: '',
     };
     
@@ -43,7 +43,7 @@ class Gongfeis extends Component {
         let data = {
             search_json: JSON.stringify({
             type: this.state.type,
-            count: this.state.count,
+            count: this.state.counts,
             date: this.state.date,
             })
         }
@@ -58,7 +58,7 @@ class Gongfeis extends Component {
         let data = {
             search_json: JSON.stringify({
             type: this.state.type,
-            count: this.state.count,
+            count: this.state.counts,
             date: this.state.date,
             }),
         }
@@ -89,9 +89,8 @@ class Gongfeis extends Component {
     onChange(date, dateString) {
         let that = this;
         console.log(date, dateString);
-        console.log(dateString);
         that.setState({
-            checkedTime: dateString
+            date: dateString
         })
     }
     handleSelectChange(value) {
@@ -176,17 +175,17 @@ class Gongfeis extends Component {
                                     <Row>
                                         <Col md={6}>
                                             <FormItem label="费用类型" colon={false}>
-                                                <input placeholder="请输入费用类型" />
+                                                <input placeholder="请输入费用类型" onChange={event => { this.setState({ type: event.target.value }) }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
                                             <FormItem label="公费金额" colon={false}>
-                                                <input placeholder="请输入公费金额" />
+                                                <input placeholder="请输入公费金额" onChange={event => { this.setState({ counts: event.target.value }) }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
                                             <FormItem label="申请日期" colon={false}>
-                                                <DatePicker onChange={()=>this.onChange} />
+                                                <DatePicker onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
