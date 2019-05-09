@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAll, userSearch, supplierExport} from '../../axios';
+import { customDataAll, customDataSearch, customDataExport} from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -29,7 +29,7 @@ class Kehushujus extends Component {
             pageNum: this.state.current - 1,
             pageSize: this.state.pageSize,
         }
-        userAll(data).then(res => {
+        customDataAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
@@ -44,7 +44,7 @@ class Kehushujus extends Component {
             phone: this.state.searchTel,
             user_ext: this.state.searchNumber,
         }
-        userSearch(data).then(res => {
+        customDataSearch(data).then(res => {
             this.setState({
                 dataSource: res.data.users,
                 count: res.data.count,
@@ -97,7 +97,7 @@ class Kehushujus extends Component {
             telNum: this.state.telNum,
             archiver: this.state.archiver,
         }
-        supplierExport(data).then(res => {
+        customDataExport(data).then(res => {
             console.log(res);
             if(res.msg === "success"){
                 window.location.href = res.data;

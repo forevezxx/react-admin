@@ -4,9 +4,10 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAll, userSearch, supplierExport} from '../../axios';
+import { saleDataAll, saleDataSearch, saleDataExport} from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
+
 
 
 class Xiaoshoushujus extends Component {
@@ -17,10 +18,9 @@ class Xiaoshoushujus extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
 
-        searchName: '',
-        searchTel: '',
-        searchUserType: '',
-        searchNumber: '',
+        sales_name: '',
+        date: '',
+        month_target: '',
     };
     componentDidMount() {
         this.getUserAll();
@@ -30,7 +30,7 @@ class Xiaoshoushujus extends Component {
             pageNum: this.state.current - 1,
             pageSize: this.state.pageSize,
         }
-        userAll(data).then(res => {
+        saleDataAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
@@ -40,14 +40,15 @@ class Xiaoshoushujus extends Component {
     }
     getUserSearch() {
         let data = {
-            username: this.state.searchName,
-            type: this.state.searchUserType,
-            phone: this.state.searchTel,
-            user_ext: this.state.searchNumber,
+            search_json: JSON.stringify({
+            sales_name: this.state.sales_name,
+            date: this.state.date,
+            month_target: this.state.month_target,
+            })
         }
-        userSearch(data).then(res => {
+        saleDataSearch(data).then(res => {
             this.setState({
-                dataSource: res.data.users,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })
@@ -81,24 +82,24 @@ class Xiaoshoushujus extends Component {
     handleSelectChange(value) {
         console.log(value)
         this.setState({
-            searchUserType: value
+            date: value
         });
     }
     handleSelectChangeMonth(value) {
         console.log(value)
         this.setState({
-            monthIndex: value
+            month_target: value
         });
     }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+            sales_name: this.state.sales_name,
+            date: this.state.date,
+            month_target: this.state.month_target,
+            }),
         }
-        supplierExport(data).then(res => {
+        saleDataExport(data).then(res => {
             console.log(res);
             if(res.msg === "success"){
                 window.location.href = res.data;
@@ -111,43 +112,42 @@ class Xiaoshoushujus extends Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-
         const columns = [{
             title: '编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '销售员',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'sales_name',
+            key: 'sales_name',
         }, {
             title: '当前排名',
-            dataIndex: 'userType',
-            key: 'userType',
+            dataIndex: 'rank',
+            key: 'rank',
         }, {
             title: '考核月份',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
+            dataIndex: 'date',
+            key: 'date',
         }, {
             title: '月度指标',
-            dataIndex: 'position',
-            key: 'position',
+            dataIndex: 'month_target',
+            key: 'month_target',
         }, {
             title: '月度回款金额(元)',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            dataIndex: 'month_repay',
+            key: 'month_repay',
         }, {
             title: '提成金额(元)',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+            dataIndex: 'reback_money',
+            key: 'reback_money',
         }, {
             title: '所属部门',
-            dataIndex: 'accountName',
-            key: 'accountName',
+            dataIndex: 'department',
+            key: 'department',
         }, {
             title: '入职时间',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
+            dataIndex: 'employee_time',
+            key: 'employee_time',
         }, {
             title: '操作',
             // dataIndex: 'operating',
@@ -184,7 +184,7 @@ class Xiaoshoushujus extends Component {
                                             <FormItem label="销售员" colon={false}>
                                                 <input placeholder="请输入销售员姓名" onChange={event=>{
                                                     this.setState({
-                                                        searchName: event.target.value
+                                                        sales_name: event.target.value
                                                       });
                                                 }}/>
                                             </FormItem>
@@ -217,7 +217,7 @@ class Xiaoshoushujus extends Component {
                                                     onChange={this.handleSelectChangeMonth.bind(this)}
                                                 >
                                                     <Option value="1">已达成</Option>
-                                                    <Option value="2">未达成</Option>
+                                                    <Option value="0">未达成</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>

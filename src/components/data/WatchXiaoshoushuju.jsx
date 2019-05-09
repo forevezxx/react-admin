@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userOne } from '../../axios';
+import { saleDataOne } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -18,8 +18,7 @@ const TabPane = Tabs.TabPane;
 
 class WatchXiaoshoushujus extends Component {
     state = {
-        userData: '',
-        value1: 1,
+        userData: {},
     };
     componentDidMount() {
         this.getUserOne(this.props.match.params.id);
@@ -28,9 +27,9 @@ class WatchXiaoshoushujus extends Component {
         let data = {
             id
         }
-        userOne(data).then(res=>{
+        saleDataOne(data).then(res=>{
             this.setState({
-                userData: res.data.user
+                userData: res.data.supplier
             })
         })
     }
@@ -64,21 +63,14 @@ class WatchXiaoshoushujus extends Component {
                                                 <Row>
                                                     <Col md={24}>
                                                     <FormItem label="销售员" colon={false}>
-                                                        <input placeholder="请输入销售员姓名" onChange={event => {
-                                                            this.setState({
-                                                                sales_name: event.target.value
-                                                            });
-                                                        }}/>
+                                                            <input placeholder="请输入销售员姓名" disabled value={userData.sales_name}/>
                                                     </FormItem>
                                                     <FormItem label="当前排名" colon={false}>
-                                                        <input placeholder="请输入当前排名" onChange={event => {
-                                                            this.setState({
-                                                                rank: event.target.value
-                                                            });
-                                                        }}/>
+                                                            <input placeholder="请输入当前排名"  disabled value={userData.rank}/>
                                                     </FormItem>
                                                     <FormItem label="考核月份" colon={false}>
-                                                        <Select
+                                                            <input placeholder="请输入考核月份" disabled value={userData.date} />
+                                                        {/* <Select
                                                             placeholder="请选择"
                                                             onChange={this.handleSelectChangeUserType}
                                                         >
@@ -94,34 +86,27 @@ class WatchXiaoshoushujus extends Component {
                                                             <Option value="10">10月</Option>
                                                             <Option value="11">11月</Option>
                                                             <Option value="12">12月</Option>
-                                                        </Select>
+                                                        </Select> */}
                                                     </FormItem>
                                                     <FormItem label="月度回款金额" colon={false}>
-                                                        <input placeholder="请输入月度回款金额" onChange={event => {
-                                                            this.setState({
-                                                                back_money: event.target.value
-                                                            });
-                                                        }}/>
+                                                            <input placeholder="请输入月度回款金额" disabled value={userData.month_repay}/>
                                                     </FormItem>
                                                     <FormItem label="提成金额" colon={false}>
-                                                        <input placeholder="请输入提成金额" onChange={event => {
-                                                            this.setState({
-                                                                back_money: event.target.value
-                                                            });
-                                                        }}/>
+                                                            <input placeholder="请输入提成金额" disabled value={userData.reback_money}/>
                                                     </FormItem>
                                                     
                                                     <FormItem label="开票状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange1} value={this.state.value1}>
+                                                            <input placeholder="开票状态" disabled value={userData.invoice_status == 0?"未达成":"已达成"} />
+                                                        {/* <RadioGroup onChange={this.onChange1} value={this.state.value1}>
                                                             <Radio value={1}>已达成</Radio>
                                                             <Radio value={2}>未达成</Radio>
-                                                        </RadioGroup>
+                                                        </RadioGroup> */}
                                                     </FormItem>
                                                     <FormItem label="所属部门" colon={false}>
-                                                        <input placeholder="请输入提成金额" disabled value="销售部"/>
+                                                            <input placeholder="请输入提成金额" disabled value={userData.department}/>
                                                     </FormItem>
                                                     <FormItem label="入职时间" colon={false}>
-                                                        <input placeholder="请输入提成金额" disabled value="2019.02.28"/>
+                                                            <input placeholder="请输入提成金额" disabled value={userData.employee_time}/>
                                                     </FormItem>
                                                     </Col>
                                                     <Col md={8}>
