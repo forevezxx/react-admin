@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAll, userSearch, userDisable, supplierExport } from '../../axios';
+import { userAll, userSearch, userDisable, userExport, userEnable } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -86,9 +86,23 @@ class UserManagements extends Component {
         });
     }
     disableUser(id){
+        let that = this;
         let data = {id};
         userDisable(data).then(res=>{
-            alert('停用成功');
+            if(res.msg == "success"){
+                that.getUserAll();
+                alert('停用成功');
+            }
+        })
+    }
+    enableUser(id){
+        let that = this;
+        let data = {id};
+        userEnable(data).then(res=>{
+            if(res.msg == "success"){
+                that.getUserAll();
+                alert('启用成功');
+            }
         })
     }
     supplierExport() {
@@ -99,7 +113,7 @@ class UserManagements extends Component {
             telNum: this.state.telNum,
             archiver: this.state.archiver,
         }
-        supplierExport(data).then(res => {
+        userExport(data).then(res => {
             console.log(res);
             if(res.msg === "success"){
                 window.location.href = res.data;
@@ -166,8 +180,11 @@ class UserManagements extends Component {
                 <span>
                     <a href="javascript:;" className="userManagement_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
                     <a href="javascript:;" className="userManagement_a" onClick={()=>this.EditUserManagement(record.id)}>编辑</a>
-                    <a href="javascript:;" className="userManagement_a stop" onClick={()=>this.disableUser(record.id)}>停用</a>
-                    {/* 停用--员工离职 账号不能登录 不在用户列表里了 */}
+                    {record.enabled == 0 ? (
+                        <a href="javascript:;" className="userManagement_a stop" onClick={()=>this.enableUser(record.id)}>启用</a>
+                    ): (
+                        <a href="javascript:;" className="userManagement_a stop" onClick={()=>this.disableUser(record.id)}>停用</a>
+                    )}
                 </span>
             )
         }];

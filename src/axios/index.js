@@ -399,6 +399,11 @@ export const userDisable = (data) => post({
     data
 })
 
+export const userEnable = (data) => post({
+    url: config.USER_ENABLE,
+    data
+})
+
 export const userExport = (data) => post({
     url: config.USER_EXPORT,
     data
