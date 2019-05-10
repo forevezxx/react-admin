@@ -177,7 +177,7 @@ class Kehushujus extends Component {
                                             <FormItem label="客户姓名" colon={false}>
                                                 <input placeholder="请输入客户姓名" onChange={event => {
                                                     this.setState({
-                                                        sales_name: event.target.value
+                                                        customer_name: event.target.value
                                                     });
                                                 }} />
                                             </FormItem>
@@ -186,7 +186,7 @@ class Kehushujus extends Component {
                                             <FormItem label="公司名称" colon={false}>
                                                 <input placeholder="请输入公司名称" onChange={event => {
                                                     this.setState({
-                                                        sales_name: event.target.value
+                                                        customer_company: event.target.value
                                                     });
                                                 }} />
                                             </FormItem>
