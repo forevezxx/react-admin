@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierAll, supplierSearch, supplierExport } from '../../axios';
+import { purchanseAll, purchanseSearch, purchanseExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -33,7 +33,7 @@ class Caigoushujus extends Component {
             pageSize: this.state.pageSize,
             token: localStorage.getItem('user_token'),
         }
-        supplierAll(data).then(res => {
+        purchanseAll(data).then(res => {
             console.log(res);
             this.setState({
                 dataSource: res.data.data,
@@ -49,7 +49,7 @@ class Caigoushujus extends Component {
             telNum: this.state.telNum,
             archiver: this.state.archiver,
         }
-        supplierSearch(data).then(res=>{
+        purchanseSearch(data).then(res=>{
             this.setState({
                 dataSource: res.data.supplier,
                 count: res.data.count,
@@ -64,10 +64,10 @@ class Caigoushujus extends Component {
             telNum: this.state.telNum,
             archiver: this.state.archiver,
         }
-        supplierExport(data).then(res => {
+        purchanseExport(data).then(res => {
             console.log(res);
-            if(res.msg === "success"){
-                window.location.href = res.data;
+            if (res.status === 0) {
+                window.location.href = res.url;
             }
         })
     }

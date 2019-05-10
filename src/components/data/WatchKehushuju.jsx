@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker,
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userOne } from '../../axios';
+import { customDataOne } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -27,9 +27,9 @@ class WatchXiaoshoushujus extends Component {
         let data = {
             id
         }
-        userOne(data).then(res=>{
+        customDataOne(data).then(res=>{
             this.setState({
-                userData: res.data.user
+                userData: res.data.supplier
             })
         })
     }
@@ -56,56 +56,28 @@ class WatchXiaoshoushujus extends Component {
                                                 <Row>
                                                     <Col md={24}>
                                                     <FormItem label="客户姓名" colon={false}>
-                                                        <input placeholder="请输入客户姓名" onChange={event => {
-                                                            this.setState({
-                                                                sales_name: event.target.value
-                                                            });
-                                                        }}/>
+                                                        <input placeholder="请输入客户姓名" disabled value={userData.customer_name} />
                                                     </FormItem>
                                                     <FormItem label="客户公司名称" colon={false}>
-                                                        <input placeholder="请输入客户公司名称" onChange={event => {
-                                                            this.setState({
-                                                                rank: event.target.value
-                                                            });
-                                                        }}/>
+                                                        <input placeholder="请输入客户公司名称" disabled value={userData.customer_company} />
                                                     </FormItem>
                                                     <FormItem label="回款产品" colon={false}>
-                                                        <input placeholder="请输入回款产品" onChange={event => {
-                                                            this.setState({
-                                                                rank: event.target.value
-                                                            });
-                                                        }}/>
+                                                        <input placeholder="请输入回款产品" disabled value={userData.repay_product_name} />
                                                     </FormItem>
                                                     <FormItem label="产品数量" colon={false}>
-                                                        <input placeholder="请输入产品数量" onChange={event => {
-                                                            this.setState({
-                                                                rank: event.target.value
-                                                            });
-                                                        }}/>
+                                                        <input placeholder="请输入产品数量" disabled value={userData.num} />
                                                     </FormItem>
                                                     <FormItem label="产品单价" colon={false}>
-                                                        <input placeholder="请输入产品单价" onChange={event => {
-                                                            this.setState({
-                                                                rank: event.target.value
-                                                            });
-                                                        }}/>
+                                                        <input placeholder="请输入产品单价" disabled value={userData.price} />
                                                     </FormItem>
                                                     <FormItem label="产品总价" colon={false}>
-                                                        <input placeholder="请输入产品总价" onChange={event => {
-                                                            this.setState({
-                                                                rank: event.target.value
-                                                            });
-                                                        }}/>
+                                                        <input placeholder="请输入产品总价" disabled value={userData.total} />
                                                     </FormItem>
                                                     <FormItem label="回款金额" colon={false}>
-                                                        <input placeholder="请输入回款金额" onChange={event => {
-                                                            this.setState({
-                                                                rank: event.target.value
-                                                            });
-                                                        }}/>
+                                                        <input placeholder="请输入回款金额" disabled value={userData.repay_money} />
                                                     </FormItem>
                                                     <FormItem label="回款日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={this.onChange} />
+                                                        <DatePicker placeholder="请选择"  disabled value={moment(userData.repay_date,'YYYY/MM/DD')}  onChange={this.onChange} />
                                                     </FormItem>
                                                     </Col>
                                                     <Col md={8}>

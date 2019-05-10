@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userOne, userUpdate } from '../../axios';
+import { purchanseOne, purchanseUpdate } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -35,7 +35,7 @@ class EditXiaoshoushujus extends Component {
         let data = {
             id
         }
-        userOne(data).then(res=>{
+        purchanseOne(data).then(res=>{
             this.setState({
                 id: res.data.user.id,
                 type: res.data.user.type,
@@ -68,7 +68,7 @@ class EditXiaoshoushujus extends Component {
             }),
             token: localStorage.getItem('user_token'),
         };
-        userUpdate(data).then(res =>{
+        purchanseUpdate(data).then(res =>{
             if(res.msg === "success"){
                 this.props.history.push(`/app/data/caigoushuju`);
             }

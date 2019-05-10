@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAdd } from '../../axios';
+import { purchanseAdd } from '../../axios';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -70,7 +70,7 @@ class NewCaigoushujus extends Component {
             user_auth,
             function_auth,
         }
-        userAdd(data).then(res=>{
+        purchanseAdd(data).then(res=>{
             if (res.msg === "success") {
                 this.props.history.push(`/app/data/caigoushuju`);
             }

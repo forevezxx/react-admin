@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userOne } from '../../axios';
+import { purchanseOne } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -27,7 +27,7 @@ class WatchXiaoshoushujus extends Component {
         let data = {
             id
         }
-        userOne(data).then(res=>{
+        purchanseOne(data).then(res=>{
             this.setState({
                 userData: res.data.user
             })

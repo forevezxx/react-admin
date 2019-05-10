@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userOne, userUpdate } from '../../axios';
+import { customDataOne, customDataUpdate } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -18,15 +18,14 @@ const TabPane = Tabs.TabPane;
 
 class EditXiaoshoushujus extends Component {
     state = {
-        id: '',
-        type: '',
-        username: '',
-        position: '',
-        phone: '',
-        user_ext: '',
-        account_name: '',
-        password: '',
-        employment_date: '',
+        customer_company: "日产无限",
+        customer_name: "郑小霞",
+        num: "222",
+        price: "1",
+        repay_date: "2019-05-15",
+        repay_money: "22",
+        repay_product_name: "智能产品",
+        total: "222",
     };
     componentDidMount() {
         this.getUserOne(this.props.match.params.id);
@@ -35,17 +34,16 @@ class EditXiaoshoushujus extends Component {
         let data = {
             id
         }
-        userOne(data).then(res=>{
+        customDataOne(data).then(res=>{
             this.setState({
-                id: res.data.user.id,
-                type: res.data.user.type,
-                username: res.data.user.username,
-                position: res.data.user.position,
-                phone: res.data.user.phone,
-                user_ext: res.data.user.user_ext,
-                account_name: res.data.user.account_name,
-                password: res.data.user.password,
-                employment_date: res.data.user.employment_date,
+                customer_company: res.data.supplier.customer_company,
+                customer_name: res.data.supplier.customer_name,
+                num: res.data.supplier.num,
+                price: res.data.supplier.price,
+                repay_date: res.data.supplier.repay_date,
+                repay_money: res.data.supplier.repay_money,
+                repay_product_name: res.data.supplier.repay_product_name,
+                total: res.data.supplier.total,
             })
         })
     }
@@ -53,22 +51,32 @@ class EditXiaoshoushujus extends Component {
         this.props.history.push(`/app/data/kehushuju`);
     }
     userUpdates() {
-        const { type, username, position, phone, user_ext, account_name, password, employment_date } = this.state;
+        
+        const { 
+            customer_company,
+            customer_name,
+            num,
+            price,
+            repay_date,
+            repay_money,
+            repay_product_name,
+            total,
+        } = this.state;
         let data = {
             id: this.props.match.params.id,
             update_json: JSON.stringify({
-                type,
-                username,
-                position,
-                phone,
-                user_ext,
-                account_name,
-                password,
-                employment_date,
+                customer_company,
+                customer_name,
+                num,
+                price,
+                repay_date,
+                repay_money,
+                repay_product_name,
+                total,
             }),
             token: localStorage.getItem('user_token'),
         };
-        userUpdate(data).then(res =>{
+        customDataUpdate(data).then(res =>{
             if(res.msg === "success"){
                 this.props.history.push(`/app/data/kehushuju`);
             }
@@ -77,7 +85,7 @@ class EditXiaoshoushujus extends Component {
     onChange(date, dateString) {
         console.log(date, dateString);
         this.setState({
-            employment_date: dateString,
+            repay_date: dateString,
         })
     }
     render() {
@@ -85,7 +93,16 @@ class EditXiaoshoushujus extends Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        const { id, type, username, position, phone, user_ext, account_name, password, employment_date } = this.state;
+        const { 
+            customer_company,
+            customer_name,
+            num,
+            price,
+            repay_date,
+            repay_money,
+            repay_product_name,
+            total,
+         } = this.state;
         return (
             <div className="gutter-example">
                 <BreadcrumbCustom first="数据管理" second="编辑客户数据"/>
@@ -99,56 +116,56 @@ class EditXiaoshoushujus extends Component {
                                             <Row>
                                                 <Col md={24}>
                                                 <FormItem label="客户姓名" colon={false}>
-                                                        <input placeholder="请输入客户姓名" onChange={event => {
+                                                        <input placeholder="请输入客户姓名" value={customer_name} onChange={event => {
                                                             this.setState({
-                                                                sales_name: event.target.value
+                                                                customer_name: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="客户公司名称" colon={false}>
-                                                        <input placeholder="请输入客户公司名称" onChange={event => {
+                                                        <input placeholder="请输入客户公司名称" value={customer_company} onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                customer_company: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="回款产品" colon={false}>
-                                                        <input placeholder="请输入回款产品" onChange={event => {
+                                                        <input placeholder="请输入回款产品" value={repay_product_name} onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                repay_product_name: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="产品数量" colon={false}>
-                                                        <input placeholder="请输入产品数量" onChange={event => {
+                                                        <input placeholder="请输入产品数量" value={num} onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                num: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="产品单价" colon={false}>
-                                                        <input placeholder="请输入产品单价" onChange={event => {
+                                                        <input placeholder="请输入产品单价" value={price} onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                price: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="产品总价" colon={false}>
-                                                        <input placeholder="请输入产品总价" onChange={event => {
+                                                        <input placeholder="请输入产品总价" value={total} onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                total: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="回款金额" colon={false}>
-                                                        <input placeholder="请输入回款金额" onChange={event => {
+                                                        <input placeholder="请输入回款金额" value={repay_money} onChange={event => {
                                                             this.setState({
-                                                                rank: event.target.value
+                                                                repay_money: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="回款日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
+                                                        <DatePicker placeholder="请选择" value={moment(repay_date,'YYYY/MM/DD')} onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}><Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
