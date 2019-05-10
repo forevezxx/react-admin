@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierOne } from '../../axios';
+import { baoxiaoOne } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -27,9 +27,9 @@ class WatchBaoxiaos extends Component {
         let data = {
             id
         }
-        supplierOne(data).then(res => {
+        baoxiaoOne(data).then(res => {
             this.setState({
-                documentData: res.data.supplier
+                documentData: res.data
             })
         })
     }
@@ -56,26 +56,26 @@ class WatchBaoxiaos extends Component {
                                             <Row>
                                                 <Col md={24}>
                                                     <FormItem label="报销人" colon={false}>
-                                                        <input placeholder="请输入报销人姓名"/>
+                                                        <input placeholder="请输入报销人姓名" disabled value={documentData.people} />
                                                     </FormItem>
                                                     <FormItem label="报销时间" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" disabled value={moment(documentData.time,'YYYY/MM/DD')} onChange={()=>this.onChange} />
                                                     </FormItem>
 
                                                     <FormItem label="报销金额" colon={false}>
-                                                        <input placeholder="请输入报销金额" />
+                                                        <input placeholder="请输入报销金额" disabled value={documentData.account} />
                                                     </FormItem>
                                                     <FormItem label="报销方式" colon={false}>
-                                                        <input placeholder="请输入报销方式" />
+                                                        <input placeholder="请输入报销方式" disabled value={documentData.method} />
                                                     </FormItem>
                                                     <FormItem label="报销项目" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入报销项目"/>
+                                                        <TextArea rows={4} placeholder="请输入报销项目" disabled value={documentData.project} />
                                                     </FormItem>
                                                     <FormItem label="审核人" colon={false}>
-                                                        <input placeholder="请输入审核人姓名" />
+                                                        <input placeholder="请输入审核人姓名" disabled value={documentData.check_people} />
                                                     </FormItem>
                                                     <FormItem label="复核人" colon={false}>
-                                                        <input placeholder="请输入复核人姓名" />
+                                                        <input placeholder="请输入复核人姓名" disabled value={documentData.recheck_people} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>
