@@ -29,7 +29,7 @@ class WatchXiaoshoushujus extends Component {
         }
         purchanseOne(data).then(res=>{
             this.setState({
-                userData: res.data.user
+                userData: res.data.supplier
             })
         })
     }
@@ -38,6 +38,7 @@ class WatchXiaoshoushujus extends Component {
     }
     onChange(date, dateString) {
         console.log(date, dateString);
+        
     }
     render() {
         const formItemLayout = {
@@ -59,25 +60,25 @@ class WatchXiaoshoushujus extends Component {
                                                 <Row>
                                                     <Col md={24}>
                                                         <FormItem label="公司名称" colon={false}>
-                                                            <input placeholder="请输入公司名称"  />
+                                                            <input placeholder="请输入公司名称" disabled value={userData.company_name} />
                                                         </FormItem>
                                                         <FormItem label="通道" colon={false}>
-                                                            <input placeholder="请输入通道"  />
+                                                            <input placeholder="请输入通道" disabled value={userData.way} />
                                                         </FormItem>
                                                         <FormItem label="属性" colon={false}>
-                                                            <input placeholder="请输入属性"  />
+                                                            <input placeholder="请输入属性" disabled value={userData.resource} />
                                                         </FormItem>
                                                         <FormItem label="采购价" colon={false}>
-                                                            <input placeholder="请输入采购价"  />
+                                                            <input placeholder="请输入采购价" disabled value={userData.price} />
                                                         </FormItem>
                                                         <FormItem label="数量" colon={false}>
-                                                            <input placeholder="请输入数量"  />
+                                                            <input placeholder="请输入数量" disabled value={userData.num}  />
                                                         </FormItem>
                                                         <FormItem label="总金额" colon={false}>
-                                                            <input placeholder="请输入总金额"  />
+                                                            <input placeholder="请输入总金额" disabled value={userData.total_price} />
                                                         </FormItem>
                                                         <FormItem label="采购日期" colon={false}>
-                                                            <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
+                                                            <DatePicker placeholder="请选择" disabled value={moment(userData.date, 'YYYY/MM/DD')} onChange={this.onChange.bind(this)} />
                                                         </FormItem>
                                                     </Col>
                                                     <Col md={8}>

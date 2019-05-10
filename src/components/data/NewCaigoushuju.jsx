@@ -17,29 +17,19 @@ const TabPane = Tabs.TabPane;
 const { TextArea } = Input;
 class NewCaigoushujus extends Component {
     state = {
-        type: '',
-        username: '',
-        position: '',
-        phone: '',
-        user_ext: '',
-        account_name: '',
-        password: '',
-        employment_date: '',
-        user_auth: '',
-        function_auth: '', 
+        company_name: '',
+        way: '',
+        resource: '',
+        price: '',
+        num: '',
+        total_price: '',
+        date: '', 
     };
     onChange(date, dateString) {
         console.log(date, dateString);
         this.setState({
-            employment_date: dateString,
+            date: dateString,
         })
-    }
-
-    onChange2 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            value: e.target.value,
-        });
     }
     goBack() {
         this.props.history.push(`/app/data/caigoushuju`);
@@ -47,28 +37,22 @@ class NewCaigoushujus extends Component {
 
     newUser() {
         const {
-            type,
-            username,
-            position,
-            phone,
-            user_ext,
-            account_name,
-            password,
-            employment_date,
-            user_auth,
-            function_auth, 
+            company_name,
+            way,
+            resource,
+            price,
+            num,
+            total_price,
+            date, 
         } = this.state;
         let data = {
-            type,
-            username,
-            position,
-            phone,
-            user_ext,
-            account_name,
-            password,
-            employment_date,
-            user_auth,
-            function_auth,
+            company_name,
+            way,
+            resource,
+            price,
+            num,
+            total_price,
+            date, 
         }
         purchanseAdd(data).then(res=>{
             if (res.msg === "success") {
@@ -100,22 +84,46 @@ class NewCaigoushujus extends Component {
                                             <Row>
                                                 <Col md={24}>
                                                     <FormItem label="公司名称" colon={false}>
-                                                        <input placeholder="请输入公司名称"  />
+                                                        <input placeholder="请输入公司名称"  onChange={event => {
+                                                            this.setState({
+                                                                company_name: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="通道" colon={false}>
-                                                        <input placeholder="请输入通道"  />
+                                                        <input placeholder="请输入通道"  onChange={event => {
+                                                            this.setState({
+                                                                way: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="属性" colon={false}>
-                                                        <input placeholder="请输入属性"  />
+                                                        <input placeholder="请输入属性"  onChange={event => {
+                                                            this.setState({
+                                                                resource: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="采购价" colon={false}>
-                                                        <input placeholder="请输入采购价"  />
+                                                        <input placeholder="请输入采购价"  onChange={event => {
+                                                            this.setState({
+                                                                price: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="数量" colon={false}>
-                                                        <input placeholder="请输入数量"  />
+                                                        <input placeholder="请输入数量"  onChange={event => {
+                                                            this.setState({
+                                                                num: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="总金额" colon={false}>
-                                                        <input placeholder="请输入总金额"  />
+                                                        <input placeholder="请输入总金额"  onChange={event => {
+                                                            this.setState({
+                                                                total_price: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="采购日期" colon={false}>
                                                         <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />

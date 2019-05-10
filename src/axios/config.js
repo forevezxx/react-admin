@@ -103,12 +103,12 @@ export const CUSTOMER_DATA_UPDATE = SERVER_URL + '/customer-data/update';//更�
 export const CUSTOMER_DATA_EXPORT = SERVER_URL + '/customer-data/export';//导出客户档案信息
 
 //数据管理-采购数据
-export const PURCHANSE_ADD = SERVER_URL + '/purchanse/add';//新增采购数据
-export const PURCHANSE_ALL = SERVER_URL + '/purchanse/all';//查询全部数据
-export const PURCHANSE_SEARCH = SERVER_URL + '/purchanse/search';//查询条件数据
-export const PURCHANSE_ONE = SERVER_URL + '/purchanse/one';//查看单条采购信息
-export const PURCHANSE_UPDATE = SERVER_URL + '/purchanse/update';//更新采购信息
-export const PURCHANSE_EXPORT = SERVER_URL + '/purchanse/export';//导出客户档案信息
+export const PURCHANSE_ADD = SERVER_URL + '/purchase/add';//新增采购数据
+export const PURCHANSE_ALL = SERVER_URL + '/purchase/all';//查询全部数据
+export const PURCHANSE_SEARCH = SERVER_URL + '/purchase/search';//查询条件数据
+export const PURCHANSE_ONE = SERVER_URL + '/purchase/one';//查看单条采购信息
+export const PURCHANSE_UPDATE = SERVER_URL + '/purchase/update';//更新采购信息
+export const PURCHANSE_EXPORT = SERVER_URL + '/purchase/export';//导出客户档案信息
 
 
 //考勤管理

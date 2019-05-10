@@ -17,11 +17,9 @@ class Caigoushujus extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
 
-        principalName: '',
-        companyName: '',
-        contractNum: '',
-        telNum: '',
-        archiver: '',
+        company_name: '',
+        way: '',
+        date: '',
     };
     
     componentDidMount(){
@@ -43,26 +41,26 @@ class Caigoushujus extends Component {
     }
     getDocumentSearch() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+            company_name: this.state.company_name,
+            way: this.state.way,
+            date: this.state.date,
+            })
         }
         purchanseSearch(data).then(res=>{
             this.setState({
-                dataSource: res.data.supplier,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })
     }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+            company_name: this.state.company_name,
+            way: this.state.way,
+            date: this.state.date,
+            })
         }
         purchanseExport(data).then(res => {
             console.log(res);
@@ -93,13 +91,13 @@ class Caigoushujus extends Component {
         console.log(date, dateString);
         console.log(dateString);
         that.setState({
-            checkedTime: dateString
+            date: dateString
         })
     }
     handleSelectChange(value) {
         console.log(value)
         this.setState({
-            principalName: value
+            company_name: value
         });
     }
     NewCaigoushuju() {//新建
@@ -120,36 +118,36 @@ class Caigoushujus extends Component {
 
         const columns = [{
             title: '编号',
-            dataIndex: 'sno_num',
-            key: 'sno_num',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '公司名称',
             dataIndex: 'company_name',
             key: 'company_name',
         }, {
             title: '通道',
-            dataIndex: 'channel',
-            key: 'channel',
+            dataIndex: 'way',
+            key: 'way',
         }, {
             title: '属性',
-            dataIndex: 'props',
-            key: 'props',
+            dataIndex: 'resource',
+            key: 'resource',
         }, {
             title: '采购价',
-            dataIndex: 'caigou_price',
-            key: 'caigou_price',
+            dataIndex: 'price',
+            key: 'price',
         }, {
             title: '数量',
-            dataIndex: 'amount',
-            key: 'amount',
+            dataIndex: 'num',
+            key: 'num',
         }, {
             title: '总金额',
             dataIndex: 'total_price',
             key: 'total_price',
         }, {
             title: '采购日期',
-            dataIndex: 'caigou_date',
-            key: 'caigou_date',
+            dataIndex: 'date',
+            key: 'date',
         }, {
             title: '操作',
             // dataIndex: 'operating',
@@ -184,17 +182,25 @@ class Caigoushujus extends Component {
                                     <Row>
                                         <Col md={6}>
                                             <FormItem label="公司名称" colon={false}>
-                                                <input placeholder="请输入公司名称" />
+                                                <input placeholder="请输入公司名称"  onChange={event => {
+                                                            this.setState({
+                                                                company_name: event.target.value
+                                                            });
+                                                        }} />
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
                                             <FormItem label="通道名称" colon={false}>
-                                                <input placeholder="请输入通道名称" />
+                                                <input placeholder="请输入通道名称"  onChange={event => {
+                                                            this.setState({
+                                                                way: event.target.value
+                                                            });
+                                                        }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={6}>
                                             <FormItem label="采购日期" colon={false}>
-                                                <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
+                                                <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>
