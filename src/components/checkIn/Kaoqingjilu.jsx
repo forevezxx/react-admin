@@ -4,8 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { attendanceAll, attendanceSearch, userAll} from '../../axios';
-import { supplierAll, supplierSearch, supplierExport } from '../../axios';
+import { attendanceAll, attendanceSearch, attendanceExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -30,7 +29,7 @@ class Kaoqingjilus extends Component {
             pageNum: this.state.current - 1,
             pageSize: this.state.pageSize,
         }
-        userAll(data).then(res => {
+        attendanceAll(data).then(res => {
             this.setState({
                 dataSource: res.data.data,
                 count: res.data.count,
@@ -62,7 +61,7 @@ class Kaoqingjilus extends Component {
             telNum: this.state.telNum,
             archiver: this.state.archiver,
         }
-        supplierSearch(data).then(res => {
+        attendanceSearch(data).then(res => {
             this.setState({
                 dataSource: res.data.supplier,
                 count: res.data.count,
@@ -77,7 +76,7 @@ class Kaoqingjilus extends Component {
             telNum: this.state.telNum,
             archiver: this.state.archiver,
         }
-        supplierExport(data).then(res => {
+        attendanceExport(data).then(res => {
             console.log(res);
             if (res.msg === "success") {
                 window.location.href = res.data;

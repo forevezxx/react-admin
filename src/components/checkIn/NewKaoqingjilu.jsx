@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { userAdd } from '../../axios';
+import { attendanceAdd } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -72,7 +72,7 @@ class NewKaoqingjilus extends Component {
             user_auth,
             function_auth,
         }
-        userAdd(data).then(res=>{
+        attendanceAdd(data).then(res=>{
             if (res.msg === "success") {
                 this.props.history.push(`/app/checkIn/kaoqingjilu`);
             }
