@@ -101,8 +101,8 @@ class Xiaoshoushujus extends Component {
         }
         saleDataExport(data).then(res => {
             console.log(res);
-            if(res.msg === "success"){
-                window.location.href = res.data;
+            if(res.status === 0){
+                window.location.href = res.url;
             }
         })
     }
@@ -132,6 +132,7 @@ class Xiaoshoushujus extends Component {
             title: '月度指标',
             dataIndex: 'month_target',
             key: 'month_target',
+            render: (text, record) => record.month_target == 0 ? '未达成' : '已达成'
         }, {
             title: '月度回款金额(元)',
             dataIndex: 'month_repay',
