@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Tabs, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { imprestAll, imprestSearch, userAll, userSearch, supplierExport } from '../../axios';
+import { imprestAll, imprestSearch, imprestExport } from '../../axios';
 import { tuple } from 'antd/lib/_util/type';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -46,12 +46,14 @@ class Beiyongjins extends Component {
     }
     getImprestSearch() {//0 入账 1出账
         let data = {
+            search_json: JSON.stringify({
             inWay: this.state.inWay,
             user: this.state.user,
             checkedTime: this.state.checkedTime,
             type: this.state.type,
+            })
         }
-        userSearch(data).then(res=>{
+        imprestSearch(data).then(res=>{
             this.setState({
                 dataSource: res.data.users,
                 count: res.data.count,
@@ -97,17 +99,17 @@ class Beiyongjins extends Component {
     }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
-            type: this.state.type,
+            search_json: JSON.stringify({
+                inWay: this.state.inWay,
+                user: this.state.user,
+                checkedTime: this.state.checkedTime,
+                type: this.state.type,
+            })
         }
-        supplierExport(data).then(res => {
+        imprestExport(data).then(res => {
             console.log(res);
-            if(res.msg === "success"){
-                window.location.href = res.data;
+            if (res.status === 0) {
+                window.location.href = res.url;
             }
         })
     }

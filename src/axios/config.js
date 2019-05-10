@@ -119,6 +119,8 @@ export const ATTENDANCE_SEARCH = SERVER_URL + '/attendance/search';//搜索
 export const ATTENDANCE_ONE = SERVER_URL + '/attendance/one';//查询单个考勤信息
 export const ATTENDANCE_UPDATE = SERVER_URL + '/attendance/update';//更新考勤信息
 export const ATTENDANCE_EXPORT = SERVER_URL + '/attendance/export';//导出客户档案信息
+export const ATTENDANCE_GET_USERNAME = SERVER_URL + '/attendance/get-username';//获取所有开启的用户信息
+
 //考勤管理-班次管理
 export const BANCI_ADD = SERVER_URL + '/banci/add';//新增班次
 export const BANCI_ALL = SERVER_URL + '/banci/all';//查询班次信息

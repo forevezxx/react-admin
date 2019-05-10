@@ -316,6 +316,11 @@ export const attendanceExport = (data) => post({
     url: config.ATTENDANCE_EXPORT,
     data
 })
+export const attendanceGetUsernameExport = (data) => post({
+    url: config.ATTENDANCE_GET_USERNAME,
+    data
+})
+
 
 
 export const banciAdd = (data) => post({

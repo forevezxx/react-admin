@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { attendanceAdd } from '../../axios';
+import { attendanceAdd, attendanceGetUsernameExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -29,7 +29,30 @@ class NewKaoqingjilus extends Component {
         employment_date: '',
         user_auth: '',
         function_auth: '', 
+        userNameList: [],
     };
+    componentDidMount() {
+        this.attendanceGetUsernameExport();
+    }
+    attendanceGetUsernameExport() {
+        let that = this;
+        attendanceGetUsernameExport().then(res=>{
+            that.setState({
+                users:res.data.users,
+            },()=>{
+                    that.formatUsers(res.data.users);
+            })
+        })
+    }
+    formatUsers(dataList) {
+        let x = [];
+        for ( var i = 0; i<dataList.length; i++){
+            x.push(dataList[i].username);
+        }
+        this.setState({
+            userNameList: x,
+        })
+    }
     onChange(date, dateString) {
         console.log(date, dateString);
         this.setState({
@@ -78,9 +101,10 @@ class NewKaoqingjilus extends Component {
             }
         })
     }
-    handleSelectChangeUserType(value) {
+    handleSelectChange(value) {
+        console.log(value)
         this.setState({
-            type: value
+            position: this.state.users[value].position,
         });
     }
     render() {
@@ -88,6 +112,7 @@ class NewKaoqingjilus extends Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
+        const { userNameList } =  this.state;
         const { getFieldDecorator } = this.props.form;
         return (
             <div className="gutter-example">
@@ -104,17 +129,20 @@ class NewKaoqingjilus extends Component {
                                                     <FormItem label="员工姓名" colon={false}>
                                                         <Select
                                                             placeholder="请选择"
-                                                            onChange={this.handleSelectChange}
-                                                        >
-                                                            <Option value="male">male</Option>
-                                                            <Option value="female">female</Option>
+                                                            onChange={this.handleSelectChange.bind(this)}
+                                                        >   
+                                                            {userNameList.map((item, index)=>{
+                                                                return (
+                                                                    <Option value={index} key={index}>{item}</Option>
+                                                                )
+                                                            })}
                                                         </Select>
                                                     </FormItem>
                                                     <FormItem label="入职时间" colon={false}>
                                                         <input placeholder="请输入公司名称" disabled />
                                                     </FormItem>
                                                     <FormItem label="岗位" colon={false}>
-                                                        <input placeholder="岗位" disabled />
+                                                        <input placeholder="岗位" disabled  value={this.state.position}/>
                                                     </FormItem>
                                                     <FormItem label="部门" colon={false}>
                                                         <input placeholder="部门" disabled />
