@@ -19,9 +19,9 @@ class Beiyongjins extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
 
-        inWay: '',
-        user: '',
-        checkedTime: '',
+        method: '',
+        name: '',
+        time: '',
         type: 1,
         // type: localStorage.getItem('money_type') || 1,
     };
@@ -47,15 +47,15 @@ class Beiyongjins extends Component {
     getImprestSearch() {//0 入账 1出账
         let data = {
             search_json: JSON.stringify({
-            inWay: this.state.inWay,
-            user: this.state.user,
-            checkedTime: this.state.checkedTime,
+            method: this.state.method,
+            name: this.state.name,
+            time: this.state.time,
             type: this.state.type,
             })
         }
         imprestSearch(data).then(res=>{
             this.setState({
-                dataSource: res.data.users,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })
@@ -88,21 +88,21 @@ class Beiyongjins extends Component {
         console.log(date, dateString);
         console.log(dateString);
         that.setState({
-            checkedTime: dateString
+            time: dateString
         })
     }
     handleSelectChange(value) {
         console.log(value)
         this.setState({
-            inWay: value
+            method: value
         });
     }
     supplierExport() {
         let data = {
             search_json: JSON.stringify({
-                inWay: this.state.inWay,
-                user: this.state.user,
-                checkedTime: this.state.checkedTime,
+                method: this.state.method,
+                name: this.state.name,
+                time: this.state.time,
                 type: this.state.type,
             })
         }
@@ -214,7 +214,7 @@ class Beiyongjins extends Component {
                                                     <FormItem label="入账方式" colon={false}>
                                                     <input placeholder="请输入入账方式" onChange={event=>{
                                                         this.setState({
-                                                            inWay: event.target.value
+                                                            method: event.target.value
                                                         });
                                                     }}/>
                                                     </FormItem>
@@ -223,7 +223,7 @@ class Beiyongjins extends Component {
                                                     <FormItem label="入账人" colon={false}>
                                                         <input placeholder="请输入入账人" onChange={event=>{
                                                             this.setState({
-                                                                user: event.target.value
+                                                                name: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
@@ -269,7 +269,7 @@ class Beiyongjins extends Component {
                                                     <FormItem label="出账人" colon={false}>
                                                         <input placeholder="请输入出账人" onChange={event=>{
                                                     this.setState({
-                                                        user: event.target.value
+                                                        name: event.target.value
                                                       });
                                                 }}/>
                                                     </FormItem>

@@ -20,12 +20,12 @@ class NewInPays extends Component {
         name: '',
         method: '',
         money: '',
-        employment_date: '',
+        time: '',
     };
     onChange(date, dateString) {
         console.log(date, dateString);
         this.setState({
-            employment_date: dateString,
+            time: dateString,
         })
     }
 
@@ -40,13 +40,13 @@ class NewInPays extends Component {
             name,
             method,
             money,
-            employment_date,
+            time,
         } = this.state;
         let data = {
             name,
             method,
             money,
-            employment_date,
+            time,
             type: 1,
         }
         imprestAdd(data).then(res=>{

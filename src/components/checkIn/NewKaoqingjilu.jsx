@@ -7,6 +7,7 @@ import {
     Select, Row, Col, Checkbox, Button,
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
+import moment from 'moment';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { attendanceAdd, attendanceGetUsernameExport } from '../../axios';
 const FormItem = Form.Item;
@@ -105,6 +106,8 @@ class NewKaoqingjilus extends Component {
         console.log(value)
         this.setState({
             position: this.state.users[value].position,
+            employment_date: this.state.users[value].employment_date,
+            position: this.state.users[value].position,
         });
     }
     render() {
@@ -139,13 +142,13 @@ class NewKaoqingjilus extends Component {
                                                         </Select>
                                                     </FormItem>
                                                     <FormItem label="入职时间" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled />
+                                                        <input placeholder="请输入入职时间" disabled value={this.state.employment_date != "" ? moment(Number(this.state.employment_date) * 1000).format('YYYY-MM-DD'):" "} />
                                                     </FormItem>
                                                     <FormItem label="岗位" colon={false}>
-                                                        <input placeholder="岗位" disabled  value={this.state.position}/>
+                                                        <input placeholder="岗位" disabled value={this.state.position != "" ? this.state.position: " "} />
                                                     </FormItem>
                                                     <FormItem label="部门" colon={false}>
-                                                        <input placeholder="部门" disabled />
+                                                        <input placeholder="部门" disabled value={this.state.position != "" ? this.state.position : " "}/>
                                                     </FormItem>
                                                     <FormItem label="考勤日期" colon={false}>
                                                         <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
