@@ -52,6 +52,7 @@ class NewIns extends Component {
             total: '1000',
         }],
         visible: false,
+        resource_id: '1',
     };
 
     onChange(date, dateString) {

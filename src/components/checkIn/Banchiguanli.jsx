@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Tabs, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import { banciAdd, banciAll, banciSearch, banciOne, banciUpdate, banciExport } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const TabPane = Tabs.TabPane;
