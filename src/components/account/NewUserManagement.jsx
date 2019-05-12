@@ -94,8 +94,8 @@ class UserManagements extends Component {
             account_name,
             password,
             employment_date,
-            user_auth: '123456',
-            function_auth: '123456',
+            user_auth: '1,2,3,4,5,6',
+            function_auth: '1,2,3,4,5,6',
         }
         userAdd(data).then(res=>{
             if (res.msg === "success") {

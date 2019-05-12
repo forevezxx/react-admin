@@ -20,7 +20,7 @@ class NewKaoqingjilus extends Component {
     state = {
         value: 1,
         values: 1,
-        type: '',
+        type: "0",
         username: '',
         position: '',
         phone: '',
@@ -57,44 +57,40 @@ class NewKaoqingjilus extends Component {
     onChange(date, dateString) {
         console.log(date, dateString);
         this.setState({
-            employment_date: dateString,
+            date: dateString,
         })
     }
-
-    onChange2 = (e) => {
+    onChange1 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value: e.target.value,
+            type: e.target.value,
         });
     }
     goBack() {
         this.props.history.push(`/app/checkIn/kaoqingjilu`);
     }
 
+    
     newUser() {
         const {
-            type,
-            username,
+            user_id,
+            name,
             position,
-            phone,
-            user_ext,
-            account_name,
-            password,
-            employment_date,
-            user_auth,
-            function_auth, 
+            department,
+            join_time,
+            date,
+            type,
+            day,
         } = this.state;
         let data = {
-            type,
-            username,
+            user_id,
+            name,
             position,
-            phone,
-            user_ext,
-            account_name,
-            password,
-            employment_date,
-            user_auth,
-            function_auth,
+            department,
+            join_time,
+            date,
+            type,
+            day,
         }
         attendanceAdd(data).then(res=>{
             if (res.msg === "success") {
@@ -105,9 +101,11 @@ class NewKaoqingjilus extends Component {
     handleSelectChange(value) {
         console.log(value)
         this.setState({
+            user_id: this.state.users[value].id,
+            name: this.state.users[value].username,
             position: this.state.users[value].position,
-            employment_date: this.state.users[value].employment_date,
-            position: this.state.users[value].position,
+            join_time: this.state.users[value].employment_date,
+            department: this.state.users[value].department,
         });
     }
     render() {
@@ -148,38 +146,38 @@ class NewKaoqingjilus extends Component {
                                                         <input placeholder="岗位" disabled value={this.state.position != "" ? this.state.position: " "} />
                                                     </FormItem>
                                                     <FormItem label="部门" colon={false}>
-                                                        <input placeholder="部门" disabled value={this.state.position != "" ? this.state.position : " "}/>
+                                                        <input placeholder="部门" disabled value={this.state.department != "" ? this.state.department : " "}/>
                                                     </FormItem>
                                                     <FormItem label="考勤日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                     <FormItem label="考勤状态" colon={false}>
-                                                        <RadioGroup name="radiogroup" defaultValue={1}>
+                                                        <RadioGroup name="radiogroup" defaultValue={this.state.type} onChange={this.onChange1}>
                                                             <Row>
-                                                                <Col><Radio value={1}>正常</Radio></Col>
-                                                                <Col><Radio value={2}>迟到</Radio></Col>
-                                                                <Col><Radio value={3}>早退</Radio></Col>
+                                                                <Col><Radio value="0">正常</Radio></Col>
+                                                                <Col><Radio value="1">迟到</Radio></Col>
+                                                                <Col><Radio value="2">早退</Radio></Col>
                                                                 <Col>
                                                                     <div className="miss-day">
-                                                                        <Radio value={4}>事假</Radio>                                                                    
+                                                                        <Radio value="3">事假</Radio>                                                                    
                                                                         <input /><span className="miss-day-span">天</span>
                                                                     </div>                                                                    
                                                                 </Col>
                                                                 <Col>
                                                                     <div className="miss-day">
-                                                                        <Radio value={5}>病假</Radio>                                                                    
+                                                                        <Radio value="4">病假</Radio>                                                                    
                                                                         <input /><span className="miss-day-span">天</span>
                                                                     </div>                                                                    
                                                                 </Col>
                                                                 <Col>
                                                                     <div className="miss-day">
-                                                                        <Radio value={6}>丧假</Radio>                                                                    
+                                                                        <Radio value="5">丧假</Radio>                                                                    
                                                                         <input /><span className="miss-day-span">天</span>
                                                                     </div>                                                                    
                                                                 </Col>
                                                                 <Col>
                                                                     <div className="miss-day">
-                                                                        <Radio value={7}>旷工</Radio>                                                                    
+                                                                        <Radio value="6">旷工</Radio>                                                                    
                                                                         <input /><span className="miss-day-span">天</span>
                                                                     </div>                                                                    
                                                                 </Col>

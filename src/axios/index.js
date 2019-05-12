@@ -85,6 +85,27 @@ export const supplierPayRecordExport = (data) => post({
     data
 })
 
+export const resourceAdd = (data) => post({
+    url: config.RESOURCE_ADD,
+    data
+})
+export const resourceAll = (data) => post({
+    url: config.RESOURCE_ALL,
+    data
+})
+export const resourceSearch = (data) => post({
+    url: config.RESOURCE_SEARCH,
+    data
+})
+export const resourceOne = (data) => post({
+    url: config.RESOURCE_ONE,
+    data
+})
+export const resourceUpdate = (data) => post({
+    url: config.RESOURCE_UPDATE,
+    data
+})
+
 export const clientAdd = (data) => post({
     url: config.CLIENT_ADD,
     data

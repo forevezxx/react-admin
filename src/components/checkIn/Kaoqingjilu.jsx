@@ -21,6 +21,12 @@ class Kaoqingjilus extends Component {
     componentDidMount() {
         this.attendanceAll();
     }
+    onChange(date, dateString) {
+        console.log(date, dateString);
+        this.setState({
+            attendance_date: dateString,
+        })
+    }
     newkaoqingjilu() {//新建
         this.props.history.push('/app/checkIn/newkaoqingjilu');
     }
@@ -55,31 +61,33 @@ class Kaoqingjilus extends Component {
     }
     getDocumentSearch() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+            name: this.state.name,
+            position: this.state.position,
+            department: this.state.department,
+                attendance_date: this.state.attendance_date,
+            })
         }
         attendanceSearch(data).then(res => {
             this.setState({
-                dataSource: res.data.supplier,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })
     }
     supplierExport() {
         let data = {
-            principalName: this.state.principalName,
-            companyName: this.state.companyName,
-            contractNum: this.state.contractNum,
-            telNum: this.state.telNum,
-            archiver: this.state.archiver,
+            search_json: JSON.stringify({
+            name: this.state.name,
+            position: this.state.position,
+            department: this.state.department,
+            attendance_date: this.state.attendance_date,
+            })
         }
         attendanceExport(data).then(res => {
             console.log(res);
-            if (res.msg === "success") {
-                window.location.href = res.data;
+            if (res.status === 0) {
+                window.location.href = res.url;
             }
         })
     }
@@ -102,56 +110,56 @@ class Kaoqingjilus extends Component {
         };
         const columns = [{
             title: '编号',
-            dataIndex: 'userId',
-            key: 'userId',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '员工姓名',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'name',
+            key: 'name',
         }, {
             title: '岗位',
-            dataIndex: 'userType',
-            key: 'userType',
-        }, {
-            title: '部门',
-            dataIndex: 'stuffName',
-            key: 'stuffName',
-        }, {
-            title: '入职时间',
             dataIndex: 'position',
             key: 'position',
         }, {
+            title: '部门',
+            dataIndex: 'department',
+            key: 'department',
+        }, {
+            title: '入职时间',
+            dataIndex: 'join_date',
+            key: 'join_date',
+        }, {
             title: '考勤日期',
-            dataIndex: 'telNum',
-            key: 'telNum',
+            dataIndex: 'attendance_date',
+            key: 'attendance_date',
         }, {
             title: '出勤天数',
-            dataIndex: 'jobNum',
-            key: 'jobNum',
+            dataIndex: 'on_days',
+            key: 'on_days',
         }, {
             title: '旷工天数',
-            dataIndex: 'accountName',
-            key: 'accountName',
+            dataIndex: 'miss_days',
+            key: 'miss_days',
         }, {
             title: '迟到天数',
-            dataIndex: 'chidaotianshu',
-            key: 'chidaotianshu',
+            dataIndex: 'late_days',
+            key: 'late_days',
         }, {
             title: '早退天数',
-            dataIndex: 'entryTime',
-            key: 'entryTime',
+            dataIndex: 'early_leave_days',
+            key: 'early_leave_days',
         }, {
             title: '事假天数',
-            dataIndex: 'shijiatianshu',
-            key: 'shijiatianshu',
+            dataIndex: 'shi_jia_days',
+            key: 'shi_jia_days',
         }, {
             title: '病假天数',
-            dataIndex: 'binjiatianshu',
-            key: 'binjiatianshu',
+            dataIndex: 'ill_days',
+            key: 'ill_days',
         }, {
             title: '缺勤天数',
-            dataIndex: 'queqintianshu',
-            key: 'queqintianshu',
+            dataIndex: 'absence_days',
+            key: 'absence_days',
         }];
         return (
             <div className="gutter-example">
@@ -165,24 +173,36 @@ class Kaoqingjilus extends Component {
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="员工姓名" colon={false}>
-                                                <input placeholder="请输入员工姓名" />
+                                                <input placeholder="请输入员工姓名" onChange={event => {
+                                                    this.setState({
+                                                        name: event.target.value
+                                                    });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="岗位" colon={false}>
-                                                <input placeholder="请输入员工所在岗位" />
+                                                <input placeholder="请输入员工所在岗位" onChange={event => {
+                                                    this.setState({
+                                                        position: event.target.value
+                                                    });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="部门" colon={false}>
-                                                <input placeholder="请输入员工所在部门" />
+                                                <input placeholder="请输入员工所在部门" onChange={event => {
+                                                    this.setState({
+                                                        department: event.target.value
+                                                    });
+                                                }}/>
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="考勤日期" colon={false}>
-                                                <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
+                                                <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
                                         <Col md={2}>

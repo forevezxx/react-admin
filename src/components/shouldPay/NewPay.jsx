@@ -9,7 +9,7 @@ import {
     Modal,
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierPayRecordAdd } from '../../axios';
+import { supplierPayRecordAdd, resourceAdd, resourceAll, resourceSearch, resourceOne, resourceUpdate } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -57,6 +57,23 @@ class NewPays extends Component {
         }],
         visible: false,
     };
+//     pay_record_id
+// pay_record_type
+// resource_attribute
+// pay_method
+// yd_count
+// lt1_count
+// lt2_count
+// dx_count
+// yd_money
+// lt1_money
+// lt2_money
+// dx_money
+// yd_cost
+// lt1_cost
+// lt2_cost
+// dx_cost
+// total
     onChange(date, dateString) {
         console.log(date, dateString);
         this.setState({
