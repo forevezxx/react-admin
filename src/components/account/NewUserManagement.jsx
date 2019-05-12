@@ -25,8 +25,9 @@ class UserManagements extends Component {
         account_name: '',
         password: '',
         employment_date: '',
-        user_auth: '',
-        function_auth: '', 
+        user_auth: [], //用户权限 (1 应付管理 2应收管理 3 出纳管理 4 数据管理 5考勤管理 6账户管理)
+        function_auth: [], //功能权限 1: 查看权限 2编辑权限 3:保存权限 4新增权限 5 查询权限 6 停用权限
+        department: '',//部门
     };
     onChange(date, dateString) {
         console.log(date, dateString);
@@ -34,12 +35,36 @@ class UserManagements extends Component {
             employment_date: dateString,
         })
     }
+    userAuth(e) {
+        console.log('checked = ', e.target.value);
+        let arr = this.state.user_auth;
+        let index = arr.indexOf(e.target.value);
+        if (index>-1){
+            arr.splice(index,1);
+        }else{
+            arr.push(e.target.value);
+        }
+        // this.setState({
+        //     user_auth: arr,
+        // },()=>{
+        //     console.log(this.state.user_auth)
+        // });
+    }
 
-    onChange2 = (e) => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            value: e.target.value,
-        });
+    functionAuth(e) {
+        console.log('checked = ', e.target.value);
+        let arr = this.state.function_auth;
+        let index = arr.indexOf(e.target.value);
+        if (index > -1) {
+            arr.splice(index, 1);
+        } else {
+            arr.push(e.target.value);
+        }
+        // this.setState({
+        //     function_auth: arr,
+        // }, () => {
+        //     console.log(this.state.function_auth)
+        // });
     }
     goBack() {
         this.props.history.push(`/app/account/userManagement`);
@@ -49,6 +74,7 @@ class UserManagements extends Component {
         const {
             type,
             username,
+            department,
             position,
             phone,
             user_ext,
@@ -61,14 +87,15 @@ class UserManagements extends Component {
         let data = {
             type,
             username,
+            department,
             position,
             phone,
             user_ext,
             account_name,
             password,
             employment_date,
-            user_auth,
-            function_auth,
+            user_auth: '123456',
+            function_auth: '123456',
         }
         userAdd(data).then(res=>{
             if (res.msg === "success") {
@@ -118,6 +145,14 @@ class UserManagements extends Component {
                                                             });
                                                         }}/>
                                                     </FormItem>
+                                                    
+                                                    <FormItem label="部门" colon={false}>
+                                                        <input placeholder="请输入部门" onChange={event => {
+                                                            this.setState({
+                                                                department: event.target.value
+                                                            });
+                                                        }} />
+                                                    </FormItem>
                                                     <FormItem label="职位" colon={false}>
                                                         <input placeholder="请输入职位" onChange={event => {
                                                             this.setState({
@@ -159,16 +194,19 @@ class UserManagements extends Component {
                                                     <FormItem label="权限模块" colon={false}>
                                                         <Row>
                                                             <Col span={24}><div className="user_auth">用户权限</div></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="1">档案管理</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="2">用户管理</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="3">数据管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="1">档案管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="2">用户管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="3">数据管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="4">数据管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="5">数据管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="6">数据管理</Checkbox></Col>
                                                             <Col span={24}><div className="function_auth">功能权限</div></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="1">查看权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="2">编辑权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="3">保存权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="4">新增权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="5">查询权限</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.onChange2.bind(this)} value="6">停用权限</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.functionAuth.bind(this)} value="1">查看权限</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.functionAuth.bind(this)} value="2">编辑权限</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.functionAuth.bind(this)} value="3">保存权限</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.functionAuth.bind(this)} value="4">新增权限</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.functionAuth.bind(this)} value="5">查询权限</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.functionAuth.bind(this)} value="6">停用权限</Checkbox></Col>
                                                         </Row>
                                                     </FormItem>
                                                 </Col>
