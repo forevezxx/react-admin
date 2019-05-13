@@ -8,6 +8,7 @@ import { Card, Form, Input, Tooltip, Icon, Cascader,
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { clientPayRecordOne, clientPayRecordUpdate } from '../../axios';
+import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -16,26 +17,43 @@ const { TextArea } = Input;
 
 class EditUserFiless extends Component {
     state = {
-        id: '',
-        company_type: '',
-        company_name: '',
-        company_owner: '',
-        position: '',
-        industry: '',
-        email: '',
-        address: '',
-        tel: '',
-        phone: '',
-        company_pic: '',
-        contract_num: '',
-        source: '',
-        maker: '',
-        make_time: '',
-        last_follow: '',
-        value1: 1,
-        value2: 1,
-        value3: 1,
-        value4: 1,
+        client_id: '',
+        client_name: '',
+        total_count: '',
+        receivables_entity: '',
+        receivables_account: '',
+        pay_method: 1,
+        receivables_status: 1,
+        receivables_date: '',
+        receivables_type: 1,
+        invoice_status: 1,
+        invoice_head: '',
+        org_code: '',
+        invoice_content: '',
+        open_bank: '',
+        invoice_type: 1,
+        mail_addr: '',
+        invoice_date: '',
+        dataSource: [
+            // id: 1,
+            // resource_pro: '电信营销',
+            // pay_method: '月结',
+            // yidong: '1',
+            // liantong1: '1',
+            // liantong2: '1',
+            // dianxing: '1',
+            // yidong_price: '0.026',
+            // liantong1_price: '0.026',
+            // liantong2_price: '0.026',
+            // dianxing_price: '0.026',
+            // yidong_cost: '0.026',
+            // liantong_cost: '0.026',
+            // dianxing_cost: '0.026',
+            // total: '1000',
+        ],
+        visible: false,
+        resource_id: '1',
+        userNameList: [],
     };
     componentDidMount() {
         this.getSupplierOne(this.props.match.params.id);
@@ -46,47 +64,49 @@ class EditUserFiless extends Component {
         }
         clientPayRecordOne(data).then(res => {
             this.setState({
-                id: res.data.supplier.id,
-                company_type: res.data.supplier.company_type,
-                company_name: res.data.supplier.company_name,
-                company_owner: res.data.supplier.company_owner,
-                position: res.data.supplier.position,
-                industry: res.data.supplier.industry,
-                email: res.data.supplier.email,
-                address: res.data.supplier.address,
-                tel: res.data.supplier.tel,
-                phone: res.data.supplier.phone,
-                company_pic: res.data.supplier.company_pic,
-                contract_num: res.data.supplier.contract_num,
-                source: res.data.supplier.source,
-                maker: res.data.supplier.maker,
-                make_time: res.data.supplier.make_time,
-                last_follow: res.data.supplier.last_follow,
+                client_id: res.data.supplier.client_id,
+                client_name: res.data.supplier.client_name,
+                resource_id: res.data.supplier.resource_id,
+                total_count: res.data.supplier.total_count,
+                receivables_entity: res.data.supplier.receivables_entity,
+                receivables_account: res.data.supplier.receivables_account,
+                pay_method: res.data.supplier.pay_method,
+                receivables_status: res.data.supplier.receivables_status,
+                receivables_date: res.data.supplier.receivables_date,
+                receivables_type: res.data.supplier.receivables_type,
+                invoice_status: res.data.supplier.invoice_status,
+                invoice_head: res.data.supplier.invoice_head,
+                org_code: res.data.supplier.org_code,
+                invoice_content: res.data.supplier.invoice_content,
+                open_bank: res.data.supplier.open_bank,
+                invoice_type: res.data.supplier.invoice_type,
+                mail_addr: res.data.supplier.mail_addr,
+                invoice_date: res.data.supplier.invoice_date,
             })
         })
     }
     onChange1 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value1: e.target.value,
+            pay_method: e.target.value,
         });
     }
     onChange2 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value2: e.target.value,
+            receivables_status: e.target.value,
         });
     }
     onChange3 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value3: e.target.value,
+            receivables_type: e.target.value,
         });
     }
     onChange4 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value4: e.target.value,
+            invoice_status: e.target.value,
         });
     }
     goBack() {
@@ -94,41 +114,48 @@ class EditUserFiless extends Component {
     }
     supplierUpdate() {
         const {
-            id,
-            company_type,
-            company_name,
-            company_owner,
-            position,
-            industry,
-            email,
-            address,
-            tel,
-            phone,
-            company_pic,
-            contract_num,
-            source,
-            maker,
-            make_time,
-            last_follow,
+            client_id,
+            client_name,
+            resource_id,
+            total_count,
+            receivables_entity,
+            receivables_account,
+            pay_method,
+            receivables_status,
+            receivables_date,
+            receivables_type,
+            invoice_status,
+            invoice_head,
+            org_code,
+            invoice_content,
+            open_bank,
+            invoice_type,
+            mail_addr,
+            invoice_date,
+            orderId
         } = this.state;
         let data = {
             id: this.props.match.params.id,
             update_json: JSON.stringify({
-                company_type,
-                company_name,
-                company_owner,
-                position,
-                industry,
-                email,
-                address,
-                tel,
-                phone,
-                company_pic,
-                contract_num,
-                source,
-                maker,
-                make_time,
-                last_follow,
+                client_id,
+                client_name,
+                resource_id,
+                total_count,
+                receivables_entity,
+                receivables_account,
+                pay_method,
+                receivables_status,
+                receivables_date,
+                receivables_type,
+                invoice_status,
+                invoice_head,
+                org_code,
+                invoice_content,
+                open_bank,
+                invoice_type,
+                mail_addr,
+                invoice_date,
+                orderId
             }),
             token: localStorage.getItem('user_token'),
         };
@@ -162,7 +189,7 @@ class EditUserFiless extends Component {
         console.log(e);
         let that = this;
         let dataSource = {
-            id: that.state.dataSource[that.state.dataSource.length-1].id + 1,
+            // id: that.state.dataSource[that.state.dataSource.length-1].id + 1,
             resource_pro: that.state.resource_pro,
             pay_method: that.state.pay_method,
             yidong: that.state.yidong,
@@ -192,12 +219,40 @@ class EditUserFiless extends Component {
             visible: false,
         });
     }
+    handleSelectChange(value) {
+        console.log(value)
+        this.setState({
+            client_name: this.state.users[value].name,
+        }, () => {
+            console.log(this.state.client_name)
+        });
+    }
     render() {
+        const { dataSource, count, userNameList,
+            client_id,
+            client_name,
+            resource_id,
+            total_count,
+            receivables_entity,
+            receivables_account,
+            pay_method,
+            receivables_status,
+            receivables_date,
+            receivables_type,
+            invoice_status,
+            invoice_head,
+            org_code,
+            invoice_content,
+            open_bank,
+            invoice_type,
+            mail_addr,
+            invoice_date,
+            orderId
+        } = this.state;
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        const { dataSource, count } = this.state;
         const columns = [{
             title: '资源属性',
             dataIndex: 'resource_pro',
@@ -270,16 +325,24 @@ class EditUserFiless extends Component {
                                             <Row>
                                             <Col md={24}>
                                                     <FormItem label="客户名称" colon={false}>
+                                                        {/* <input placeholder="请输入公司名称" value={client_name} /> */}
                                                         <Select
                                                             placeholder="请选择"
                                                             onChange={this.handleSelectChange}
                                                         >
-                                                            <Option value="male">male</Option>
-                                                            <Option value="female">female</Option>
+                                                            {userNameList.map((item, index) => {
+                                                                return (
+                                                                    <Option value={index} key={index}>{item}</Option>
+                                                                )
+                                                            })}
                                                         </Select>
                                                     </FormItem>
                                                     <FormItem label="订单编号" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="NO.123654"/>
+                                                        <input placeholder="请输入公司名称" value={orderId} onChange={event => {
+                                                            this.setState({
+                                                                orderId: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     {/* 资源属性 */}
                                                     <Row gutter={16}>
@@ -407,61 +470,97 @@ class EditUserFiless extends Component {
                                                     </Row>
 
                                                     <FormItem label="合计金额" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="11,000,000" />
+                                                        <input placeholder="请输入公司名称" value={orderId} onChange={event => {
+                                                            this.setState({
+                                                                total_count: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="收款主体" colon={false}>
-                                                        <input placeholder="请输入收款主体" />
+                                                        <input placeholder="请输入收款主体" value={orderId} onChange={event => {
+                                                            this.setState({
+                                                                receivables_entity: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="收款账户" colon={false}>
-                                                        <input placeholder="请输入收款账户" />
+                                                        <input placeholder="请输入收款账户" value={orderId} onChange={event => {
+                                                            this.setState({
+                                                                receivables_account: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="结算方式" colon={false}>
-                                                        <RadioGroup onChange={this.onChange1} value={this.state.value1}>
-                                                            <Radio value={1}>月结</Radio>
-                                                            <Radio value={2}>预付</Radio>
+                                                        <RadioGroup onChange={this.onChange1} value={this.state.pay_method}>
+                                                            <Radio value="1">月结</Radio>
+                                                            <Radio value="2">预付</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="收款状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange2} value={this.state.value2}>
-                                                            <Radio value={1}>已收款</Radio>
-                                                            <Radio value={2}>未收款</Radio>
+                                                        <RadioGroup onChange={this.onChange2} value={this.state.receivables_status}>
+                                                            <Radio value="1">已收款</Radio>
+                                                            <Radio value="2">未收款</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="收款日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" value={moment(receivables_date, 'YYYY/MM/DD')} onChange={()=>this.onChange} />
                                                     </FormItem>
                                                     <FormItem label="收款方式" colon={false}>
-                                                        <RadioGroup onChange={this.onChange3} value={this.state.value3}>
-                                                            <Radio value={1}>已收款</Radio>
-                                                            <Radio value={2}>未收款</Radio>
+                                                        <RadioGroup onChange={this.onChange3} value={this.state.receivables_type}>
+                                                            <Radio value="1">已收款</Radio>
+                                                            <Radio value="2">未收款</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="开票状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange4} value={this.state.value4}>
-                                                            <Radio value={1}>已开票</Radio>
-                                                            <Radio value={2}>未开票</Radio>
+                                                        <RadioGroup onChange={this.onChange4} value={this.state.invoice_status}>
+                                                            <Radio value="1">已开票</Radio>
+                                                            <Radio value="2">未开票</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="开票抬头" colon={false}>
-                                                        <input placeholder="请输入开票抬头" />
+                                                        <input placeholder="请输入开票抬头" value={invoice_head} onChange={event => {
+                                                            this.setState({
+                                                                invoice_head: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="组织机构代码" colon={false}>
-                                                        <input placeholder="请输入组织机构代码" />
+                                                        <input placeholder="请输入组织机构代码" value={org_code} onChange={event => {
+                                                            this.setState({
+                                                                org_code: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="开票内容" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入开票内容"/>
+                                                        <TextArea rows={4} placeholder="请输入开票内容" value={invoice_content} onChange={event => {
+                                                            this.setState({
+                                                                invoice_content: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="开户银行" colon={false}>
-                                                        <input placeholder="请输入开户银行" />
+                                                        <input placeholder="请输入开户银行" value={open_bank} onChange={event => {
+                                                            this.setState({
+                                                                open_bank: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="开票种类" colon={false}>
-                                                        <input placeholder="请输入开票种类" />
+                                                        <input placeholder="请输入开票种类" value={invoice_type} onChange={event => {
+                                                            this.setState({
+                                                                invoice_type: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="邮寄地址" colon={false}>
-                                                        <input placeholder="请输入邮寄地址" />
+                                                        <input placeholder="请输入邮寄地址" value={mail_addr} onChange={event => {
+                                                            this.setState({
+                                                                mail_addr: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="开票日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
+                                                        <DatePicker placeholder="请选择" value={moment(invoice_date, 'YYYY/MM/DD')} onChange={() => this.onChange} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>

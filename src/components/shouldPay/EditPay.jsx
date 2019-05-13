@@ -171,7 +171,7 @@ class EditPays extends Component {
         console.log(e);
         let that = this;
         let dataSource = {
-            id: that.state.dataSource[that.state.dataSource.length - 1].id + 1,
+            // id: that.state.dataSource[that.state.dataSource.length - 1].id + 1,
             pay_record_type: that.state.pay_record_type,
             pay_method: that.state.pay_method,
             yd_count: that.state.yd_count,
