@@ -67,13 +67,10 @@ import WatchUserManagement from './account/WatchUserManagement';
 import EditUserManagement from './account/EditUserManagement';
 
 
-const WysiwygBundle = Loadable({ // 按需加载富文本配置
-    loader: () => import('./ui/Wysiwyg'),
-    loading: Loading,
-});
+
 
 export default {
-    AuthBasic, RouterEnter, WysiwygBundle,
+    AuthBasic, RouterEnter,
     Cssmodule, MapUi, QueryParams,
     
     Document, NewShouldPay, WatchDocument, EditDocument, 
