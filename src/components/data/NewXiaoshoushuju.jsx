@@ -21,7 +21,7 @@ class NewXiaoshoushujus extends Component {
         rank: '',
         date: '1',
         month_repay: '',
-        invoice_status: '0',
+        month_target: '0',
         department: '销售部门',
         employee_time: '20',
         reback_money: '',
@@ -36,7 +36,7 @@ class NewXiaoshoushujus extends Component {
     onChange1 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            invoice_status: e.target.value,
+            month_target: e.target.value,
         });
     }
     goBack() {
@@ -49,7 +49,7 @@ class NewXiaoshoushujus extends Component {
             rank,
             date,
             month_repay,
-            invoice_status,
+            month_target,
             department,
             employee_time,
             reback_money,
@@ -59,7 +59,7 @@ class NewXiaoshoushujus extends Component {
             rank,
             date,
             month_repay,
-            invoice_status,
+            month_target,
             department,
             employee_time,
             reback_money,
@@ -141,8 +141,8 @@ class NewXiaoshoushujus extends Component {
                                                         }}/>
                                                     </FormItem>
                                                     
-                                                    <FormItem label="开票状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange1} value={this.state.invoice_status}>
+                                                    <FormItem label="月度指标" colon={false}>
+                                                        <RadioGroup onChange={this.onChange1} value={this.state.month_target}>
                                                             <Radio value="1">已达成</Radio>
                                                             <Radio value="0">未达成</Radio>
                                                         </RadioGroup>
