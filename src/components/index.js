@@ -7,7 +7,6 @@ import Loading from './widget/Loading';
 import AuthBasic from './auth/Basic';
 import RouterEnter from './auth/RouterEnter';
 import Cssmodule from './cssmodule';
-import MapUi from './ui/map';
 import QueryParams from './extension/QueryParams';
 
 import Document from './shouldPay/Document';
