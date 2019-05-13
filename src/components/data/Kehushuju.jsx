@@ -52,7 +52,7 @@ class Kehushujus extends Component {
         }
         customDataSearch(data).then(res => {
             this.setState({
-                dataSource: res.data.users,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })

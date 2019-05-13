@@ -78,7 +78,8 @@ class NewShouldPays extends Component {
             phone,
             company_pic,
             contract_num,
-            source
+            source,
+            fileList
         } = this.state;
         const token = localStorage.getItem('user_token');
         let data = {
@@ -91,7 +92,7 @@ class NewShouldPays extends Component {
             address,
             tel,
             phone,
-            company_pic,
+            company_pic: fileList,
             contract_num,
             source,
             token
@@ -141,7 +142,19 @@ class NewShouldPays extends Component {
         });
     }
 
-    handleChange = ({ fileList }) => this.setState({ fileList })
+    handleChange = ({ fileList }) => this.setState({ fileList },()=>{
+        let x = [];
+        for ( var i = 0; i <= fileList.length-1; i++){
+            if(fileList[i].status === 'done'){
+                x.push(fileList[i].response.data);
+            }
+        }
+        console.log(x);
+        // this.setState({
+        //     fileList
+        // })
+        console.log(fileList);
+    })
     render() {
         // const uploadButton = (
         //     <div>
