@@ -70,7 +70,7 @@ import EditUserManagement from './account/EditUserManagement';
 
 export default {
     AuthBasic, RouterEnter,
-    Cssmodule, MapUi, QueryParams,
+    Cssmodule, QueryParams,
     
     Document, NewShouldPay, WatchDocument, EditDocument, 
     Pay, WatchPay, EditPay, NewPay,
