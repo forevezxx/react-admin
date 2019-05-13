@@ -161,6 +161,26 @@ export const clientGetData = (data) => post({
     data
 })
 
+export const resourceClientAdd = (data) => post({
+    url: config.RESOURCE_CLIENT_ADD,
+    data
+})
+export const resourceClientAll = (data) => post({
+    url: config.RESOURCE_CLIENT_ALL,
+    data
+})
+export const resourceClientSearch = (data) => post({
+    url: config.RESOURCE_CLIENT_SEARCH,
+    data
+})
+export const resourceClientOne = (data) => post({
+    url: config.RESOURCE_CLIENT_ONE,
+    data
+})
+export const resourceClientUpdate = (data) => post({
+    url: config.RESOURCE_CLIENT_UPDATE,
+    data
+})
 
 export const imprestAdd = (data) => post({
     url: config.IMPREST_ADD,

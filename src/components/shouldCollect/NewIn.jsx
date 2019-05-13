@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio, Modal
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { clientPayRecordAdd, clientGetData } from '../../axios';
+import { clientPayRecordAdd, clientGetData, resourceClientAdd, resourceClientAll, resourceClientSearch, resourceClientOne, resourceClientUpdate  } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -35,21 +35,21 @@ class NewIns extends Component {
         mail_addr: '',
         invoice_date: '',
         dataSource: [{
-            id: '1',
-            resource_pro: '电信营销',
-            pay_method: '月结',
-            yidong: '1',
-            liantong1: '1',
-            liantong2: '1',
-            dianxing: '1',
-            yidong_price: '0.026',
-            liantong1_price: '0.026',
-            liantong2_price: '0.026',
-            dianxing_price: '0.026',
-            yidong_cost: '0.026',
-            liantong_cost: '0.026',
-            dianxing_cost: '0.026',
-            total: '1000',
+            // id: '1',
+            // resource_pro: '电信营销',
+            // pay_method: '月结',
+            // yidong: '1',
+            // liantong1: '1',
+            // liantong2: '1',
+            // dianxing: '1',
+            // yidong_price: '0.026',
+            // liantong1_price: '0.026',
+            // liantong2_price: '0.026',
+            // dianxing_price: '0.026',
+            // yidong_cost: '0.026',
+            // liantong_cost: '0.026',
+            // dianxing_cost: '0.026',
+            // total: '1000',
         }],
         visible: false,
         resource_id: '1',
@@ -79,6 +79,9 @@ class NewIns extends Component {
     }
     onChange(date, dateString) {
         console.log(date, dateString);
+        this.setState({
+            invoice_date: dateString
+        })
     }
     onChange1 = (e) => {
         console.log('radio checked', e.target.value);
@@ -89,19 +92,19 @@ class NewIns extends Component {
     onChange2 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value2: e.target.value,
+            receivables_status: e.target.value,
         });
     }
     onChange3 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value3: e.target.value,
+            receivables_type: e.target.value,
         });
     }
     onChange4 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            value4: e.target.value,
+            invoice_status: e.target.value,
         });
     }
     goBack() {
@@ -199,10 +202,16 @@ class NewIns extends Component {
         let x = that.state.dataSource;
         x.push(dataSource);
         console.log(x);
-        this.setState({
-            visible: false,
-            dataSource: x,
-        });
+        resourceClientAdd(dataSource).then(res => {
+            console.log(res);
+            if (res.msg == "success") {
+                that.setState({
+                    resource_id: res.data.id,
+                    visible: false,
+                    dataSource: x,
+                })
+            }
+        })
     }
 
     handleCancel = (e) => {
@@ -309,7 +318,11 @@ class NewIns extends Component {
                                                         {/* <input placeholder="请输入客户名称" /> */}
                                                     </FormItem>
                                                     <FormItem label="订单编号" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="NO.123654"/>
+                                                        <input placeholder="请输入订单编号" onChange={event => {
+                                                            this.setState({
+                                                                orderId: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     {/* 资源属性 */}
                                                     <Row gutter={16}>
@@ -437,13 +450,25 @@ class NewIns extends Component {
                                                     </Row>
 
                                                     <FormItem label="合计金额" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="11,000,000" />
+                                                        <input placeholder="请输入合计金额" onChange={event => {
+                                                            this.setState({
+                                                                total_count: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="收款主体" colon={false}>
-                                                        <input placeholder="请输入收款主体" />
+                                                        <input placeholder="请输入收款主体" onChange={event => {
+                                                            this.setState({
+                                                                receivables_entity: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="收款账户" colon={false}>
-                                                        <input placeholder="请输入收款账户" />
+                                                        <input placeholder="请输入收款账户" onChange={event => {
+                                                            this.setState({
+                                                                receivables_account: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="结算方式" colon={false}>
                                                         <RadioGroup onChange={this.onChange1} value={this.state.pay_method}>
@@ -467,28 +492,52 @@ class NewIns extends Component {
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="开票状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange4} value={this.state.value4}>
+                                                        <RadioGroup onChange={this.onChange4} value={this.state.invoice_status}>
                                                             <Radio value={1}>已开票</Radio>
                                                             <Radio value={2}>未开票</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="开票抬头" colon={false}>
-                                                        <input placeholder="请输入开票抬头" />
+                                                        <input placeholder="请输入开票抬头" onChange={event => {
+                                                            this.setState({
+                                                                orderId: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="组织机构代码" colon={false}>
-                                                        <input placeholder="请输入组织机构代码" />
+                                                        <input placeholder="请输入组织机构代码" onChange={event => {
+                                                            this.setState({
+                                                                org_code: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="开票内容" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入开票内容"/>
+                                                        <TextArea rows={4} defaultValue="请输入开票内容" onChange={event => {
+                                                            this.setState({
+                                                                invoice_content: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="开户银行" colon={false}>
-                                                        <input placeholder="请输入开户银行" />
+                                                        <input placeholder="请输入开户银行" onChange={event => {
+                                                            this.setState({
+                                                                open_bank: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="开票种类" colon={false}>
-                                                        <input placeholder="请输入开票种类" />
+                                                        <input placeholder="请输入开票种类" onChange={event => {
+                                                            this.setState({
+                                                                invoice_type: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="邮寄地址" colon={false}>
-                                                        <input placeholder="请输入邮寄地址" />
+                                                        <input placeholder="请输入邮寄地址" onChange={event => {
+                                                            this.setState({
+                                                                mail_addr: event.target.value
+                                                            });
+                                                        }}/>
                                                     </FormItem>
                                                     <FormItem label="开票日期" colon={false}>
                                                         <DatePicker placeholder="请选择" onChange={() => this.onChange} />

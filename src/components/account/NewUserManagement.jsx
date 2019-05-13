@@ -44,11 +44,11 @@ class UserManagements extends Component {
         }else{
             arr.push(e.target.value);
         }
-        // this.setState({
-        //     user_auth: arr,
-        // },()=>{
-        //     console.log(this.state.user_auth)
-        // });
+        this.setState({
+            user_auth: arr,
+        },()=>{
+            console.log(this.state.user_auth)
+        });
     }
 
     functionAuth(e) {
@@ -60,11 +60,11 @@ class UserManagements extends Component {
         } else {
             arr.push(e.target.value);
         }
-        // this.setState({
-        //     function_auth: arr,
-        // }, () => {
-        //     console.log(this.state.function_auth)
-        // });
+        this.setState({
+            function_auth: arr,
+        }, () => {
+            console.log(this.state.function_auth)
+        });
     }
     goBack() {
         this.props.history.push(`/app/account/userManagement`);
@@ -94,8 +94,8 @@ class UserManagements extends Component {
             account_name,
             password,
             employment_date,
-            user_auth: '1,2,3,4,5,6',
-            function_auth: '1,2,3,4,5,6',
+            user_auth,
+            function_auth,
         }
         userAdd(data).then(res=>{
             if (res.msg === "success") {

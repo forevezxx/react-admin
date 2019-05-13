@@ -64,7 +64,12 @@ export const CLIENT_PAY_RECORD_UPDATE = SERVER_URL + '/client-pay-record/update'
 export const CLIENT_PAY_RECORD_EXPORT = SERVER_URL + '/client-pay-record/export';//导出客户档案信息
 
 export const CLIENT_GET_DATA = SERVER_URL + '/client/get-data';//获取客户名称
-
+//资源新增
+export const RESOURCE_CLIENT_ADD = SERVER_URL + '/client-resource/add';//新增资源数据
+export const RESOURCE_CLIENT_ALL = SERVER_URL + '/client-resource/all';//查询全部数据
+export const RESOURCE_CLIENT_SEARCH = SERVER_URL + '/client-resource/search';//查询条件数据
+export const RESOURCE_CLIENT_ONE = SERVER_URL + '/client-resource/one';//查看单条资源信息
+export const RESOURCE_CLIENT_UPDATE = SERVER_URL + '/client-resource/update';//更新资源信息
 //出纳管理-备用金管理
 export const IMPREST_ADD = SERVER_URL + '/imprest/add';//新增入账出账数据
 export const IMPREST_ALL = SERVER_URL + '/imprest/all';//查询全部出入帐数据
