@@ -64,8 +64,8 @@ class Gongfeis extends Component {
         }
         publicMoneyExport(data).then(res => {
             console.log(res);
-            if(res.msg === "success"){
-                window.location.href = res.data;
+            if(res.status == "0"){
+                window.location.href = res.url;
             }
         })
     }
