@@ -17,10 +17,10 @@ class Ins extends Component {
         pageSize: 5,//每页显示条数
         current: 1,//当前所在页数
 
-        principalName: '',
-        companyName: '',
-        contractNum: '',
-        telNum: '',
+        orderId: '',
+        id: '',
+        receivables_status: '',
+        invoice_status: '',
         archiver: '',
     };
     
@@ -53,16 +53,15 @@ class Ins extends Component {
     getDocumentSearch() {
         let data = {
             search_json: JSON.stringify({
-                principalName: this.state.principalName,
-                companyName: this.state.companyName,
-                contractNum: this.state.contractNum,
-                telNum: this.state.telNum,
-                archiver: this.state.archiver,
+                orderId: this.state.orderId,
+                id: this.state.id,
+                receivables_status: this.state.receivables_status,
+                invoice_status: this.state.invoice_status,
             })
         }
         clientPayRecordSearch(data).then(res=>{
             this.setState({
-                dataSource: res.data.supplier,
+                dataSource: res.data.data,
                 count: res.data.count,
             })
         })
@@ -70,11 +69,10 @@ class Ins extends Component {
     supplierExport() {
         let data = {
             search_json: JSON.stringify({
-                principalName: this.state.principalName,
-                companyName: this.state.companyName,
-                contractNum: this.state.contractNum,
-                telNum: this.state.telNum,
-                archiver: this.state.archiver,
+                orderId: this.state.orderId,
+                id: this.state.id,
+                receivables_status: this.state.receivables_status,
+                invoice_status: this.state.invoice_status,
             })
         }
         clientPayRecordExport(data).then(res => {
@@ -112,7 +110,13 @@ class Ins extends Component {
     handleSelectChange(value) {
         console.log(value)
         this.setState({
-            principalName: value
+            receivables_status: value
+        });
+    }
+    handleSelectChange2(value) {
+        console.log(value)
+        this.setState({
+            orderId: value
         });
     }
     render() {
@@ -124,12 +128,12 @@ class Ins extends Component {
 
         const columns = [{
             title: '客户订单编号',
-            dataIndex: 'client_id',
-            key: 'client_id',
+            dataIndex: 'id',
+            key: 'id',
         }, {
             title: '客户合同编号',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'orderId',
+            key: 'orderId',
         }, {
             title: '合计金额(元)',
             dataIndex: 'total_count',
@@ -195,12 +199,20 @@ class Ins extends Component {
                                     <Row>
                                         <Col md={8}>
                                             <FormItem label="订单编号" colon={false}>
-                                                <input placeholder="请输入订单编号" />
+                                                <input placeholder="请输入订单编号" onChange={event => {
+                                                    this.setState({
+                                                        id: event.target.value
+                                                    });
+                                                }} />
                                             </FormItem>
                                         </Col>
                                         <Col md={8}>
                                             <FormItem label="合同编号" colon={false}>
-                                                <input placeholder="请输入合同编号" />
+                                                <input placeholder="请输入合同编号" onChange={event => {
+                                                    this.setState({
+                                                        orderId: event.target.value
+                                                    });
+                                                }}  />
                                             </FormItem>
                                         </Col>
                                     </Row>
@@ -209,10 +221,10 @@ class Ins extends Component {
                                             <FormItem label="收款状态" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
+                                                    onChange={this.handleSelectChange.bind(this)}
                                                 >
                                                     <Option value="1">已收款</Option>
-                                                    <Option value="2">待收款</Option>
+                                                    <Option value="2">未收款</Option>
                                                 </Select>
                                             </FormItem>
                                         </Col>
@@ -220,7 +232,7 @@ class Ins extends Component {
                                             <FormItem label="开票状态" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
-                                                    onChange={this.handleSelectChange}
+                                                    onChange={this.handleSelectChange2.bind(this)}
                                                 >
                                                     <Option value="1">已开票</Option>
                                                     <Option value="2">未开票</Option>

@@ -23,19 +23,19 @@ class NewIns extends Component {
         receivables_entity: '',
         receivables_account: '',
         pay_method: 1,
-        receivables_status: '',
+        receivables_status: 1,
         receivables_date: '',
-        receivables_type: '',
-        invoice_status: '',
+        receivables_type: 1,
+        invoice_status: 1,
         invoice_head: '',
         org_code: '',
         invoice_content: '',
         open_bank: '',
-        invoice_type: '',
+        invoice_type: 1,
         mail_addr: '',
         invoice_date: '',
-        dataSource: [{
-            // id: '1',
+        dataSource: [
+            // id: 1,
             // resource_pro: '电信营销',
             // pay_method: '月结',
             // yidong: '1',
@@ -50,7 +50,7 @@ class NewIns extends Component {
             // liantong_cost: '0.026',
             // dianxing_cost: '0.026',
             // total: '1000',
-        }],
+        ],
         visible: false,
         resource_id: '1',
         userNameList: [],
@@ -78,6 +78,12 @@ class NewIns extends Component {
         })
     }
     onChange(date, dateString) {
+        console.log(date, dateString);
+        this.setState({
+            receivables_date: dateString
+        })
+    }
+    onChangeDate(date, dateString) {
         console.log(date, dateString);
         this.setState({
             invoice_date: dateString
@@ -115,6 +121,7 @@ class NewIns extends Component {
         const { 
             client_id,
             client_name,
+            resource_id,
             total_count,
             receivables_entity,
             receivables_account,
@@ -135,6 +142,7 @@ class NewIns extends Component {
         let data = {
             client_id,
             client_name,
+            resource_id,
             total_count,
             receivables_entity,
             receivables_account,
@@ -183,7 +191,7 @@ class NewIns extends Component {
         console.log(e);
         let that = this;
         let dataSource = {
-            id: that.state.dataSource[that.state.dataSource.length-1].id + 1,
+            //id: that.state.dataSource[that.state.dataSource.length-1].id + 1,
             resource_pro: that.state.resource_pro,
             pay_method: that.state.pay_method,
             yidong: that.state.yidong,
@@ -223,9 +231,9 @@ class NewIns extends Component {
     handleSelectChange(value) {
         console.log(value)
         this.setState({
-            name: this.state.users[value].name,
+            client_name: this.state.users[value].name,
         },()=>{
-            console.log(this.state.name)
+                console.log(this.state.client_name)
         });
     }
     render() {
@@ -483,7 +491,7 @@ class NewIns extends Component {
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="收款日期" colon={false}>
-                                                        <DatePicker onChange={()=>this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                     <FormItem label="收款方式" colon={false}>
                                                         <RadioGroup onChange={this.onChange3} value={this.state.receivables_type}>
@@ -500,7 +508,7 @@ class NewIns extends Component {
                                                     <FormItem label="开票抬头" colon={false}>
                                                         <input placeholder="请输入开票抬头" onChange={event => {
                                                             this.setState({
-                                                                orderId: event.target.value
+                                                                invoice_head: event.target.value
                                                             });
                                                         }} />
                                                     </FormItem>
@@ -512,7 +520,7 @@ class NewIns extends Component {
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="开票内容" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入开票内容" onChange={event => {
+                                                        <TextArea rows={4} placeholder="请输入开票内容" onChange={event => {
                                                             this.setState({
                                                                 invoice_content: event.target.value
                                                             });
@@ -540,7 +548,7 @@ class NewIns extends Component {
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="开票日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={() => this.onChange} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChangeDate.bind(this)} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={8}>

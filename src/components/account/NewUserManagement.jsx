@@ -194,12 +194,12 @@ class UserManagements extends Component {
                                                     <FormItem label="权限模块" colon={false}>
                                                         <Row>
                                                             <Col span={24}><div className="user_auth">用户权限</div></Col>
-                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="1">档案管理</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="2">用户管理</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="3">数据管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="1">应付管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="2">应收管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="3">出纳管理</Checkbox></Col>
                                                             <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="4">数据管理</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="5">数据管理</Checkbox></Col>
-                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="6">数据管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="5">考勤管理</Checkbox></Col>
+                                                            <Col span={24}><Checkbox onChange={this.userAuth.bind(this)} value="6">账户管理</Checkbox></Col>
                                                             <Col span={24}><div className="function_auth">功能权限</div></Col>
                                                             <Col span={24}><Checkbox onChange={this.functionAuth.bind(this)} value="1">查看权限</Checkbox></Col>
                                                             <Col span={24}><Checkbox onChange={this.functionAuth.bind(this)} value="2">编辑权限</Checkbox></Col>
