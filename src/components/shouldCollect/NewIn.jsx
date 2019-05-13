@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio, Modal
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { clientPayRecordAdd } from '../../axios';
+import { clientPayRecordAdd, clientGetData } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -53,8 +53,30 @@ class NewIns extends Component {
         }],
         visible: false,
         resource_id: '1',
+        userNameList: [],
     };
-
+    componentDidMount() {
+        this.clientGetData();
+    }
+    clientGetData() {
+        let that = this;
+        clientGetData().then(res => {
+            that.setState({
+                users: res.data,
+            }, () => {
+                    that.formatUsers(res.data);
+            })
+        })
+    }
+    formatUsers(dataList) {
+        let x = [];
+        for (var i = 0; i < dataList.length; i++) {
+            x.push(dataList[i].name);
+        }
+        this.setState({
+            userNameList: x,
+        })
+    }
     onChange(date, dateString) {
         console.log(date, dateString);
     }
@@ -189,8 +211,16 @@ class NewIns extends Component {
             visible: false,
         });
     }
+    handleSelectChange(value) {
+        console.log(value)
+        this.setState({
+            name: this.state.users[value].name,
+        },()=>{
+            console.log(this.state.name)
+        });
+    }
     render() {
-        const { dataSource, count } = this.state;
+        const { dataSource, count, userNameList } = this.state;
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
@@ -268,10 +298,13 @@ class NewIns extends Component {
                                                     <FormItem label="客户名称" colon={false}>
                                                         <Select
                                                             placeholder="请选择"
-                                                            onChange={this.handleSelectChange}
+                                                            onChange={this.handleSelectChange.bind(this)}
                                                         >
-                                                            <Option value="male">male</Option>
-                                                            <Option value="female">female</Option>
+                                                            {userNameList.map((item, index) => {
+                                                                return (
+                                                                    <Option value={index} key={index}>{item}</Option>
+                                                                )
+                                                            })}
                                                         </Select>
                                                         {/* <input placeholder="请输入客户名称" /> */}
                                                     </FormItem>

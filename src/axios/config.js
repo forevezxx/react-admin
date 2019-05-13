@@ -62,6 +62,9 @@ export const CLIENT_PAY_RECORD_SEARCH = SERVER_URL + '/client-pay-record/search'
 export const CLIENT_PAY_RECORD_ONE = SERVER_URL + '/client-pay-record/one';//查看单条应收录入信息
 export const CLIENT_PAY_RECORD_UPDATE = SERVER_URL + '/client-pay-record/update';//更新应收录入信息
 export const CLIENT_PAY_RECORD_EXPORT = SERVER_URL + '/client-pay-record/export';//导出客户档案信息
+
+export const CLIENT_GET_DATA = SERVER_URL + '/client/get-data';//获取客户名称
+
 //出纳管理-备用金管理
 export const IMPREST_ADD = SERVER_URL + '/imprest/add';//新增入账出账数据
 export const IMPREST_ALL = SERVER_URL + '/imprest/all';//查询全部出入帐数据

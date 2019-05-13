@@ -357,7 +357,7 @@ class EditPays extends Component {
                                                         <Col className="gutter-row" md={24} >
                                                             <div className="gutter-box">
                                                                 <Card bordered={false}>
-                                                                    <Table columns={columns} dataSource={resource} rowKey={record => record.id} pagination={false} />
+                                                                    <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={false} />
                                                                     <Button type="dashed" icon="plus-square" onClick={this.showModal}>新增资源属性</Button>
                                                                     <Modal
                                                                         title="新增资源属性"

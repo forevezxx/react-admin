@@ -156,6 +156,12 @@ export const clientPayRecordExport = (data) => post({
     data
 })
 
+export const clientGetData = (data) => post({
+    url: config.CLIENT_GET_DATA,
+    data
+})
+
+
 export const imprestAdd = (data) => post({
     url: config.IMPREST_ADD,
     data

@@ -78,8 +78,7 @@ class NewShouldPays extends Component {
             phone,
             company_pic,
             contract_num,
-            source,
-            fileList
+            source
         } = this.state;
         const token = localStorage.getItem('user_token');
         let data = {
@@ -92,7 +91,7 @@ class NewShouldPays extends Component {
             address,
             tel,
             phone,
-            company_pic: fileList,
+            company_pic,
             contract_num,
             source,
             token
@@ -150,10 +149,9 @@ class NewShouldPays extends Component {
             }
         }
         console.log(x);
-        // this.setState({
-        //     fileList
-        // })
-        console.log(fileList);
+        this.setState({
+            company_pic: x,
+        })
     })
     render() {
         // const uploadButton = (
@@ -166,10 +164,10 @@ class NewShouldPays extends Component {
         
         const { previewVisible, previewImage, fileList } = this.state;
         const uploadButton = (
-        <div>
-            <Icon type="plus" />
-            <div className="ant-upload-text">Upload</div>
-        </div>
+            <div>
+                <Icon type="plus" />
+                <div className="ant-upload-text">Upload</div>
+            </div>
         );
         const formItemLayout = {
             labelCol: { span: 6 },

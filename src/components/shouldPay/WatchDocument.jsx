@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import {
     Card, Form, Input, Tooltip, Icon, Cascader,
     Select, Row, Col, Checkbox, Button,
-    Table, Menu, Tabs, Upload
+    Table, Menu, Tabs, Upload, Modal
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { supplierOne } from '../../axios';
@@ -19,24 +19,79 @@ const TabPane = Tabs.TabPane;
 class WatchDocuments extends Component {
     state = {
         documentData: {},
+        fileList: [
+            // {
+            //     uid: -1,
+            //     name: 'xxx.png',
+            //     status: 'done',
+            //     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+            // }
+        ],
     };
     componentDidMount() {
         this.getSupplierOne(this.props.match.params.id);
     }
     getSupplierOne(id) {
+        let that = this;
         let data = {
             id
         }
         supplierOne(data).then(res => {
-            this.setState({
-                documentData: res.data.supplier
+            that.setState({
+                documentData: res.data.supplier,
+                fileList: that.formartFileList(res.data.supplier.company_pic),
             })
         })
     }
     goBack() {
         this.props.history.push(`/app/shouldPay/document`);
     }
+    formartFileList(fileList) {
+        let imgList = [];
+        fileList.forEach((item, index) => {
+            imgList.push({
+                uid: index,
+                name: 'xxx.png',
+                status: 'done',
+                url: item,
+            });
+        });
+        return imgList
+    }
+
+    handleCancel = () => this.setState({ previewVisible: false })
+
+    handlePreview = (file) => {
+        this.setState({
+            previewImage: file.url || file.thumbUrl,
+            previewVisible: true,
+        });
+    }
+
+    handleChange = ({ fileList }) => this.setState({ fileList }, () => {
+        console.log(fileList);
+        debugger;
+        let x = [];
+        for (var i = 0; i <= fileList.length - 1; i++) {
+            if (fileList[i].status === 'done') {
+                //x.push(fileList[i].response.data);
+                x.push(fileList[i].url);
+            }
+        }
+        console.log(x);
+        this.setState({
+            company_pic: x,
+        })
+    })
     render() {
+        const { previewVisible, previewImage, fileList } = this.state;
+        console.log(fileList)
+        const uploadButton = (
+            <div>
+                <Icon type="plus" />
+                <div className="ant-upload-text">Upload</div>
+            </div>
+        );
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
@@ -83,7 +138,19 @@ class WatchDocuments extends Component {
                                                         <input disabled value={documentData.phone} />
                                                     </FormItem>
                                                     <FormItem label="公司照片" colon={false}>
-                                                        <input disabled value={documentData.company_pic} />
+                                                        {/* <input disabled value={documentData.company_pic} /> */}
+                                                        <Upload
+                                                            action="http://backend.delcache.com/file/upload"
+                                                            listType="picture-card"
+                                                            fileList={fileList}
+                                                            onPreview={this.handlePreview}
+                                                            onChange={this.handleChange}
+                                                        >
+                                                            {fileList.length >= 3 ? null : uploadButton}
+                                                        </Upload>
+                                                        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                            <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                        </Modal>
                                                     </FormItem>
                                                     <FormItem label="合同编号" colon={false}>
                                                         <input disabled value={documentData.contract_num} />
