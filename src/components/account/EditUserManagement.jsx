@@ -3,15 +3,12 @@
  */
 import React, { Component } from 'react';
 import {
-    Card, Form, Input, Tooltip, Icon, Cascader,
-    Select, Row, Col, Checkbox, Button,
-    Table, Menu, Tabs, Upload
+    Card, Form, Row, Col, Checkbox, Button, Tabs
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { userOne, userUpdate } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
-const Option = Select.Option;
 
 const TabPane = Tabs.TabPane;
 
@@ -88,7 +85,7 @@ class EditUserManagements extends Component {
         const { id, type, username, position, phone, user_ext, account_name, password, employment_date } = this.state;
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom first="用户管理" second="编辑用户信息"/>
+                <BreadcrumbCustom first="用户管理" second="编辑用户信息" />
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="编辑用户信息" key="1">
                         <Row>
@@ -99,31 +96,31 @@ class EditUserManagements extends Component {
                                             <Row>
                                                 <Col md={24}>
                                                 <FormItem label="用户id" colon={false}>
-                                                            <input value={id} onChange={event=>{this.setState({id: event.target.value});}}/>
+                                                            <input value={id} onChange={ event=>{this.setState({id: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="用户类别" colon={false}>
                                                             <input value={type} onChange={event=>{this.setState({type: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="员工姓名" colon={false}>
-                                                            <input value={username} onChange={event=>{this.setState({username: event.target.value});}}/>
+                                                            <input value={username} onChange={ event=>{this.setState({username: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="职位" colon={false}>
-                                                            <input value={position} onChange={event=>{this.setState({position: event.target.value});}}/>
+                                                            <input value={position} onChange={ event=>{this.setState({position: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="手机号码" colon={false}>
-                                                            <input value={phone} onChange={event=>{this.setState({phone: event.target.value});}}/>
+                                                            <input value={phone} onChange={ event=>{this.setState({phone: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="工号" colon={false}>
-                                                            <input value={user_ext} onChange={event=>{this.setState({user_ext: event.target.value});}}/>
+                                                            <input value={user_ext} onChange={ event=>{this.setState({user_ext: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="账号名称" colon={false}>
-                                                            <input value={account_name} onChange={event=>{this.setState({account_name: event.target.value});}}/>
+                                                            <input value={account_name} onChange={ event=>{this.setState({account_name: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="账号密码" colon={false}>
-                                                            <input value={password} onChange={event=>{this.setState({password: event.target.value});}}/>
+                                                            <input value={password} onChange={ event=>{this.setState({password: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="入职时间" colon={false}>
-                                                            <input value={moment(Number(employment_date)*1000).format('YYYY-MM-DD')}  onChange={event=>{this.setState({employment_date: event.target.value});}} />
+                                                            <input value={moment(Number(employment_date)*1000).format('YYYY-MM-DD')} onChange={event=>{this.setState({employment_date: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="权限模块" colon={false}>
                                                             <Row>

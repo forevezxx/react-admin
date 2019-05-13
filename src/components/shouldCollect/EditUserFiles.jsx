@@ -2,9 +2,8 @@
  * Created by zhengxinxing on 2019/04/11.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, 
-    Select, Row, Col, Checkbox, Button, 
-    Table, Menu, Tabs, Upload, DatePicker, Radio
+import { Card, Form, 
+    Select, Row, Col, Button, Tabs, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { clientOne, clientUpdate } from '../../axios';
@@ -77,7 +76,6 @@ class EditUserFiless extends Component {
     }
     supplierUpdate() {
         const {
-            id,
             client_number,
             name,
             order_id,

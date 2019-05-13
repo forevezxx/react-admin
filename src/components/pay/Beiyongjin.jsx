@@ -2,12 +2,10 @@
  * Created by zhengxinxing on 2019/04/11.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Tabs, DatePicker } from 'antd';
+import { Card, Form, Icon, Row, Col, Button, Table, Tabs, DatePicker } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { imprestAll, imprestSearch, imprestExport } from '../../axios';
-import { tuple } from 'antd/lib/_util/type';
 const FormItem = Form.Item;
-const Option = Select.Option;
 const TabPane = Tabs.TabPane;
 
 
@@ -216,7 +214,8 @@ class Beiyongjins extends Component {
                                                         this.setState({
                                                             method: event.target.value
                                                         });
-                                                    }}/>
+                                                    }}
+                                                    />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={6}>
@@ -225,11 +224,12 @@ class Beiyongjins extends Component {
                                                             this.setState({
                                                                 name: event.target.value
                                                             });
-                                                        }}/>
+                                                        }}
+                                                        />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={2}>
-                                                    <Button type="primary" htmlType="submit"  onClick={()=> this.getImprestSearch(0)}><Icon type="search" />查询</Button>
+                                                    <Button type="primary" htmlType="submit" onClick={()=> this.getImprestSearch(0)}><Icon type="search" />查询</Button>
                                                 </Col>
                                                 <Col md={2}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.NewInPay()} ><Icon type="plus" />新建</Button>
@@ -247,7 +247,7 @@ class Beiyongjins extends Component {
                             <Col className="gutter-row" md={24} >
                                 <div className="gutter-box">
                                     <Card bordered={false}>
-                                        <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps}/>
+                                        <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps} />
                                     </Card>
                                 </div>
                             </Col>
@@ -267,11 +267,12 @@ class Beiyongjins extends Component {
                                                 </Col>
                                                 <Col md={6}>
                                                     <FormItem label="出账人" colon={false}>
-                                                        <input placeholder="请输入出账人" onChange={event=>{
+                                                        <input placeholder="请输入出账人" onChange={ event=>{
                                                     this.setState({
                                                         name: event.target.value
                                                       });
-                                                }}/>
+                                                }}
+                                                        />
                                                     </FormItem>
                                                 </Col>
                                                 <Col md={2}>
