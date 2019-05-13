@@ -116,7 +116,7 @@ class Ins extends Component {
     handleSelectChange2(value) {
         console.log(value)
         this.setState({
-            orderId: value
+            invoice_status: value
         });
     }
     render() {
