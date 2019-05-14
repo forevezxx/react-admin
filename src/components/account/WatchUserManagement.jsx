@@ -60,7 +60,7 @@ class WatchUserManagements extends Component {
                                         <Card bordered={false}>
                                             <Form {...formItemLayout}>
                                                 <Row>
-                                                    <Col span={8}>
+                                                    <Col span={12}>
                                                         <FormItem label="用户id" colon={false}>
                                                             <input disabled value={userData.id} />
                                                         </FormItem>
@@ -86,7 +86,7 @@ class WatchUserManagements extends Component {
                                                             <input disabled value={userData.password} />
                                                         </FormItem>
                                                         <FormItem label="入职时间" colon={false}>
-                                                            <input disabled value={moment(Number(userData.employment_date)*1000).format('YYYY-MM-DD')} />
+                                                            <input disabled value={userData.employment_date} />
                                                         </FormItem>
                                                         <FormItem label="权限模块" colon={false}>
                                                             <Row>

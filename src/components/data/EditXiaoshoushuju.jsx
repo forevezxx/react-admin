@@ -22,7 +22,7 @@ class EditXiaoshoushujus extends Component {
         rank: '',
         date: '',
         month_repay: '',
-        invoice_status: '0',
+        month_target: '0',
         department: '销售部门',
         employee_time: '',
         reback_money: '',
@@ -46,7 +46,7 @@ class EditXiaoshoushujus extends Component {
                 rank: res.data.supplier.rank,
                 date: res.data.supplier.date,
                 month_repay: res.data.supplier.month_repay,
-                invoice_status: res.data.supplier.invoice_status,
+                month_target: res.data.supplier.month_target,
                 department: res.data.supplier.department,
                 employee_time: res.data.supplier.employee_time,
                 reback_money: res.data.supplier.reback_money,
@@ -62,7 +62,7 @@ class EditXiaoshoushujus extends Component {
             rank,
             date,
             month_repay,
-            invoice_status,
+            month_target,
             department,
             employee_time,
             reback_money
@@ -74,7 +74,7 @@ class EditXiaoshoushujus extends Component {
                 rank,
                 date,
                 month_repay,
-                invoice_status,
+                month_target,
                 department,
                 employee_time,
                 reback_money
@@ -95,7 +95,7 @@ class EditXiaoshoushujus extends Component {
     onChange1 = (e) => {
         console.log('radio checked', e.target.value);
         this.setState({
-            invoice_status: e.target.value,
+            month_target: e.target.value,
         });
     }
     render() {
@@ -108,7 +108,7 @@ class EditXiaoshoushujus extends Component {
             rank,
             date,
             month_repay,
-            invoice_status,
+            month_target,
             department,
             employee_time,
             reback_money
@@ -174,8 +174,8 @@ class EditXiaoshoushujus extends Component {
                                                         }}/>
                                                     </FormItem>
                                                     
-                                                    <FormItem label="开票状态" colon={false}>
-                                                        <RadioGroup onChange={this.onChange1} value={invoice_status}>
+                                                    <FormItem label="月度指标" colon={false}>
+                                                        <RadioGroup onChange={this.onChange1} value={month_target}>
                                                             <Radio value="1">已达成</Radio>
                                                             <Radio value="0">未达成</Radio>
                                                         </RadioGroup>

@@ -125,7 +125,7 @@ class UserManagements extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col span={8}>
+                                                <Col span={12}>
                                                     {/* <FormItem label="用户ID" colon={false}>
                                                         <input placeholder="请输入公司名称" disabled value="11,000,000" />
                                                     </FormItem> */}

@@ -185,7 +185,7 @@ class NewShouldPays extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col span={8}>
+                                                <Col span={12}>
                                                     <FormItem label="公司类型" colon={false}>
                                                         <Select
                                                             placeholder="请选择"

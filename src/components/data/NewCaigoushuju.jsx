@@ -82,7 +82,7 @@ class NewCaigoushujus extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col span={8}>
+                                                <Col span={12}>
                                                     <FormItem label="公司名称" colon={false}>
                                                         <input placeholder="请输入公司名称"  onChange={event => {
                                                             this.setState({

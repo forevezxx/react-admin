@@ -94,7 +94,7 @@ class EditUserManagements extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col span={8}>
+                                                <Col span={12}>
                                                 <FormItem label="用户id" colon={false}>
                                                             <input value={id} onChange={ event=>{this.setState({id: event.target.value});}} />
                                                         </FormItem>
@@ -120,7 +120,8 @@ class EditUserManagements extends Component {
                                                             <input value={password} onChange={ event=>{this.setState({password: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="入职时间" colon={false}>
-                                                            <input value={moment(Number(employment_date)*1000).format('YYYY-MM-DD')} onChange={event=>{this.setState({employment_date: event.target.value});}} />
+                                                            <input value={employment_date} onChange={event=>{this.setState({employment_date: event.target.value});}} />
+                                                            {/* <input value={moment(Number(employment_date)*1000).format('YYYY-MM-DD')} onChange={event=>{this.setState({employment_date: event.target.value});}} /> */}
                                                         </FormItem>
                                                         <FormItem label="权限模块" colon={false}>
                                                             <Row>

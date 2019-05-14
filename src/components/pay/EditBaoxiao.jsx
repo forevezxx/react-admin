@@ -8,6 +8,7 @@ import { Card, Form, Input, Tooltip, Icon, Cascader,
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { baoxiaoOne, baoxiaoUpdate } from '../../axios';
+import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -120,7 +121,7 @@ class EditBaoxiaos extends Component {
                                                         <input placeholder="请输入报销人姓名" value={people} onChange={event => { this.setState({ people: event.target.value }) }}/>
                                                     </FormItem>
                                                     <FormItem label="报销时间" colon={false}>
-                                                        <DatePicker  placeholder="请选择" onChange={this.onChange.bind(this)} />
+                                                        <DatePicker  placeholder="请选择" onChange={this.onChange.bind(this)} value={moment(time,'YYYY/MM/DD')} />
                                                     </FormItem>
 
                                                     <FormItem label="报销金额" colon={false}>

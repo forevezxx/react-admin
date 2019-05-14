@@ -146,7 +146,7 @@ class Kehushujus extends Component {
             // dataIndex: 'operating',
             key: 'operating',
             render: (text, record) => (
-                <span>
+                <span className="operate_a">
                     <a href="javascript:;" className="document_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
                     <a href="javascript:;" className="document_a" onClick={()=>this.EditUserManagement(record.id)}>编辑</a>
                 </span>
@@ -173,7 +173,7 @@ class Kehushujus extends Component {
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col span={6}>
+                                        <Col span={5}>
                                             <FormItem label="客户姓名" colon={false}>
                                                 <input placeholder="请输入客户姓名" onChange={event => {
                                                     this.setState({
@@ -182,7 +182,7 @@ class Kehushujus extends Component {
                                                 }} />
                                             </FormItem>
                                         </Col>
-                                        <Col span={6}>
+                                        <Col span={5}>
                                             <FormItem label="公司名称" colon={false}>
                                                 <input placeholder="请输入公司名称" onChange={event => {
                                                     this.setState({
@@ -197,10 +197,10 @@ class Kehushujus extends Component {
                                             </FormItem>
                                         </Col>
                                         
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getUserSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.newUserManagement()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col span={2}>

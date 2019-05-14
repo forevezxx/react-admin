@@ -86,7 +86,7 @@ class NewKehushujus extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col span={8}>
+                                                <Col span={12}>
                                                 <FormItem label="客户姓名" colon={false}>
                                                         <input placeholder="请输入客户姓名" onChange={event => {
                                                             this.setState({

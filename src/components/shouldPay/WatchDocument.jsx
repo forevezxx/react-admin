@@ -109,7 +109,7 @@ class WatchDocuments extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col span={24}>
+                                                <Col span={12}>
                                                     <FormItem label="公司类型" colon={false}>
                                                         <input disabled value={documentData.company_type == 1 ? '运营商' : '同行公司' } />
                                                     </FormItem>
@@ -168,6 +168,8 @@ class WatchDocuments extends Component {
                                                         <input disabled value={moment(Number(documentData.last_follow) * 1000).format('YYYY-MM-DD')} />
                                                     </FormItem>
                                                 </Col>
+                                            </Row>
+                                            <Row>
                                                 <Col span={8}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                             </Row>

@@ -140,7 +140,7 @@ class NewKaoqingjilus extends Component {
                                                         </Select>
                                                     </FormItem>
                                                     <FormItem label="入职时间" colon={false}>
-                                                        <input placeholder="请输入入职时间" disabled value={this.state.employment_date != "" ? moment(Number(this.state.employment_date) * 1000).format('YYYY-MM-DD'):" "} />
+                                                        <input placeholder="请输入入职时间" disabled value={this.state.join_time} />
                                                     </FormItem>
                                                     <FormItem label="岗位" colon={false}>
                                                         <input placeholder="岗位" disabled value={this.state.position != "" ? this.state.position: " "} />

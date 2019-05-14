@@ -175,7 +175,7 @@ class Documents extends Component {
             // dataIndex: 'operating',
             key: 'operating',
             render: (text, record) => (
-                <span>
+                <span className="operate_a">
                     <a href="javascript:;" className="document_a" onClick={()=>this.WatchDocument(record.id)}>查看</a>
                     <a href="javascript:;" className="document_a" onClick={()=>this.EditDocument(record.id)}>编辑</a>
                 </span>
@@ -249,10 +249,10 @@ class Documents extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.NewShouldPay()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col span={2}>

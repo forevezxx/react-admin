@@ -151,6 +151,7 @@ class Beiyongjins extends Component {
             title: '入账方式',
             dataIndex: 'method',
             key: 'method',
+            // render: (text, record) => record.method == 1 ? '展会' : record.method == 2 ? "广告杂志": "客户转介绍"
         }];
         const columns2 = [{
             title: '编号',
@@ -208,7 +209,7 @@ class Beiyongjins extends Component {
                                                         <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
-                                                <Col span={6}>
+                                                <Col span={5}>
                                                     <FormItem label="入账方式" colon={false}>
                                                     <input placeholder="请输入入账方式" onChange={event=>{
                                                         this.setState({
@@ -218,7 +219,7 @@ class Beiyongjins extends Component {
                                                     />
                                                     </FormItem>
                                                 </Col>
-                                                <Col span={6}>
+                                                <Col span={5}>
                                                     <FormItem label="入账人" colon={false}>
                                                         <input placeholder="请输入入账人" onChange={event=>{
                                                             this.setState({
@@ -228,10 +229,10 @@ class Beiyongjins extends Component {
                                                         />
                                                     </FormItem>
                                                 </Col>
-                                                <Col span={2}>
+                                                <Col span={3}>
                                                     <Button type="primary" htmlType="submit" onClick={()=> this.getImprestSearch(0)}><Icon type="search" />查询</Button>
                                                 </Col>
-                                                <Col span={2}>
+                                                <Col span={3}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.NewInPay()} ><Icon type="plus" />新建</Button>
                                                 </Col>
                                                 <Col span={2}>
@@ -275,10 +276,10 @@ class Beiyongjins extends Component {
                                                         />
                                                     </FormItem>
                                                 </Col>
-                                                <Col span={2}>
+                                                <Col span={3}>
                                                     <Button type="primary" htmlType="submit" onClick={()=> this.getImprestSearch(1)}><Icon type="search" />查询</Button>
                                                 </Col>
-                                                <Col span={2}>
+                                                <Col span={3}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.NewOutPay()}><Icon type="plus" />新建</Button>
                                                 </Col>
                                                 <Col span={2}>

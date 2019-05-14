@@ -153,7 +153,7 @@ class Caigoushujus extends Component {
             // dataIndex: 'operating',
             key: 'operating',
             render: (text, record) => (
-                <span>
+                <span className="operate_a">
                     <a href="javascript:;" className="document_a" onClick={()=>this.WatchCaigoushuju(record.id)}>查看</a>
                     <a href="javascript:;" className="document_a" onClick={()=>this.EditCaigoushuju(record.id)}>编辑</a>
                 </span>
@@ -189,7 +189,7 @@ class Caigoushujus extends Component {
                                                         }} />
                                             </FormItem>
                                         </Col>
-                                        <Col span={6}>
+                                        <Col span={5}>
                                             <FormItem label="通道名称" colon={false}>
                                                 <input placeholder="请输入通道名称"  onChange={event => {
                                                             this.setState({
@@ -198,15 +198,15 @@ class Caigoushujus extends Component {
                                                         }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col span={6}>
+                                        <Col span={5}>
                                             <FormItem label="采购日期" colon={false}>
                                                 <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.NewCaigoushuju()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col span={2}>

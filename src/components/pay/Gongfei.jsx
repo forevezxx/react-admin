@@ -136,6 +136,7 @@ class Gongfeis extends Component {
             title: '费用类型',
             dataIndex: 'type',
             key: 'type',
+            // render: (text, record) => record.type == 1 ? '展会' : record.type == 2 ? "广告杂志": "客户转介绍"
         }, {
             title: '请款用途',
             dataIndex: 'reason',
@@ -157,7 +158,7 @@ class Gongfeis extends Component {
             // dataIndex: 'operating',
             key: 'operating',
             render: (text, record) => (
-                <span>
+                <span className="operate_a">
                     <a href="javascript:;" className="document_a" onClick={()=>this.WatchGongfei(record.id)}>查看</a>
                     <a href="javascript:;" className="document_a" onClick={()=>this.EditGongfei(record.id)}>编辑</a>
                 </span>
@@ -178,20 +179,20 @@ class Gongfeis extends Component {
                                                 <input placeholder="请输入费用类型" onChange={event => { this.setState({ type: event.target.value }) }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col span={6}>
+                                        <Col span={5}>
                                             <FormItem label="公费金额" colon={false}>
                                                 <input placeholder="请输入公费金额" onChange={event => { this.setState({ counts: event.target.value }) }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col span={6}>
+                                        <Col span={5}>
                                             <FormItem label="申请日期" colon={false}>
                                                 <DatePicker onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.newgongfei()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col span={2}>

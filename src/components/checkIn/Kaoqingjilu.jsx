@@ -205,10 +205,10 @@ class Kaoqingjilus extends Component {
                                                 <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.newkaoqingjilu()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col span={2}>

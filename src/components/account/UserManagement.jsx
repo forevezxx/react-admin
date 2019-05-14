@@ -171,13 +171,13 @@ class UserManagements extends Component {
             title: '入职时间',
             dataIndex: 'employment_date',
             key: 'employment_date',
-            render: formatterTime,
+            // render: formatterTime,
         }, {
             title: '操作',
             // dataIndex: 'operating',
             key: 'operating',
             render: (text,record)=>(
-                <span>
+                <span  className="operate_a">
                     <a href="javascript:;"  className="document_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
                     <a href="javascript:;"  className="document_a" onClick={()=>this.EditUserManagement(record.id)}>编辑</a>
                     {record.enabled == 0 ? (
@@ -248,10 +248,10 @@ class UserManagements extends Component {
                                                 }} />
                                             </FormItem>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getUserSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col span={2}>
+                                        <Col span={3}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.newUserManagement()}><Icon type="plus" />新建</Button>
                                         </Col>
                                         <Col span={2}>
