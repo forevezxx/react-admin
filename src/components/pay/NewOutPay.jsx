@@ -75,7 +75,7 @@ class NewOutPays extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col span={8}>
+                                                <Col span={12}>
 
                                                     <FormItem label="备用金总额" colon={false}>
                                                         <input placeholder="请输入公司名称" disabled value="11,000,000" />

@@ -79,7 +79,7 @@ class NewGongfeis extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col span={8}>
+                                                <Col span={12}>
 
                                                     <FormItem label="请款人" colon={false}>
                                                         <input placeholder="请输入请款人姓名" onChange={event => {
