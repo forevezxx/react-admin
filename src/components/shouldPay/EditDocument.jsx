@@ -156,6 +156,24 @@ class EditDocuments extends Component {
             company_pic: x,
         })
     })
+    handleSelectChangeCompanyType(value) {
+        console.log(value)
+        this.setState({
+            company_type: value
+        });
+    }
+    handleSelectChangeIndustry(value) {
+        console.log(value)
+        this.setState({
+            industry: value
+        });
+    }
+    handleSelectChangeSource(value) {
+        console.log(value)
+        this.setState({
+            source: value
+        });
+    }
     render() {
         const { previewVisible, previewImage, fileList } = this.state;
         const uploadButton = (
@@ -200,7 +218,15 @@ class EditDocuments extends Component {
                                             <Row>
                                                 <Col span={24}>
                                                     <FormItem label="公司类型" colon={false}>
-                                                        <input value={company_type == 1 ? '运营商' : '同行公司'} onChange={event => { this.setState({ company_type: event.target.value })}} />
+                                                        <Select
+                                                            placeholder="请选择"
+                                                            onChange={this.handleSelectChangeCompanyType.bind(this)}
+                                                            value={company_type}
+                                                        >
+                                                            <Option value="1">运营商</Option>
+                                                            <Option value="2">同行公司</Option>
+                                                        </Select>
+                                                        {/* <input value={company_type == 1 ? '运营商' : '同行公司'} onChange={event => { this.setState({ company_type: event.target.value })}} /> */}
                                                     </FormItem>
                                                     <FormItem label="公司名称" colon={false}>
                                                         <input value={company_name} onChange={event => { this.setState({ company_name: event.target.value }) }}  />
@@ -212,7 +238,15 @@ class EditDocuments extends Component {
                                                         <input value={position} onChange={event => { this.setState({ position: event.target.value }) }}  />
                                                     </FormItem>
                                                     <FormItem label="所属行业" colon={false}>
-                                                        <input value={industry == 1 ? '金融业' : '游戏业'} onChange={event => { this.setState({ industry: event.target.value }) }}  />
+                                                        {/* <input value={industry == 1 ? '金融业' : '游戏业'} onChange={event => { this.setState({ industry: event.target.value }) }}  /> */}
+                                                        <Select
+                                                            placeholder="请选择"
+                                                            onChange={this.handleSelectChangeIndustry.bind(this)}
+                                                            value={industry}
+                                                        >
+                                                            <Option value="1">金融业</Option>
+                                                            <Option value="2">游戏业</Option>
+                                                        </Select>
                                                     </FormItem>
                                                     <FormItem label="邮箱" colon={false}>
                                                         <input value={email} onChange={event => { this.setState({ email: event.target.value }) }}  />
@@ -244,7 +278,16 @@ class EditDocuments extends Component {
                                                         <input value={contract_num} onChange={event => { this.setState({ contract_num: event.target.value }) }}  />
                                                     </FormItem>
                                                     <FormItem label="来源" colon={false}>
-                                                        <input value={source == 1 ? '展会' : source == 2 ? "广告杂志": "客户转介绍"} onChange={event => { this.setState({ source: event.target.value }) }}  />
+                                                        {/* <input value={source == 1 ? '展会' : source == 2 ? "广告杂志": "客户转介绍"} onChange={event => { this.setState({ source: event.target.value }) }}  /> */}
+                                                        <Select
+                                                            placeholder="请选择"
+                                                            onChange={this.handleSelectChangeSource.bind(this)}
+                                                            value={source}
+                                                        >
+                                                            <Option value="1">展会</Option>
+                                                            <Option value="2">广告杂志</Option>
+                                                            <Option value="3">客户转介绍</Option>
+                                                        </Select>
                                                     </FormItem>
                                                     <FormItem label="建档人" colon={false}>
                                                         <input value={maker} onChange={event => { this.setState({ maker: event.target.value }) }} />

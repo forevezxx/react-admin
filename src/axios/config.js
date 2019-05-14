@@ -32,6 +32,8 @@ export const SUPPLIER_ONE = SERVER_URL + '/supplier/one';
 export const SUPPLIER_UPDATE = SERVER_URL + '/supplier/update';
 export const SUPPLIER_EXPORT = SERVER_URL + '/supplier/export';
 
+export const SUPPLIER_GET_DATA = SERVER_URL + '/supplier/get-data';
+
 //应付管理-应付录入
 export const SUPPLIER_PAY_RECORD_ADD = SERVER_URL + '/supplier-pay-record/add';
 export const SUPPLIER_PAY_RECORD_ALL = SERVER_URL + '/supplier-pay-record/all';

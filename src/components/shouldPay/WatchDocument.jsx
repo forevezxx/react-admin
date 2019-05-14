@@ -70,7 +70,6 @@ class WatchDocuments extends Component {
 
     handleChange = ({ fileList }) => this.setState({ fileList }, () => {
         console.log(fileList);
-        debugger;
         let x = [];
         for (var i = 0; i <= fileList.length - 1; i++) {
             if (fileList[i].status === 'done') {
