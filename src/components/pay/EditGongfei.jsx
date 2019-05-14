@@ -121,7 +121,7 @@ class EditBaoxiaos extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col md={8}>
                                                     <FormItem label="请款人" colon={false}>
                                                         <input placeholder="请输入请款人姓名" value={ask_name} onChange={event => { this.setState({ ask_name: event.target.value }) }}/>
                                                     </FormItem>
@@ -147,9 +147,11 @@ class EditBaoxiaos extends Component {
                                                         <input placeholder="请输入复核人姓名" value={recheck_people} onChange={event => { this.setState({ recheck_people: event.target.value }) }}/>
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}>
+                                            </Row>
+                                            <Row>
+                                                <Col md={4}>
                                                     <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
-                                                <Col md={8}>
+                                                <Col md={4}>
                                                     <Button type="primary" htmlType="submit" onClick={()=>this.supplierUpdate()}>保存</Button></Col>
                                             </Row>
                                         </Form>

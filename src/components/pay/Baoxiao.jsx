@@ -154,8 +154,8 @@ class Baoxiaos extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;" onClick={()=>this.WatchBaoxiao(record.id)}>查看</a>
-                    <a href="javascript:;" onClick={()=>this.EditBaoxiao(record.id)}>编辑</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.WatchBaoxiao(record.id)}>查看</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.EditBaoxiao(record.id)}>编辑</a>
                 </span>
             )
         }];

@@ -86,7 +86,7 @@ class NewKehushujus extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col md={8}>
                                                 <FormItem label="客户姓名" colon={false}>
                                                         <input placeholder="请输入客户姓名" onChange={event => {
                                                             this.setState({
@@ -140,9 +140,11 @@ class NewKehushujus extends Component {
                                                         <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}>
+                                            </Row>
+                                            <Row>
+                                                <Col md={4}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
-                                                <Col md={8}>
+                                                <Col md={4}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.newUser()}>保存</Button></Col>
                                             </Row>
                                         </Form>

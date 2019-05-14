@@ -185,7 +185,7 @@ class NewShouldPays extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col md={8}>
                                                     <FormItem label="公司类型" colon={false}>
                                                         <Select
                                                             placeholder="请选择"
@@ -300,9 +300,11 @@ class NewShouldPays extends Component {
                                                         </Select>
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}>
+                                            </Row>
+                                            <Row>
+                                                <Col md={4}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
-                                                <Col md={8}>
+                                                <Col md={4}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.newSupplier()}>保存</Button></Col>
                                             </Row>
                                         </Form>

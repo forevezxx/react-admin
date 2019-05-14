@@ -126,7 +126,7 @@ class NewKaoqingjilus extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col md={8}>
                                                     <FormItem label="员工姓名" colon={false}>
                                                         <Select
                                                             placeholder="请选择"
@@ -185,6 +185,8 @@ class NewKaoqingjilus extends Component {
                                                         </RadioGroup>
                                                     </FormItem>
                                                 </Col>
+                                            </Row>
+                                            <Row>
                                                 <Col md={8}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                                 <Col md={8}>

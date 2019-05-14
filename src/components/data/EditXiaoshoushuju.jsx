@@ -124,7 +124,7 @@ class EditXiaoshoushujus extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col md={8}>
                                                     <FormItem label="销售员" colon={false}>
                                                         <input placeholder="请输入销售员姓名" value={sales_name} onChange={event => {
                                                             this.setState({
@@ -187,8 +187,10 @@ class EditXiaoshoushujus extends Component {
                                                         <DatePicker placeholder="请选择" value={moment(employee_time, 'YYYY/MM/DD')} onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}><Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
-                                                <Col md={8}><Button type="primary" htmlType="submit" onClick={()=>this.userUpdates()}>保存</Button></Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={4}><Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
+                                                <Col md={4}><Button type="primary" htmlType="submit" onClick={()=>this.userUpdates()}>保存</Button></Col>
                                             </Row>
                                         </Form>
                                     </Card>

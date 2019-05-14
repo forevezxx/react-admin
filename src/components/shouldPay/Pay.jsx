@@ -178,8 +178,8 @@ class Pays extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;" onClick={() => this.WatchPay(record.id)}>查看</a>
-                    <a href="javascript:;" onClick={() => this.EditPay(record.id)}>编辑</a>
+                    <a href="javascript:;" className="document_a" onClick={() => this.WatchPay(record.id)}>查看</a>
+                    <a href="javascript:;" className="document_a" onClick={() => this.EditPay(record.id)}>编辑</a>
                 </span>
             )
         }];
@@ -195,7 +195,7 @@ class Pays extends Component {
             size: "small",
         };
         return (
-            <div className="gutter-example">
+            <div className="gutter-example document">
                 <BreadcrumbCustom first="应付管理" second="应付录入" />
 
                 <Row gutter={0}>
@@ -262,7 +262,7 @@ class Pays extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="gutter-row document_list" md={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps}/>

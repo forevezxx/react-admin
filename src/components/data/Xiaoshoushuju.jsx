@@ -155,8 +155,8 @@ class Xiaoshoushujus extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
-                    <a href="javascript:;" onClick={()=>this.EditUserManagement(record.id)}>编辑</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.EditUserManagement(record.id)}>编辑</a>
                 </span>
             )
         }];

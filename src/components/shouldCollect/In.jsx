@@ -171,8 +171,8 @@ class Ins extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;" onClick={()=>this.WatchIn(record.id)}>查看</a>
-                    <a href="javascript:;" onClick={()=>this.EditIn(record.id)}>编辑</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.WatchIn(record.id)}>查看</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.EditIn(record.id)}>编辑</a>
                 </span>
             )
         }];

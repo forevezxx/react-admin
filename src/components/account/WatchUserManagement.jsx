@@ -60,7 +60,7 @@ class WatchUserManagements extends Component {
                                         <Card bordered={false}>
                                             <Form {...formItemLayout}>
                                                 <Row>
-                                                    <Col md={24}>
+                                                    <Col md={8}>
                                                         <FormItem label="用户id" colon={false}>
                                                             <input disabled value={userData.id} />
                                                         </FormItem>
@@ -104,7 +104,9 @@ class WatchUserManagements extends Component {
                                                             </Row>
                                                         </FormItem>
                                                     </Col>
-                                                    <Col md={8}>
+                                                </Row>
+                                                <Row>
+                                                    <Col md={4}>
                                                         <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
                                                 </Row>
                                             </Form>

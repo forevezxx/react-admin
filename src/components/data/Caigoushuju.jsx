@@ -154,8 +154,8 @@ class Caigoushujus extends Component {
             key: 'operating',
             render: (text, record) => (
                 <span>
-                    <a href="javascript:;" onClick={()=>this.WatchCaigoushuju(record.id)}>查看</a>
-                    <a href="javascript:;" onClick={()=>this.EditCaigoushuju(record.id)}>编辑</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.WatchCaigoushuju(record.id)}>查看</a>
+                    <a href="javascript:;" className="document_a" onClick={()=>this.EditCaigoushuju(record.id)}>编辑</a>
                 </span>
             )
         }];

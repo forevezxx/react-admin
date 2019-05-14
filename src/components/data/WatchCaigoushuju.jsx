@@ -58,7 +58,7 @@ class WatchXiaoshoushujus extends Component {
                                         <Card bordered={false}>
                                             <Form {...formItemLayout}>
                                                 <Row>
-                                                    <Col md={24}>
+                                                    <Col md={8}>
                                                         <FormItem label="公司名称" colon={false}>
                                                             <input placeholder="请输入公司名称" disabled value={userData.company_name} />
                                                         </FormItem>
@@ -81,7 +81,9 @@ class WatchXiaoshoushujus extends Component {
                                                             <DatePicker placeholder="请选择" disabled value={moment(userData.date, 'YYYY/MM/DD')} onChange={this.onChange.bind(this)} />
                                                         </FormItem>
                                                     </Col>
-                                                    <Col md={8}>
+                                                </Row>
+                                                <Row>
+                                                    <Col md={4}>
                                                         <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
                                                 </Row>
                                             </Form>

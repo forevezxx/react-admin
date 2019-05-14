@@ -178,12 +178,12 @@ class UserManagements extends Component {
             key: 'operating',
             render: (text,record)=>(
                 <span>
-                    <a href="javascript:;" className="userManagement_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
-                    <a href="javascript:;" className="userManagement_a" onClick={()=>this.EditUserManagement(record.id)}>编辑</a>
+                    <a href="javascript:;"  className="document_a" onClick={()=>this.WatchUserManagement(record.id)}>查看</a>
+                    <a href="javascript:;"  className="document_a" onClick={()=>this.EditUserManagement(record.id)}>编辑</a>
                     {record.enabled == 0 ? (
-                        <a href="javascript:;" className="userManagement_a stop" onClick={()=>this.enableUser(record.id)}>启用</a>
+                        <a href="javascript:;" className="document_a stop" onClick={()=>this.enableUser(record.id)}>启用</a>
                     ): (
-                        <a href="javascript:;" className="userManagement_a stop" onClick={()=>this.disableUser(record.id)}>停用</a>
+                        <a href="javascript:;" className="document_a stop" onClick={()=>this.disableUser(record.id)}>停用</a>
                     )}
                 </span>
             )

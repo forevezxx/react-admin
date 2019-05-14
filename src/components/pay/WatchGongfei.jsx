@@ -54,7 +54,7 @@ class WatchGongfeis extends Component {
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col md={8}>
                                                     <FormItem label="请款人" colon={false}>
                                                         <input placeholder="请输入请款人姓名" disabled value={documentData.ask_name} />
                                                     </FormItem>
@@ -80,7 +80,9 @@ class WatchGongfeis extends Component {
                                                         <input placeholder="请输入复核人姓名" disabled value={documentData.recheck_people}  />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}>
+                                            </Row>
+                                            <Row>
+                                                <Col md={4}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                             </Row>
                                         </Form>
