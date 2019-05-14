@@ -49,12 +49,12 @@ class WatchXiaoshoushujus extends Component {
                     <Tabs defaultActiveKey="1">
                         <TabPane tab="查看客户数据" key="1">
                             <Row>
-                                <Col className="gutter-row" md={24}>
+                                <Col className="gutter-row" span={24}>
                                     <div className="gutter-box">
                                         <Card bordered={false}>
                                             <Form {...formItemLayout}>
                                                 <Row>
-                                                    <Col md={8}>
+                                                    <Col span={8}>
                                                     <FormItem label="客户姓名" colon={false}>
                                                         <input placeholder="请输入客户姓名" disabled value={userData.customer_name} />
                                                     </FormItem>
@@ -82,7 +82,7 @@ class WatchXiaoshoushujus extends Component {
                                                     </Col>
                                                 </Row>
                                                 <Row>
-                                                    <Col md={4}>
+                                                    <Col span={4}>
                                                         <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
                                                 </Row>
                                             </Form>

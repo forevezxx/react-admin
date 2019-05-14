@@ -104,12 +104,12 @@ class WatchDocuments extends Component {
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="查看供应商档案" key="1">
                         <Row>
-                            <Col className="gutter-row" md={24}>
+                            <Col className="gutter-row" span={24}>
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col span={24}>
                                                     <FormItem label="公司类型" colon={false}>
                                                         <input disabled value={documentData.company_type == 1 ? '运营商' : '同行公司' } />
                                                     </FormItem>
@@ -168,7 +168,7 @@ class WatchDocuments extends Component {
                                                         <input disabled value={moment(Number(documentData.last_follow) * 1000).format('YYYY-MM-DD')} />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}>
+                                                <Col span={8}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                             </Row>
                                         </Form>

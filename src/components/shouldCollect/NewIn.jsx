@@ -306,12 +306,12 @@ class NewIns extends Component {
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="新增应收录入" key="1">
                         <Row>
-                            <Col className="gutter-row" md={24}>
+                            <Col className="gutter-row" span={24}>
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col span={24}>
                                                     <FormItem label="客户名称" colon={false}>
                                                         <Select
                                                             placeholder="请选择"
@@ -334,7 +334,7 @@ class NewIns extends Component {
                                                     </FormItem>
                                                     {/* 资源属性 */}
                                                     <Row gutter={16}>
-                                                        <Col className="gutter-row" md={24} >
+                                                        <Col className="gutter-row" span={24} >
                                                             <div className="gutter-box">
                                                                 <Card bordered={false}>
                                                                     <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={false}/>
@@ -551,9 +551,9 @@ class NewIns extends Component {
                                                         <DatePicker placeholder="请选择" onChange={this.onChangeDate.bind(this)} />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}>
+                                                <Col span={8}>
                                                     <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
-                                                <Col md={8}>
+                                                <Col span={8}>
                                                     <Button type="primary" htmlType="submit" onClick={()=>this.newSupplier()}>保存</Button></Col>
                                             </Row>
                                         </Form>

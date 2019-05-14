@@ -197,12 +197,12 @@ class Documents extends Component {
                 <BreadcrumbCustom first="应付管理" second="档案管理" />
 
                 <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
+                    <Col className="gutter-row" span={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="负责人" colon={false}>
                                                 <input placeholder="请输入负责人姓名" onChange={event=>{
                                                     this.setState({
@@ -211,7 +211,7 @@ class Documents extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="公司名称" colon={false}>
                                                 <input placeholder="请输入公司名称" onChange={event=>{
                                                     this.setState({
@@ -220,7 +220,7 @@ class Documents extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="合同编号" colon={false}>
                                                 <input placeholder="请输入合同编号" onChange={event=>{
                                                     this.setState({
@@ -231,7 +231,7 @@ class Documents extends Component {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="电话号码" colon={false}>
                                                 <input placeholder="请输入电话号码" onChange={event=>{
                                                     this.setState({
@@ -240,7 +240,7 @@ class Documents extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="建档人" colon={false}>
                                                 <input placeholder="请输入建档人" onChange={event=>{
                                                     this.setState({
@@ -249,13 +249,13 @@ class Documents extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.NewShouldPay()}><Icon type="plus" />新建</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
@@ -265,7 +265,7 @@ class Documents extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row document_list" md={24} >
+                    <Col className="gutter-row document_list" span={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps} />

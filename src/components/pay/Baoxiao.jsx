@@ -175,17 +175,17 @@ class Baoxiaos extends Component {
                 <BreadcrumbCustom first="出纳管理" second="报销管理" />
 
                 <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
+                    <Col className="gutter-row" span={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="报销时间" colon={false}>
                                                 <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="报销人" colon={false}>
                                                 <input placeholder="请输入报销人" onChange={event => {
                                                     this.setState({
@@ -194,13 +194,13 @@ class Baoxiaos extends Component {
                                                 }} />
                                             </FormItem>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.newbaoxiao()}><Icon type="plus" />新建</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
@@ -210,7 +210,7 @@ class Baoxiaos extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="gutter-row" span={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps}/>

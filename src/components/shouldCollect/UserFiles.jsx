@@ -195,12 +195,12 @@ class UserFiless extends Component {
                 <BreadcrumbCustom first="应收管理" second="客户档案" />
 
                 <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
+                    <Col className="gutter-row" span={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="客户编号" colon={false}>
                                                 <input placeholder="请输入客户编号"  onChange={event=>{
                                                     this.setState({
@@ -209,7 +209,7 @@ class UserFiless extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="客户名称" colon={false}>
                                                 <input placeholder="请输入客户名称"  onChange={event=>{
                                                     this.setState({
@@ -218,7 +218,7 @@ class UserFiless extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="订单编号" colon={false}>
                                                 <input placeholder="请输入订单编号"  onChange={event=>{
                                                     this.setState({
@@ -229,7 +229,7 @@ class UserFiless extends Component {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="负责人" colon={false}>
                                                 <input placeholder="请输入负责人姓名"  onChange={event=>{
                                                     this.setState({
@@ -238,7 +238,7 @@ class UserFiless extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="联系电话" colon={false}>
                                                 <input placeholder="请输入联系电话"  onChange={event=>{
                                                     this.setState({
@@ -247,13 +247,13 @@ class UserFiless extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.newUserFiles()}><Icon type="plus" />新建</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
@@ -263,7 +263,7 @@ class UserFiless extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="gutter-row" span={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps}/>

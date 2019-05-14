@@ -176,12 +176,12 @@ class Xiaoshoushujus extends Component {
                 <BreadcrumbCustom first="数据管理" second="销售数据" />
 
                 <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
+                    <Col className="gutter-row" span={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="销售员" colon={false}>
                                                 <input placeholder="请输入销售员姓名" onChange={event=>{
                                                     this.setState({
@@ -190,7 +190,7 @@ class Xiaoshoushujus extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="考核月份" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
@@ -211,7 +211,7 @@ class Xiaoshoushujus extends Component {
                                                 </Select>
                                             </FormItem>
                                         </Col>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="月度指标" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
@@ -222,13 +222,13 @@ class Xiaoshoushujus extends Component {
                                                 </Select>
                                             </FormItem>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getUserSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.newUserManagement()}><Icon type="plus" />新建</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
@@ -238,7 +238,7 @@ class Xiaoshoushujus extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="gutter-row" span={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps} />

@@ -180,12 +180,12 @@ class NewShouldPays extends Component {
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="新增供应商档案" key="1">
                         <Row>
-                            <Col className="gutter-row" md={24}>
+                            <Col className="gutter-row" span={24}>
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={8}>
+                                                <Col span={8}>
                                                     <FormItem label="公司类型" colon={false}>
                                                         <Select
                                                             placeholder="请选择"
@@ -302,9 +302,9 @@ class NewShouldPays extends Component {
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Col md={4}>
+                                                <Col span={4}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
-                                                <Col md={4}>
+                                                <Col span={4}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.newSupplier()}>保存</Button></Col>
                                             </Row>
                                         </Form>

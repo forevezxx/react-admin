@@ -51,12 +51,12 @@ class WatchUserFiless extends Component {
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="查看供应商档案" key="1">
                         <Row>
-                            <Col className="gutter-row" md={24}>
+                            <Col className="gutter-row" span={24}>
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col span={24}>
                                                     <FormItem label="客户编号" colon={false}>
                                                         <input placeholder="请输入客户编号" value={data.client_number} />
                                                     </FormItem>
@@ -114,7 +114,7 @@ class WatchUserFiless extends Component {
                                                         <input disabled value="2019.02.28 09:30:56" />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}>
+                                                <Col span={8}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                             </Row>
                                         </Form>

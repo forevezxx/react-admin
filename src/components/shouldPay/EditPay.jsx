@@ -333,12 +333,12 @@ class EditPays extends Component {
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="编辑应付录入" key="1">
                         <Row>
-                            <Col className="gutter-row" md={24}>
+                            <Col className="gutter-row" span={24}>
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col span={24}>
                                                     <FormItem label="供应商名称" colon={false}>
                                                         <input placeholder="请输入供应商名称" value={supplier_name} onChange={event => {
                                                             this.setState({
@@ -354,7 +354,7 @@ class EditPays extends Component {
                                                         }}/>
                                                     </FormItem>
                                                     <Row gutter={16}>
-                                                        <Col className="gutter-row" md={24} >
+                                                        <Col className="gutter-row" span={24} >
                                                             <div className="gutter-box">
                                                                 <Card bordered={false}>
                                                                     <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={false} />
@@ -579,8 +579,8 @@ class EditPays extends Component {
                                                         />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}><Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
-                                                <Col md={8}><Button type="primary" htmlType="submit" onClick={() => this.supplierUpdate()}>保存</Button></Col>
+                                                <Col span={8}><Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
+                                                <Col span={8}><Button type="primary" htmlType="submit" onClick={() => this.supplierUpdate()}>保存</Button></Col>
                                             </Row>
                                         </Form>
                                     </Card>

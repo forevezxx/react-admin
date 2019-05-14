@@ -198,17 +198,17 @@ class Beiyongjins extends Component {
                 <Tabs defaultActiveKey="1" onChange={this.callback.bind(this)}>
                     <TabPane tab="入账管理" key="1">
                         <Row gutter={0}>
-                            <Col className="gutter-row" md={24}>
+                            <Col className="gutter-row" span={24}>
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={6}>
+                                                <Col span={6}>
                                                     <FormItem label="入账时间" colon={false}>
                                                         <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={6}>
+                                                <Col span={6}>
                                                     <FormItem label="入账方式" colon={false}>
                                                     <input placeholder="请输入入账方式" onChange={event=>{
                                                         this.setState({
@@ -218,7 +218,7 @@ class Beiyongjins extends Component {
                                                     />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={6}>
+                                                <Col span={6}>
                                                     <FormItem label="入账人" colon={false}>
                                                         <input placeholder="请输入入账人" onChange={event=>{
                                                             this.setState({
@@ -228,13 +228,13 @@ class Beiyongjins extends Component {
                                                         />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={2}>
+                                                <Col span={2}>
                                                     <Button type="primary" htmlType="submit" onClick={()=> this.getImprestSearch(0)}><Icon type="search" />查询</Button>
                                                 </Col>
-                                                <Col md={2}>
+                                                <Col span={2}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.NewInPay()} ><Icon type="plus" />新建</Button>
                                                 </Col>
-                                                <Col md={2}>
+                                                <Col span={2}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                                 </Col>
                                             </Row>
@@ -244,7 +244,7 @@ class Beiyongjins extends Component {
                             </Col>
                         </Row>
                         <Row gutter={16}>
-                            <Col className="gutter-row" md={24} >
+                            <Col className="gutter-row" span={24} >
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps} />
@@ -255,17 +255,17 @@ class Beiyongjins extends Component {
                     </TabPane>
                     <TabPane tab="出账管理" key="2">
                         <Row gutter={0}>
-                                <Col className="gutter-row" md={24}>
+                                <Col className="gutter-row" span={24}>
                                     <div className="gutter-box">
                                         <Card bordered={false}>
                                             <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={6}>
+                                                <Col span={6}>
                                                     <FormItem label="出账时间" colon={false}>
                                                         <DatePicker onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={6}>
+                                                <Col span={6}>
                                                     <FormItem label="出账人" colon={false}>
                                                         <input placeholder="请输入出账人" onChange={ event=>{
                                                     this.setState({
@@ -275,13 +275,13 @@ class Beiyongjins extends Component {
                                                         />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={2}>
+                                                <Col span={2}>
                                                     <Button type="primary" htmlType="submit" onClick={()=> this.getImprestSearch(1)}><Icon type="search" />查询</Button>
                                                 </Col>
-                                                <Col md={2}>
+                                                <Col span={2}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.NewOutPay()}><Icon type="plus" />新建</Button>
                                                 </Col>
-                                                <Col md={2}>
+                                                <Col span={2}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                                 </Col>
                                             </Row>
@@ -291,7 +291,7 @@ class Beiyongjins extends Component {
                                 </Col>
                             </Row>
                             <Row gutter={16}>
-                                <Col className="gutter-row" md={24} >
+                                <Col className="gutter-row" span={24} >
                                     <div className="gutter-box">
                                         <Card bordered={false}>
                                         <Table columns={columns2} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps} />

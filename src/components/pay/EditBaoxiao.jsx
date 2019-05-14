@@ -110,12 +110,12 @@ class EditBaoxiaos extends Component {
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="编辑报销记录" key="1">
                         <Row>
-                            <Col className="gutter-row" md={24}>
+                            <Col className="gutter-row" span={24}>
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={8}>
+                                                <Col span={8}>
                                                     <FormItem label="报销人" colon={false}>
                                                         <input placeholder="请输入报销人姓名" value={people} onChange={event => { this.setState({ people: event.target.value }) }}/>
                                                     </FormItem>
@@ -141,9 +141,9 @@ class EditBaoxiaos extends Component {
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Col md={4}>
+                                                <Col span={4}>
                                                     <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
-                                                <Col md={4}>
+                                                <Col span={4}>
                                                     <Button type="primary" htmlType="submit" onClick={()=>this.supplierUpdate()}>保存</Button></Col>
                                             </Row>
                                         </Form>

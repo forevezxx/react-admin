@@ -192,12 +192,12 @@ class Ins extends Component {
                 <BreadcrumbCustom first="应收管理" second="应收录入" />
 
                 <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
+                    <Col className="gutter-row" span={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="订单编号" colon={false}>
                                                 <input placeholder="请输入订单编号" onChange={event => {
                                                     this.setState({
@@ -206,7 +206,7 @@ class Ins extends Component {
                                                 }} />
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="合同编号" colon={false}>
                                                 <input placeholder="请输入合同编号" onChange={event => {
                                                     this.setState({
@@ -217,7 +217,7 @@ class Ins extends Component {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="收款状态" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
@@ -228,7 +228,7 @@ class Ins extends Component {
                                                 </Select>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="开票状态" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
@@ -239,13 +239,13 @@ class Ins extends Component {
                                                 </Select>
                                             </FormItem>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.newIn()}><Icon type="plus" />新建</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
@@ -255,7 +255,7 @@ class Ins extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="guttespanrow" span={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps} />

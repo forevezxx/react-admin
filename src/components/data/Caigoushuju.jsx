@@ -175,12 +175,12 @@ class Caigoushujus extends Component {
                 <BreadcrumbCustom first="数据管理" second="采购数据" />
 
                 <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
+                    <Col className="gutter-row" span={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="公司名称" colon={false}>
                                                 <input placeholder="请输入公司名称"  onChange={event => {
                                                             this.setState({
@@ -189,7 +189,7 @@ class Caigoushujus extends Component {
                                                         }} />
                                             </FormItem>
                                         </Col>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="通道名称" colon={false}>
                                                 <input placeholder="请输入通道名称"  onChange={event => {
                                                             this.setState({
@@ -198,18 +198,18 @@ class Caigoushujus extends Component {
                                                         }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="采购日期" colon={false}>
                                                 <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.NewCaigoushuju()}><Icon type="plus" />新建</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
@@ -219,7 +219,7 @@ class Caigoushujus extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="gutter-row" span={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource}  rowKey={record => record.id} pagination={paginationProps} />

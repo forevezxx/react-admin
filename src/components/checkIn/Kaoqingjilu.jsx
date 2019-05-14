@@ -166,12 +166,12 @@ class Kaoqingjilus extends Component {
                 <BreadcrumbCustom first="考勤管理" second="考勤记录" />
 
                 <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
+                    <Col className="gutter-row" span={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="员工姓名" colon={false}>
                                                 <input placeholder="请输入员工姓名" onChange={event => {
                                                     this.setState({
@@ -180,7 +180,7 @@ class Kaoqingjilus extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="岗位" colon={false}>
                                                 <input placeholder="请输入员工所在岗位" onChange={event => {
                                                     this.setState({
@@ -191,7 +191,7 @@ class Kaoqingjilus extends Component {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="部门" colon={false}>
                                                 <input placeholder="请输入员工所在部门" onChange={event => {
                                                     this.setState({
@@ -200,18 +200,18 @@ class Kaoqingjilus extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="考勤日期" colon={false}>
                                                 <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.newkaoqingjilu()}><Icon type="plus" />新建</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
@@ -221,7 +221,7 @@ class Kaoqingjilus extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="gutter-row" span={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps} />

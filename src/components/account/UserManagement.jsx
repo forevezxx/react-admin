@@ -203,12 +203,12 @@ class UserManagements extends Component {
             <div className="gutter-example userManagement">
                 <BreadcrumbCustom first="账户管理" second="用户管理" />
                 <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
+                    <Col className="gutter-row" span={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="员工姓名" colon={false}>
                                                 <input placeholder="请输入员工姓名" onChange={event=>{
                                                     this.setState({
@@ -217,7 +217,7 @@ class UserManagements extends Component {
                                                 }} />
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="用户类别" colon={false}>
                                                 <Select
                                                     placeholder="请选择"
@@ -230,7 +230,7 @@ class UserManagements extends Component {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="手机号码" colon={false}>
                                                 <input placeholder="请输入手机号码" maxLength="11" onChange={event=>{
                                                     this.setState({
@@ -239,7 +239,7 @@ class UserManagements extends Component {
                                                 }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={8}>
+                                        <Col span={8}>
                                             <FormItem label="工号" colon={false}>
                                                 <input placeholder="请输入工号" onChange={event=>{
                                                     this.setState({
@@ -248,13 +248,13 @@ class UserManagements extends Component {
                                                 }} />
                                             </FormItem>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getUserSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.newUserManagement()}><Icon type="plus" />新建</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
@@ -264,7 +264,7 @@ class UserManagements extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row userManagement_list" md={24} >
+                    <Col className="gutter-row userManagement_list" span={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={paginationProps}/>

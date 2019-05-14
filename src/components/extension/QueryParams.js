@@ -16,7 +16,7 @@ class QueryParams extends Component {
             <div>
                 <BreadcrumbCustom first="queryParams" />
                 <Row gutter={16}>
-                    <Col md={24}>
+                    <Col span={24}>
                         <Card title="query参数Demo" bordered={false}>
                             <div>参数1： {query.param1}</div>
                             <div>参数2： {query.param2}</div>

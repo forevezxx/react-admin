@@ -318,12 +318,12 @@ class EditUserFiless extends Component {
 
                     <TabPane tab="编辑应收录入" key="1">
                         <Row>
-                            <Col className="gutter-row" md={24}>
+                            <Col className="gutter-row" span={24}>
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                            <Col md={24}>
+                                            <Col span={24}>
                                                     <FormItem label="客户名称" colon={false}>
                                                         {/* <input placeholder="请输入公司名称" value={client_name} /> */}
                                                         <Select
@@ -346,7 +346,7 @@ class EditUserFiless extends Component {
                                                     </FormItem>
                                                     {/* 资源属性 */}
                                                     <Row gutter={16}>
-                                                        <Col className="gutter-row" md={24} >
+                                                        <Col className="gutter-row" span={24} >
                                                             <div className="gutter-box">
                                                                 <Card bordered={false}>
                                                                     <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={false}/>
@@ -563,9 +563,9 @@ class EditUserFiless extends Component {
                                                         <DatePicker placeholder="请选择" value={moment(invoice_date, 'YYYY/MM/DD')} onChange={() => this.onChange} />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}>
+                                                <Col span={8}>
                                                     <Button type="primary" htmlType="submit" onClick={()=>this.goBack()}>返回</Button></Col>
-                                                <Col md={8}>
+                                                <Col span={8}>
                                                     <Button type="primary" htmlType="submit" onClick={()=>this.supplierUpdate()}>保存</Button></Col>
                                             </Row>
                                         </Form>

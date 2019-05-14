@@ -144,12 +144,12 @@ class WatchPays extends Component {
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="查看应付录入" key="1">
                         <Row>
-                            <Col className="gutter-row" md={24}>
+                            <Col className="gutter-row" span={24}>
                                 <div className="gutter-box">
                                     <Card bordered={false}>
                                         <Form {...formItemLayout}>
                                             <Row>
-                                                <Col md={24}>
+                                                <Col span={24}>
                                                     <FormItem label="供应商名称" colon={false}>
                                                         <input placeholder="请输入供应商名称" disabled value={documentData.supplier_name} />
                                                     </FormItem>
@@ -157,7 +157,7 @@ class WatchPays extends Component {
                                                         <input placeholder="请输入订单合同编号" disabled value={documentData.order_num} />
                                                     </FormItem>
                                                     <Row gutter={16}>
-                                                        <Col className="gutter-row" md={24} >
+                                                        <Col className="gutter-row" span={24} >
                                                             <div className="gutter-box">
                                                                 <Card bordered={false}>
                                                                     <Table columns={columns} dataSource={documentData.resource} rowKey={record => record.id} pagination={false} />
@@ -344,7 +344,7 @@ class WatchPays extends Component {
                                                         <input placeholder="请输入备注信息" disabled value={documentData.backup} />
                                                     </FormItem>
                                                 </Col>
-                                                <Col md={8}>
+                                                <Col span={8}>
                                                     <Button type="primary" htmlType="submit" onClick={() => this.goBack()}>返回</Button></Col>
                                             </Row>
                                         </Form>

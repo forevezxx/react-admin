@@ -168,33 +168,33 @@ class Gongfeis extends Component {
                 <BreadcrumbCustom first="出纳管理" second="公费管理" />
 
                 <Row gutter={0}>
-                    <Col className="gutter-row" md={24}>
+                    <Col className="gutter-row" span={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Form {...formItemLayout}>
                                     <Row>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="费用类型" colon={false}>
                                                 <input placeholder="请输入费用类型" onChange={event => { this.setState({ type: event.target.value }) }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="公费金额" colon={false}>
                                                 <input placeholder="请输入公费金额" onChange={event => { this.setState({ counts: event.target.value }) }}/>
                                             </FormItem>
                                         </Col>
-                                        <Col md={6}>
+                                        <Col span={6}>
                                             <FormItem label="申请日期" colon={false}>
                                                 <DatePicker onChange={this.onChange.bind(this)} />
                                             </FormItem>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=> this.getDocumentSearch()}><Icon type="search" />查询</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={()=>this.newgongfei()}><Icon type="plus" />新建</Button>
                                         </Col>
-                                        <Col md={2}>
+                                        <Col span={2}>
                                             <Button type="primary" htmlType="submit" onClick={() => this.supplierExport()}><Icon type="upload" />导出</Button>
                                         </Col>
                                     </Row>
@@ -204,7 +204,7 @@ class Gongfeis extends Component {
                     </Col>
                 </Row>
                 <Row gutter={16}>
-                    <Col className="gutter-row" md={24} >
+                    <Col className="gutter-row" span={24} >
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Table columns={columns} dataSource={dataSource} />
