@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import routes from '../routes/config';
 import SiderMenu from './SiderMenu';
 
+import logo from '../style/imgs/logo2.png';
 const { Sider } = Layout;
 
 class SiderCustom extends Component {
@@ -73,7 +74,9 @@ class SiderCustom extends Component {
                 collapsed={this.props.collapsed}
                 style={{ overflowY: 'auto' }}
             >
-                <div className="logo" />
+                <div className="logo">
+                    <img src={logo} alt="头像" />
+                </div>
                 <SiderMenu
                     menus={routes.menus}
                     onClick={this.menuClick}

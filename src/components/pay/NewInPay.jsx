@@ -8,7 +8,7 @@ import {
     Table, Menu, Tabs, Upload, DatePicker, Radio
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { imprestAdd } from '../../axios';
+import { imprestAdd, imprestGetMoney} from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -22,6 +22,9 @@ class NewInPays extends Component {
         money: '',
         time: '',
     };
+    componentDidMount() {
+        //this.imprestGetMoney();接口异常 等后端修改
+    }
     onChange(date, dateString) {
         console.log(date, dateString);
         this.setState({
@@ -34,6 +37,11 @@ class NewInPays extends Component {
         this.setState({
             value: e.target.value,
         });
+    }
+    imprestGetMoney(){
+        imprestGetMoney().then(res=>{
+            
+        })
     }
     imprestAdd() {
         const {

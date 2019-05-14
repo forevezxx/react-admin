@@ -79,6 +79,8 @@ export const IMPREST_SEARCH = SERVER_URL + '/imprest/search';//查询条件数�
 export const IMPREST_ONE = SERVER_URL + '/imprest/one';//查看单条出入帐信息
 export const IMPREST_UPDATE = SERVER_URL + '/imprest/update';//更新出入帐信息
 export const IMPREST_EXPORT = SERVER_URL + '/imprest/export';//导出客户档案信息
+
+export const IMPREST_GET_MONEY = SERVER_URL + '/imprest/get-money';//导出客户档案信息
 //出纳管理-报销管理
 export const BAOXIAO_ADD = SERVER_URL + '/baoxiao/add';//新增报销数据
 export const BAOXIAO_ALL = SERVER_URL + '/baoxiao/all';//查询全部报销数据

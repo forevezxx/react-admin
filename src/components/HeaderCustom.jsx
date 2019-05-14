@@ -64,7 +64,7 @@ class HeaderCustom extends Component {
         const { responsive = { data: {} }, path } = this.props;
         return (
             <Header className="custom-theme header" >
-                {
+                {/* {
                     responsive.data.isMobile ? (
                         <Popover content={<SiderCustom path={path} popoverHide={this.popoverHide} />} trigger="click" placement="bottomLeft" visible={this.state.visible} onVisibleChange={this.handleVisibleChange}>
                             <Icon type="bars" className="header__trigger custom-trigger" />
@@ -76,16 +76,16 @@ class HeaderCustom extends Component {
                             onClick={this.props.toggle}
                         />
                     )
-                }
+                } */}
                 <Menu
                     mode="horizontal"
-                    style={{ lineHeight: '64px', float: 'right' }}
+                    style={{ lineHeight: '64px', float: 'right', width: '100%' }}
                     onClick={this.menuClick}
                 >
-                    <Menu.Item key="pwa">
+                    {/* <Menu.Item key="pwa">
                         <PwaInstaller />
-                    </Menu.Item>
-                    <Menu.Item>
+                    </Menu.Item> */}
+                    <Menu.Item style={{float: 'left'}}>
                         可遇_管理后台
                     </Menu.Item>
                     {/* <Menu.Item key="full" onClick={this.screenFull} >
@@ -96,8 +96,13 @@ class HeaderCustom extends Component {
                             <Icon type="notification" />
                         </Badge>
                     </Menu.Item> */}
-                    <SubMenu title={<span className="avatar"><img src={avater} alt="头像" /><i className="on bottom b-white" /></span>}>
-                        <Menu.Item key="logout"><span onClick={this.logout}>退出登录</span></Menu.Item>
+                    <Menu.Item key="logout" style={{ float: 'right' }}>
+                        <span>用户昵称</span>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <span onClick={this.logout} className="stop">退出</span>
+                    </Menu.Item>
+                    {/* <SubMenu title={<span className="avatar"><img src={avater} alt="头像" /><i className="on bottom b-white" /></span>}>
+                        <Menu.Item key="logout"><span onClick={this.logout}>退出登录</span></Menu.Item> */}
                         {/* <MenuItemGroup title="用户中心">
                             <Menu.Item key="setting:1">你好 - {this.props.user.userName}</Menu.Item>
                             <Menu.Item key="setting:2">个人信息</Menu.Item>
@@ -107,7 +112,7 @@ class HeaderCustom extends Component {
                             <Menu.Item key="setting:3">个人设置</Menu.Item>
                             <Menu.Item key="setting:4">系统设置</Menu.Item>
                         </MenuItemGroup> */}
-                    </SubMenu>
+                    {/* </SubMenu> */}
                 </Menu>
             </Header>
         )

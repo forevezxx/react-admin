@@ -217,9 +217,21 @@ class NewIns extends Component {
                     resource_id: res.data.id,
                     visible: false,
                     dataSource: x,
+                }, () => {
+                    that.setState({
+                        total_count: that.totalPrice(x)
+                    })
                 })
             }
         })
+    }
+    totalPrice(arr) {
+        let x = 0;
+        arr.forEach(element => {
+            x = x + Number(element.total);
+        });
+        console.log(x);
+        return x;
     }
 
     handleCancel = (e) => {
@@ -232,6 +244,7 @@ class NewIns extends Component {
         console.log(value)
         this.setState({
             client_name: this.state.users[value].name,
+            orderId: this.state.users[value].order_id,
         },()=>{
                 console.log(this.state.client_name)
         });
@@ -326,7 +339,7 @@ class NewIns extends Component {
                                                         {/* <input placeholder="请输入客户名称" /> */}
                                                     </FormItem>
                                                     <FormItem label="订单编号" colon={false}>
-                                                        <input placeholder="请输入订单编号" onChange={event => {
+                                                        <input placeholder="请输入订单编号" disabled value={this.state.orderId} onChange={event => {
                                                             this.setState({
                                                                 orderId: event.target.value
                                                             });
@@ -458,7 +471,7 @@ class NewIns extends Component {
                                                     </Row>
 
                                                     <FormItem label="合计金额" colon={false}>
-                                                        <input placeholder="请输入合计金额" onChange={event => {
+                                                        <input placeholder="请输入合计金额" value={this.state.total_count} onChange={event => {
                                                             this.setState({
                                                                 total_count: event.target.value
                                                             });

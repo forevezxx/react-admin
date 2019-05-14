@@ -59,6 +59,11 @@ export const supplierExport = (data) => post({
     data
 })
 
+export const supplierGetData = (data) => post({
+    url: config.SUPPLIER_GET_DATA,
+    data
+})
+
 
 export const supplierPayRecordAdd = (data) => post({
     url: config.SUPPLIER_PAY_RECORD_ADD,
@@ -204,6 +209,10 @@ export const imprestUpdate = (data) => post({
 })
 export const imprestExport = (data) => post({
     url: config.IMPREST_EXPORT,
+    data
+})
+export const imprestGetMoney = (data) => post({
+    url: config.IMPREST_GET_MONEY,
     data
 })
 
