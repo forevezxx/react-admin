@@ -16,12 +16,13 @@ export default class CRouter extends Component {
         return component;
     };
     requireLogin = (component, permission) => {
-        const { auth } = this.props;
-        const { permissions } = auth.data;
-        if (process.env.NODE_ENV === 'production' && !permissions) { // 线上环境判断是否登录
-            //return <Redirect to={'/login'} />;
+        // const { auth } = this.props;
+        // const { permissions } = auth.data;
+        let data = localStorage.getItem('user_token');
+        if (process.env.NODE_ENV === 'production' && !data) { // 线上环境判断是否登录
+            return <Redirect to={'/login'} />;
         }
-        return permission ? this.requireAuth(permission, component) : component;
+        return component;
     };
     render() {
         const { onRouterChange } = this.props;
@@ -50,9 +51,9 @@ export default class CRouter extends Component {
                                             const merge = { ...props, query: queryParams ? queryString.parse(queryParams[0]) : {} };
                                             // 回传route配置
                                             onRouterChange && onRouterChange(r);
-                                            return r.login 
+                                            return localStorage.getItem("user_token")
                                                 ? <Component {...merge} />
-                                                : this.requireLogin(<Component {...merge} />, r.auth)
+                                                : <Redirect to={'/login'} />
                                         }}
                                     />
                                 )
