@@ -39,7 +39,7 @@ class WatchPays extends Component {
         source: '',
         dataSource: [{
             id: '1',
-            pay_record_type: '电信营销',
+            resource_attribute: '电信营销',
             pay_method: '月结',
             yd_count: '1',
             lt1_count: '1',
@@ -83,8 +83,8 @@ class WatchPays extends Component {
 
         const columns = [{
             title: '资源属性',
-            dataIndex: 'pay_record_type',
-            key: 'pay_record_type',
+            dataIndex: 'resource_attribute',
+            key: 'resource_attribute',
         }, {
             title: '付款方式',
             dataIndex: 'pay_method',
@@ -175,7 +175,7 @@ class WatchPays extends Component {
                                                                                 <FormItem label="资源属性" colon={false}>
                                                                                     <input placeholder="请输入资源属性名称" onChange={event => {
                                                                                         this.setState({
-                                                                                            pay_record_type: event.target.value
+                                                                                            resource_attribute: event.target.value
                                                                                         });
                                                                                     }} />
                                                                                 </FormItem>
