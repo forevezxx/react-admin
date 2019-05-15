@@ -65,7 +65,7 @@ class WatchUserManagements extends Component {
                                                             <input disabled value={userData.id} />
                                                         </FormItem>
                                                         <FormItem label="用户类别" colon={false}>
-                                                            <input disabled value={userData.type} />
+                                                            <input disabled value={userData.type === "1" ? '普通员工' : '管理员'} />
                                                         </FormItem>
                                                         <FormItem label="员工姓名" colon={false}>
                                                             <input disabled value={userData.username} />
