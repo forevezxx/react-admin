@@ -403,7 +403,10 @@ export const banciExport = (data) => post({
     url: config.BANCI_EXPORT,
     data
 })
-
+export const banciDelete = (data) => post({
+    url: config.BANCI_DELETE,
+    data
+})
 
 export const banciOrderAdd = (data) => post({
     url: config.BANCI_ORDER_ADD,
@@ -427,6 +430,10 @@ export const banciOrderUpdate = (data) => post({
 })
 export const banciOrderExport = (data) => post({
     url: config.BANCI_ORDER_EXPORT,
+    data
+})
+export const banciOrderDelete = (data) => post({
+    url: config.BANCI_ORDER_DELETE,
     data
 })
 

@@ -2,9 +2,10 @@
  * Created by zhengxinxing on 2019/04/11.
  */
 import React, { Component } from 'react';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, Tabs, DatePicker, TimePicker } from 'antd';
+import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Table, 
+    Tabs, DatePicker, TimePicker, Modal } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { banciAdd, banciAll, banciSearch, banciOne, banciUpdate, banciExport } from '../../axios';
+import { banciAdd, banciAll, banciSearch, banciOne, banciUpdate, banciExport, banciDelete } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -27,10 +28,11 @@ class Banchiguanlis extends Component {
             //     type: 1,
             // },
         ],
-        showEdit: false,
         name: '',
         start_time: '',
         end_time: '',
+        visible: false,
+        visible1: false,
     };
     componentDidMount() {
         this.banciAll();
@@ -40,20 +42,6 @@ class Banchiguanlis extends Component {
         this.setState({
             type: value
         });
-    }
-    showEdit() {
-        let banchiData = {
-            banci_name: "",
-            time: "",
-            type: 2,
-        }
-        let x = this.state.banchiData;
-        x.push(banchiData);
-        console.log(x);
-        this.setState({
-            showEdit: true,
-            banchiData: x,
-        })
     }
     startTime(time, timeString) {
         console.log(time, timeString);
@@ -78,6 +66,18 @@ class Banchiguanlis extends Component {
             })
         })
     }
+    banciOne(id) {//获取单个班次数据
+        let data = {
+            id,
+        }
+        banciOne(data).then(res => {
+            this.setState({
+                name: res.data.supplier.name,
+                start_time: res.data.supplier.start_time,
+                end_time: res.data.supplier.end_time,
+            })
+        })
+    }
     banciAdd() {
         const {
             name,
@@ -91,11 +91,103 @@ class Banchiguanlis extends Component {
         }
         banciAdd(data).then(res=>{
             console.log(res);
+            if (res.msg === "success") {
+                this.banciAll();
+            }
         })
+    }
+    banciUpdate() {
+        const {
+            name,
+            start_time,
+            end_time,
+            id
+        } = this.state;
+        let data = {
+            name,
+            start_time,
+            end_time,
+            id
+        }
+        banciUpdate(data).then(res => {
+            console.log(res);
+            if(res.msg === "success"){
+                this.banciAll();
+            }
+        })
+    }
+    banciDelete(id) {
+        let data = {
+            id: this.state.id
+        }
+        banciDelete(data).then(res => {
+            console.log(res);
+            if (res.msg === "success") {
+                this.banciAll();
+            }
+        })
+    }
+    
+    handleOk = (e) => {//新增资源属性
+        this.banciAdd();
+        this.setState({
+            visible: false,
+        })
+    }
+    handleOk1 = (e) => {//新增资源属性
+        this.banciUpdate();
+        this.setState({
+            visible1: false,
+        })
+    }
+    handleOk2 = (e) => {//新增资源属性
+        this.banciDelete();
+        this.setState({
+            visible2: false,
+        })
+    }
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    }
+    handleCancel1 = (e) => {
+        console.log(e);
+        this.setState({
+            visible1: false,
+        });
+    }
+    handleCancel1 = (e) => {
+        console.log(e);
+        this.setState({
+            visible2: false,
+        });
+    }
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+    showModal1 = (id) => {
+        let that = this;
+        this.setState({
+            visible1: true,
+            id,
+        },()=>{
+            that.banciOne(id);
+        });
+    }
+    showModal2 = (id) => {
+        let that = this;
+        this.setState({
+            visible2: true,
+            id,
+        });
     }
     render() {
         const format = 'HH:mm';
-        const { banchiData, showEdit } = this.state;
+        const { banchiData } = this.state;
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
@@ -125,46 +217,89 @@ class Banchiguanlis extends Component {
                                                     return (
                                                         <Col span={24} key={index}>
                                                             <FormItem label="班次" colon={false}>
-                                                                    <input placeholder="请输入班次名称" disabled value={item.name} />
+                                                                <Row>
+                                                                    <Col span={10}>
+                                                                        <input placeholder="请输入班次名称" disabled value={item.name} />
+                                                                    </Col>
+                                                                    <Col span={10}>
+                                                                        <a type="primary" onClick={this.showModal1.bind(this, item.id)} className="banci_a"><Icon type="form" />编辑</a>
+                                                                        <a type="primary" onClick={this.showModal2.bind(this, item.id)} className="banci_a stop"><Icon type="delete" />删除</a>
+                                                                    </Col>
+                                                                </Row> 
+                                                                
                                                             </FormItem>
                                                             <FormItem label="时间" colon={false}>
-                                                                    <TimePicker placeholder="请选择" value={moment(item.start_time, format)} onChange={this.startTime.bind(this)} format={format} /> -  <TimePicker placeholder="请选择" value={moment(item.end_time, format)} format={format} onChange={this.endTime.bind(this)} />
+                                                                    <TimePicker placeholder="请选择" disabled value={moment(item.start_time, format)}  format={format} /> -  
+                                                                    <TimePicker placeholder="请选择" disabled value={moment(item.end_time, format)} format={format}  />
                                                             </FormItem>
                                                         </Col>
                                                     )
                                                 })}
                                                 <Col span={24}>
-                                                    <FormItem label="班次" colon={false}>
-                                                        {/* <Select
-                                                            placeholder="早班"
-                                                            onChange={this.handleSelectChange}
-                                                        >
-                                                            <Option value="male">早班</Option>
-                                                            <Option value="female">晚班</Option>
-                                                        </Select> */}
-                                                        <input placeholder="请输入班次名称" onChange={event => {
-                                                            this.setState({
-                                                                name: event.target.value
-                                                            });
-                                                        }}/>
-                                                    </FormItem>
-                                                    <FormItem label="时间" colon={false}>
-                                                        <TimePicker placeholder="请选择" onChange={this.startTime.bind(this)} format={format} /> -  <TimePicker placeholder="请选择" format={format} onChange={this.endTime.bind(this)} />
-                                                    </FormItem>
+                                                    <Button type="dashed" htmlType="submit" onClick={() => this.showModal()}><Icon type="plus-square" />增加班次</Button>
                                                 </Col>
-                                                <Col span={24}>
-                                                    <Button type="dashed" htmlType="submit" onClick={()=>this.showEdit()}><Icon type="plus-square" />增加班次</Button>
-                                                </Col>
-                                                <Col span={8}>
-                                                    <Button type="primary" onClick={this.banciAdd.bind(this)} >保存</Button>
-                                                </Col>
-                                                    {/* <Row>
-                                                        <Col span={8}>
-                                                            <Button type="primary" >返回</Button></Col>
-                                                        <Col span={8}>
-                                                            <Button type="primary" >保存</Button>
+                                                <Modal
+                                                    title="新增班次"
+                                                    visible={this.state.visible}
+                                                    onOk={this.handleOk}
+                                                    onCancel={this.handleCancel}
+                                                    okText="保存"
+                                                    cancelText="返回"
+                                                >
+                                                    <Row>
+                                                        <Col span={24}>
+                                                            <FormItem label="班次" colon={false}>
+                                                                <input placeholder="请输入班次名称" onChange={event => {
+                                                                    this.setState({
+                                                                        name: event.target.value
+                                                                    });
+                                                                }}/>
+                                                            </FormItem>
+                                                            <FormItem label="时间" colon={false}>
+                                                                <TimePicker placeholder="请选择" format={format} onChange={this.startTime.bind(this)} /> -  
+                                                                <TimePicker placeholder="请选择" format={format} onChange={this.endTime.bind(this)} />
+                                                            </FormItem>
                                                         </Col>
-                                                    </Row> */}
+                                                    </Row>
+                                                </Modal>
+                                                <Modal
+                                                    title="编辑班次"
+                                                    visible={this.state.visible1}
+                                                    onOk={this.handleOk1}
+                                                    onCancel={this.handleCancel1}
+                                                    okText="保存"
+                                                    cancelText="返回"
+                                                >
+                                                    <Row>
+                                                        <Col span={24}>
+                                                            <FormItem label="班次" colon={false}>
+                                                                <input placeholder="请输入班次名称" value={this.state.name} onChange={event => {
+                                                                    this.setState({
+                                                                        name: event.target.value
+                                                                    });
+                                                                }} />
+                                                            </FormItem>
+                                                            <FormItem label="时间" colon={false}>
+                                                                <TimePicker placeholder="请选择" value={moment(this.state.start_time, format)} format={format} onChange={this.startTime.bind(this)} /> -
+                                                                <TimePicker placeholder="请选择" value={moment(this.state.end_time, format)} format={format} onChange={this.endTime.bind(this)} />
+                                                            </FormItem>
+                                                        </Col>
+                                                    </Row>
+                                                </Modal>
+                                                <Modal
+                                                    title="删除"
+                                                    visible={this.state.visible2}
+                                                    onOk={this.handleOk2}
+                                                    onCancel={this.handleCancel2}
+                                                    okText="删除"
+                                                    cancelText="取消"
+                                                >
+                                                    <Row>
+                                                        <Col span={24}>
+                                                               <p>是否删除班次</p>
+                                                        </Col>
+                                                    </Row>
+                                                </Modal>
                                             </Row>
                                         </Form>
                                     </Card>

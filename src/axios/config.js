@@ -140,6 +140,7 @@ export const BANCI_SEARCH = SERVER_URL + '/banci/search';//班次条件查询
 export const BANCI_ONE = SERVER_URL + '/banci/one';//查看具体班次信息
 export const BANCI_UPDATE = SERVER_URL + '/banci/update';//更新班次信息
 export const BANCI_EXPORT = SERVER_URL + '/banci/export';//导出客户档案信息
+export const BANCI_DELETE = SERVER_URL + '/banci/delete';//导出客户档案信息
 //考勤管理-班次管理-排班表
 export const BANCI_ORDER_ADD = SERVER_URL + '/banci-order/add';//新增排班表
 export const BANCI_ORDER_ALL = SERVER_URL + '/banci-order/all';//获取排班表列表
@@ -147,6 +148,7 @@ export const BANCI_ORDER_SEARCH = SERVER_URL + '/banci-order/search';//根据条
 export const BANCI_ORDER_ONE = SERVER_URL + '/banci-order/one';//查看具体排班表信息
 export const BANCI_ORDER_UPDATE = SERVER_URL + '/banci-order/update';//更新排班表信息
 export const BANCI_ORDER_EXPORT = SERVER_URL + '/banci-order/export';//导出客户档案信息
+export const BANCI_ORDER_DELETE = SERVER_URL + '/banci-order/delete';//导出客户档案信息
 
 
 
