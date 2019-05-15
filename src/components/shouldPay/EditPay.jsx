@@ -170,22 +170,39 @@ class EditPays extends Component {
     handleOk = (e) => {//新增资源属性
         console.log(e);
         let that = this;
+        const {
+            resource_attribute,
+            pay_method,
+            yd_count,
+            lt1_count,
+            lt2_count,
+            dx_count,
+            yd_money,
+            lt1_money,
+            lt2_money,
+            dx_money,
+            yd_cost,
+            lt1_cost,
+            dx_cost,
+        } = that.state;
         let dataSource = {
             // id: that.state.dataSource[that.state.dataSource.length - 1].id + 1,
-            resource_attribute: that.state.resource_attribute,
-            pay_method: that.state.pay_method,
-            yd_count: that.state.yd_count,
-            lt1_count: that.state.lt1_count,
-            lt2_count: that.state.lt2_count,
-            dx_count: that.state.dx_count,
-            yd_money: that.state.yd_money,
-            lt1_money: that.state.lt1_money,
-            lt2_money: that.state.lt2_money,
-            dx_money: that.state.dx_money,
-            yd_cost: that.state.yd_cost,
-            lt1_cost: that.state.lt1_cost,
-            dx_cost: that.state.dx_cost,
-            total: that.state.total,
+            resource_attribute,
+            pay_method,
+            yd_count,
+            lt1_count,
+            lt2_count,
+            dx_count,
+            yd_money,
+            lt1_money,
+            lt2_money,
+            dx_money,
+            yd_cost,
+            lt1_cost,
+            dx_cost,
+            // total: that.state.total,
+            // total: yd_count * (yd_money - yd_cost) + lt1_count * (lt1_money - lt1_cost) + lt2_count * (lt2_money - lt1_cost) + dx_count * (dx_money - dx_cost)
+            total: yd_count * (yd_money) + lt1_count * (lt1_money) + lt2_count * (lt2_money) + dx_count * (dx_money),
         }
         let x = that.state.dataSource;
         x.push(dataSource);
@@ -462,13 +479,13 @@ class EditPays extends Component {
                                                                                         });
                                                                                     }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="总金额" colon={false}>
+                                                                                {/* <FormItem label="总金额" colon={false}>
                                                                                     <input placeholder="请输入总金额" onChange={event => {
                                                                                         this.setState({
                                                                                             total: event.target.value
                                                                                         });
                                                                                     }} />
-                                                                                </FormItem>
+                                                                                </FormItem> */}
                                                                             </Col>
                                                                         </Row>
                                                                     </Modal>
