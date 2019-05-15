@@ -9,7 +9,7 @@ import {
     Modal,
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierPayRecordOne, supplierPayRecordUpdate } from '../../axios';
+import { supplierPayRecordOne, supplierPayRecordUpdate, supplierGetData } from '../../axios';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -39,7 +39,7 @@ class EditPays extends Component {
         backup: '',
         dataSource: [{
             id: '1',
-            pay_record_type: '电信营销',
+            resource_attribute: '电信营销',
             pay_method: '月结',
             yd_count: '1',
             lt1_count: '1',
@@ -150,7 +150,7 @@ class EditPays extends Component {
     showModal = () => {
         this.setState({
             visible: true,
-            pay_record_type: '',
+            resource_attribute: '',
             pay_method: '',
             yd_count: '',
             lt1_count: '',
@@ -172,7 +172,7 @@ class EditPays extends Component {
         let that = this;
         let dataSource = {
             // id: that.state.dataSource[that.state.dataSource.length - 1].id + 1,
-            pay_record_type: that.state.pay_record_type,
+            resource_attribute: that.state.resource_attribute,
             pay_method: that.state.pay_method,
             yd_count: that.state.yd_count,
             lt1_count: that.state.lt1_count,
@@ -272,8 +272,8 @@ class EditPays extends Component {
         const { getFieldDecorator } = this.props.form;
         const columns = [{
             title: '资源属性',
-            dataIndex: 'pay_record_type',
-            key: 'pay_record_type',
+            dataIndex: 'resource_attribute',
+            key: 'resource_attribute',
         }, {
             title: '付款方式',
             dataIndex: 'pay_method',

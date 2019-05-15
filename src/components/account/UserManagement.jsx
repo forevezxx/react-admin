@@ -136,8 +136,8 @@ class UserManagements extends Component {
             key: 'id',
         }, {
             title: '创建人',
-            dataIndex: 'createPerson',
-            key: 'createPerson',
+            dataIndex: 'maker',
+            key: 'maker',
         }, {
             title: '用户类别',
             dataIndex: 'type',

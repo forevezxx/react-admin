@@ -41,7 +41,7 @@ class NewPays extends Component {
         dataSource: [
             // {
             //     id: '1',
-            //     pay_record_type: '电信营销',
+            //     resource_attribute: '电信营销',
             //     pay_method: '月结',
             //     yd_count: '1',
             //     lt1_count: '1',
@@ -60,7 +60,7 @@ class NewPays extends Component {
         resource_id: "1",
         visible: false,
         userNameList: [],
-        pay_record_type: '',
+        resource_attribute: '',
         pay_method: '',
         yd_count: '',
         lt1_count: '',
@@ -192,7 +192,7 @@ class NewPays extends Component {
     showModal = () => {
         this.setState({
             visible: true,
-            pay_record_type: '',
+            resource_attribute: '',
             pay_method: '',
             yd_count: '',
             lt1_count: '',
@@ -214,7 +214,7 @@ class NewPays extends Component {
         let that = this;
         let dataSource = {
             //id: that.state.dataSource[that.state.dataSource.length-1].id + 1,
-            pay_record_type: that.state.pay_record_type,
+            resource_attribute: that.state.resource_attribute,
             pay_method: that.state.pay_method,
             yd_count: that.state.yd_count,
             lt1_count: that.state.lt1_count,
@@ -272,7 +272,7 @@ class NewPays extends Component {
     }
     render() {
         const { dataSource, count, userNameList,
-            pay_record_type,
+            resource_attribute,
             pay_method,
             yd_count,
             lt1_count,
@@ -295,8 +295,8 @@ class NewPays extends Component {
 
         const columns = [{
             title: '资源属性',
-            dataIndex: 'pay_record_type',
-            key: 'pay_record_type',
+            dataIndex: 'resource_attribute',
+            key: 'resource_attribute',
         }, {
             title: '付款方式',
             dataIndex: 'pay_method',
@@ -399,9 +399,9 @@ class NewPays extends Component {
                                                                         <Row>
                                                                             <Col span={12}>
                                                                                 <FormItem label="资源属性" colon={false}>
-                                                                                    <input placeholder="请输入资源属性名称" value={pay_record_type} onChange={event=>{
+                                                                                    <input placeholder="请输入资源属性名称" value={resource_attribute} onChange={event=>{
                                                                                         this.setState({
-                                                                                            pay_record_type: event.target.value
+                                                                                            resource_attribute: event.target.value
                                                                                         });
                                                                                     }}/>
                                                                                 </FormItem>
