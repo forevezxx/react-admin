@@ -57,7 +57,7 @@ class NewPays extends Component {
             //     total: '1000',
             // }
         ],
-        resource_id: "1",
+        resource_id: [],
         visible: false,
         userNameList: [],
         resource_attribute: '',
@@ -254,12 +254,16 @@ class NewPays extends Component {
         console.log(x);
         resourceAdd(dataSource).then(res=>{
             console.log(res);
+            let y = that.state.resource_id;
+            
             if (res.msg == "success"){
+                y.push(res.data.id);
                 that.setState({
-                    resource_id: res.data.id,
+                    resource_id: y,
                     visible: false,
                     dataSource: x,
                 },()=>{
+                    console.log(that.state.resource_id);
                     that.setState({
                         total_price: that.totalPrice(x)
                     })

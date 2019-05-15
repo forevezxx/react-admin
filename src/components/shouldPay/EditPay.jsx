@@ -9,7 +9,8 @@ import {
     Modal,
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { supplierPayRecordOne, supplierPayRecordUpdate, supplierGetData } from '../../axios';
+import { supplierPayRecordOne, supplierPayRecordUpdate, supplierGetData, resourceAdd } from '../../axios';
+import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -37,24 +38,27 @@ class EditPays extends Component {
         receipt_date: '',
         flat_account_type: 1,
         backup: '',
-        dataSource: [{
-            id: '1',
-            resource_attribute: '电信营销',
-            pay_method: '月结',
-            yd_count: '1',
-            lt1_count: '1',
-            lt2_count: '1',
-            dx_count: '1',
-            yd_money: '0.026',
-            lt1_money: '0.026',
-            lt2_money: '0.026',
-            dx_money: '0.026',
-            yd_cost: '0.026',
-            lt1_cost: '0.026',
-            dx_cost: '0.026',
-            total: '1000',
-        }],
+        dataSource: [
+        //     {
+        //     id: '1',
+        //     resource_attribute: '电信营销',
+        //     pay_method: '月结',
+        //     yd_count: '1',
+        //     lt1_count: '1',
+        //     lt2_count: '1',
+        //     dx_count: '1',
+        //     yd_money: '0.026',
+        //     lt1_money: '0.026',
+        //     lt2_money: '0.026',
+        //     dx_money: '0.026',
+        //     yd_cost: '0.026',
+        //     lt1_cost: '0.026',
+        //     dx_cost: '0.026',
+        //     total: '1000',
+        // }
+        ],
         visible: false,
+        resource_id: [],
     };
     
     componentDidMount() {
@@ -115,6 +119,7 @@ class EditPays extends Component {
             receipt_date,
             flat_account_type,
             backup,
+            resource_id,
         } = this.state;
         let data = {
             id: this.props.match.params.id,
@@ -138,6 +143,7 @@ class EditPays extends Component {
                 receipt_date,
                 flat_account_type,
                 backup,
+                resource_id,
             }),
             token: localStorage.getItem('user_token'),
         };
@@ -205,15 +211,38 @@ class EditPays extends Component {
             // total: yd_count * (yd_money - yd_cost) + lt1_count * (lt1_money - lt1_cost) + lt2_count * (lt2_money - lt1_cost) + dx_count * (dx_money - dx_cost)
             total,
         }
-        let x = that.state.dataSource;
+        let x = that.state.resource;
         x.push(dataSource);
         console.log(x);
-        this.setState({
-            visible: false,
-            dataSource: x,
-        });
+        // this.setState({
+        //     visible: false,
+        //     resource: x,
+        // });
+        resourceAdd(dataSource).then(res => {
+            console.log(res);
+            let y = that.state.resource_id;
+            if (res.msg == "success") {
+                y.push(res.data.id)
+                that.setState({
+                    resource_id: y,
+                    visible: false,
+                    resource: x,
+                }, () => {
+                    that.setState({
+                        total_price: that.totalPrice(x)
+                    })
+                })
+            }
+        })
     }
-
+    totalPrice(arr) {
+        let x = 0;
+        arr.forEach(element => {
+            x = x + Number(element.total);
+        });
+        console.log(x);
+        return x;
+    }
     handleCancel = (e) => {
         console.log(e);
         this.setState({
@@ -375,7 +404,7 @@ class EditPays extends Component {
                                                         <Col className="gutter-row" span={24} >
                                                             <div className="gutter-box">
                                                                 <Card bordered={false}>
-                                                                    <Table columns={columns} dataSource={dataSource} rowKey={record => record.id} pagination={false} />
+                                                                    <Table columns={columns} dataSource={resource} rowKey={record => record.id} pagination={false} />
                                                                     <Button type="dashed" icon="plus-square" onClick={this.showModal}>新增资源属性</Button>
                                                                     <Modal
                                                                         title="新增资源属性"
@@ -390,7 +419,7 @@ class EditPays extends Component {
                                                                                 <FormItem label="资源属性" colon={false}>
                                                                                     <input placeholder="请输入资源属性名称" onChange={event => {
                                                                                         this.setState({
-                                                                                            pay_record_type: event.target.value
+                                                                                            resource_attribute: event.target.value
                                                                                         });
                                                                                     }} />
                                                                                 </FormItem>
@@ -514,7 +543,7 @@ class EditPays extends Component {
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="付款日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
+                                                        <DatePicker placeholder="请选择" value={moment(pay_time, "YYYY/MM/DD")} onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                     <FormItem label="付款主体" colon={false}>
                                                         <input placeholder="请输入付款主体" value={pay_entity} onChange={event => {
@@ -551,7 +580,7 @@ class EditPays extends Component {
                                                         }} />
                                                     </FormItem>
                                                     <FormItem label="开票内容" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入开票内容"  onChange={event => {
+                                                        <TextArea rows={4} value={receipt_content}  onChange={event => {
                                                             this.setState({
                                                                 receipt_content: event.target.value
                                                             });
@@ -579,7 +608,7 @@ class EditPays extends Component {
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="开票日期" colon={false}>
-                                                        <DatePicker placeholder="请选择" onChange={this.onChangeDate.bind(this)} />
+                                                        <DatePicker placeholder="请选择" value={moment(receipt_date, "YYYY/MM/DD")} onChange={this.onChangeDate.bind(this)} />
                                                     </FormItem>
                                                     <FormItem label="平账状态" colon={false}>
                                                         <RadioGroup onChange={this.onChange4} value={flat_account_type}>
@@ -588,12 +617,12 @@ class EditPays extends Component {
                                                         </RadioGroup>
                                                     </FormItem>
                                                     <FormItem label="备注信息" colon={false}>
-                                                        <TextArea rows={4} defaultValue="请输入备注信息" 
-                                                        // onChange={event => {
-                                                        //     this.setState({
-                                                        //         backup: event.target.value
-                                                        //     });
-                                                        // }}
+                                                        <TextArea rows={4} value={backup}
+                                                            onChange={event => {
+                                                                this.setState({
+                                                                    backup: event.target.value
+                                                                });
+                                                            }}
                                                         />
                                                     </FormItem>
                                                 </Col>

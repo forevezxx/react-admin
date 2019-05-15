@@ -52,8 +52,22 @@ class NewIns extends Component {
             // total: '1000',
         ],
         visible: false,
-        resource_id: '1',
         userNameList: [],
+        resource_id: [],
+        // resource_pro: '',
+        // pay_method: '',
+        // yidong: '',
+        // liantong1: '',
+        // liantong2: '',
+        // dianxing: '',
+        // yidong_price: '',
+        // liantong1_price: '',
+        // liantong2_price: '',
+        // dianxing_price: '',
+        // yidong_cost: '',
+        // liantong_cost: '',
+        // dianxing_cost: '',
+        // total: '',
     };
     componentDidMount() {
         this.clientGetData();
@@ -190,31 +204,49 @@ class NewIns extends Component {
     handleOk = (e) => {//新增资源属性
         console.log(e);
         let that = this;
+        const {
+            resource_pro,
+            pay_method,
+            yidong,
+            liantong1,
+            liantong2,
+            dianxing,
+            yidong_price,
+            liantong1_price,
+            liantong2_price,
+            dianxing_price,
+            yidong_cost,
+            liantong_cost,
+            dianxing_cost,
+        } = this.state;
+        let total = yidong * yidong_price + liantong1 * liantong1_price + liantong2 * liantong2_price + dianxing * dianxing_price;
         let dataSource = {
             //id: that.state.dataSource[that.state.dataSource.length-1].id + 1,
-            resource_pro: that.state.resource_pro,
-            pay_method: that.state.pay_method,
-            yidong: that.state.yidong,
-            liantong1: that.state.liantong1,
-            liantong2: that.state.liantong2,
-            dianxing: that.state.dianxing,
-            yidong_price: that.state.yidong_price,
-            liantong1_price: that.state.liantong1_price,
-            liantong2_price: that.state.liantong2_price,
-            dianxing_price: that.state.dianxing_price,
-            yidong_cost: that.state.yidong_cost,
-            liantong_cost: that.state.liantong_cost,
-            dianxing_cost: that.state.dianxing_cost,
-            total: that.state.total,
+            resource_pro,
+            pay_method,
+            yidong,
+            liantong1,
+            liantong2,
+            dianxing,
+            yidong_price,
+            liantong1_price,
+            liantong2_price,
+            dianxing_price,
+            yidong_cost,
+            liantong_cost,
+            dianxing_cost,
+            total,
         }
         let x = that.state.dataSource;
         x.push(dataSource);
         console.log(x);
         resourceClientAdd(dataSource).then(res => {
             console.log(res);
+            let y = that.state.resource_id;
             if (res.msg == "success") {
+                y.push(res.data.id);
                 that.setState({
-                    resource_id: res.data.id,
+                    resource_id: y,
                     visible: false,
                     dataSource: x,
                 }, () => {
