@@ -21,9 +21,11 @@ class NewInPays extends Component {
         method: '',
         money: '',
         time: '',
+        last: '',
+        now_total: '',
     };
     componentDidMount() {
-        //this.imprestGetMoney();接口异常 等后端修改
+        this.imprestGetMoney();
     }
     onChange(date, dateString) {
         console.log(date, dateString);
@@ -40,7 +42,10 @@ class NewInPays extends Component {
     }
     imprestGetMoney(){
         imprestGetMoney().then(res=>{
-            
+            this.setState({
+                last: res.data.last,
+                now_total: res.data.now_total,
+            })
         })
     }
     imprestAdd() {
@@ -86,7 +91,7 @@ class NewInPays extends Component {
                                                 <Col span={12}>
 
                                                     <FormItem label="备用金总额" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="11,000,000" />
+                                                        <input placeholder="" disabled value={this.state.now_total} />
                                                     </FormItem>
                                                     <FormItem label="入账人" colon={false}>
                                                         <input placeholder="请输入入账人姓名" onChange={event => {
@@ -113,7 +118,7 @@ class NewInPays extends Component {
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="当前结余" colon={false}>
-                                                        <input placeholder="请输入公司名称" disabled value="11,000,000" />
+                                                        <input placeholder="" disabled value={this.state.last} />
                                                     </FormItem>
                                                 </Col>
                                             </Row>

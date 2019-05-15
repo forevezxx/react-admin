@@ -185,6 +185,7 @@ class EditPays extends Component {
             lt1_cost,
             dx_cost,
         } = that.state;
+        let total = yd_count * (yd_money) + lt1_count * (lt1_money) + lt2_count * (lt2_money) + dx_count * (dx_money);
         let dataSource = {
             // id: that.state.dataSource[that.state.dataSource.length - 1].id + 1,
             resource_attribute,
@@ -202,7 +203,7 @@ class EditPays extends Component {
             dx_cost,
             // total: that.state.total,
             // total: yd_count * (yd_money - yd_cost) + lt1_count * (lt1_money - lt1_cost) + lt2_count * (lt2_money - lt1_cost) + dx_count * (dx_money - dx_cost)
-            total: yd_count * (yd_money) + lt1_count * (lt1_money) + lt2_count * (lt2_money) + dx_count * (dx_money),
+            total,
         }
         let x = that.state.dataSource;
         x.push(dataSource);
@@ -494,7 +495,7 @@ class EditPays extends Component {
                                                         </Col>
                                                     </Row>
                                                     <FormItem label="合计金额" colon={false}>
-                                                        <input placeholder="请输入合计金额" value={total_price} onChange={event => {
+                                                        <input placeholder="请输入合计金额" value={total_price} disabled onChange={event => {
                                                             this.setState({
                                                                 total_price: event.target.value
                                                             });

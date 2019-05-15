@@ -171,16 +171,16 @@ class Beiyongjins extends Component {
             key: 'money',
         }, {
             title: '出账用途',
-            dataIndex: 'out_for',
-            key: 'out_for',
+            dataIndex: 'reason',
+            key: 'reason',
         }, {
             title: '出账时间',
             dataIndex: 'time',
             key: 'time',
         }, {
             title: '当前结余',
-            dataIndex: 'now_left',
-            key: 'now_left',
+            dataIndex: 'now_last',
+            key: 'now_last',
         }];
         const paginationProps = {
             showSizeChanger: true,
@@ -263,7 +263,7 @@ class Beiyongjins extends Component {
                                             <Row>
                                                 <Col span={6}>
                                                     <FormItem label="出账时间" colon={false}>
-                                                        <DatePicker onChange={this.onChange.bind(this)} />
+                                                        <DatePicker placeholder="请选择" onChange={this.onChange.bind(this)} />
                                                     </FormItem>
                                                 </Col>
                                                 <Col span={6}>
