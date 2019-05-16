@@ -99,7 +99,7 @@ class EditUserManagements extends Component {
                                                             <input value={id} onChange={ event=>{this.setState({id: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="用户类别" colon={false}>
-                                                            <input value={type} onChange={event=>{this.setState({type: event.target.value});}} />
+                                                        <input value={type === "1" ? '普通员工' : '管理员'} onChange={event=>{this.setState({type: event.target.value});}} />
                                                         </FormItem>
                                                         <FormItem label="员工姓名" colon={false}>
                                                             <input value={username} onChange={ event=>{this.setState({username: event.target.value});}} />

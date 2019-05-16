@@ -104,10 +104,13 @@ class Banchiguanlis extends Component {
             id
         } = this.state;
         let data = {
-            name,
-            start_time,
-            end_time,
-            id
+            id,
+            update_json: JSON.stringify({
+                name,
+                start_time,
+                end_time,
+            }),
+            token: localStorage.getItem('user_token'),
         }
         banciUpdate(data).then(res => {
             console.log(res);
@@ -158,7 +161,7 @@ class Banchiguanlis extends Component {
             visible1: false,
         });
     }
-    handleCancel1 = (e) => {
+    handleCancel2 = (e) => {
         console.log(e);
         this.setState({
             visible2: false,
