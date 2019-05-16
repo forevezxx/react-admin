@@ -116,7 +116,7 @@ class Beiyongjins extends Component {
         this.setState({
             type,
         },()=>{
-            localStorage.setItem('money_type',type);
+            // localStorage.setItem('money_type',type);
             that.getImprestAll();
         })
     }
