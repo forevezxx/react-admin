@@ -7,7 +7,7 @@ import { Card, Form, Input, Tooltip, Icon, Cascader,
     Table, Menu, Tabs, Upload, DatePicker, Radio, Modal
 } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { clientPayRecordOne, clientPayRecordUpdate } from '../../axios';
+import { clientPayRecordOne, clientPayRecordUpdate, resourceClientAdd } from '../../axios';
 import moment from 'moment';
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -36,7 +36,7 @@ class EditUserFiless extends Component {
         invoice_date: '',
         dataSource: [
             // id: 1,
-            // resource_pro: '电信营销',
+            // resource_attribute: '电信营销',
             // pay_method: '月结',
             // yidong: '1',
             // liantong1: '1',
@@ -52,8 +52,8 @@ class EditUserFiless extends Component {
             // total: '1000',
         ],
         visible: false,
-        resource_id: '1',
         userNameList: [],
+        resource_id: [],
     };
     componentDidMount() {
         this.getSupplierOne(this.props.match.params.id);
@@ -82,6 +82,8 @@ class EditUserFiless extends Component {
                 invoice_type: res.data.supplier.invoice_type,
                 mail_addr: res.data.supplier.mail_addr,
                 invoice_date: res.data.supplier.invoice_date,
+                dataSource: res.data.supplier.resource,
+                orderId: res.data.supplier.orderId,
             })
         })
     }
@@ -168,19 +170,18 @@ class EditUserFiless extends Component {
     showModal = () => {
         this.setState({
             visible: true,
-            resource_pro: '',
-            pay_method: '',
-            yidong: '',
-            liantong1: '',
-            liantong2: '',
-            dianxing: '',
-            yidong_price: '',
-            liantong1_price: '',
-            liantong2_price: '',
-            dianxing_price: '',
-            yidong_cost: '',
-            liantong_cost: '',
-            dianxing_cost: '',
+            resource_attribute: '',
+            yd_count: '',
+            lt1_count: '',
+            lt2_count: '',
+            dx_count: '',
+            yd_last: '',
+            lt1_last: '',
+            lt2_last: '',
+            dx_last: '',
+            yd_cost: '',
+            lt_cost: '',
+            dx_cost: '',
             total: '',
         });
     }
@@ -188,30 +189,63 @@ class EditUserFiless extends Component {
     handleOk = (e) => {//新增资源属性
         console.log(e);
         let that = this;
+        const {
+            resource_attribute,
+            yd_count,
+            lt1_count,
+            lt2_count,
+            dx_count,
+            yd_last,
+            lt1_last,
+            lt2_last,
+            dx_last,
+            yd_cost,
+            lt_cost,
+            dx_cost,
+        } = this.state;
+        let total = yd_count * yd_cost + lt1_count * lt_cost + lt2_count * lt_cost + dx_count * dx_cost;
         let dataSource = {
-            // id: that.state.dataSource[that.state.dataSource.length-1].id + 1,
-            resource_pro: that.state.resource_pro,
-            pay_method: that.state.pay_method,
-            yidong: that.state.yidong,
-            liantong1: that.state.liantong1,
-            liantong2: that.state.liantong2,
-            dianxing: that.state.dianxing,
-            yidong_price: that.state.yidong_price,
-            liantong1_price: that.state.liantong1_price,
-            liantong2_price: that.state.liantong2_price,
-            dianxing_price: that.state.dianxing_price,
-            yidong_cost: that.state.yidong_cost,
-            liantong_cost: that.state.liantong_cost,
-            dianxing_cost: that.state.dianxing_cost,
-            total: that.state.total,
+            resource_attribute,
+            yd_count,
+            lt1_count,
+            lt2_count,
+            dx_count,
+            yd_last,
+            lt1_last,
+            lt2_last,
+            dx_last,
+            yd_cost,
+            lt_cost,
+            dx_cost,
+            total,
         }
         let x = that.state.dataSource;
         x.push(dataSource);
         console.log(x);
-        this.setState({
-            visible: false,
-            dataSource: x,
+        resourceClientAdd(dataSource).then(res => {
+            console.log(res);
+            let y = that.state.resource_id;
+            if (res.msg == "success") {
+                y.push(res.data.id);
+                that.setState({
+                    resource_id: y,
+                    visible: false,
+                    dataSource: x,
+                }, () => {
+                    that.setState({
+                        total_count: that.totalPrice(x)
+                    })
+                })
+            }
+        })
+    }
+    totalPrice(arr) {
+        let x = 0;
+        arr.forEach(element => {
+            x = x + Number(element.total);
         });
+        console.log(x);
+        return x;
     }
     handleCancel = (e) => {
         console.log(e);
@@ -255,56 +289,52 @@ class EditUserFiless extends Component {
         };
         const columns = [{
             title: '资源属性',
-            dataIndex: 'resource_pro',
-            key: 'resource_pro',
+            dataIndex: 'resource_attribute',
+            key: 'resource_attribute',
         }, {
-            title: '付款方式',
-            dataIndex: 'pay_method',
-            key: 'pay_method',
+            title: '移动充值条数',
+            dataIndex: 'yd_count',
+            key: 'yd_count',
         }, {
-            title: '移动消耗条数',
-            dataIndex: 'yidong',
-            key: 'yidong',
+            title: '联通1充值条数',
+            dataIndex: 'lt1_count',
+            key: 'lt1_count',
         }, {
-            title: '联通1消耗条数',
-            dataIndex: 'liantong1',
-            key: 'liantong1',
+            title: '联通2充值条数',
+            dataIndex: 'lt2_count',
+            key: 'lt2_count',
         }, {
-            title: '联通2消耗条数',
-            dataIndex: 'liantong2',
-            key: 'liantong2',
+            title: '电信充值条数',
+            dataIndex: 'dx_count',
+            key: 'dx_count',
         }, {
-            title: '电信消耗条数',
-            dataIndex: 'dianxing',
-            key: 'dianxing',
+            title: '移动剩余条数(元)',
+            dataIndex: 'yd_last',
+            key: 'yd_last',
+        }, {
+            title: '联通1剩余条数(元)',
+            dataIndex: 'lt1_last',
+            key: 'lt1_last',
+        }, {
+            title: '联通2剩余条数(元)',
+            dataIndex: 'lt2_last',
+            key: 'lt2_last',
+        }, {
+            title: '电信剩余条数(元)',
+            dataIndex: 'dx_last',
+            key: 'dx_last',
         }, {
             title: '移动单价(元)',
-            dataIndex: 'yidong_price',
-            key: 'yidong_price',
+            dataIndex: 'yd_cost',
+            key: 'yd_cost',
         }, {
-            title: '联通1单价(元)',
-            dataIndex: 'liantong1_price',
-            key: 'liantong1_price',
-        }, {
-            title: '联通2单价(元)',
-            dataIndex: 'liantong2_price',
-            key: 'liantong2_price',
+            title: '联通单价(元)',
+            dataIndex: 'lt_cost',
+            key: 'lt_cost',
         }, {
             title: '电信单价(元)',
-            dataIndex: 'dianxing_price',
-            key: 'dianxing_price',
-        }, {
-            title: '移动成本(元)',
-            dataIndex: 'yidong_cost',
-            key: 'yidong_cost',
-        }, {
-            title: '联通成本(元)',
-            dataIndex: 'liantong_cost',
-            key: 'liantong_cost',
-        }, {
-            title: '电信成本(元)',
-            dataIndex: 'dianxing_cost',
-            key: 'dianxing_cost',
+            dataIndex: 'dx_cost',
+            key: 'dx_cost',
         }, {
             title: '总金额(元)',
             dataIndex: 'total',
@@ -326,7 +356,7 @@ class EditUserFiless extends Component {
                                             <Col span={24}>
                                                     <FormItem label="客户名称" colon={false}>
                                                         {/* <input placeholder="请输入公司名称" value={client_name} /> */}
-                                                        <Select
+                                                        {/* <Select
                                                             placeholder="请选择"
                                                             onChange={this.handleSelectChange}
                                                         >
@@ -335,10 +365,15 @@ class EditUserFiless extends Component {
                                                                     <Option value={index} key={index}>{item}</Option>
                                                                 )
                                                             })}
-                                                        </Select>
+                                                        </Select> */}
+                                                        <input placeholder="请输入客户名称" value={client_name} disabled onChange={event => {
+                                                            this.setState({
+                                                                client_name: event.target.value
+                                                            });
+                                                        }} />
                                                     </FormItem>
                                                     <FormItem label="订单编号" colon={false}>
-                                                        <input placeholder="请输入公司名称" value={orderId} onChange={event => {
+                                                        <input placeholder="请输入公司名称" value={orderId} disabled onChange={event => {
                                                             this.setState({
                                                                 orderId: event.target.value
                                                             });
@@ -362,104 +397,90 @@ class EditUserFiless extends Component {
                                                                         <Row>
                                                                             <Col span={12}>
                                                                                 <FormItem label="资源属性" colon={false}>
-                                                                                    <input placeholder="请输入资源属性名称" onChange={event=>{
+                                                                                    <input placeholder="请输入资源属性名称" value={this.state.resource_attribute} onChange={event => {
                                                                                         this.setState({
-                                                                                            resource_pro: event.target.value
+                                                                                            resource_attribute: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="移动消耗条数" colon={false}>
-                                                                                    <input placeholder="请输入消耗条数" onChange={event=>{
+                                                                                <FormItem label="移动充值条数" colon={false}>
+                                                                                    <input placeholder="请输入充值条数" value={this.state.yd_count} onChange={event => {
                                                                                         this.setState({
-                                                                                            yidong: event.target.value
+                                                                                            yd_count: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="联通2消耗条数" colon={false}>
-                                                                                    <input placeholder="请输入消耗条数" onChange={event=>{
+                                                                                <FormItem label="联通2充值条数" colon={false}>
+                                                                                    <input placeholder="请输入充值条数" value={this.state.lt2_count} onChange={event => {
                                                                                         this.setState({
-                                                                                            liantong2: event.target.value
+                                                                                            lt2_count: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="移动报价" colon={false}>
-                                                                                    <input placeholder="请输入报价" onChange={event=>{
+                                                                                <FormItem label="移动剩余条数" colon={false}>
+                                                                                    <input placeholder="请输入剩余条数" value={this.state.yd_last} onChange={event => {
                                                                                         this.setState({
-                                                                                            yidong_price: event.target.value
+                                                                                            yd_last: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="联通2报价" colon={false}>
-                                                                                    <input placeholder="请输入报价" onChange={event=>{
+                                                                                <FormItem label="联通2剩余条数" colon={false}>
+                                                                                    <input placeholder="请输入剩余条数" value={this.state.lt2_last} onChange={event => {
                                                                                         this.setState({
-                                                                                            liantong2_price: event.target.value
+                                                                                            lt2_last: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="移动成本" colon={false}>
-                                                                                    <input placeholder="请输入成本" onChange={event=>{
+                                                                                <FormItem label="移动单价" colon={false}>
+                                                                                    <input placeholder="请输入单价" value={this.state.yd_cost} onChange={event => {
                                                                                         this.setState({
-                                                                                            yidong_cost: event.target.value
+                                                                                            yd_cost: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="电信成本" colon={false}>
-                                                                                    <input placeholder="请输入成本" onChange={event=>{
+                                                                                <FormItem label="电信单价" colon={false}>
+                                                                                    <input placeholder="请输入单价" value={this.state.dx_cost} onChange={event => {
                                                                                         this.setState({
-                                                                                            dianxing_cost: event.target.value
+                                                                                            dx_cost: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
                                                                             </Col>
                                                                             <Col span={12}>
-                                                                                <FormItem label="付款方式" colon={false}>
-                                                                                    <input placeholder="请输入付款方式" onChange={event=>{
+                                                                                <FormItem label="联通1充值条数" colon={false}>
+                                                                                    <input placeholder="请输入充值条数" value={this.state.lt1_count} onChange={event => {
                                                                                         this.setState({
-                                                                                            pay_method: event.target.value
+                                                                                            lt1_count: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="联通1消耗条数" colon={false}>
-                                                                                    <input placeholder="请输入消耗条数" onChange={event=>{
+                                                                                <FormItem label="电信充值条数" colon={false}>
+                                                                                    <input placeholder="请输入充值条数" value={this.state.dx_count} onChange={event => {
                                                                                         this.setState({
-                                                                                            liantong1: event.target.value
+                                                                                            dx_count: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="电信消耗条数" colon={false}>
-                                                                                    <input placeholder="请输入消耗条数" onChange={event=>{
+                                                                                <FormItem label="联通1剩余条数" colon={false}>
+                                                                                    <input placeholder="请输入剩余条数" value={this.state.lt1_last} onChange={event => {
                                                                                         this.setState({
-                                                                                            dianxing: event.target.value
+                                                                                            lt1_last: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="联通1报价" colon={false}>
-                                                                                    <input placeholder="请输入报价" onChange={event=>{
+                                                                                <FormItem label="电信剩余条数" colon={false}>
+                                                                                    <input placeholder="请输入剩余条数" value={this.state.dx_last} onChange={event => {
                                                                                         this.setState({
-                                                                                            liantong1_price: event.target.value
+                                                                                            dx_last: event.target.value
                                                                                         });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
-                                                                                <FormItem label="电信报价" colon={false}>
-                                                                                    <input placeholder="请输入报价" onChange={event=>{
+                                                                                <FormItem label="联通单价" colon={false}>
+                                                                                    <input placeholder="请输入单价" value={this.state.lt_cost} onChange={event => {
                                                                                         this.setState({
-                                                                                            dianxing_price: event.target.value
+                                                                                            lt_cost: event.target.value
                                                                                         });
-                                                                                    }}/>
-                                                                                </FormItem>
-                                                                                <FormItem label="联通成本" colon={false}>
-                                                                                    <input placeholder="请输入成本" onChange={event=>{
-                                                                                        this.setState({
-                                                                                            liantong_cost: event.target.value
-                                                                                        });
-                                                                                    }}/>
-                                                                                </FormItem>
-                                                                                <FormItem label="总金额" colon={false}>
-                                                                                    <input placeholder="请输入总金额" onChange={event=>{
-                                                                                        this.setState({
-                                                                                            total: event.target.value
-                                                                                        });
-                                                                                    }}/>
+                                                                                    }} />
                                                                                 </FormItem>
                                                                             </Col>
                                                                         </Row>
@@ -470,21 +491,21 @@ class EditUserFiless extends Component {
                                                     </Row>
 
                                                     <FormItem label="合计金额" colon={false}>
-                                                        <input placeholder="请输入公司名称" value={orderId} onChange={event => {
+                                                        <input placeholder="请输入公司名称" value={total_count} onChange={event => {
                                                             this.setState({
                                                                 total_count: event.target.value
                                                             });
                                                         }} />
                                                     </FormItem>
                                                     <FormItem label="收款主体" colon={false}>
-                                                        <input placeholder="请输入收款主体" value={orderId} onChange={event => {
+                                                        <input placeholder="请输入收款主体" value={receivables_entity} onChange={event => {
                                                             this.setState({
                                                                 receivables_entity: event.target.value
                                                             });
                                                         }} />
                                                     </FormItem>
                                                     <FormItem label="收款账户" colon={false}>
-                                                        <input placeholder="请输入收款账户" value={orderId} onChange={event => {
+                                                        <input placeholder="请输入收款账户" value={receivables_account} onChange={event => {
                                                             this.setState({
                                                                 receivables_account: event.target.value
                                                             });

@@ -46,56 +46,52 @@ class WatchUserFiless extends Component {
         };
         const columns = [{
             title: '资源属性',
-            dataIndex: 'resource_pro',
-            key: 'resource_pro',
+            dataIndex: 'resource_attribute',
+            key: 'resource_attribute',
         }, {
-            title: '付款方式',
-            dataIndex: 'pay_method',
-            key: 'pay_method',
+            title: '移动充值条数',
+            dataIndex: 'yd_count',
+            key: 'yd_count',
         }, {
-            title: '移动消耗条数',
-            dataIndex: 'yidong',
-            key: 'yidong',
+            title: '联通1充值条数',
+            dataIndex: 'lt1_count',
+            key: 'lt1_count',
         }, {
-            title: '联通1消耗条数',
-            dataIndex: 'liantong1',
-            key: 'liantong1',
+            title: '联通2充值条数',
+            dataIndex: 'lt2_count',
+            key: 'lt2_count',
         }, {
-            title: '联通2消耗条数',
-            dataIndex: 'liantong2',
-            key: 'liantong2',
+            title: '电信充值条数',
+            dataIndex: 'dx_count',
+            key: 'dx_count',
         }, {
-            title: '电信消耗条数',
-            dataIndex: 'dianxing',
-            key: 'dianxing',
+            title: '移动剩余条数(元)',
+            dataIndex: 'yd_last',
+            key: 'yd_last',
+        }, {
+            title: '联通1剩余条数(元)',
+            dataIndex: 'lt1_last',
+            key: 'lt1_last',
+        }, {
+            title: '联通2剩余条数(元)',
+            dataIndex: 'lt2_last',
+            key: 'lt2_last',
+        }, {
+            title: '电信剩余条数(元)',
+            dataIndex: 'dx_last',
+            key: 'dx_last',
         }, {
             title: '移动单价(元)',
-            dataIndex: 'yidong_price',
-            key: 'yidong_price',
+            dataIndex: 'yd_cost',
+            key: 'yd_cost',
         }, {
-            title: '联通1单价(元)',
-            dataIndex: 'liantong1_price',
-            key: 'liantong1_price',
-        }, {
-            title: '联通2单价(元)',
-            dataIndex: 'liantong2_price',
-            key: 'liantong2_price',
+            title: '联通单价(元)',
+            dataIndex: 'lt_cost',
+            key: 'lt_cost',
         }, {
             title: '电信单价(元)',
-            dataIndex: 'dianxing_price',
-            key: 'dianxing_price',
-        }, {
-            title: '移动成本(元)',
-            dataIndex: 'yidong_cost',
-            key: 'yidong_cost',
-        }, {
-            title: '联通成本(元)',
-            dataIndex: 'liantong_cost',
-            key: 'liantong_cost',
-        }, {
-            title: '电信成本(元)',
-            dataIndex: 'dianxing_cost',
-            key: 'dianxing_cost',
+            dataIndex: 'dx_cost',
+            key: 'dx_cost',
         }, {
             title: '总金额(元)',
             dataIndex: 'total',
@@ -194,13 +190,6 @@ class WatchUserFiless extends Component {
                                                                                 </FormItem>
                                                                             </Col>
                                                                             <Col span={12}>
-                                                                                <FormItem label="付款方式" colon={false}>
-                                                                                    <input placeholder="请输入付款方式" onChange={event=>{
-                                                                                        this.setState({
-                                                                                            pay_method: event.target.value
-                                                                                        });
-                                                                                    }}/>
-                                                                                </FormItem>
                                                                                 <FormItem label="联通1消耗条数" colon={false}>
                                                                                     <input placeholder="请输入消耗条数" onChange={event=>{
                                                                                         this.setState({
@@ -233,13 +222,6 @@ class WatchUserFiless extends Component {
                                                                                     <input placeholder="请输入成本" onChange={event=>{
                                                                                         this.setState({
                                                                                             liantong_cost: event.target.value
-                                                                                        });
-                                                                                    }}/>
-                                                                                </FormItem>
-                                                                                <FormItem label="总金额" colon={false}>
-                                                                                    <input placeholder="请输入总金额" onChange={event=>{
-                                                                                        this.setState({
-                                                                                            total: event.target.value
                                                                                         });
                                                                                     }}/>
                                                                                 </FormItem>

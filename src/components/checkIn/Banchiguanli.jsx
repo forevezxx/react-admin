@@ -385,7 +385,7 @@ class Banchiguanlis extends Component {
         this.setState({
             type,
         }, () => {
-            if(type === 1){
+            if(type == 1){
                 that.banciAll();
             }else{
                 // that.banciAll();

@@ -97,7 +97,7 @@ class HeaderCustom extends Component {
                         </Badge>
                     </Menu.Item> */}
                     <Menu.Item key="logout" style={{ float: 'right' }}>
-                        <span>用户昵称</span>
+                        <span>{localStorage.getItem('account_name') ? localStorage.getItem('account_name'):`用户昵称`}</span>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
                         <span onClick={this.logout} className="stop">退出</span>
                     </Menu.Item>

@@ -11,6 +11,7 @@ import {
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { supplierPayRecordOne, supplierPayRecordUpdate, supplierGetData, resourceAdd } from '../../axios';
 import moment from 'moment';
+import { format } from 'path';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -91,8 +92,17 @@ class EditPays extends Component {
                 flat_account_type: res.data.supplier.flat_account_type,
                 backup: res.data.supplier.backup,
                 resource: res.data.supplier.resource,
+                resource_id: this.formatResoureceId(res.data.supplier.resource)
             })
         })
+    }
+    formatResoureceId(resource){
+        let x = [];
+        resource.forEach(element => {
+            x.push(Number(element.id));
+        });
+        console.log(x);
+        return x;
     }
     goBack() {
         this.props.history.push(`/app/shouldPay/pay`);
@@ -387,14 +397,14 @@ class EditPays extends Component {
                                             <Row>
                                                 <Col span={24}>
                                                     <FormItem label="供应商名称" colon={false}>
-                                                        <input placeholder="请输入供应商名称" value={supplier_name} onChange={event => {
+                                                        <input placeholder="请输入供应商名称" value={supplier_name} disabled onChange={event => {
                                                             this.setState({
                                                                 supplier_name: event.target.value
                                                             });
                                                         }}/>
                                                     </FormItem>
                                                     <FormItem label="订单合同编号" colon={false}>
-                                                        <input placeholder="请输入订单合同编号" value={order_num} onChange={event => {
+                                                        <input placeholder="请输入订单合同编号" value={order_num} disabled onChange={event => {
                                                             this.setState({
                                                                 order_num: event.target.value
                                                             });

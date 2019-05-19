@@ -33,6 +33,7 @@ class Login extends React.Component {
                 login(values.userName, values.password).then(res=>{
                     if(res.msg === "success"){
                         localStorage.setItem('user_token',res.data.token);
+                        localStorage.setItem('account_name', res.data.account_name);
                         this.props.history.push('/app/shouldPay/document');
                     }
                 })                
@@ -73,7 +74,7 @@ class Login extends React.Component {
                             })(
                                 <Checkbox>记住我</Checkbox>
                             )}
-                            <span className="login-form-forgot" href="" style={{float: 'right'}}>忘记密码</span>
+                            {/* <span className="login-form-forgot" href="" style={{float: 'right'}}>忘记密码</span> */}
                             <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>
                                 登录
                             </Button>
