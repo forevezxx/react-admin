@@ -39,6 +39,7 @@ class Banchiguanlis extends Component {
         banci_name: '',
         allUserList: [],
         user_id_list: [],
+        banci_user: [],
     };
     componentDidMount() {
         // this.banciAll();
@@ -197,16 +198,19 @@ class Banchiguanlis extends Component {
             }
         })
     }
-    banciOrderOne(id) {//获取单个班次数据
+    banciOrderOne(id) {//获取单个排班表数据
         let data = {
             id,
         }
         banciOrderOne(data).then(res => {
-            // this.setState({
-            //     user_id_list: res.data.supplier.name,
-            //     start_time: res.data.supplier.start_time,
-            //     end_time: res.data.supplier.end_time,
-            // })
+            this.setState({
+                banci_name: res.data.data.name,
+                banci_id: res.data.data.banci_id,
+                banci_start_time: res.data.data.start_time,
+                banci_end_time: res.data.data.end_time,
+                banci_user: res.data.data.user,
+                user_id_list: res.data.data.user_id
+            });
         })
     }
     banciOrderAdd() {
@@ -226,18 +230,19 @@ class Banchiguanlis extends Component {
         })
     }
     banciOrderUpdate() {
+        debugger
         const {
-            name,
-            start_time,
-            end_time,
-            id
+            banci_name,
+            banci_start_time,
+            banci_end_time,
+            banci_id
         } = this.state;
         let data = {
-            id,
+            id: banci_id,
             update_json: JSON.stringify({
-                name,
-                start_time,
-                end_time,
+                name: banci_name,
+                start_time: banci_start_time,
+                end_time: banci_end_time,
             }),
             token: localStorage.getItem('user_token'),
         }
@@ -533,6 +538,15 @@ class Banchiguanlis extends Component {
                                                                 <TimePicker placeholder="请选择" disabled value={moment(item.start_time, format)} format={format} /> -
                                                                     <TimePicker placeholder="请选择" disabled value={moment(item.end_time, format)} format={format} />
                                                             </FormItem>
+                                                            <FormItem label="人员" colon={false}>
+                                                                {item.user.map((item, index) => {
+                                                                    return (
+                                                                        <Col span={3} key={index}>
+                                                                            <span>{item.username}</span>
+                                                                        </Col>
+                                                                    )
+                                                                })}
+                                                            </FormItem>
                                                         </Col>
                                                     )
                                                 })}
@@ -589,15 +603,25 @@ class Banchiguanlis extends Component {
                                                     <Row>
                                                         <Col span={24}>
                                                             <FormItem label="班次" colon={false}>
-                                                                <input placeholder="请输入班次名称" value={this.state.name} onChange={event => {
+                                                                <input placeholder="请输入班次名称" value={this.state.banci_name} onChange={event => {
                                                                     this.setState({
-                                                                        name: event.target.value
+                                                                        banci_name: event.target.value
                                                                     });
                                                                 }} />
                                                             </FormItem>
                                                             <FormItem label="时间" colon={false}>
                                                                 <TimePicker placeholder="请选择" format={format} disabled value={moment(this.state.banci_start_time, format)} /> -
                                                                 <TimePicker placeholder="请选择" format={format} disabled value={moment(this.state.banci_end_time, format)} />
+                                                            </FormItem>
+
+                                                            <FormItem label="人员" colon={false}>
+                                                                <Row>
+                                                                    {this.state.banci_user.map((item, index) => {
+                                                                        return (
+                                                                            <Col span={12} key={index}><Checkbox onChange={this.userAuth.bind(this)} value={item.id}>{item.username}</Checkbox></Col>
+                                                                        )
+                                                                    })}
+                                                                </Row>
                                                             </FormItem>
                                                         </Col>
                                                     </Row>
