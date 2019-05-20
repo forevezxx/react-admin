@@ -226,7 +226,7 @@ class EditUserFiless extends Component {
             console.log(res);
             let y = that.state.resource_id;
             if (res.msg == "success") {
-                y.push(res.data.id);
+                y.push(res.data.id.toString());
                 that.setState({
                     resource_id: y,
                     visible: false,

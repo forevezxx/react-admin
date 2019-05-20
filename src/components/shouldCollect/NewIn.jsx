@@ -133,7 +133,7 @@ class NewIns extends Component {
     
     newSupplier() {
         const { 
-            client_id,
+            orderId,
             client_name,
             resource_id,
             total_count,
@@ -154,7 +154,7 @@ class NewIns extends Component {
         } = this.state;
         const token = localStorage.getItem('user_token');
         let data = {
-            client_id,
+            orderId,
             client_name,
             resource_id,
             total_count,
